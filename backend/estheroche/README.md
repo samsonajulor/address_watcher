@@ -1,0 +1,1 @@
+# Setup email notification service using nodemailer. // estheroche by Saturday 12pm
