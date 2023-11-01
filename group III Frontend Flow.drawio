@@ -1,0 +1,51 @@
+<mxfile host="app.diagrams.net" modified="2023-11-01T18:11:27.581Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="ztnzxUsnAnQKDVmAL_Da" version="22.0.8" type="device">
+  <diagram name="Page-1" id="K7gAycVv_14M4fioqX2Y">
+    <mxGraphModel dx="808" dy="501" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Z29mAYiYcTDMkQsvSbtz-1" value="" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="44" y="10" width="750" height="750" as="geometry" />
+        </mxCell>
+        <mxCell id="Z29mAYiYcTDMkQsvSbtz-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="Z29mAYiYcTDMkQsvSbtz-2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="540" y="60" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Z29mAYiYcTDMkQsvSbtz-2" value="register/signin =&amp;gt; logout" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="40" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Z29mAYiYcTDMkQsvSbtz-4" value="modal&lt;br&gt;&lt;br&gt;registration details/signin details" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="540" y="20" width="130" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="Z29mAYiYcTDMkQsvSbtz-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="Z29mAYiYcTDMkQsvSbtz-6" target="Z29mAYiYcTDMkQsvSbtz-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Z29mAYiYcTDMkQsvSbtz-6" value="register an address" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="159" y="80" width="161" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="Z29mAYiYcTDMkQsvSbtz-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="Z29mAYiYcTDMkQsvSbtz-7">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="330" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="229" y="300" />
+              <mxPoint x="281" y="300" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Z29mAYiYcTDMkQsvSbtz-7" value="view registered addresses" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="148.5" y="210" width="161" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="Z29mAYiYcTDMkQsvSbtz-8" value="types of alert we are supporting&lt;br&gt;&lt;br&gt;1. receiving tokens/crypto&lt;br&gt;2. Sending token/crypto&lt;br&gt;3. contract creation&lt;br&gt;4. exceptionally high gas price" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="600" y="240" width="180" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="Z29mAYiYcTDMkQsvSbtz-18" value="table showing the list of addresses and choice notifications. we should be able to edit the preferences." style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="220" y="330" width="180" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="Z29mAYiYcTDMkQsvSbtz-20" value="notification list." style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="260" y="470" width="360" height="140" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
