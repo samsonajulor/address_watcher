@@ -16,11 +16,12 @@
 
 ##### Sample contract to be used to simulate transactions. by Alfa due 12pm Saturday 4th of November, 2023.
 
+### Documentations
 
-[Task Doc!!](https://docs.google.com/document/d/1PNNgjN8F2bZKnAR6sh1zJGrt5kzc2l22HBe5Py8wwbQ/edit?usp=sharing)
+1. [Task Document](https://docs.google.com/document/d/1PNNgjN8F2bZKnAR6sh1zJGrt5kzc2l22HBe5Py8wwbQ/edit?usp=sharing)
 
 
-[PRD!!](https://docs.google.com/document/d/1Ramt1KqB8dNHwBUVZT4tMEVdI0dXhW6Pb6kWoPeLIDk/edit)
+2. [Product Requirement Document](https://docs.google.com/document/d/1Ramt1KqB8dNHwBUVZT4tMEVdI0dXhW6Pb6kWoPeLIDk/edit)
 
 ### Competitors
 1. [Quicknode](https://www.quicknode.com/docs/quickalerts)
