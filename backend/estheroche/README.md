@@ -1,1 +1,1 @@
-# Setup email notification service using nodemailer. // estheroche by Saturday 12pm
+###### Setup email notification service using nodemailer. by estheroche due 12pm Saturday 4th of November, 2023.
