@@ -1,0 +1,6 @@
+type UserData
+  @createModel(accountRelation: SINGLE, description: "model for user data") {
+  owner: DID! @documentAccount
+  email: String! @string(minLength: 3, maxLength: 50)
+  address: String! @string(minLength: 42, maxLength: 42)
+}
