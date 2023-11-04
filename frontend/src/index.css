@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Anonymous Pro", monospace;
+  background-color: #070b12;
+  color: #fff;
+}
+
+.bg-pry {
+  background-color: #5616c5;
+}
+
+.bg-sec {
+  background-color: #c1a45a;
+  background: rgba(193, 164, 90, 0.15); 
+}
+
+.text-pry {
+  color: #5616c5;
+}
+
+.text-sec {
+  color: #c1a45a;
+}
