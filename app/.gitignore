@@ -108,3 +108,5 @@ config.txt
 
 # remove package-lock.json
 package-lock.json
+
+.vscode
