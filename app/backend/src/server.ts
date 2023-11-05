@@ -7,7 +7,6 @@ const server = http.createServer(app);
 
 async function startApp() {
   try {
-
     logger('connect:', 'connected to database');
 
     const service: any = server.listen(process.env.PORT || 5000, () => {

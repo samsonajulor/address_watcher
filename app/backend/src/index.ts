@@ -48,7 +48,7 @@ app.get('/*', (req, res) => {
 app.use((err: any, req: Request, res: Response) => {
   res.status(400).send({
     success: false,
-    message: err.message
+    message: err.message,
   });
 });
 

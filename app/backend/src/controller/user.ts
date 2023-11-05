@@ -11,7 +11,6 @@ const nanoid = customAlphabet(numbers, 6); // sample random number for otp if ne
 
 export async function getOTP(req: Request, res: Response) {
   try {
-
     const otp = nanoid();
 
     const message = `Hello, your OTP is ${otp}`;
