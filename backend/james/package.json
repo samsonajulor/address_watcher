@@ -1,0 +1,24 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@composedb/devtools": "^0.5.1",
+    "@composedb/devtools-node": "^0.5.2",
+    "@composedb/types": "^0.5.1"
+  },
+  "dependencies": {
+    "@composedb/client": "^0.5.2",
+    "@didtools/pkh-ethereum": "^0.4.1",
+    "did-session": "^2.1.1",
+    "typescript": "^5.2.2"
+  },
+  "type": "module"
+}

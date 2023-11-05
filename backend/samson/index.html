@@ -1,0 +1,25 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Blockchain WebSocket Example</title>
+</head>
+<body>
+  <h1>Real-time Ethereum Events</h1>
+  <ul id="event-list"></ul>
+
+  <script>
+    const eventList = document.getElementById('event-list');
+    const socket = new WebSocket('ws://localhost:3000');
+
+    socket.onmessage = (event) => {
+      const eventData = JSON.parse(event.data);
+      const listItem = document.createElement('li');
+      listItem.textContent = JSON.stringify(eventData);
+      eventList.appendChild(listItem);
+    };
+  </script>
+</body>
+</html>
