@@ -6,7 +6,8 @@
 
 body {
   font-family: "Anonymous Pro", monospace;
-  background-color: #070b12;
+  /* --tw-bg-opacity: 1;
+  background-color: rgb(3 7 18 / var(--tw-bg-opacity)); */
   color: #fff;
 }
 
@@ -16,7 +17,7 @@ body {
 
 .bg-sec {
   background-color: #c1a45a;
-  background: rgba(193, 164, 90, 0.15); 
+  background: rgba(193, 164, 90, 0.15);
 }
 
 .text-pry {
