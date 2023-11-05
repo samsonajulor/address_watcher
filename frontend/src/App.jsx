@@ -12,12 +12,13 @@ function App() {
     <>
       {/* <Hero />
       <WhyUs /> */}
+
       <Landing />
-      <Register />
-      <Login />
-      <Modal />
-      <Overview />
-      <Activity />
+      {/* <Register /> */}
+      {/* <Login /> */}
+      {/* <Modal /> */}
+      {/* <Overview /> */}
+      {/* <Activity /> */}
     </>
   );
 }

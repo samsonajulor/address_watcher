@@ -23,6 +23,8 @@
 
 2. [Product Requirement Document](https://docs.google.com/document/d/1Ramt1KqB8dNHwBUVZT4tMEVdI0dXhW6Pb6kWoPeLIDk/edit)
 
+3. [Figma Design](https://www.figma.com/file/aySMZkajo7TObidXUBrjGU/Address-Watcher?type=design&node-id=0%3A1&mode=design&t=MMH0ARHjccqoV5tW-1)
+
 ### Competitors
 1. [Quicknode](https://www.quicknode.com/docs/quickalerts)
 
