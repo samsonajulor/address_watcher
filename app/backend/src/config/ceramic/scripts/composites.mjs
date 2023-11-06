@@ -1,5 +1,4 @@
 /* eslint-disable import/prefer-default-export */
-import { readFileSync } from 'fs';
 import { CeramicClient } from '@ceramicnetwork/http-client';
 import {
   createComposite,
@@ -21,7 +20,7 @@ const ceramic = new CeramicClient('http://localhost:7007');
  * @return {Promise<void>} - return void when DID is authenticated.
  */
 const authenticate = async () => {
-  const seed = readFileSync('./admin_seed.txt');
+  const seed = '007f5e2cc2dfadea726f19797497c60ee2a3e2afc78d9d021d60315ddf4e884d'; // hide this later
   const key = fromString(seed, 'base16');
   const did = new DID({
     resolver: getResolver(),
@@ -38,18 +37,18 @@ const authenticate = async () => {
 export const writeComposite = async (spinner) => {
   await authenticate();
   spinner.info('writing composite to Ceramic');
-  const composite = await createComposite(ceramic, './composites/basicProfile.graphql');
-  await writeEncodedComposite(composite, '../__generated__/definition.json');
+  const composite = await createComposite(ceramic, './src/config/ceramic/composites/basicProfile.graphql');
+  await writeEncodedComposite(composite, './src/config/ceramic/__generated__/definition.json');
   spinner.info('creating composite for runtime usage');
   await writeEncodedCompositeRuntime(
     ceramic,
-    '../__generated__/definition.json',
-    '../__generated__/definition.js'
+    './src/config/ceramic/__generated__/definition.json',
+    './src/config/ceramic/__generated__/definition.js'
   );
   spinner.info('deploying composite');
   const deployComposite = await readEncodedComposite(
     ceramic,
-    '../__generated__/definition.json'
+    './src/config/ceramic/__generated__/definition.json'
   );
 
   await deployComposite.startIndexingOn(ceramic);

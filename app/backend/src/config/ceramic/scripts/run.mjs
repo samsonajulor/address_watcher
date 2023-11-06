@@ -2,6 +2,7 @@ import ora from 'ora';
 
 import { spawn } from 'child_process';
 import { EventEmitter } from 'events';
+// eslint-disable-next-line import/extensions
 import { writeComposite } from './composites.mjs';
 
 const events = new EventEmitter();

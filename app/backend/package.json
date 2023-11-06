@@ -5,7 +5,6 @@
   "main": "index.js",
   "author": "Group III",
   "license": "MIT",
-  "type": "module",
   "scripts": {
     "lint": "eslint \"src/**/*.ts\"",
     "ceramic": "CERAMIC_ENABLE_EXPERIMENTAL_COMPOSE_DB='true' ceramic daemon --config ./composedb.config.json",
@@ -19,7 +18,8 @@
     "copy-files": "cp -r ./src/templates/ ./dist/ && cp -r ./src/assets/ ./dist/",
     "build-ts": "tsc",
     "format": "cross-env prettier --write ./**/*.{js,ts,md,json,mjs} --config ./.prettierrc",
-    "web3": "node src/config/ceramic/scripts/run.mjs"
+    "web3": "node src/config/ceramic/scripts/run.mjs",
+    "kipfs": "killall ipfs"
   },
   "repository": {
     "type": "git",

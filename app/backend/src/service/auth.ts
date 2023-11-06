@@ -9,13 +9,12 @@ import type { ComposeClient } from '@composedb/client';
 const cache = new NodeCache();
 const alchemyProviderUrl = 'https://eth-sepolia.g.alchemy.com/v2/3RXLLPbaLaKav4sgsrTv2r5YK2Hpblay';
 const provider = new ethers.AlchemyProvider('sepolia', alchemyProviderUrl);
-const owner = '0xD4C42e502669947139D736b693C97b82D4d01F48';
 
 /**
  * Checks node-cache for a stored DID Session. If one is found, we authenticate it; otherwise, we create a new one.
  * @returns Promise<void>
  */
-export const authenticateCeramic = async (ceramic: CeramicApi, compose: ComposeClient) => {
+export const authenticateCeramic = async (ceramic: CeramicApi, compose: ComposeClient, user: string) => {
   const sessionStr = cache.get('did'); // Use node-cache instead of localStorage
   let session;
 
@@ -27,7 +26,7 @@ export const authenticateCeramic = async (ceramic: CeramicApi, compose: ComposeC
     // We enable the ethereum provider to get the user's addresses.
     const ethProvider = provider;
     // request ethereum accounts.
-    const accountId = await getAccountId(ethProvider, owner);
+    const accountId = await getAccountId(ethProvider, user);
     const authMethod = await EthereumWebAuth.getAuthMethod(ethProvider, accountId);
 
     /**

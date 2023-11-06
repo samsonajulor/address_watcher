@@ -1,7 +1,9 @@
 import { Router } from 'express';
+import { saveAddress, getAddressData } from '../controller';
 
 const router = Router();
 
-router.post('/logout');
+router.post('/', saveAddress);
+router.get('/', getAddressData);
 
 export default router;
