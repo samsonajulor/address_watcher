@@ -1,7 +1,7 @@
 export default function Modal() {
   return (
-    <div className="justify-center items-center bg-gray-950 flex flex-col px-20 max-md:px-5">
-      <div className="justify-center items-center backdrop-blur-[5px] bg-gray-900 self-center flex w-full max-w-[1100px] flex-col mt-20 mb-20 px-20 py-36 rounded-[32px] max-md:max-w-full max-md:my-10 max-md:px-5 max-md:py-24">
+    <div className="max-h-[80vh] rounded-[32px] overflow-auto overscroll-y-none">
+      <div className="justify-center items-center backdrop-blur-lg bg-gray-900 self-center flex w-full max-w-[1100px] flex-col px-20 py-20 rounded-[32px] max-md:max-w-full max-md:my-10 max-md:px-5 max-md:py-24">
         <div className="items-center self-center flex mb-0 w-[643px] max-w-full flex-col max-md:mb-2.5">
           <div className="text-violet-800 text-3xl font-bold self-center whitespace-nowrap">
             Add address
@@ -19,7 +19,10 @@ export default function Modal() {
                   Chain
                 </div>
                 {/* <div className="justify-center items-center border self-stretch flex grow flex-col w-full mt-3 pl-8 pr-7 py-2.5 rounded-lg border-solid border-zinc-500 border-opacity-80 max-md:max-w-full max-md:px-5"> */}
-                <input placeholder="Email" className="border bg-transparent outline-none px-5 self-stretch flex w-full h-[50px] flex-col mt-3 rounded-lg border-solid border-zinc-500 border-opacity-80 max-md:max-w-full" />
+                <input
+                  placeholder="Email"
+                  className="border bg-transparent outline-none px-5 self-stretch flex w-full h-[50px] flex-col mt-3 rounded-lg border-solid border-zinc-500 border-opacity-80 max-md:max-w-full"
+                />
               </div>
               <div className="items-start self-stretch flex flex-col mt-10 max-md:max-w-full">
                 <div className="text-white text-xl font-bold self-stretch whitespace-nowrap max-md:max-w-full">
