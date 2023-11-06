@@ -17,7 +17,7 @@ const Header = () => {
   return (
     <header>
       <nav
-        className="flex items-center justify-between p-6 lg:px-20 lg:py-10"
+        className="flex items-center justify-between px-8 py-6 lg:px-20 lg:py-10"
         aria-label="Global"
       >
         <div className="justify-between items-center self-center flex w-full gap-5 max-md:max-w-full max-md:flex-wrap">
@@ -35,18 +35,18 @@ const Header = () => {
             </button>
           </div>
           <div className="items-start self-center hidden lg:flex w-[521px] max-w-full justify-between gap-5 my-auto max-md:flex-wrap max-md:justify-center">
-            <div className="text-orange-400 text-xl font-bold self-stretch">
+            <div className="text-orange-400 text-2xl font-bold self-stretch">
               Home
             </div>
-            <div className="text-white text-xl font-bold self-stretch">
+            <div className="text-white text-2xl font-bold self-stretch">
               About
             </div>
-            <div className="text-white text-xl font-bold self-stretch">
+            <div className="text-white text-2xl font-bold self-stretch">
               Pricing
             </div>
             <Link
               to="/dashboard"
-              className="text-white text-xl font-bold self-stretch whitespace-nowrap hover:text-orange-300"
+              className="text-white text-2xl font-bold self-stretch whitespace-nowrap hover:text-orange-300"
             >
               Dashboard
             </Link>
@@ -68,10 +68,9 @@ const Header = () => {
         <div className="fixed inset-0 z-50" />
         <Dialog.Panel className="text-[#070B12] fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <a href="#" className="-m-1.5 p-1.5">
-              <span className="sr-only">Your Company</span>
-              <img className="h-8 w-auto" src={logo} alt="" />
-            </a>
+            <Link to="/" className="text-3xl bg-clip-text max-md:text-4xl">
+              Watcher
+            </Link>
             <button
               type="button"
               className="-m-2.5 rounded-md p-2.5"
