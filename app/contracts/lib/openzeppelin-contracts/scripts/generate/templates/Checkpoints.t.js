@@ -12,7 +12,7 @@ import "../../contracts/utils/math/SafeCast.sol";
 `;
 
 /* eslint-disable max-len */
-const common = opts => `\
+const common = (opts) => `\
 using Checkpoints for Checkpoints.${opts.historyTypeName};
 
 // Maximum gap between keys used during the fuzzing tests: the \`_prepareKeys\` function with make sure that
@@ -27,7 +27,9 @@ function _bound${capitalize(opts.keyTypeName)}(
     ${opts.keyTypeName} min,
     ${opts.keyTypeName} max
 ) internal view returns (${opts.keyTypeName}) {
-    return SafeCast.to${capitalize(opts.keyTypeName)}(bound(uint256(x), uint256(min), uint256(max)));
+    return SafeCast.to${capitalize(
+      opts.keyTypeName
+    )}(bound(uint256(x), uint256(min), uint256(max)));
 }
 
 function _prepareKeys(
@@ -36,7 +38,9 @@ function _prepareKeys(
 ) internal view {
     ${opts.keyTypeName} lastKey = 0;
     for (uint256 i = 0; i < keys.length; ++i) {
-        ${opts.keyTypeName} key = _bound${capitalize(opts.keyTypeName)}(keys[i], lastKey, lastKey + maxSpread);
+        ${opts.keyTypeName} key = _bound${capitalize(
+  opts.keyTypeName
+)}(keys[i], lastKey, lastKey + maxSpread);
         keys[i] = key;
         lastKey = key;
     }
@@ -47,14 +51,16 @@ function _assertLatestCheckpoint(
     ${opts.keyTypeName} key,
     ${opts.valueTypeName} value
 ) internal {
-    (bool _exist, ${opts.keyTypeName} _key, ${opts.valueTypeName} _value) = _ckpts.latestCheckpoint();
+    (bool _exist, ${opts.keyTypeName} _key, ${
+  opts.valueTypeName
+} _value) = _ckpts.latestCheckpoint();
     assertEq(_exist, exist);
     assertEq(_key, key);
     assertEq(_value, value);
 }
 `;
 
-const testTrace = opts => `\
+const testTrace = (opts) => `\
 // tests
 function testPush(
     ${opts.keyTypeName}[] memory keys,
@@ -141,7 +147,7 @@ function testLookup(
 }
 `;
 
-const testHistory = opts => `\
+const testHistory = (opts) => `\
 // tests
 function testPush(
     ${opts.keyTypeName}[] memory keys,
@@ -248,9 +254,9 @@ module.exports = format(
   [common(LEGACY_OPTS), testHistory(LEGACY_OPTS)],
   '}',
   // TRACEXXX
-  ...OPTS.flatMap(opts => [
+  ...OPTS.flatMap((opts) => [
     `contract Checkpoints${opts.historyTypeName}Test is Test {`,
     [common(opts), testTrace(opts)],
     '}',
-  ]),
+  ])
 );

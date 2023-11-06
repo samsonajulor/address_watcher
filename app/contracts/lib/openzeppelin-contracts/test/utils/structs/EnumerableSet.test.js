@@ -3,12 +3,12 @@ const { mapValues } = require('../../helpers/map-values');
 
 const { shouldBehaveLikeSet } = require('./EnumerableSet.behavior');
 
-const getMethods = ms => {
+const getMethods = (ms) => {
   return mapValues(
     ms,
-    m =>
+    (m) =>
       (self, ...args) =>
-        self.methods[m](0, ...args),
+        self.methods[m](0, ...args)
   );
 };
 
@@ -23,7 +23,7 @@ contract('EnumerableSet', function (accounts) {
   // Bytes32Set
   describe('EnumerableBytes32Set', function () {
     shouldBehaveLikeSet(
-      ['0xdeadbeef', '0x0123456789', '0x42424242'].map(e => e.padEnd(66, '0')),
+      ['0xdeadbeef', '0x0123456789', '0x42424242'].map((e) => e.padEnd(66, '0')),
       getMethods({
         add: '$add(uint256,bytes32)',
         remove: '$remove(uint256,bytes32)',
@@ -35,7 +35,7 @@ contract('EnumerableSet', function (accounts) {
       {
         addReturn: `return$add_${library}_Bytes32Set_bytes32`,
         removeReturn: `return$remove_${library}_Bytes32Set_bytes32`,
-      },
+      }
     );
   });
 
@@ -54,14 +54,14 @@ contract('EnumerableSet', function (accounts) {
       {
         addReturn: `return$add_${library}_AddressSet_address`,
         removeReturn: `return$remove_${library}_AddressSet_address`,
-      },
+      }
     );
   });
 
   // UintSet
   describe('EnumerableUintSet', function () {
     shouldBehaveLikeSet(
-      [1234, 5678, 9101112].map(e => web3.utils.toBN(e)),
+      [1234, 5678, 9101112].map((e) => web3.utils.toBN(e)),
       getMethods({
         add: '$add(uint256,uint256)',
         remove: '$remove(uint256,uint256)',
@@ -73,7 +73,7 @@ contract('EnumerableSet', function (accounts) {
       {
         addReturn: `return$add_${library}_UintSet_uint256`,
         removeReturn: `return$remove_${library}_UintSet_uint256`,
-      },
+      }
     );
   });
 });

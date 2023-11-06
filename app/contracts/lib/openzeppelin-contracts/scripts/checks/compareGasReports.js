@@ -54,45 +54,63 @@ class Report {
     }
 
     const deployments = update.info.deployments
-      .map(contract =>
-        Object.assign(contract, { previousVersion: ref.info.deployments.find(({ name }) => name === contract.name) }),
+      .map((contract) =>
+        Object.assign(contract, {
+          previousVersion: ref.info.deployments.find(({ name }) => name === contract.name),
+        })
       )
-      .filter(contract => contract.gasData?.length && contract.previousVersion?.gasData?.length)
-      .flatMap(contract => [
+      .filter((contract) => contract.gasData?.length && contract.previousVersion?.gasData?.length)
+      .flatMap((contract) => [
         {
           contract: contract.name,
           method: '[bytecode length]',
-          avg: variation(contract.bytecode.length / 2 - 1, contract.previousVersion.bytecode.length / 2 - 1),
+          avg: variation(
+            contract.bytecode.length / 2 - 1,
+            contract.previousVersion.bytecode.length / 2 - 1
+          ),
         },
         {
           contract: contract.name,
           method: '[construction cost]',
           avg: variation(
-            ...[contract.gasData, contract.previousVersion.gasData].map(x => Math.round(average(...x))),
-            BASE_TX_COST,
+            ...[contract.gasData, contract.previousVersion.gasData].map((x) =>
+              Math.round(average(...x))
+            ),
+            BASE_TX_COST
           ),
         },
       ])
       .sort((a, b) => `${a.contract}:${a.method}`.localeCompare(`${b.contract}:${b.method}`));
 
     const methods = Object.keys(update.info.methods)
-      .filter(key => ref.info.methods[key])
-      .filter(key => update.info.methods[key].numberOfCalls > 0)
+      .filter((key) => ref.info.methods[key])
+      .filter((key) => update.info.methods[key].numberOfCalls > 0)
       .filter(
-        key => !opts.strictTesting || update.info.methods[key].numberOfCalls === ref.info.methods[key].numberOfCalls,
+        (key) =>
+          !opts.strictTesting ||
+          update.info.methods[key].numberOfCalls === ref.info.methods[key].numberOfCalls
       )
-      .map(key => ({
+      .map((key) => ({
         contract: ref.info.methods[key].contract,
         method: ref.info.methods[key].fnSig,
-        min: variation(...[update, ref].map(x => Math.min(...x.info.methods[key].gasData)), BASE_TX_COST),
-        max: variation(...[update, ref].map(x => Math.max(...x.info.methods[key].gasData)), BASE_TX_COST),
-        avg: variation(...[update, ref].map(x => Math.round(average(...x.info.methods[key].gasData))), BASE_TX_COST),
+        min: variation(
+          ...[update, ref].map((x) => Math.min(...x.info.methods[key].gasData)),
+          BASE_TX_COST
+        ),
+        max: variation(
+          ...[update, ref].map((x) => Math.max(...x.info.methods[key].gasData)),
+          BASE_TX_COST
+        ),
+        avg: variation(
+          ...[update, ref].map((x) => Math.round(average(...x.info.methods[key].gasData))),
+          BASE_TX_COST
+        ),
       }))
       .sort((a, b) => `${a.contract}:${a.method}`.localeCompare(`${b.contract}:${b.method}`));
 
     return []
       .concat(deployments, methods)
-      .filter(row => !opts.hideEqual || row.min?.delta || row.max?.delta || row.avg?.delta);
+      .filter((row) => !opts.hideEqual || row.min?.delta || row.max?.delta || row.avg?.delta);
   }
 }
 
@@ -109,8 +127,14 @@ function formatCellShell(cell) {
   const format = chalk[cell?.delta > 0 ? 'red' : cell?.delta < 0 ? 'green' : 'reset'];
   return [
     format((!isFinite(cell?.value) ? '-' : cell.value.toString()).padStart(8)),
-    format((!isFinite(cell?.delta) ? '-' : plusSign(cell.delta) + cell.delta.toString()).padStart(8)),
-    format((!isFinite(cell?.prcnt) ? '-' : plusSign(cell.prcnt) + cell.prcnt.toFixed(2) + '%').padStart(8)),
+    format(
+      (!isFinite(cell?.delta) ? '-' : plusSign(cell.delta) + cell.delta.toString()).padStart(8)
+    ),
+    format(
+      (!isFinite(cell?.prcnt) ? '-' : plusSign(cell.prcnt) + cell.prcnt.toFixed(2) + '%').padStart(
+        8
+      )
+    ),
   ];
 }
 
@@ -127,7 +151,7 @@ function formatCmpShell(rows) {
     { txt: 'Avg', length: 30 },
     { txt: '', length: 0 },
   ];
-  const HEADER = COLS.map(entry => chalk.bold(center(entry.txt, entry.length || 0)))
+  const HEADER = COLS.map((entry) => chalk.bold(center(entry.txt, entry.length || 0)))
     .join(' | ')
     .trim();
   const SEPARATOR = COLS.map(({ length }) => (length > 0 ? '-'.repeat(length + 2) : ''))
@@ -137,7 +161,7 @@ function formatCmpShell(rows) {
   return [
     '',
     HEADER,
-    ...rows.map(entry =>
+    ...rows.map((entry) =>
       [
         '',
         chalk.grey(entry.contract.padEnd(contractLength)),
@@ -148,7 +172,7 @@ function formatCmpShell(rows) {
         '',
       ]
         .join(' | ')
-        .trim(),
+        .trim()
     ),
     '',
   ]
@@ -176,7 +200,9 @@ function formatCellMarkdown(cell) {
   return [
     !isFinite(cell?.value) ? '-' : cell.value.toString(),
     !isFinite(cell?.delta) ? '-' : plusSign(cell.delta) + cell.delta.toString(),
-    !isFinite(cell?.prcnt) ? '-' : plusSign(cell.prcnt) + cell.prcnt.toFixed(2) + '%' + trend(cell.delta),
+    !isFinite(cell?.prcnt)
+      ? '-'
+      : plusSign(cell.prcnt) + cell.prcnt.toFixed(2) + '%' + trend(cell.delta),
   ];
 }
 
@@ -196,10 +222,10 @@ function formatCmpMarkdown(rows) {
     { txt: '%', align: 'right' },
     { txt: '' },
   ];
-  const HEADER = COLS.map(entry => entry.txt)
+  const HEADER = COLS.map((entry) => entry.txt)
     .join(' | ')
     .trim();
-  const SEPARATOR = COLS.map(entry => (entry.txt ? alignPattern(entry.align) : ''))
+  const SEPARATOR = COLS.map((entry) => (entry.txt ? alignPattern(entry.align) : ''))
     .join('|')
     .trim();
 
@@ -209,7 +235,7 @@ function formatCmpMarkdown(rows) {
     HEADER,
     SEPARATOR,
     rows
-      .map(entry =>
+      .map((entry) =>
         [
           '',
           entry.contract,
@@ -220,7 +246,7 @@ function formatCmpMarkdown(rows) {
           '',
         ]
           .join(' | ')
-          .trim(),
+          .trim()
       )
       .join('\n'),
     '',

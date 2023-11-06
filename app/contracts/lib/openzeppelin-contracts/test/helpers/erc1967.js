@@ -9,7 +9,7 @@ function labelToSlot(label) {
 function getSlot(address, slot) {
   return web3.eth.getStorageAt(
     web3.utils.isAddress(address) ? address : address.address,
-    web3.utils.isHex(slot) ? slot : labelToSlot(slot),
+    web3.utils.isHex(slot) ? slot : labelToSlot(slot)
   );
 }
 

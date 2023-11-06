@@ -31,10 +31,7 @@
       }
     },
     "settings": {
-      "remappings": [
-        "ds-test/=lib/forge-std/lib/ds-test/src/",
-        "forge-std/=lib/forge-std/src/"
-      ],
+      "remappings": ["ds-test/=lib/forge-std/lib/ds-test/src/", "forge-std/=lib/forge-std/src/"],
       "optimizer": {
         "enabled": true,
         "runs": 200
@@ -79,24 +76,12 @@
     "absolutePath": "lib/forge-std/src/Base.sol",
     "id": 2367,
     "exportedSymbols": {
-      "CommonBase": [
-        2354
-      ],
-      "ScriptBase": [
-        2366
-      ],
-      "StdStorage": [
-        8489
-      ],
-      "TestBase": [
-        2357
-      ],
-      "Vm": [
-        13931
-      ],
-      "VmSafe": [
-        13459
-      ]
+      "CommonBase": [2354],
+      "ScriptBase": [2366],
+      "StdStorage": [8489],
+      "TestBase": [2357],
+      "Vm": [13931],
+      "VmSafe": [13459]
     },
     "nodeType": "SourceUnit",
     "src": "32:1761:1",
@@ -106,15 +91,7 @@
         "nodeType": "PragmaDirective",
         "src": "32:31:1",
         "nodes": [],
-        "literals": [
-          "solidity",
-          ">=",
-          "0.6",
-          ".2",
-          "<",
-          "0.9",
-          ".0"
-        ]
+        "literals": ["solidity", ">=", "0.6", ".2", "<", "0.9", ".0"]
       },
       {
         "id": 2295,
@@ -909,9 +886,7 @@
               "pathNode": {
                 "id": 2345,
                 "name": "Vm",
-                "nameLocations": [
-                  "1564:2:1"
-                ],
+                "nameLocations": ["1564:2:1"],
                 "nodeType": "IdentifierPath",
                 "referencedDeclaration": 13931,
                 "src": "1564:2:1"
@@ -996,9 +971,7 @@
               "pathNode": {
                 "id": 2351,
                 "name": "StdStorage",
-                "nameLocations": [
-                  "1610:10:1"
-                ],
+                "nameLocations": ["1610:10:1"],
                 "nodeType": "IdentifierPath",
                 "referencedDeclaration": 8489,
                 "src": "1610:10:1"
@@ -1019,9 +992,7 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "linearizedBaseContracts": [
-          2354
-        ],
+        "linearizedBaseContracts": [2354],
         "name": "CommonBase",
         "nameLocation": "166:10:1",
         "scope": 2367,
@@ -1039,9 +1010,7 @@
             "baseName": {
               "id": 2355,
               "name": "CommonBase",
-              "nameLocations": [
-                "1673:10:1"
-              ],
+              "nameLocations": ["1673:10:1"],
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 2354,
               "src": "1673:10:1"
@@ -1055,10 +1024,7 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "linearizedBaseContracts": [
-          2357,
-          2354
-        ],
+        "linearizedBaseContracts": [2357, 2354],
         "name": "TestBase",
         "nameLocation": "1661:8:1",
         "scope": 2367,
@@ -1092,9 +1058,7 @@
               "pathNode": {
                 "id": 2360,
                 "name": "VmSafe",
-                "nameLocations": [
-                  "1737:6:1"
-                ],
+                "nameLocations": ["1737:6:1"],
                 "nodeType": "IdentifierPath",
                 "referencedDeclaration": 13459,
                 "src": "1737:6:1"
@@ -1164,9 +1128,7 @@
             "baseName": {
               "id": 2358,
               "name": "CommonBase",
-              "nameLocations": [
-                "1720:10:1"
-              ],
+              "nameLocations": ["1720:10:1"],
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 2354,
               "src": "1720:10:1"
@@ -1180,10 +1142,7 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "linearizedBaseContracts": [
-          2366,
-          2354
-        ],
+        "linearizedBaseContracts": [2366, 2354],
         "name": "ScriptBase",
         "nameLocation": "1706:10:1",
         "scope": 2367,

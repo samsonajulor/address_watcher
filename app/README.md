@@ -9,4 +9,5 @@ yarn
 _Husky would be fired on commit_
 
 ## Documentation
+
 ...

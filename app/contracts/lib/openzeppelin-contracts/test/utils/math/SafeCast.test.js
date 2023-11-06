@@ -28,20 +28,20 @@ contract('SafeCast', async function () {
       it(`reverts when downcasting 2^${bits} (${maxValue.addn(1)})`, async function () {
         await expectRevert(
           this.safeCast[`$toUint${bits}`](maxValue.addn(1)),
-          `SafeCast: value doesn't fit in ${bits} bits`,
+          `SafeCast: value doesn't fit in ${bits} bits`
         );
       });
 
       it(`reverts when downcasting 2^${bits} + 1 (${maxValue.addn(2)})`, async function () {
         await expectRevert(
           this.safeCast[`$toUint${bits}`](maxValue.addn(2)),
-          `SafeCast: value doesn't fit in ${bits} bits`,
+          `SafeCast: value doesn't fit in ${bits} bits`
         );
       });
     });
   }
 
-  range(8, 256, 8).forEach(bits => testToUint(bits));
+  range(8, 256, 8).forEach((bits) => testToUint(bits));
 
   describe('toUint256', () => {
     const maxInt256 = new BN('2').pow(new BN(255)).subn(1);
@@ -96,34 +96,34 @@ contract('SafeCast', async function () {
       it(`reverts when downcasting -2^${bits - 1} - 1 (${minValue.subn(1)})`, async function () {
         await expectRevert(
           this.safeCast[`$toInt${bits}`](minValue.subn(1)),
-          `SafeCast: value doesn't fit in ${bits} bits`,
+          `SafeCast: value doesn't fit in ${bits} bits`
         );
       });
 
       it(`reverts when downcasting -2^${bits - 1} - 2 (${minValue.subn(2)})`, async function () {
         await expectRevert(
           this.safeCast[`$toInt${bits}`](minValue.subn(2)),
-          `SafeCast: value doesn't fit in ${bits} bits`,
+          `SafeCast: value doesn't fit in ${bits} bits`
         );
       });
 
       it(`reverts when downcasting 2^${bits - 1} (${maxValue.addn(1)})`, async function () {
         await expectRevert(
           this.safeCast[`$toInt${bits}`](maxValue.addn(1)),
-          `SafeCast: value doesn't fit in ${bits} bits`,
+          `SafeCast: value doesn't fit in ${bits} bits`
         );
       });
 
       it(`reverts when downcasting 2^${bits - 1} + 1 (${maxValue.addn(2)})`, async function () {
         await expectRevert(
           this.safeCast[`$toInt${bits}`](maxValue.addn(2)),
-          `SafeCast: value doesn't fit in ${bits} bits`,
+          `SafeCast: value doesn't fit in ${bits} bits`
         );
       });
     });
   }
 
-  range(8, 256, 8).forEach(bits => testToInt(bits));
+  range(8, 256, 8).forEach((bits) => testToInt(bits));
 
   describe('toInt256', () => {
     const maxUint256 = new BN('2').pow(new BN(256)).subn(1);
@@ -142,11 +142,17 @@ contract('SafeCast', async function () {
     });
 
     it(`reverts when casting INT256_MAX + 1 (${maxInt256.addn(1)})`, async function () {
-      await expectRevert(this.safeCast.$toInt256(maxInt256.addn(1)), "SafeCast: value doesn't fit in an int256");
+      await expectRevert(
+        this.safeCast.$toInt256(maxInt256.addn(1)),
+        "SafeCast: value doesn't fit in an int256"
+      );
     });
 
     it(`reverts when casting UINT256_MAX (${maxUint256})`, async function () {
-      await expectRevert(this.safeCast.$toInt256(maxUint256), "SafeCast: value doesn't fit in an int256");
+      await expectRevert(
+        this.safeCast.$toInt256(maxUint256),
+        "SafeCast: value doesn't fit in an int256"
+      );
     });
   });
 });

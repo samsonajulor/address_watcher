@@ -35,10 +35,22 @@ contract('GovernorComp', function (accounts) {
         await web3.eth.sendTransaction({ from: owner, to: this.mock.address, value });
 
         await this.token.$_mint(owner, tokenSupply);
-        await this.helper.delegate({ token: this.token, to: voter1, value: web3.utils.toWei('10') }, { from: owner });
-        await this.helper.delegate({ token: this.token, to: voter2, value: web3.utils.toWei('7') }, { from: owner });
-        await this.helper.delegate({ token: this.token, to: voter3, value: web3.utils.toWei('5') }, { from: owner });
-        await this.helper.delegate({ token: this.token, to: voter4, value: web3.utils.toWei('2') }, { from: owner });
+        await this.helper.delegate(
+          { token: this.token, to: voter1, value: web3.utils.toWei('10') },
+          { from: owner }
+        );
+        await this.helper.delegate(
+          { token: this.token, to: voter2, value: web3.utils.toWei('7') },
+          { from: owner }
+        );
+        await this.helper.delegate(
+          { token: this.token, to: voter3, value: web3.utils.toWei('5') },
+          { from: owner }
+        );
+        await this.helper.delegate(
+          { token: this.token, to: voter4, value: web3.utils.toWei('2') },
+          { from: owner }
+        );
 
         // default proposal
         this.proposal = this.helper.setProposal(
@@ -49,7 +61,7 @@ contract('GovernorComp', function (accounts) {
               data: this.receiver.contract.methods.mockFunction().encodeABI(),
             },
           ],
-          '<proposal description>',
+          '<proposal description>'
         );
       });
 
@@ -77,7 +89,7 @@ contract('GovernorComp', function (accounts) {
         expect(await this.mock.hasVoted(this.proposal.id, voter3)).to.be.equal(true);
         expect(await this.mock.hasVoted(this.proposal.id, voter4)).to.be.equal(true);
 
-        await this.mock.proposalVotes(this.proposal.id).then(results => {
+        await this.mock.proposalVotes(this.proposal.id).then((results) => {
           expect(results.forVotes).to.be.bignumber.equal(web3.utils.toWei('17'));
           expect(results.againstVotes).to.be.bignumber.equal(web3.utils.toWei('5'));
           expect(results.abstainVotes).to.be.bignumber.equal(web3.utils.toWei('2'));

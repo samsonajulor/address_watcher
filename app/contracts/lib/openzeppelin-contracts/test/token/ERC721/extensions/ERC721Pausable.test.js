@@ -28,32 +28,44 @@ contract('ERC721Pausable', function (accounts) {
     it('reverts when trying to transferFrom', async function () {
       await expectRevert(
         this.token.transferFrom(owner, receiver, firstTokenId, { from: owner }),
-        'ERC721Pausable: token transfer while paused',
+        'ERC721Pausable: token transfer while paused'
       );
     });
 
     it('reverts when trying to safeTransferFrom', async function () {
       await expectRevert(
         this.token.safeTransferFrom(owner, receiver, firstTokenId, { from: owner }),
-        'ERC721Pausable: token transfer while paused',
+        'ERC721Pausable: token transfer while paused'
       );
     });
 
     it('reverts when trying to safeTransferFrom with data', async function () {
       await expectRevert(
-        this.token.methods['safeTransferFrom(address,address,uint256,bytes)'](owner, receiver, firstTokenId, mockData, {
-          from: owner,
-        }),
-        'ERC721Pausable: token transfer while paused',
+        this.token.methods['safeTransferFrom(address,address,uint256,bytes)'](
+          owner,
+          receiver,
+          firstTokenId,
+          mockData,
+          {
+            from: owner,
+          }
+        ),
+        'ERC721Pausable: token transfer while paused'
       );
     });
 
     it('reverts when trying to mint', async function () {
-      await expectRevert(this.token.$_mint(receiver, secondTokenId), 'ERC721Pausable: token transfer while paused');
+      await expectRevert(
+        this.token.$_mint(receiver, secondTokenId),
+        'ERC721Pausable: token transfer while paused'
+      );
     });
 
     it('reverts when trying to burn', async function () {
-      await expectRevert(this.token.$_burn(firstTokenId), 'ERC721Pausable: token transfer while paused');
+      await expectRevert(
+        this.token.$_burn(firstTokenId),
+        'ERC721Pausable: token transfer while paused'
+      );
     });
 
     describe('getApproved', function () {

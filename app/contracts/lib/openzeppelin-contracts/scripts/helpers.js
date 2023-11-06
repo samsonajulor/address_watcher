@@ -1,5 +1,7 @@
 function chunk(array, size = 1) {
-  return Array.range(Math.ceil(array.length / size)).map(i => array.slice(i * size, i * size + size));
+  return Array.range(Math.ceil(array.length / size)).map((i) =>
+    array.slice(i * size, i * size + size)
+  );
 }
 
 function range(start, stop = undefined, step = 1) {
@@ -14,14 +16,14 @@ function range(start, stop = undefined, step = 1) {
     : [];
 }
 
-function unique(array, op = x => x) {
-  return array.filter((obj, i) => array.findIndex(entry => op(obj) === op(entry)) === i);
+function unique(array, op = (x) => x) {
+  return array.filter((obj, i) => array.findIndex((entry) => op(obj) === op(entry)) === i);
 }
 
 function zip(...args) {
-  return Array(Math.max(...args.map(arg => arg.length)))
+  return Array(Math.max(...args.map((arg) => arg.length)))
     .fill(null)
-    .map((_, i) => args.map(arg => arg[i]));
+    .map((_, i) => args.map((arg) => arg[i]));
 }
 
 function capitalize(str) {

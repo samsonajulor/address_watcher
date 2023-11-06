@@ -66,9 +66,7 @@
     "absolutePath": "lib/openzeppelin-contracts/contracts/utils/math/Math.sol",
     "id": 45109,
     "exportedSymbols": {
-      "Math": [
-        45108
-      ]
+      "Math": [45108]
     },
     "nodeType": "SourceUnit",
     "src": "103:12682:25",
@@ -78,12 +76,7 @@
         "nodeType": "PragmaDirective",
         "src": "103:23:25",
         "nodes": [],
-        "literals": [
-          "solidity",
-          "^",
-          "0.8",
-          ".0"
-        ]
+        "literals": ["solidity", "^", "0.8", ".0"]
       },
       {
         "id": 45108,
@@ -1186,9 +1179,7 @@
                   "src": "1775:4099:25",
                   "statements": [
                     {
-                      "assignments": [
-                        44346
-                      ],
+                      "assignments": [44346],
                       "declarations": [
                         {
                           "constant": false,
@@ -1223,9 +1214,7 @@
                       "src": "2096:13:25"
                     },
                     {
-                      "assignments": [
-                        44349
-                      ],
+                      "assignments": [44349],
                       "declarations": [
                         {
                           "constant": false,
@@ -1686,10 +1675,7 @@
                           "id": 44361,
                           "name": "require",
                           "nodeType": "Identifier",
-                          "overloadedDeclarations": [
-                            -18,
-                            -18
-                          ],
+                          "overloadedDeclarations": [-18, -18],
                           "referencedDeclaration": -18,
                           "src": "2952:7:25",
                           "typeDescriptions": {
@@ -1718,9 +1704,7 @@
                       "src": "2952:53:25"
                     },
                     {
-                      "assignments": [
-                        44369
-                      ],
+                      "assignments": [44369],
                       "declarations": [
                         {
                           "constant": false,
@@ -1986,9 +1970,7 @@
                       "src": "3292:300:25"
                     },
                     {
-                      "assignments": [
-                        44373
-                      ],
+                      "assignments": [44373],
                       "declarations": [
                         {
                           "constant": false,
@@ -2437,9 +2419,7 @@
                       "src": "4397:21:25"
                     },
                     {
-                      "assignments": [
-                        44390
-                      ],
+                      "assignments": [44390],
                       "declarations": [
                         {
                           "constant": false,
@@ -3456,9 +3436,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    44472
-                  ],
+                  "assignments": [44472],
                   "declarations": [
                     {
                       "constant": false,
@@ -3546,10 +3524,7 @@
                       "id": 44473,
                       "name": "mulDiv",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        44456,
-                        44500
-                      ],
+                      "overloadedDeclarations": [44456, 44500],
                       "referencedDeclaration": 44456,
                       "src": "6149:6:25",
                       "typeDescriptions": {
@@ -3963,9 +3938,7 @@
                     "pathNode": {
                       "id": 44464,
                       "name": "Rounding",
-                      "nameLocations": [
-                        "6071:8:25"
-                      ],
+                      "nameLocations": ["6071:8:25"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 44249,
                       "src": "6071:8:25"
@@ -4113,9 +4086,7 @@
                   }
                 },
                 {
-                  "assignments": [
-                    44516
-                  ],
+                  "assignments": [44516],
                   "declarations": [
                     {
                       "constant": false,
@@ -4211,10 +4182,7 @@
                               "id": 44518,
                               "name": "log2",
                               "nodeType": "Identifier",
-                              "overloadedDeclarations": [
-                                44780,
-                                44816
-                              ],
+                              "overloadedDeclarations": [44780, 44816],
                               "referencedDeclaration": 44780,
                               "src": "7344:4:25",
                               "typeDescriptions": {
@@ -5567,9 +5535,7 @@
                   "src": "8358:145:25",
                   "statements": [
                     {
-                      "assignments": [
-                        44624
-                      ],
+                      "assignments": [44624],
                       "declarations": [
                         {
                           "constant": false,
@@ -5625,10 +5591,7 @@
                           "id": 44625,
                           "name": "sqrt",
                           "nodeType": "Identifier",
-                          "overloadedDeclarations": [
-                            44612,
-                            44648
-                          ],
+                          "overloadedDeclarations": [44612, 44648],
                           "referencedDeclaration": 44612,
                           "src": "8399:4:25",
                           "typeDescriptions": {
@@ -5967,9 +5930,7 @@
                     "pathNode": {
                       "id": 44616,
                       "name": "Rounding",
-                      "nameLocations": [
-                        "8297:8:25"
-                      ],
+                      "nameLocations": ["8297:8:25"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 44249,
                       "src": "8297:8:25"
@@ -6037,9 +5998,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    44657
-                  ],
+                  "assignments": [44657],
                   "declarations": [
                     {
                       "constant": false,
@@ -7658,9 +7617,7 @@
                   "src": "9859:149:25",
                   "statements": [
                     {
-                      "assignments": [
-                        44792
-                      ],
+                      "assignments": [44792],
                       "declarations": [
                         {
                           "constant": false,
@@ -7716,10 +7673,7 @@
                           "id": 44793,
                           "name": "log2",
                           "nodeType": "Identifier",
-                          "overloadedDeclarations": [
-                            44780,
-                            44816
-                          ],
+                          "overloadedDeclarations": [44780, 44816],
                           "referencedDeclaration": 44780,
                           "src": "9900:4:25",
                           "typeDescriptions": {
@@ -8062,9 +8016,7 @@
                     "pathNode": {
                       "id": 44784,
                       "name": "Rounding",
-                      "nameLocations": [
-                        "9798:8:25"
-                      ],
+                      "nameLocations": ["9798:8:25"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 44249,
                       "src": "9798:8:25"
@@ -8132,9 +8084,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    44825
-                  ],
+                  "assignments": [44825],
                   "declarations": [
                     {
                       "constant": false,
@@ -9771,9 +9721,7 @@
                   "src": "11300:151:25",
                   "statements": [
                     {
-                      "assignments": [
-                        44957
-                      ],
+                      "assignments": [44957],
                       "declarations": [
                         {
                           "constant": false,
@@ -9829,10 +9777,7 @@
                           "id": 44958,
                           "name": "log10",
                           "nodeType": "Identifier",
-                          "overloadedDeclarations": [
-                            44945,
-                            44981
-                          ],
+                          "overloadedDeclarations": [44945, 44981],
                           "referencedDeclaration": 44945,
                           "src": "11341:5:25",
                           "typeDescriptions": {
@@ -10175,9 +10120,7 @@
                     "pathNode": {
                       "id": 44949,
                       "name": "Rounding",
-                      "nameLocations": [
-                        "11239:8:25"
-                      ],
+                      "nameLocations": ["11239:8:25"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 44249,
                       "src": "11239:8:25"
@@ -10245,9 +10188,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    44990
-                  ],
+                  "assignments": [44990],
                   "declarations": [
                     {
                       "constant": false,
@@ -11308,9 +11249,7 @@
                   "src": "12618:158:25",
                   "statements": [
                     {
-                      "assignments": [
-                        45080
-                      ],
+                      "assignments": [45080],
                       "declarations": [
                         {
                           "constant": false,
@@ -11366,10 +11305,7 @@
                           "id": 45081,
                           "name": "log256",
                           "nodeType": "Identifier",
-                          "overloadedDeclarations": [
-                            45068,
-                            45107
-                          ],
+                          "overloadedDeclarations": [45068, 45107],
                           "referencedDeclaration": 45068,
                           "src": "12659:6:25",
                           "typeDescriptions": {
@@ -11762,9 +11698,7 @@
                     "pathNode": {
                       "id": 45072,
                       "name": "Rounding",
-                      "nameLocations": [
-                        "12557:8:25"
-                      ],
+                      "nameLocations": ["12557:8:25"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 44249,
                       "src": "12557:8:25"
@@ -11833,9 +11767,7 @@
           "text": " @dev Standard math utilities missing in the Solidity language."
         },
         "fullyImplemented": true,
-        "linearizedBaseContracts": [
-          45108
-        ],
+        "linearizedBaseContracts": [45108],
         "name": "Math",
         "nameLocation": "210:4:25",
         "scope": 45109,

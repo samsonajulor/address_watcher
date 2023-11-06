@@ -1,6 +1,8 @@
 const { BN, constants, expectEvent, expectRevert } = require('@openzeppelin/test-helpers');
 const { ZERO_ADDRESS } = constants;
-const { shouldSupportInterfaces } = require('../../../utils/introspection/SupportsInterface.behavior');
+const {
+  shouldSupportInterfaces,
+} = require('../../../utils/introspection/SupportsInterface.behavior');
 
 const { expect } = require('chai');
 
@@ -17,10 +19,17 @@ contract('ERC721PresetMinterPauserAutoId', function (accounts) {
   const MINTER_ROLE = web3.utils.soliditySha3('MINTER_ROLE');
 
   beforeEach(async function () {
-    this.token = await ERC721PresetMinterPauserAutoId.new(name, symbol, baseURI, { from: deployer });
+    this.token = await ERC721PresetMinterPauserAutoId.new(name, symbol, baseURI, {
+      from: deployer,
+    });
   });
 
-  shouldSupportInterfaces(['ERC721', 'ERC721Enumerable', 'AccessControl', 'AccessControlEnumerable']);
+  shouldSupportInterfaces([
+    'ERC721',
+    'ERC721Enumerable',
+    'AccessControl',
+    'AccessControlEnumerable',
+  ]);
 
   it('token has correct name', async function () {
     expect(await this.token.name()).to.equal(name);
@@ -60,7 +69,7 @@ contract('ERC721PresetMinterPauserAutoId', function (accounts) {
     it('other accounts cannot mint tokens', async function () {
       await expectRevert(
         this.token.mint(other, { from: other }),
-        'ERC721PresetMinterPauserAutoId: must have minter role to mint',
+        'ERC721PresetMinterPauserAutoId: must have minter role to mint'
       );
     });
   });
@@ -85,13 +94,16 @@ contract('ERC721PresetMinterPauserAutoId', function (accounts) {
     it('cannot mint while paused', async function () {
       await this.token.pause({ from: deployer });
 
-      await expectRevert(this.token.mint(other, { from: deployer }), 'ERC721Pausable: token transfer while paused');
+      await expectRevert(
+        this.token.mint(other, { from: deployer }),
+        'ERC721Pausable: token transfer while paused'
+      );
     });
 
     it('other accounts cannot pause', async function () {
       await expectRevert(
         this.token.pause({ from: other }),
-        'ERC721PresetMinterPauserAutoId: must have pauser role to pause',
+        'ERC721PresetMinterPauserAutoId: must have pauser role to pause'
       );
     });
 
@@ -100,7 +112,7 @@ contract('ERC721PresetMinterPauserAutoId', function (accounts) {
 
       await expectRevert(
         this.token.unpause({ from: other }),
-        'ERC721PresetMinterPauserAutoId: must have pauser role to unpause',
+        'ERC721PresetMinterPauserAutoId: must have pauser role to unpause'
       );
     });
   });

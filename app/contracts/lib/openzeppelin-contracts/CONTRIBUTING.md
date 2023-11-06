@@ -6,7 +6,7 @@ There are many ways to contribute to OpenZeppelin Contracts.
 
 You can help other users in the community to solve their smart contract issues in the [OpenZeppelin Forum].
 
-[OpenZeppelin Forum]: https://forum.openzeppelin.com/
+[openzeppelin forum]: https://forum.openzeppelin.com/
 
 ## Opening an issue
 

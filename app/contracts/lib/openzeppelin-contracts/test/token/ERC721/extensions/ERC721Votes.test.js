@@ -45,7 +45,9 @@ contract('ERC721Votes', function (accounts) {
     });
 
     it('no delegation', async function () {
-      const { receipt } = await this.votes.transferFrom(account1, account2, this.NFT0, { from: account1 });
+      const { receipt } = await this.votes.transferFrom(account1, account2, this.NFT0, {
+        from: account1,
+      });
       expectEvent(receipt, 'Transfer', { from: account1, to: account2, tokenId: this.NFT0 });
       expectEvent.notEmitted(receipt, 'DelegateVotesChanged');
 
@@ -56,15 +58,21 @@ contract('ERC721Votes', function (accounts) {
     it('sender delegation', async function () {
       await this.votes.delegate(account1, { from: account1 });
 
-      const { receipt } = await this.votes.transferFrom(account1, account2, this.NFT0, { from: account1 });
+      const { receipt } = await this.votes.transferFrom(account1, account2, this.NFT0, {
+        from: account1,
+      });
       expectEvent(receipt, 'Transfer', { from: account1, to: account2, tokenId: this.NFT0 });
-      expectEvent(receipt, 'DelegateVotesChanged', { delegate: account1, previousBalance: '1', newBalance: '0' });
+      expectEvent(receipt, 'DelegateVotesChanged', {
+        delegate: account1,
+        previousBalance: '1',
+        newBalance: '0',
+      });
 
       const { logIndex: transferLogIndex } = receipt.logs.find(({ event }) => event == 'Transfer');
       expect(
         receipt.logs
           .filter(({ event }) => event == 'DelegateVotesChanged')
-          .every(({ logIndex }) => transferLogIndex < logIndex),
+          .every(({ logIndex }) => transferLogIndex < logIndex)
       ).to.be.equal(true);
 
       this.account1Votes = '0';
@@ -74,15 +82,21 @@ contract('ERC721Votes', function (accounts) {
     it('receiver delegation', async function () {
       await this.votes.delegate(account2, { from: account2 });
 
-      const { receipt } = await this.votes.transferFrom(account1, account2, this.NFT0, { from: account1 });
+      const { receipt } = await this.votes.transferFrom(account1, account2, this.NFT0, {
+        from: account1,
+      });
       expectEvent(receipt, 'Transfer', { from: account1, to: account2, tokenId: this.NFT0 });
-      expectEvent(receipt, 'DelegateVotesChanged', { delegate: account2, previousBalance: '0', newBalance: '1' });
+      expectEvent(receipt, 'DelegateVotesChanged', {
+        delegate: account2,
+        previousBalance: '0',
+        newBalance: '1',
+      });
 
       const { logIndex: transferLogIndex } = receipt.logs.find(({ event }) => event == 'Transfer');
       expect(
         receipt.logs
           .filter(({ event }) => event == 'DelegateVotesChanged')
-          .every(({ logIndex }) => transferLogIndex < logIndex),
+          .every(({ logIndex }) => transferLogIndex < logIndex)
       ).to.be.equal(true);
 
       this.account1Votes = '0';
@@ -93,16 +107,26 @@ contract('ERC721Votes', function (accounts) {
       await this.votes.delegate(account1, { from: account1 });
       await this.votes.delegate(account2, { from: account2 });
 
-      const { receipt } = await this.votes.transferFrom(account1, account2, this.NFT0, { from: account1 });
+      const { receipt } = await this.votes.transferFrom(account1, account2, this.NFT0, {
+        from: account1,
+      });
       expectEvent(receipt, 'Transfer', { from: account1, to: account2, tokenId: this.NFT0 });
-      expectEvent(receipt, 'DelegateVotesChanged', { delegate: account1, previousBalance: '1', newBalance: '0' });
-      expectEvent(receipt, 'DelegateVotesChanged', { delegate: account2, previousBalance: '0', newBalance: '1' });
+      expectEvent(receipt, 'DelegateVotesChanged', {
+        delegate: account1,
+        previousBalance: '1',
+        newBalance: '0',
+      });
+      expectEvent(receipt, 'DelegateVotesChanged', {
+        delegate: account2,
+        previousBalance: '0',
+        newBalance: '1',
+      });
 
       const { logIndex: transferLogIndex } = receipt.logs.find(({ event }) => event == 'Transfer');
       expect(
         receipt.logs
           .filter(({ event }) => event == 'DelegateVotesChanged')
-          .every(({ logIndex }) => transferLogIndex < logIndex),
+          .every(({ logIndex }) => transferLogIndex < logIndex)
       ).to.be.equal(true);
 
       this.account1Votes = '0';
@@ -112,13 +136,19 @@ contract('ERC721Votes', function (accounts) {
     it('returns the same total supply on transfers', async function () {
       await this.votes.delegate(account1, { from: account1 });
 
-      const { receipt } = await this.votes.transferFrom(account1, account2, this.NFT0, { from: account1 });
+      const { receipt } = await this.votes.transferFrom(account1, account2, this.NFT0, {
+        from: account1,
+      });
 
       await time.advanceBlock();
       await time.advanceBlock();
 
-      expect(await this.votes.getPastTotalSupply(receipt.blockNumber - 1)).to.be.bignumber.equal('1');
-      expect(await this.votes.getPastTotalSupply(receipt.blockNumber + 1)).to.be.bignumber.equal('1');
+      expect(await this.votes.getPastTotalSupply(receipt.blockNumber - 1)).to.be.bignumber.equal(
+        '1'
+      );
+      expect(await this.votes.getPastTotalSupply(receipt.blockNumber + 1)).to.be.bignumber.equal(
+        '1'
+      );
 
       this.account1Votes = '0';
       this.account2Votes = '0';
@@ -144,15 +174,33 @@ contract('ERC721Votes', function (accounts) {
       await time.advanceBlock();
       await time.advanceBlock();
 
-      expect(await this.votes.getPastVotes(other1, t1.receipt.blockNumber - 1)).to.be.bignumber.equal('0');
-      expect(await this.votes.getPastVotes(other1, t1.receipt.blockNumber)).to.be.bignumber.equal(total);
-      expect(await this.votes.getPastVotes(other1, t1.receipt.blockNumber + 1)).to.be.bignumber.equal(total);
-      expect(await this.votes.getPastVotes(other1, t2.receipt.blockNumber)).to.be.bignumber.equal('3');
-      expect(await this.votes.getPastVotes(other1, t2.receipt.blockNumber + 1)).to.be.bignumber.equal('3');
-      expect(await this.votes.getPastVotes(other1, t3.receipt.blockNumber)).to.be.bignumber.equal('2');
-      expect(await this.votes.getPastVotes(other1, t3.receipt.blockNumber + 1)).to.be.bignumber.equal('2');
-      expect(await this.votes.getPastVotes(other1, t4.receipt.blockNumber)).to.be.bignumber.equal('3');
-      expect(await this.votes.getPastVotes(other1, t4.receipt.blockNumber + 1)).to.be.bignumber.equal('3');
+      expect(
+        await this.votes.getPastVotes(other1, t1.receipt.blockNumber - 1)
+      ).to.be.bignumber.equal('0');
+      expect(await this.votes.getPastVotes(other1, t1.receipt.blockNumber)).to.be.bignumber.equal(
+        total
+      );
+      expect(
+        await this.votes.getPastVotes(other1, t1.receipt.blockNumber + 1)
+      ).to.be.bignumber.equal(total);
+      expect(await this.votes.getPastVotes(other1, t2.receipt.blockNumber)).to.be.bignumber.equal(
+        '3'
+      );
+      expect(
+        await this.votes.getPastVotes(other1, t2.receipt.blockNumber + 1)
+      ).to.be.bignumber.equal('3');
+      expect(await this.votes.getPastVotes(other1, t3.receipt.blockNumber)).to.be.bignumber.equal(
+        '2'
+      );
+      expect(
+        await this.votes.getPastVotes(other1, t3.receipt.blockNumber + 1)
+      ).to.be.bignumber.equal('2');
+      expect(await this.votes.getPastVotes(other1, t4.receipt.blockNumber)).to.be.bignumber.equal(
+        '3'
+      );
+      expect(
+        await this.votes.getPastVotes(other1, t4.receipt.blockNumber + 1)
+      ).to.be.bignumber.equal('3');
 
       this.account1Votes = '0';
       this.account2Votes = '0';
@@ -165,8 +213,12 @@ contract('ERC721Votes', function (accounts) {
       // need to advance 2 blocks to see the effect of a transfer on "getPastVotes"
       const blockNumber = await time.latestBlock();
       await time.advanceBlock();
-      expect(await this.votes.getPastVotes(account1, blockNumber)).to.be.bignumber.equal(this.account1Votes);
-      expect(await this.votes.getPastVotes(account2, blockNumber)).to.be.bignumber.equal(this.account2Votes);
+      expect(await this.votes.getPastVotes(account1, blockNumber)).to.be.bignumber.equal(
+        this.account1Votes
+      );
+      expect(await this.votes.getPastVotes(account2, blockNumber)).to.be.bignumber.equal(
+        this.account2Votes
+      );
     });
   });
 

@@ -15,7 +15,11 @@ const INTERFACES = {
     'safeTransferFrom(address,address,uint256)',
     'safeTransferFrom(address,address,uint256,bytes)',
   ],
-  ERC721Enumerable: ['totalSupply()', 'tokenOfOwnerByIndex(address,uint256)', 'tokenByIndex(uint256)'],
+  ERC721Enumerable: [
+    'totalSupply()',
+    'tokenOfOwnerByIndex(address,uint256)',
+    'tokenByIndex(uint256)',
+  ],
   ERC721Metadata: ['name()', 'symbol()', 'tokenURI(uint256)'],
   ERC1155: [
     'balanceOf(address,uint256)',
@@ -91,7 +95,11 @@ const INTERFACES = {
     'castVoteWithReasonAndParamsBySig(uint256,uint8,string,bytes,uint8,bytes32,bytes32)',
   ],
   GovernorCancel: ['proposalProposer(uint256)', 'cancel(address[],uint256[],bytes[],bytes32)'],
-  GovernorTimelock: ['timelock()', 'proposalEta(uint256)', 'queue(address[],uint256[],bytes[],bytes32)'],
+  GovernorTimelock: [
+    'timelock()',
+    'proposalEta(uint256)',
+    'queue(address[],uint256[],bytes[],bytes32)',
+  ],
   ERC2981: ['royaltyInfo(uint256,uint256)'],
 };
 
@@ -114,14 +122,19 @@ function shouldSupportInterfaces(interfaces = []) {
     it('supportsInterface uses less than 30k gas', async function () {
       for (const k of interfaces) {
         const interfaceId = INTERFACE_IDS[k] ?? k;
-        expect(await this.contractUnderTest.supportsInterface.estimateGas(interfaceId)).to.be.lte(30000);
+        expect(await this.contractUnderTest.supportsInterface.estimateGas(interfaceId)).to.be.lte(
+          30000
+        );
       }
     });
 
     it('all interfaces are reported as supported', async function () {
       for (const k of interfaces) {
         const interfaceId = INTERFACE_IDS[k] ?? k;
-        expect(await this.contractUnderTest.supportsInterface(interfaceId)).to.equal(true, `does not support ${k}`);
+        expect(await this.contractUnderTest.supportsInterface(interfaceId)).to.equal(
+          true,
+          `does not support ${k}`
+        );
       }
     });
 
@@ -131,9 +144,9 @@ function shouldSupportInterfaces(interfaces = []) {
         if (INTERFACES[k] === undefined) continue;
         for (const fnName of INTERFACES[k]) {
           const fnSig = FN_SIGNATURES[fnName];
-          expect(this.contractUnderTest.abi.filter(fn => fn.signature === fnSig).length).to.equal(
+          expect(this.contractUnderTest.abi.filter((fn) => fn.signature === fnSig).length).to.equal(
             1,
-            `did not find ${fnName}`,
+            `did not find ${fnName}`
           );
         }
       }

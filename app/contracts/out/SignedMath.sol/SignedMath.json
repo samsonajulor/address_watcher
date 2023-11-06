@@ -66,9 +66,7 @@
     "absolutePath": "lib/openzeppelin-contracts/contracts/utils/math/SignedMath.sol",
     "id": 45214,
     "exportedSymbols": {
-      "SignedMath": [
-        45213
-      ]
+      "SignedMath": [45213]
     },
     "nodeType": "SourceUnit",
     "src": "109:1154:26",
@@ -78,12 +76,7 @@
         "nodeType": "PragmaDirective",
         "src": "109:23:26",
         "nodes": [],
-        "literals": [
-          "solidity",
-          "^",
-          "0.8",
-          ".0"
-        ]
+        "literals": ["solidity", "^", "0.8", ".0"]
       },
       {
         "id": 45213,
@@ -520,9 +513,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    45158
-                  ],
+                  "assignments": [45158],
                   "declarations": [
                     {
                       "constant": false,
@@ -1383,9 +1374,7 @@
           "text": " @dev Standard signed math utilities missing in the Solidity language."
         },
         "fullyImplemented": true,
-        "linearizedBaseContracts": [
-          45213
-        ],
+        "linearizedBaseContracts": [45213],
         "name": "SignedMath",
         "nameLocation": "223:10:26",
         "scope": 45214,

@@ -5149,10 +5149,7 @@
       }
     },
     "settings": {
-      "remappings": [
-        "ds-test/=lib/forge-std/lib/ds-test/src/",
-        "forge-std/=lib/forge-std/src/"
-      ],
+      "remappings": ["ds-test/=lib/forge-std/lib/ds-test/src/", "forge-std/=lib/forge-std/src/"],
       "optimizer": {
         "enabled": true,
         "runs": 200
@@ -5181,9 +5178,7 @@
     "absolutePath": "test/vm/Environment.t.sol",
     "id": 44590,
     "exportedSymbols": {
-      "CheatCodes": [
-        44589
-      ]
+      "CheatCodes": [44589]
     },
     "nodeType": "SourceUnit",
     "src": "0:17250:22",
@@ -5507,9 +5502,7 @@
                     "pathNode": {
                       "id": 43642,
                       "name": "Wallet",
-                      "nameLocations": [
-                        "607:6:22"
-                      ],
+                      "nameLocations": ["607:6:22"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 43638,
                       "src": "607:6:22"
@@ -5601,9 +5594,7 @@
                     "pathNode": {
                       "id": 43650,
                       "name": "Wallet",
-                      "nameLocations": [
-                        "747:6:22"
-                      ],
+                      "nameLocations": ["747:6:22"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 43638,
                       "src": "747:6:22"
@@ -5722,9 +5713,7 @@
                     "pathNode": {
                       "id": 43660,
                       "name": "Wallet",
-                      "nameLocations": [
-                        "940:6:22"
-                      ],
+                      "nameLocations": ["940:6:22"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 43638,
                       "src": "940:6:22"
@@ -5782,9 +5771,7 @@
                     "pathNode": {
                       "id": 43665,
                       "name": "Wallet",
-                      "nameLocations": [
-                        "1024:6:22"
-                      ],
+                      "nameLocations": ["1024:6:22"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 43638,
                       "src": "1024:6:22"
@@ -5957,9 +5944,7 @@
                     "pathNode": {
                       "id": 43679,
                       "name": "Wallet",
-                      "nameLocations": [
-                        "1147:6:22"
-                      ],
+                      "nameLocations": ["1147:6:22"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 43638,
                       "src": "1147:6:22"
@@ -11580,9 +11565,7 @@
                     "pathNode": {
                       "id": 44147,
                       "name": "CallerMode",
-                      "nameLocations": [
-                        "7336:10:22"
-                      ],
+                      "nameLocations": ["7336:10:22"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 43629,
                       "src": "7336:10:22"
@@ -12504,9 +12487,7 @@
                       "pathNode": {
                         "id": 44226,
                         "name": "Log",
-                        "nameLocations": [
-                          "8588:3:22"
-                        ],
+                        "nameLocations": ["8588:3:22"],
                         "nodeType": "IdentifierPath",
                         "referencedDeclaration": 43623,
                         "src": "8588:3:22"
@@ -16753,9 +16734,7 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "linearizedBaseContracts": [
-          44589
-        ],
+        "linearizedBaseContracts": [44589],
         "name": "CheatCodes",
         "nameLocation": "10:10:22",
         "scope": 44590,

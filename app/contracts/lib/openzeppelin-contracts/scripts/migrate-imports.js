@@ -36,7 +36,8 @@ const pathUpdates = {
   'presets/ERC1155PresetMinterPauser.sol': 'token/ERC1155/presets/ERC1155PresetMinterPauser.sol',
   'presets/ERC20PresetFixedSupply.sol': 'token/ERC20/presets/ERC20PresetFixedSupply.sol',
   'presets/ERC20PresetMinterPauser.sol': 'token/ERC20/presets/ERC20PresetMinterPauser.sol',
-  'presets/ERC721PresetMinterPauserAutoId.sol': 'token/ERC721/presets/ERC721PresetMinterPauserAutoId.sol',
+  'presets/ERC721PresetMinterPauserAutoId.sol':
+    'token/ERC721/presets/ERC721PresetMinterPauserAutoId.sol',
   'presets/ERC777PresetFixedSupply.sol': 'token/ERC777/presets/ERC777PresetFixedSupply.sol',
   'proxy/BeaconProxy.sol': 'proxy/beacon/BeaconProxy.sol',
   // 'proxy/Clones.sol': undefined,
@@ -148,11 +149,11 @@ function updateImportPaths(source) {
   for (const [oldPath, newPath] of Object.entries(pathUpdates)) {
     source = source.replace(
       path.join('@openzeppelin/contracts', oldPath),
-      path.join('@openzeppelin/contracts', newPath),
+      path.join('@openzeppelin/contracts', newPath)
     );
     source = source.replace(
       path.join('@openzeppelin/contracts-upgradeable', getUpgradeablePath(oldPath)),
-      path.join('@openzeppelin/contracts-upgradeable', getUpgradeablePath(newPath)),
+      path.join('@openzeppelin/contracts-upgradeable', getUpgradeablePath(newPath))
     );
   }
 
@@ -173,7 +174,7 @@ module.exports = {
 
 if (require.main === module) {
   const args = process.argv.length > 2 ? process.argv.slice(2) : undefined;
-  main(args).catch(e => {
+  main(args).catch((e) => {
     console.error(e);
     process.exit(1);
   });

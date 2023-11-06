@@ -14,7 +14,7 @@ export async function saveAddress(req: Request, res: Response) {
     return res.status(StatusCode.OK).json({
       status: !!ResponseCode.SUCCESS,
       message: 'user data successfully updated',
-      data
+      data,
     });
   } catch (error: GenericAnyType) {
     logger('error', error.message); // always log

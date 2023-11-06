@@ -40,7 +40,7 @@ function match(entry, request) {
   return entry.spec == reqSpec && (!reqContract || entry.contract == reqContract);
 }
 
-const specs = require(argv.spec).filter(s => argv.all || argv._.some(r => match(s, r)));
+const specs = require(argv.spec).filter((s) => argv.all || argv._.some((r) => match(s, r)));
 const limit = require('p-limit')(argv.parallel);
 
 if (argv._.length == 0 && !argv.all) {
@@ -48,7 +48,7 @@ if (argv._.length == 0 && !argv.all) {
 }
 
 for (const r of argv._) {
-  if (!specs.some(s => match(s, r))) {
+  if (!specs.some((s) => match(s, r))) {
     console.error(`Error: Requested spec '${r}' not found in ${argv.spec}`);
     process.exitCode = 1;
   }
@@ -59,7 +59,10 @@ if (process.exitCode) {
 }
 
 for (const { spec, contract, files, options = [] } of specs) {
-  limit(runCertora, spec, contract, files, [...options.flatMap(opt => opt.split(' ')), ...argv.options]);
+  limit(runCertora, spec, contract, files, [
+    ...options.flatMap((opt) => opt.split(' ')),
+    ...argv.options,
+  ]);
 }
 
 // Run certora, aggregate the output and print it at the end
@@ -79,7 +82,7 @@ async function runCertora(spec, contract, files, options = []) {
       data
         .toString('utf8')
         .match(/-D\S+=\S+/g)
-        ?.map(s => s.split('=')) || [],
+        ?.map((s) => s.split('=')) || []
     );
 
     if (jobId && userId) {
@@ -101,7 +104,12 @@ async function runCertora(spec, contract, files, options = []) {
   stream.end();
 
   // write results in markdown format
-  writeEntry(spec, contract, code || signal, (await output).match(/https:\/\/prover.certora.com\/output\/\S*/)?.[0]);
+  writeEntry(
+    spec,
+    contract,
+    code || signal,
+    (await output).match(/https:\/\/prover.certora.com\/output\/\S*/)?.[0]
+  );
 
   // write all details
   console.error(`+ certoraRun ${args.join(' ')}\n` + (await output));
@@ -140,7 +148,7 @@ function writeEntry(spec, contract, success, url) {
       contract,
       success ? ':x:' : ':heavy_check_mark:',
       url ? `[link](${url?.replace('/output/', '/jobStatus/')})` : 'error',
-      url ? `[link](${url})` : 'error',
-    ),
+      url ? `[link](${url})` : 'error'
+    )
   );
 }

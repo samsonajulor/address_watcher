@@ -2,7 +2,7 @@
 
 Security vulnerabilities should be disclosed to the project maintainers through [Immunefi], or alternatively by email to security@openzeppelin.com.
 
-[Immunefi]: https://immunefi.com/bounty/openzeppelin
+[immunefi]: https://immunefi.com/bounty/openzeppelin
 
 ## Bug Bounty
 
@@ -20,7 +20,7 @@ Projects that build on OpenZeppelin Contracts are encouraged to clearly state, i
 
 Additionally, we recommend installing the library through npm and setting up vulnerability alerts such as [Dependabot].
 
-[Dependabot]: https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/about-supply-chain-security#what-is-dependabot
+[dependabot]: https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/about-supply-chain-security#what-is-dependabot
 
 ### Supported Versions
 
@@ -39,4 +39,4 @@ Note as well that the Solidity language itself only guarantees security updates 
 
 ## Legal
 
-Smart contracts are a nascent techology and carry a high level of technical risk and uncertainty.  OpenZeppelin Contracts is made available under the MIT License, which disclaims all warranties in relation to the project and which limits the liability of those that contribute and maintain the project, including OpenZeppelin. Your use of the project is also governed by the terms found at www.openzeppelin.com/tos (the "Terms"). As set out in the Terms, you are solely responsible for any use of OpenZeppelin Contracts and you assume all risks associated with any such use. This Security Policy in no way evidences or represents an on-going duty by any contributor, including OpenZeppelin, to correct any flaws or alert you to all or any of the potential risks of utilizing the project.
+Smart contracts are a nascent techology and carry a high level of technical risk and uncertainty. OpenZeppelin Contracts is made available under the MIT License, which disclaims all warranties in relation to the project and which limits the liability of those that contribute and maintain the project, including OpenZeppelin. Your use of the project is also governed by the terms found at www.openzeppelin.com/tos (the "Terms"). As set out in the Terms, you are solely responsible for any use of OpenZeppelin Contracts and you assume all risks associated with any such use. This Security Policy in no way evidences or represents an on-going duty by any contributor, including OpenZeppelin, to correct any flaws or alert you to all or any of the potential risks of utilizing the project.

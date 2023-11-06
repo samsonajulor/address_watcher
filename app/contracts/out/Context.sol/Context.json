@@ -66,9 +66,7 @@
     "absolutePath": "lib/openzeppelin-contracts/contracts/utils/Context.sol",
     "id": 43636,
     "exportedSymbols": {
-      "Context": [
-        43635
-      ]
+      "Context": [43635]
     },
     "nodeType": "SourceUnit",
     "src": "86:758:21",
@@ -78,12 +76,7 @@
         "nodeType": "PragmaDirective",
         "src": "86:23:21",
         "nodes": [],
-        "literals": [
-          "solidity",
-          "^",
-          "0.8",
-          ".0"
-        ]
+        "literals": ["solidity", "^", "0.8", ".0"]
       },
       {
         "id": 43635,
@@ -296,9 +289,7 @@
           "text": " @dev Provides information about the current execution context, including the\n sender of the transaction and its data. While these are generally available\n via msg.sender and msg.data, they should not be accessed in such a direct\n manner, since when dealing with meta-transactions the account sending and\n paying for execution may not be the actual sender (as far as an application\n is concerned).\n This contract is only required for intermediate, library-like contracts."
         },
         "fullyImplemented": true,
-        "linearizedBaseContracts": [
-          43635
-        ],
+        "linearizedBaseContracts": [43635],
         "name": "Context",
         "nameLocation": "626:7:21",
         "scope": 43636,

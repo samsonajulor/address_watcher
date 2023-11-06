@@ -39,12 +39,29 @@ contract('GovernorERC721', function (accounts) {
 
         await web3.eth.sendTransaction({ from: owner, to: this.mock.address, value });
 
-        await Promise.all([NFT0, NFT1, NFT2, NFT3, NFT4].map(tokenId => this.token.$_mint(owner, tokenId)));
-        await this.helper.delegate({ token: this.token, to: voter1, tokenId: NFT0 }, { from: owner });
-        await this.helper.delegate({ token: this.token, to: voter2, tokenId: NFT1 }, { from: owner });
-        await this.helper.delegate({ token: this.token, to: voter2, tokenId: NFT2 }, { from: owner });
-        await this.helper.delegate({ token: this.token, to: voter3, tokenId: NFT3 }, { from: owner });
-        await this.helper.delegate({ token: this.token, to: voter4, tokenId: NFT4 }, { from: owner });
+        await Promise.all(
+          [NFT0, NFT1, NFT2, NFT3, NFT4].map((tokenId) => this.token.$_mint(owner, tokenId))
+        );
+        await this.helper.delegate(
+          { token: this.token, to: voter1, tokenId: NFT0 },
+          { from: owner }
+        );
+        await this.helper.delegate(
+          { token: this.token, to: voter2, tokenId: NFT1 },
+          { from: owner }
+        );
+        await this.helper.delegate(
+          { token: this.token, to: voter2, tokenId: NFT2 },
+          { from: owner }
+        );
+        await this.helper.delegate(
+          { token: this.token, to: voter3, tokenId: NFT3 },
+          { from: owner }
+        );
+        await this.helper.delegate(
+          { token: this.token, to: voter4, tokenId: NFT4 },
+          { from: owner }
+        );
 
         // default proposal
         this.proposal = this.helper.setProposal(
@@ -55,7 +72,7 @@ contract('GovernorERC721', function (accounts) {
               data: this.receiver.contract.methods.mockFunction().encodeABI(),
             },
           ],
-          '<proposal description>',
+          '<proposal description>'
         );
       });
 
@@ -71,29 +88,45 @@ contract('GovernorERC721', function (accounts) {
         await this.helper.propose();
         await this.helper.waitForSnapshot();
 
-        expectEvent(await this.helper.vote({ support: Enums.VoteType.For }, { from: voter1 }), 'VoteCast', {
-          voter: voter1,
-          support: Enums.VoteType.For,
-          weight: '1',
-        });
+        expectEvent(
+          await this.helper.vote({ support: Enums.VoteType.For }, { from: voter1 }),
+          'VoteCast',
+          {
+            voter: voter1,
+            support: Enums.VoteType.For,
+            weight: '1',
+          }
+        );
 
-        expectEvent(await this.helper.vote({ support: Enums.VoteType.For }, { from: voter2 }), 'VoteCast', {
-          voter: voter2,
-          support: Enums.VoteType.For,
-          weight: '2',
-        });
+        expectEvent(
+          await this.helper.vote({ support: Enums.VoteType.For }, { from: voter2 }),
+          'VoteCast',
+          {
+            voter: voter2,
+            support: Enums.VoteType.For,
+            weight: '2',
+          }
+        );
 
-        expectEvent(await this.helper.vote({ support: Enums.VoteType.Against }, { from: voter3 }), 'VoteCast', {
-          voter: voter3,
-          support: Enums.VoteType.Against,
-          weight: '1',
-        });
+        expectEvent(
+          await this.helper.vote({ support: Enums.VoteType.Against }, { from: voter3 }),
+          'VoteCast',
+          {
+            voter: voter3,
+            support: Enums.VoteType.Against,
+            weight: '1',
+          }
+        );
 
-        expectEvent(await this.helper.vote({ support: Enums.VoteType.Abstain }, { from: voter4 }), 'VoteCast', {
-          voter: voter4,
-          support: Enums.VoteType.Abstain,
-          weight: '1',
-        });
+        expectEvent(
+          await this.helper.vote({ support: Enums.VoteType.Abstain }, { from: voter4 }),
+          'VoteCast',
+          {
+            voter: voter4,
+            support: Enums.VoteType.Abstain,
+            weight: '1',
+          }
+        );
 
         await this.helper.waitForDeadline();
         await this.helper.execute();
@@ -104,7 +137,7 @@ contract('GovernorERC721', function (accounts) {
         expect(await this.mock.hasVoted(this.proposal.id, voter3)).to.be.equal(true);
         expect(await this.mock.hasVoted(this.proposal.id, voter4)).to.be.equal(true);
 
-        await this.mock.proposalVotes(this.proposal.id).then(results => {
+        await this.mock.proposalVotes(this.proposal.id).then((results) => {
           expect(results.forVotes).to.be.bignumber.equal('3');
           expect(results.againstVotes).to.be.bignumber.equal('1');
           expect(results.abstainVotes).to.be.bignumber.equal('1');

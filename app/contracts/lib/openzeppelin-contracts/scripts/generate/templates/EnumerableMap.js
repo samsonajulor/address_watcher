@@ -304,7 +304,7 @@ module.exports = format(
     'using EnumerableSet for EnumerableSet.Bytes32Set;',
     '',
     defaultMap(),
-    TYPES.map(details => customMap(details).trimEnd()).join('\n\n'),
+    TYPES.map((details) => customMap(details).trimEnd()).join('\n\n'),
   ],
-  '}',
+  '}'
 );

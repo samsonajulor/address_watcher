@@ -47,7 +47,14 @@ function shouldRunMerge({
   hasPendingChangesets,
   prBackExists,
 }) {
-  return isReleaseBranch && isPush && !prerelease && isCurrentFinalVersion && !hasPendingChangesets && prBackExists;
+  return (
+    isReleaseBranch &&
+    isPush &&
+    !prerelease &&
+    isCurrentFinalVersion &&
+    !hasPendingChangesets &&
+    prBackExists
+  );
 }
 
 async function getState({ github, context, core }) {
@@ -84,7 +91,8 @@ async function getState({ github, context, core }) {
   state.isPublishedOnNpm = await isPublishedOnNpm(packageName, version);
 
   // Log every state value in debug mode
-  if (core.isDebug()) for (const [key, value] of Object.entries(state)) core.debug(`${key}: ${value}`);
+  if (core.isDebug())
+    for (const [key, value] of Object.entries(state)) core.debug(`${key}: ${value}`);
 
   return state;
 }
@@ -97,7 +105,7 @@ async function readChangesetState(cwd = process.cwd()) {
   let changesets = await readChangesets(cwd);
 
   if (isInPreMode) {
-    changesets = changesets.filter(x => !preState.changesets.includes(x.id));
+    changesets = changesets.filter((x) => !preState.changesets.includes(x.id));
   }
 
   return {

@@ -89,10 +89,7 @@
       }
     },
     "settings": {
-      "remappings": [
-        "ds-test/=lib/forge-std/lib/ds-test/src/",
-        "forge-std/=lib/forge-std/src/"
-      ],
+      "remappings": ["ds-test/=lib/forge-std/lib/ds-test/src/", "forge-std/=lib/forge-std/src/"],
       "optimizer": {
         "enabled": true,
         "runs": 200
@@ -233,15 +230,9 @@
     "absolutePath": "script/Counter.s.sol",
     "id": 43380,
     "exportedSymbols": {
-      "CounterScript": [
-        43379
-      ],
-      "Script": [
-        2405
-      ],
-      "console2": [
-        30120
-      ]
+      "CounterScript": [43379],
+      "Script": [2405],
+      "console2": [30120]
     },
     "nodeType": "SourceUnit",
     "src": "39:209:19",
@@ -251,12 +242,7 @@
         "nodeType": "PragmaDirective",
         "src": "39:24:19",
         "nodes": [],
-        "literals": [
-          "solidity",
-          "^",
-          "0.8",
-          ".13"
-        ]
+        "literals": ["solidity", "^", "0.8", ".13"]
       },
       {
         "id": 43363,
@@ -431,9 +417,7 @@
             "baseName": {
               "id": 43364,
               "name": "Script",
-              "nameLocations": [
-                "147:6:19"
-              ],
+              "nameLocations": ["147:6:19"],
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 2405,
               "src": "147:6:19"
@@ -447,15 +431,7 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "linearizedBaseContracts": [
-          43379,
-          2405,
-          12187,
-          6621,
-          4561,
-          2366,
-          2354
-        ],
+        "linearizedBaseContracts": [43379, 2405, 12187, 6621, 4561, 2366, 2354],
         "name": "CounterScript",
         "nameLocation": "130:13:19",
         "scope": 43380,

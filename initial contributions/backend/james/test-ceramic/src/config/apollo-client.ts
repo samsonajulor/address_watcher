@@ -1,10 +1,5 @@
-import {
-  ApolloClient,
-  ApolloLink,
-  InMemoryCache,
-  Observable,
-} from "@apollo/client";
-import { compose } from "./compose-client";
+import { ApolloClient, ApolloLink, InMemoryCache, Observable } from '@apollo/client';
+import { compose } from './compose-client';
 
 const link = new ApolloLink((operation) => {
   return new Observable((observer) => {

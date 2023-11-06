@@ -32,7 +32,7 @@ contract('UUPSUpgradeable', function () {
 
     const { receipt } = await this.instance.upgradeToAndCall(
       this.implUpgradeOk.address,
-      this.implUpgradeOk.contract.methods.increment().encodeABI(),
+      this.implUpgradeOk.contract.methods.increment().encodeABI()
     );
     expect(receipt.logs.filter(({ event }) => event === 'Upgraded').length).to.be.equal(1);
     expectEvent(receipt, 'Upgraded', { implementation: this.implUpgradeOk.address });
@@ -49,7 +49,7 @@ contract('UUPSUpgradeable', function () {
   it('reject upgrade to non uups implementation', async function () {
     await expectRevert(
       this.instance.upgradeTo(this.implUpgradeNonUUPS.address),
-      'ERC1967Upgrade: new implementation is not UUPS',
+      'ERC1967Upgrade: new implementation is not UUPS'
     );
   });
 
@@ -59,20 +59,20 @@ contract('UUPSUpgradeable', function () {
 
     await expectRevert(
       this.instance.upgradeTo(otherInstance.address),
-      'ERC1967Upgrade: new implementation is not UUPS',
+      'ERC1967Upgrade: new implementation is not UUPS'
     );
   });
 
   it('can upgrade from legacy implementations', async function () {
     const legacyImpl = await UUPSUpgradeableLegacyMock.new();
     const legacyInstance = await ERC1967Proxy.new(legacyImpl.address, '0x').then(({ address }) =>
-      UUPSUpgradeableLegacyMock.at(address),
+      UUPSUpgradeableLegacyMock.at(address)
     );
 
     const receipt = await legacyInstance.upgradeTo(this.implInitial.address);
 
     const UpgradedEvents = receipt.logs.filter(
-      ({ address, event }) => address === legacyInstance.address && event === 'Upgraded',
+      ({ address, event }) => address === legacyInstance.address && event === 'Upgraded'
     );
     expect(UpgradedEvents.length).to.be.equal(1);
 

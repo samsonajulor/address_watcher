@@ -60,11 +60,14 @@ function shouldBehaveLikeERC2981() {
     });
 
     it('reverts if invalid parameters', async function () {
-      await expectRevert(this.token.$_setDefaultRoyalty(ZERO_ADDRESS, royaltyFraction), 'ERC2981: invalid receiver');
+      await expectRevert(
+        this.token.$_setDefaultRoyalty(ZERO_ADDRESS, royaltyFraction),
+        'ERC2981: invalid receiver'
+      );
 
       await expectRevert(
         this.token.$_setDefaultRoyalty(this.account1, new BN('11000')),
-        'ERC2981: royalty fee will exceed salePrice',
+        'ERC2981: royalty fee will exceed salePrice'
       );
     });
   });
@@ -106,12 +109,12 @@ function shouldBehaveLikeERC2981() {
     it('reverts if invalid parameters', async function () {
       await expectRevert(
         this.token.$_setTokenRoyalty(this.tokenId1, ZERO_ADDRESS, royaltyFraction),
-        'ERC2981: Invalid parameters',
+        'ERC2981: Invalid parameters'
       );
 
       await expectRevert(
         this.token.$_setTokenRoyalty(this.tokenId1, this.account1, new BN('11000')),
-        'ERC2981: royalty fee will exceed salePrice',
+        'ERC2981: royalty fee will exceed salePrice'
       );
     });
 

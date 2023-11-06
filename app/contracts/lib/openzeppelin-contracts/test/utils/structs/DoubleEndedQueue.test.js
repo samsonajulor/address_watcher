@@ -4,13 +4,13 @@ const { expectRevertCustomError } = require('../../helpers/customError');
 const DoubleEndedQueue = artifacts.require('$DoubleEndedQueue');
 
 /** Rebuild the content of the deque as a JS array. */
-const getContent = deque =>
-  deque.$length(0).then(bn =>
+const getContent = (deque) =>
+  deque.$length(0).then((bn) =>
     Promise.all(
       Array(bn.toNumber())
         .fill()
-        .map((_, i) => deque.$at(0, i)),
-    ),
+        .map((_, i) => deque.$at(0, i))
+    )
   );
 
 contract('DoubleEndedQueue', function () {

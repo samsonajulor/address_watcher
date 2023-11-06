@@ -90,18 +90,10 @@
     "absolutePath": "lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol",
     "id": 44231,
     "exportedSymbols": {
-      "ECDSA": [
-        44230
-      ],
-      "Math": [
-        45108
-      ],
-      "SignedMath": [
-        45213
-      ],
-      "Strings": [
-        43864
-      ]
+      "ECDSA": [44230],
+      "Math": [45108],
+      "SignedMath": [45213],
+      "Strings": [43864]
     },
     "nodeType": "SourceUnit",
     "src": "112:9019:23",
@@ -111,12 +103,7 @@
         "nodeType": "PragmaDirective",
         "src": "112:23:23",
         "nodes": [],
-        "literals": [
-          "solidity",
-          "^",
-          "0.8",
-          ".0"
-        ]
+        "literals": ["solidity", "^", "0.8", ".0"]
       },
       {
         "id": 43867,
@@ -467,10 +454,7 @@
                                   "id": 43908,
                                   "name": "revert",
                                   "nodeType": "Identifier",
-                                  "overloadedDeclarations": [
-                                    -19,
-                                    -19
-                                  ],
+                                  "overloadedDeclarations": [-19, -19],
                                   "referencedDeclaration": -19,
                                   "src": "1020:6:23",
                                   "typeDescriptions": {
@@ -539,10 +523,7 @@
                                 "id": 43899,
                                 "name": "revert",
                                 "nodeType": "Identifier",
-                                "overloadedDeclarations": [
-                                  -19,
-                                  -19
-                                ],
+                                "overloadedDeclarations": [-19, -19],
                                 "referencedDeclaration": -19,
                                 "src": "903:6:23",
                                 "typeDescriptions": {
@@ -611,10 +592,7 @@
                               "id": 43890,
                               "name": "revert",
                               "nodeType": "Identifier",
-                              "overloadedDeclarations": [
-                                -19,
-                                -19
-                              ],
+                              "overloadedDeclarations": [-19, -19],
                               "referencedDeclaration": -19,
                               "src": "788:6:23",
                               "typeDescriptions": {
@@ -694,9 +672,7 @@
                     "pathNode": {
                       "id": 43875,
                       "name": "RecoverError",
-                      "nameLocations": [
-                        "591:12:23"
-                      ],
+                      "nameLocations": ["591:12:23"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 43874,
                       "src": "591:12:23"
@@ -924,9 +900,7 @@
                     "src": "2287:495:23",
                     "statements": [
                       {
-                        "assignments": [
-                          43936
-                        ],
+                        "assignments": [43936],
                         "declarations": [
                           {
                             "constant": false,
@@ -961,9 +935,7 @@
                         "src": "2301:9:23"
                       },
                       {
-                        "assignments": [
-                          43939
-                        ],
+                        "assignments": [43939],
                         "declarations": [
                           {
                             "constant": false,
@@ -998,9 +970,7 @@
                         "src": "2324:9:23"
                       },
                       {
-                        "assignments": [
-                          43942
-                        ],
+                        "assignments": [43942],
                         "declarations": [
                           {
                             "constant": false,
@@ -1346,11 +1316,7 @@
                             "id": 43945,
                             "name": "tryRecover",
                             "nodeType": "Identifier",
-                            "overloadedDeclarations": [
-                              43964,
-                              44038,
-                              44132
-                            ],
+                            "overloadedDeclarations": [43964, 44038, 44132],
                             "referencedDeclaration": 44132,
                             "src": "2746:10:23",
                             "typeDescriptions": {
@@ -1509,9 +1475,7 @@
                     "pathNode": {
                       "id": 43927,
                       "name": "RecoverError",
-                      "nameLocations": [
-                        "2235:12:23"
-                      ],
+                      "nameLocations": ["2235:12:23"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 43874,
                       "src": "2235:12:23"
@@ -1545,10 +1509,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    43975,
-                    43978
-                  ],
+                  "assignments": [43975, 43978],
                   "declarations": [
                     {
                       "constant": false,
@@ -1599,9 +1560,7 @@
                         "pathNode": {
                           "id": 43976,
                           "name": "RecoverError",
-                          "nameLocations": [
-                            "3778:12:23"
-                          ],
+                          "nameLocations": ["3778:12:23"],
                           "nodeType": "IdentifierPath",
                           "referencedDeclaration": 43874,
                           "src": "3778:12:23"
@@ -1658,11 +1617,7 @@
                       "id": 43979,
                       "name": "tryRecover",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        43964,
-                        44038,
-                        44132
-                      ],
+                      "overloadedDeclarations": [43964, 44038, 44132],
                       "referencedDeclaration": 43964,
                       "src": "3800:10:23",
                       "typeDescriptions": {
@@ -1887,9 +1842,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    44007
-                  ],
+                  "assignments": [44007],
                   "declarations": [
                     {
                       "constant": false,
@@ -2015,9 +1968,7 @@
                   "src": "4255:92:23"
                 },
                 {
-                  "assignments": [
-                    44016
-                  ],
+                  "assignments": [44016],
                   "declarations": [
                     {
                       "constant": false,
@@ -2311,11 +2262,7 @@
                       "id": 44030,
                       "name": "tryRecover",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        43964,
-                        44038,
-                        44132
-                      ],
+                      "overloadedDeclarations": [43964, 44038, 44132],
                       "referencedDeclaration": 44132,
                       "src": "4416:10:23",
                       "typeDescriptions": {
@@ -2498,9 +2445,7 @@
                     "pathNode": {
                       "id": 44002,
                       "name": "RecoverError",
-                      "nameLocations": [
-                        "4231:12:23"
-                      ],
+                      "nameLocations": ["4231:12:23"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 43874,
                       "src": "4231:12:23"
@@ -2534,10 +2479,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    44051,
-                    44054
-                  ],
+                  "assignments": [44051, 44054],
                   "declarations": [
                     {
                       "constant": false,
@@ -2588,9 +2530,7 @@
                         "pathNode": {
                           "id": 44052,
                           "name": "RecoverError",
-                          "nameLocations": [
-                            "4729:12:23"
-                          ],
+                          "nameLocations": ["4729:12:23"],
                           "nodeType": "IdentifierPath",
                           "referencedDeclaration": 43874,
                           "src": "4729:12:23"
@@ -2663,11 +2603,7 @@
                       "id": 44055,
                       "name": "tryRecover",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        43964,
-                        44038,
-                        44132
-                      ],
+                      "overloadedDeclarations": [43964, 44038, 44132],
                       "referencedDeclaration": 44038,
                       "src": "4751:10:23",
                       "typeDescriptions": {
@@ -3133,9 +3069,7 @@
                   }
                 },
                 {
-                  "assignments": [
-                    44102
-                  ],
+                  "assignments": [44102],
                   "declarations": [
                     {
                       "constant": false,
@@ -3724,9 +3658,7 @@
                     "pathNode": {
                       "id": 44081,
                       "name": "RecoverError",
-                      "nameLocations": [
-                        "5106:12:23"
-                      ],
+                      "nameLocations": ["5106:12:23"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 43874,
                       "src": "5106:12:23"
@@ -3760,10 +3692,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    44147,
-                    44150
-                  ],
+                  "assignments": [44147, 44150],
                   "declarations": [
                     {
                       "constant": false,
@@ -3814,9 +3743,7 @@
                         "pathNode": {
                           "id": 44148,
                           "name": "RecoverError",
-                          "nameLocations": [
-                            "6722:12:23"
-                          ],
+                          "nameLocations": ["6722:12:23"],
                           "nodeType": "IdentifierPath",
                           "referencedDeclaration": 43874,
                           "src": "6722:12:23"
@@ -3905,11 +3832,7 @@
                       "id": 44151,
                       "name": "tryRecover",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        43964,
-                        44038,
-                        44132
-                      ],
+                      "overloadedDeclarations": [43964, 44038, 44132],
                       "referencedDeclaration": 44132,
                       "src": "6744:10:23",
                       "typeDescriptions": {
@@ -5372,9 +5295,7 @@
           "text": " @dev Elliptic Curve Digital Signature Algorithm (ECDSA) operations.\n These functions can be used to verify that a message was signed by the holder\n of the private keys of a given address."
         },
         "fullyImplemented": true,
-        "linearizedBaseContracts": [
-          44230
-        ],
+        "linearizedBaseContracts": [44230],
         "name": "ECDSA",
         "nameLocation": "377:5:23",
         "scope": 44231,

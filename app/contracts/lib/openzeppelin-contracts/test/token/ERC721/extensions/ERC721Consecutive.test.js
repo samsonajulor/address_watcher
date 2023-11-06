@@ -3,7 +3,9 @@ const { expect } = require('chai');
 
 const ERC721ConsecutiveMock = artifacts.require('$ERC721ConsecutiveMock');
 const ERC721ConsecutiveEnumerableMock = artifacts.require('$ERC721ConsecutiveEnumerableMock');
-const ERC721ConsecutiveNoConstructorMintMock = artifacts.require('$ERC721ConsecutiveNoConstructorMintMock');
+const ERC721ConsecutiveNoConstructorMintMock = artifacts.require(
+  '$ERC721ConsecutiveNoConstructorMintMock'
+);
 
 contract('ERC721Consecutive', function (accounts) {
   const [user1, user2, user3, receiver] = accounts;
@@ -27,7 +29,7 @@ contract('ERC721Consecutive', function (accounts) {
         symbol,
         delegates,
         batches.map(({ receiver }) => receiver),
-        batches.map(({ amount }) => amount),
+        batches.map(({ amount }) => amount)
       );
     });
 
@@ -65,7 +67,9 @@ contract('ERC721Consecutive', function (accounts) {
             .map(({ amount }) => amount)
             .reduce((a, b) => a + b, 0);
 
-          expect(await this.token.balanceOf(account)).to.be.bignumber.equal(web3.utils.toBN(balance));
+          expect(await this.token.balanceOf(account)).to.be.bignumber.equal(
+            web3.utils.toBN(balance)
+          );
 
           // If not delegated at construction, check before + do delegation
           if (!delegates.includes(account)) {
@@ -75,7 +79,9 @@ contract('ERC721Consecutive', function (accounts) {
           }
 
           // At this point all accounts should have delegated
-          expect(await this.token.getVotes(account)).to.be.bignumber.equal(web3.utils.toBN(balance));
+          expect(await this.token.getVotes(account)).to.be.bignumber.equal(
+            web3.utils.toBN(balance)
+          );
         }
       });
     });
@@ -84,7 +90,7 @@ contract('ERC721Consecutive', function (accounts) {
       it('consecutive minting is not possible after construction', async function () {
         await expectRevert(
           this.token.$_mintConsecutive(user1, 10),
-          'ERC721Consecutive: batch minting restricted to constructor',
+          'ERC721Consecutive: batch minting restricted to constructor'
         );
       });
 
@@ -173,21 +179,21 @@ contract('ERC721Consecutive', function (accounts) {
     it('cannot mint a batch larger than 5000', async function () {
       await expectRevert(
         ERC721ConsecutiveMock.new(name, symbol, [], [user1], ['5001']),
-        'ERC721Consecutive: batch too large',
+        'ERC721Consecutive: batch too large'
       );
     });
 
     it('cannot use single minting during construction', async function () {
       await expectRevert(
         ERC721ConsecutiveNoConstructorMintMock.new(name, symbol),
-        "ERC721Consecutive: can't mint during construction",
+        "ERC721Consecutive: can't mint during construction"
       );
     });
 
     it('cannot use single minting during construction', async function () {
       await expectRevert(
         ERC721ConsecutiveNoConstructorMintMock.new(name, symbol),
-        "ERC721Consecutive: can't mint during construction",
+        "ERC721Consecutive: can't mint during construction"
       );
     });
 
@@ -197,9 +203,9 @@ contract('ERC721Consecutive', function (accounts) {
           name,
           symbol,
           batches.map(({ receiver }) => receiver),
-          batches.map(({ amount }) => amount),
+          batches.map(({ amount }) => amount)
         ),
-        'ERC721Enumerable: consecutive transfers not supported',
+        'ERC721Enumerable: consecutive transfers not supported'
       );
     });
   });

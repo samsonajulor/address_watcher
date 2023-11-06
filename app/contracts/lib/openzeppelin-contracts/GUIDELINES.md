@@ -66,9 +66,9 @@ Some other examples of automation are:
 
 Pull requests are squash-merged to keep the `master` branch history clean. The title of the pull request becomes the commit message, so it should be written in a consistent format:
 
-1) Begin with a capital letter.
-2) Do not end with a period.
-3) Write in the imperative: "Add feature X" and not "Adds feature X" or "Added feature X".
+1. Begin with a capital letter.
+2. Do not end with a period.
+3. Write in the imperative: "Add feature X" and not "Adds feature X" or "Added feature X".
 
 This repository does not follow conventional commits, so do not prefix the title with "fix:" or "feat:".
 
@@ -80,11 +80,11 @@ Branch names don't matter, and commit messages within a pull request mostly don'
 
 In addition to the official Solidity Style Guide we have a number of other conventions that must be followed.
 
-* All state variables should be private.
+- All state variables should be private.
 
   Changes to state should be accompanied by events, and in some cases it is not correct to arbitrarily set state. Encapsulating variables as private and only allowing modification via setters enables us to ensure that events and other rules are followed reliably and prevents this kind of user error.
 
-* Internal or private state variables or functions should have an underscore prefix.
+- Internal or private state variables or functions should have an underscore prefix.
 
   ```solidity
   contract TestContract {
@@ -95,7 +95,7 @@ In addition to the official Solidity Style Guide we have a number of other conve
   }
   ```
 
-* Events should be emitted immediately after the state change that they
+- Events should be emitted immediately after the state change that they
   represent, and should be named in the past tense.
 
   ```solidity
@@ -107,11 +107,11 @@ In addition to the official Solidity Style Guide we have a number of other conve
 
   Some standards (e.g. ERC20) use present tense, and in those cases the
   standard specification is used.
-  
-* Interface names should have a capital I prefix.
+
+- Interface names should have a capital I prefix.
 
   ```solidity
   interface IERC777 {
   ```
 
-* Unchecked arithmetic blocks should contain comments explaining why overflow is guaranteed not to happen. If the reason is immediately apparent from the line above the unchecked block, the comment may be omitted.
+- Unchecked arithmetic blocks should contain comments explaining why overflow is guaranteed not to happen. If the reason is immediately apparent from the line above the unchecked block, the comment may be omitted.

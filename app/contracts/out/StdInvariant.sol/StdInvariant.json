@@ -385,9 +385,7 @@
     "absolutePath": "lib/forge-std/src/StdInvariant.sol",
     "id": 7701,
     "exportedSymbols": {
-      "StdInvariant": [
-        7700
-      ]
+      "StdInvariant": [7700]
     },
     "nodeType": "SourceUnit",
     "src": "32:3482:6",
@@ -397,25 +395,14 @@
         "nodeType": "PragmaDirective",
         "src": "32:31:6",
         "nodes": [],
-        "literals": [
-          "solidity",
-          ">=",
-          "0.6",
-          ".2",
-          "<",
-          "0.9",
-          ".0"
-        ]
+        "literals": ["solidity", ">=", "0.6", ".2", "<", "0.9", ".0"]
       },
       {
         "id": 7444,
         "nodeType": "PragmaDirective",
         "src": "65:33:6",
         "nodes": [],
-        "literals": [
-          "experimental",
-          "ABIEncoderV2"
-        ]
+        "literals": ["experimental", "ABIEncoderV2"]
       },
       {
         "id": 7700,
@@ -825,9 +812,7 @@
                 "pathNode": {
                   "id": 7475,
                   "name": "FuzzSelector",
-                  "nameLocations": [
-                    "552:12:6"
-                  ],
+                  "nameLocations": ["552:12:6"],
                   "nodeType": "IdentifierPath",
                   "referencedDeclaration": 7450,
                   "src": "552:12:6"
@@ -872,9 +857,7 @@
                 "pathNode": {
                   "id": 7479,
                   "name": "FuzzSelector",
-                  "nameLocations": [
-                    "607:12:6"
-                  ],
+                  "nameLocations": ["607:12:6"],
                   "nodeType": "IdentifierPath",
                   "referencedDeclaration": 7450,
                   "src": "607:12:6"
@@ -919,9 +902,7 @@
                 "pathNode": {
                   "id": 7483,
                   "name": "FuzzInterface",
-                  "nameLocations": [
-                    "655:13:6"
-                  ],
+                  "nameLocations": ["655:13:6"],
                   "nodeType": "IdentifierPath",
                   "referencedDeclaration": 7456,
                   "src": "655:13:6"
@@ -1585,9 +1566,7 @@
                     "pathNode": {
                       "id": 7535,
                       "name": "FuzzSelector",
-                      "nameLocations": [
-                        "1346:12:6"
-                      ],
+                      "nameLocations": ["1346:12:6"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 7450,
                       "src": "1346:12:6"
@@ -1860,9 +1839,7 @@
                     "pathNode": {
                       "id": 7560,
                       "name": "FuzzSelector",
-                      "nameLocations": [
-                        "1644:12:6"
-                      ],
+                      "nameLocations": ["1644:12:6"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 7450,
                       "src": "1644:12:6"
@@ -2135,9 +2112,7 @@
                     "pathNode": {
                       "id": 7585,
                       "name": "FuzzInterface",
-                      "nameLocations": [
-                        "1911:13:6"
-                      ],
+                      "nameLocations": ["1911:13:6"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 7456,
                       "src": "1911:13:6"
@@ -2725,9 +2700,7 @@
                       "pathNode": {
                         "id": 7643,
                         "name": "FuzzSelector",
-                        "nameLocations": [
-                          "2794:12:6"
-                        ],
+                        "nameLocations": ["2794:12:6"],
                         "nodeType": "IdentifierPath",
                         "referencedDeclaration": 7450,
                         "src": "2794:12:6"
@@ -2968,9 +2941,7 @@
                       "pathNode": {
                         "id": 7666,
                         "name": "FuzzSelector",
-                        "nameLocations": [
-                          "3117:12:6"
-                        ],
+                        "nameLocations": ["3117:12:6"],
                         "nodeType": "IdentifierPath",
                         "referencedDeclaration": 7450,
                         "src": "3117:12:6"
@@ -3211,9 +3182,7 @@
                       "pathNode": {
                         "id": 7689,
                         "name": "FuzzInterface",
-                        "nameLocations": [
-                          "3409:13:6"
-                        ],
+                        "nameLocations": ["3409:13:6"],
                         "nodeType": "IdentifierPath",
                         "referencedDeclaration": 7456,
                         "src": "3409:13:6"
@@ -3250,9 +3219,7 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "linearizedBaseContracts": [
-          7700
-        ],
+        "linearizedBaseContracts": [7700],
         "name": "StdInvariant",
         "nameLocation": "118:12:6",
         "scope": 7701,

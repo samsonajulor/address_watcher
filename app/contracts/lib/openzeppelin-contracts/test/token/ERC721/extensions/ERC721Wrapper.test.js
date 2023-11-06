@@ -38,7 +38,9 @@ contract('ERC721Wrapper', function (accounts) {
     it('works with token approval', async function () {
       await this.underlying.approve(this.token.address, firstTokenId, { from: initialHolder });
 
-      const { tx } = await this.token.depositFor(initialHolder, [firstTokenId], { from: initialHolder });
+      const { tx } = await this.token.depositFor(initialHolder, [firstTokenId], {
+        from: initialHolder,
+      });
 
       await expectEvent.inTransaction(tx, this.underlying, 'Transfer', {
         from: initialHolder,
@@ -55,7 +57,9 @@ contract('ERC721Wrapper', function (accounts) {
     it('works with approval for all', async function () {
       await this.underlying.setApprovalForAll(this.token.address, true, { from: initialHolder });
 
-      const { tx } = await this.token.depositFor(initialHolder, [firstTokenId], { from: initialHolder });
+      const { tx } = await this.token.depositFor(initialHolder, [firstTokenId], {
+        from: initialHolder,
+      });
 
       await expectEvent.inTransaction(tx, this.underlying, 'Transfer', {
         from: initialHolder,
@@ -72,7 +76,9 @@ contract('ERC721Wrapper', function (accounts) {
     it('works sending to another account', async function () {
       await this.underlying.approve(this.token.address, firstTokenId, { from: initialHolder });
 
-      const { tx } = await this.token.depositFor(anotherAccount, [firstTokenId], { from: initialHolder });
+      const { tx } = await this.token.depositFor(anotherAccount, [firstTokenId], {
+        from: initialHolder,
+      });
 
       await expectEvent.inTransaction(tx, this.underlying, 'Transfer', {
         from: initialHolder,
@@ -90,7 +96,9 @@ contract('ERC721Wrapper', function (accounts) {
       await this.underlying.approve(this.token.address, firstTokenId, { from: initialHolder });
       await this.underlying.approve(this.token.address, secondTokenId, { from: initialHolder });
 
-      const { tx } = await this.token.depositFor(initialHolder, [firstTokenId, secondTokenId], { from: initialHolder });
+      const { tx } = await this.token.depositFor(initialHolder, [firstTokenId, secondTokenId], {
+        from: initialHolder,
+      });
 
       await expectEvent.inTransaction(tx, this.underlying, 'Transfer', {
         from: initialHolder,
@@ -117,7 +125,7 @@ contract('ERC721Wrapper', function (accounts) {
     it('reverts with missing approval', async function () {
       await expectRevert(
         this.token.depositFor(initialHolder, [firstTokenId], { from: initialHolder }),
-        'ERC721: caller is not token owner or approved',
+        'ERC721: caller is not token owner or approved'
       );
     });
   });
@@ -129,7 +137,9 @@ contract('ERC721Wrapper', function (accounts) {
     });
 
     it('works for an owner', async function () {
-      const { tx } = await this.token.withdrawTo(initialHolder, [firstTokenId], { from: initialHolder });
+      const { tx } = await this.token.withdrawTo(initialHolder, [firstTokenId], {
+        from: initialHolder,
+      });
 
       await expectEvent.inTransaction(tx, this.underlying, 'Transfer', {
         from: this.token.address,
@@ -146,7 +156,9 @@ contract('ERC721Wrapper', function (accounts) {
     it('works for an approved', async function () {
       await this.token.approve(approvedAccount, firstTokenId, { from: initialHolder });
 
-      const { tx } = await this.token.withdrawTo(initialHolder, [firstTokenId], { from: approvedAccount });
+      const { tx } = await this.token.withdrawTo(initialHolder, [firstTokenId], {
+        from: approvedAccount,
+      });
 
       await expectEvent.inTransaction(tx, this.underlying, 'Transfer', {
         from: this.token.address,
@@ -163,7 +175,9 @@ contract('ERC721Wrapper', function (accounts) {
     it('works for an approved for all', async function () {
       await this.token.setApprovalForAll(approvedAccount, true, { from: initialHolder });
 
-      const { tx } = await this.token.withdrawTo(initialHolder, [firstTokenId], { from: approvedAccount });
+      const { tx } = await this.token.withdrawTo(initialHolder, [firstTokenId], {
+        from: approvedAccount,
+      });
 
       await expectEvent.inTransaction(tx, this.underlying, 'Transfer', {
         from: this.token.address,
@@ -180,7 +194,7 @@ contract('ERC721Wrapper', function (accounts) {
     it("doesn't work for a non-owner nor approved", async function () {
       await expectRevert(
         this.token.withdrawTo(initialHolder, [firstTokenId], { from: anotherAccount }),
-        'ERC721Wrapper: caller is not token owner or approved',
+        'ERC721Wrapper: caller is not token owner or approved'
       );
     });
 
@@ -188,7 +202,9 @@ contract('ERC721Wrapper', function (accounts) {
       await this.underlying.approve(this.token.address, secondTokenId, { from: initialHolder });
       await this.token.depositFor(initialHolder, [secondTokenId], { from: initialHolder });
 
-      const { tx } = await this.token.withdrawTo(initialHolder, [firstTokenId, secondTokenId], { from: initialHolder });
+      const { tx } = await this.token.withdrawTo(initialHolder, [firstTokenId, secondTokenId], {
+        from: initialHolder,
+      });
 
       await expectEvent.inTransaction(tx, this.underlying, 'Transfer', {
         from: this.token.address,
@@ -213,7 +229,9 @@ contract('ERC721Wrapper', function (accounts) {
     });
 
     it('works to another account', async function () {
-      const { tx } = await this.token.withdrawTo(anotherAccount, [firstTokenId], { from: initialHolder });
+      const { tx } = await this.token.withdrawTo(anotherAccount, [firstTokenId], {
+        from: initialHolder,
+      });
 
       await expectEvent.inTransaction(tx, this.underlying, 'Transfer', {
         from: this.token.address,
@@ -236,16 +254,21 @@ contract('ERC721Wrapper', function (accounts) {
           this.token.address,
           firstTokenId,
           anotherAccount, // Correct data
-          { from: anotherAccount },
+          { from: anotherAccount }
         ),
-        'ERC721Wrapper: caller is not underlying',
+        'ERC721Wrapper: caller is not underlying'
       );
     });
 
     it('mints a token to from', async function () {
-      const { tx } = await this.underlying.safeTransferFrom(initialHolder, this.token.address, firstTokenId, {
-        from: initialHolder,
-      });
+      const { tx } = await this.underlying.safeTransferFrom(
+        initialHolder,
+        this.token.address,
+        firstTokenId,
+        {
+          from: initialHolder,
+        }
+      );
 
       await expectEvent.inTransaction(tx, this.token, 'Transfer', {
         from: constants.ZERO_ADDRESS,
@@ -258,7 +281,9 @@ contract('ERC721Wrapper', function (accounts) {
   describe('_recover', function () {
     it('works if there is something to recover', async function () {
       // Should use `transferFrom` to avoid `onERC721Received` minting
-      await this.underlying.transferFrom(initialHolder, this.token.address, firstTokenId, { from: initialHolder });
+      await this.underlying.transferFrom(initialHolder, this.token.address, firstTokenId, {
+        from: initialHolder,
+      });
 
       const { tx } = await this.token.$_recover(anotherAccount, firstTokenId);
 
@@ -272,7 +297,7 @@ contract('ERC721Wrapper', function (accounts) {
     it('reverts if there is nothing to recover', async function () {
       await expectRevert(
         this.token.$_recover(initialHolder, firstTokenId),
-        'ERC721Wrapper: wrapper is not token owner',
+        'ERC721Wrapper: wrapper is not token owner'
       );
     });
   });

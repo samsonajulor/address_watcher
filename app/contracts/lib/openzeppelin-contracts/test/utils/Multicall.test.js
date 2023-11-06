@@ -20,7 +20,7 @@ contract('Multicall', function (accounts) {
         this.multicallToken.contract.methods.transfer(alice, amount / 2).encodeABI(),
         this.multicallToken.contract.methods.transfer(bob, amount / 3).encodeABI(),
       ],
-      { from: deployer },
+      { from: deployer }
     );
 
     expect(await this.multicallToken.balanceOf(alice)).to.be.bignumber.equal(new BN(amount / 2));
@@ -31,10 +31,12 @@ contract('Multicall', function (accounts) {
     const MulticallTest = artifacts.require('MulticallTest');
     const multicallTest = await MulticallTest.new({ from: deployer });
     await this.multicallToken.transfer(multicallTest.address, amount, { from: deployer });
-    expect(await this.multicallToken.balanceOf(multicallTest.address)).to.be.bignumber.equal(new BN(amount));
+    expect(await this.multicallToken.balanceOf(multicallTest.address)).to.be.bignumber.equal(
+      new BN(amount)
+    );
 
     const recipients = [alice, bob];
-    const amounts = [amount / 2, amount / 3].map(n => new BN(n));
+    const amounts = [amount / 2, amount / 3].map((n) => new BN(n));
 
     await multicallTest.checkReturnValues(this.multicallToken.address, recipients, amounts);
   });
@@ -47,7 +49,7 @@ contract('Multicall', function (accounts) {
         this.multicallToken.contract.methods.transfer(alice, amount).encodeABI(),
         this.multicallToken.contract.methods.transfer(bob, amount).encodeABI(),
       ],
-      { from: deployer },
+      { from: deployer }
     );
 
     await expectRevert(call, 'ERC20: transfer amount exceeds balance');
@@ -60,7 +62,7 @@ contract('Multicall', function (accounts) {
         this.multicallToken.contract.methods.transfer(alice, amount).encodeABI(),
         this.multicallToken.contract.methods.transfer(bob, amount).encodeABI(),
       ],
-      { from: deployer },
+      { from: deployer }
     );
 
     await expectRevert(call, 'ERC20: transfer amount exceeds balance');

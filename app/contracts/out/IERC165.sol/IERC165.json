@@ -112,9 +112,7 @@
     "absolutePath": "lib/openzeppelin-contracts/contracts/utils/introspection/IERC165.sol",
     "id": 44243,
     "exportedSymbols": {
-      "IERC165": [
-        44242
-      ]
+      "IERC165": [44242]
     },
     "nodeType": "SourceUnit",
     "src": "100:753:24",
@@ -124,12 +122,7 @@
         "nodeType": "PragmaDirective",
         "src": "100:23:24",
         "nodes": [],
-        "literals": [
-          "solidity",
-          "^",
-          "0.8",
-          ".0"
-        ]
+        "literals": ["solidity", "^", "0.8", ".0"]
       },
       {
         "id": 44242,
@@ -239,9 +232,7 @@
           "text": " @dev Interface of the ERC165 standard, as defined in the\n https://eips.ethereum.org/EIPS/eip-165[EIP].\n Implementers can declare support of contract interfaces, which can then be\n queried by others ({ERC165Checker}).\n For an implementation, see {ERC165}."
         },
         "fullyImplemented": false,
-        "linearizedBaseContracts": [
-          44242
-        ],
+        "linearizedBaseContracts": [44242],
         "name": "IERC165",
         "nameLocation": "415:7:24",
         "scope": 44243,

@@ -24,7 +24,9 @@ contract('ERC20', function (accounts) {
   });
 
   afterEach(async function () {
-    expect(await this.underlying.balanceOf(this.token.address)).to.be.bignumber.equal(await this.token.totalSupply());
+    expect(await this.underlying.balanceOf(this.token.address)).to.be.bignumber.equal(
+      await this.token.totalSupply()
+    );
   });
 
   it('has a name', async function () {
@@ -52,7 +54,9 @@ contract('ERC20', function (accounts) {
   describe('deposit', function () {
     it('valid', async function () {
       await this.underlying.approve(this.token.address, initialSupply, { from: initialHolder });
-      const { tx } = await this.token.depositFor(initialHolder, initialSupply, { from: initialHolder });
+      const { tx } = await this.token.depositFor(initialHolder, initialSupply, {
+        from: initialHolder,
+      });
       await expectEvent.inTransaction(tx, this.underlying, 'Transfer', {
         from: initialHolder,
         to: this.token.address,
@@ -68,7 +72,7 @@ contract('ERC20', function (accounts) {
     it('missing approval', async function () {
       await expectRevert(
         this.token.depositFor(initialHolder, initialSupply, { from: initialHolder }),
-        'ERC20: insufficient allowance',
+        'ERC20: insufficient allowance'
       );
     });
 
@@ -76,13 +80,15 @@ contract('ERC20', function (accounts) {
       await this.underlying.approve(this.token.address, MAX_UINT256, { from: initialHolder });
       await expectRevert(
         this.token.depositFor(initialHolder, MAX_UINT256, { from: initialHolder }),
-        'ERC20: transfer amount exceeds balance',
+        'ERC20: transfer amount exceeds balance'
       );
     });
 
     it('to other account', async function () {
       await this.underlying.approve(this.token.address, initialSupply, { from: initialHolder });
-      const { tx } = await this.token.depositFor(anotherAccount, initialSupply, { from: initialHolder });
+      const { tx } = await this.token.depositFor(anotherAccount, initialSupply, {
+        from: initialHolder,
+      });
       await expectEvent.inTransaction(tx, this.underlying, 'Transfer', {
         from: initialHolder,
         to: this.token.address,
@@ -105,7 +111,7 @@ contract('ERC20', function (accounts) {
     it('missing balance', async function () {
       await expectRevert(
         this.token.withdrawTo(initialHolder, MAX_UINT256, { from: initialHolder }),
-        'ERC20: burn amount exceeds balance',
+        'ERC20: burn amount exceeds balance'
       );
     });
 
@@ -126,7 +132,9 @@ contract('ERC20', function (accounts) {
     });
 
     it('entire balance', async function () {
-      const { tx } = await this.token.withdrawTo(initialHolder, initialSupply, { from: initialHolder });
+      const { tx } = await this.token.withdrawTo(initialHolder, initialSupply, {
+        from: initialHolder,
+      });
       await expectEvent.inTransaction(tx, this.underlying, 'Transfer', {
         from: this.token.address,
         to: initialHolder,
@@ -140,7 +148,9 @@ contract('ERC20', function (accounts) {
     });
 
     it('to other account', async function () {
-      const { tx } = await this.token.withdrawTo(anotherAccount, initialSupply, { from: initialHolder });
+      const { tx } = await this.token.withdrawTo(anotherAccount, initialSupply, {
+        from: initialHolder,
+      });
       await expectEvent.inTransaction(tx, this.underlying, 'Transfer', {
         from: this.token.address,
         to: anotherAccount,

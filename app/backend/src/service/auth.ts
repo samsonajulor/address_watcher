@@ -14,7 +14,11 @@ const provider = new ethers.AlchemyProvider('sepolia', alchemyProviderUrl);
  * Checks node-cache for a stored DID Session. If one is found, we authenticate it; otherwise, we create a new one.
  * @returns Promise<void>
  */
-export const authenticateCeramic = async (ceramic: CeramicApi, compose: ComposeClient, user: string) => {
+export const authenticateCeramic = async (
+  ceramic: CeramicApi,
+  compose: ComposeClient,
+  user: string
+) => {
   const sessionStr = cache.get('did'); // Use node-cache instead of localStorage
   let session;
 

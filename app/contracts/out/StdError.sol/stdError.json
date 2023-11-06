@@ -313,9 +313,7 @@
     "absolutePath": "lib/forge-std/src/StdError.sol",
     "id": 7442,
     "exportedSymbols": {
-      "stdError": [
-        7441
-      ]
+      "stdError": [7441]
     },
     "nodeType": "SourceUnit",
     "src": "129:884:5",
@@ -325,15 +323,7 @@
         "nodeType": "PragmaDirective",
         "src": "129:31:5",
         "nodes": [],
-        "literals": [
-          "solidity",
-          ">=",
-          "0.6",
-          ".2",
-          "<",
-          "0.9",
-          ".0"
-        ]
+        "literals": ["solidity", ">=", "0.6", ".2", "<", "0.9", ".0"]
       },
       {
         "id": 7441,
@@ -1400,9 +1390,7 @@
         "contractDependencies": [],
         "contractKind": "library",
         "fullyImplemented": true,
-        "linearizedBaseContracts": [
-          7441
-        ],
+        "linearizedBaseContracts": [7441],
         "name": "stdError",
         "nameLocation": "170:8:5",
         "scope": 7442,

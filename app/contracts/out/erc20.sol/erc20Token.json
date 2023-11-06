@@ -741,15 +741,9 @@
     "absolutePath": "src/erc20.sol",
     "id": 914,
     "exportedSymbols": {
-      "Context": [
-        212
-      ],
-      "Ownable": [
-        112
-      ],
-      "erc20Token": [
-        913
-      ]
+      "Context": [212],
+      "Ownable": [112],
+      "erc20Token": [913]
     },
     "nodeType": "SourceUnit",
     "src": "32:2104:4",
@@ -759,12 +753,7 @@
         "nodeType": "PragmaDirective",
         "src": "32:23:4",
         "nodes": [],
-        "literals": [
-          "solidity",
-          "^",
-          "0.8",
-          ".0"
-        ]
+        "literals": ["solidity", "^", "0.8", ".0"]
       },
       {
         "id": 650,
@@ -1660,10 +1649,7 @@
                       "id": 722,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "828:7:4",
                       "typeDescriptions": {
@@ -2577,10 +2563,7 @@
                       "id": 794,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "1359:7:4",
                       "typeDescriptions": {
@@ -2709,10 +2692,7 @@
                       "id": 806,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "1441:7:4",
                       "typeDescriptions": {
@@ -3498,9 +3478,7 @@
                 "modifierName": {
                   "id": 851,
                   "name": "onlyOwner",
-                  "nameLocations": [
-                    "1743:9:4"
-                  ],
+                  "nameLocations": ["1743:9:4"],
                   "nodeType": "IdentifierPath",
                   "referencedDeclaration": 31,
                   "src": "1743:9:4"
@@ -3696,10 +3674,7 @@
                       "id": 883,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "1951:7:4",
                       "typeDescriptions": {
@@ -3985,9 +3960,7 @@
                 "modifierName": {
                   "id": 880,
                   "name": "onlyOwner",
-                  "nameLocations": [
-                    "1931:9:4"
-                  ],
+                  "nameLocations": ["1931:9:4"],
                   "nodeType": "IdentifierPath",
                   "referencedDeclaration": 31,
                   "src": "1931:9:4"
@@ -4078,9 +4051,7 @@
             "baseName": {
               "id": 651,
               "name": "Ownable",
-              "nameLocations": [
-                "147:7:4"
-              ],
+              "nameLocations": ["147:7:4"],
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 112,
               "src": "147:7:4"
@@ -4094,20 +4065,12 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "linearizedBaseContracts": [
-          913,
-          112,
-          212
-        ],
+        "linearizedBaseContracts": [913, 112, 212],
         "name": "erc20Token",
         "nameLocation": "133:10:4",
         "scope": 914,
         "usedErrors": [],
-        "usedEvents": [
-          13,
-          676,
-          684
-        ]
+        "usedEvents": [13, 676, 684]
       }
     ],
     "license": "MIT"

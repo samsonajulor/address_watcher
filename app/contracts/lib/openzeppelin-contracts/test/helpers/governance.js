@@ -1,13 +1,13 @@
 const { forward } = require('../helpers/time');
 
 function zip(...args) {
-  return Array(Math.max(...args.map(array => array.length)))
+  return Array(Math.max(...args.map((array) => array.length)))
     .fill()
-    .map((_, i) => args.map(array => array[i]));
+    .map((_, i) => args.map((array) => array[i]));
 }
 
 function concatHex(...args) {
-  return web3.utils.bytesToHex([].concat(...args.map(h => web3.utils.hexToBytes(h || '0x'))));
+  return web3.utils.bytesToHex([].concat(...args.map((h) => web3.utils.hexToBytes(h || '0x'))));
 }
 
 function concatOpts(args, opts = null) {
@@ -23,12 +23,15 @@ class GovernorHelper {
   delegate(delegation = {}, opts = null) {
     return Promise.all([
       delegation.token.delegate(delegation.to, { from: delegation.to }),
-      delegation.value && delegation.token.transfer(...concatOpts([delegation.to, delegation.value]), opts),
+      delegation.value &&
+        delegation.token.transfer(...concatOpts([delegation.to, delegation.value]), opts),
       delegation.tokenId &&
         delegation.token
           .ownerOf(delegation.tokenId)
-          .then(owner =>
-            delegation.token.transferFrom(...concatOpts([owner, delegation.to, delegation.tokenId], opts)),
+          .then((owner) =>
+            delegation.token.transferFrom(
+              ...concatOpts([owner, delegation.to, delegation.tokenId], opts)
+            )
           ),
     ]);
   }
@@ -49,7 +52,7 @@ class GovernorHelper {
     return proposal.useCompatibilityInterface
       ? this.governor.methods['queue(uint256)'](...concatOpts([proposal.id], opts))
       : this.governor.methods['queue(address[],uint256[],bytes[],bytes32)'](
-          ...concatOpts(proposal.shortProposal, opts),
+          ...concatOpts(proposal.shortProposal, opts)
         );
   }
 
@@ -59,7 +62,7 @@ class GovernorHelper {
     return proposal.useCompatibilityInterface
       ? this.governor.methods['execute(uint256)'](...concatOpts([proposal.id], opts))
       : this.governor.methods['execute(address[],uint256[],bytes[],bytes32)'](
-          ...concatOpts(proposal.shortProposal, opts),
+          ...concatOpts(proposal.shortProposal, opts)
         );
   }
 
@@ -72,12 +75,12 @@ class GovernorHelper {
           return this.governor.methods['cancel(uint256)'](...concatOpts([proposal.id], opts));
         } else {
           return this.governor.methods['cancel(address[],uint256[],bytes[],bytes32)'](
-            ...concatOpts(proposal.shortProposal, opts),
+            ...concatOpts(proposal.shortProposal, opts)
           );
         }
       case 'internal':
         return this.governor.methods['$_cancel(address[],uint256[],bytes[],bytes32)'](
-          ...concatOpts(proposal.shortProposal, opts),
+          ...concatOpts(proposal.shortProposal, opts)
         );
       default:
         throw new Error(`unsuported visibility "${visibility}"`);
@@ -99,8 +102,11 @@ class GovernorHelper {
             })
             .then(({ v, r, s }) =>
               this.governor.castVoteWithReasonAndParamsBySig(
-                ...concatOpts([proposal.id, vote.support, vote.reason || '', vote.params || '', v, r, s], opts),
-              ),
+                ...concatOpts(
+                  [proposal.id, vote.support, vote.reason || '', vote.params || '', v, r, s],
+                  opts
+                )
+              )
             )
         : vote
             .signature(this.governor, {
@@ -108,16 +114,18 @@ class GovernorHelper {
               support: vote.support,
             })
             .then(({ v, r, s }) =>
-              this.governor.castVoteBySig(...concatOpts([proposal.id, vote.support, v, r, s], opts)),
+              this.governor.castVoteBySig(...concatOpts([proposal.id, vote.support, v, r, s], opts))
             )
       : vote.params
       ? // otherwise if params
         this.governor.castVoteWithReasonAndParams(
-          ...concatOpts([proposal.id, vote.support, vote.reason || '', vote.params], opts),
+          ...concatOpts([proposal.id, vote.support, vote.reason || '', vote.params], opts)
         )
       : vote.reason
       ? // otherwise if reason
-        this.governor.castVoteWithReason(...concatOpts([proposal.id, vote.support, vote.reason], opts))
+        this.governor.castVoteWithReason(
+          ...concatOpts([proposal.id, vote.support, vote.reason], opts)
+        )
       : this.governor.castVote(...concatOpts([proposal.id, vote.support], opts));
   }
 
@@ -148,20 +156,20 @@ class GovernorHelper {
     let targets, values, signatures, data, useCompatibilityInterface;
 
     if (Array.isArray(actions)) {
-      useCompatibilityInterface = actions.some(a => 'signature' in a);
-      targets = actions.map(a => a.target);
-      values = actions.map(a => a.value || '0');
-      signatures = actions.map(a => a.signature || '');
-      data = actions.map(a => a.data || '0x');
+      useCompatibilityInterface = actions.some((a) => 'signature' in a);
+      targets = actions.map((a) => a.target);
+      values = actions.map((a) => a.value || '0');
+      signatures = actions.map((a) => a.signature || '');
+      data = actions.map((a) => a.data || '0x');
     } else {
       useCompatibilityInterface = Array.isArray(actions.signatures);
       ({ targets, values, signatures = [], data } = actions);
     }
 
     const fulldata = zip(
-      signatures.map(s => s && web3.eth.abi.encodeFunctionSignature(s)),
-      data,
-    ).map(hexs => concatHex(...hexs));
+      signatures.map((s) => s && web3.eth.abi.encodeFunctionSignature(s)),
+      data
+    ).map((hexs) => concatHex(...hexs));
 
     const descriptionHash = web3.utils.keccak256(description);
 
@@ -169,13 +177,22 @@ class GovernorHelper {
     const shortProposal = [targets, values, fulldata, descriptionHash];
 
     // full version for proposing
-    const fullProposal = [targets, values, ...(useCompatibilityInterface ? [signatures] : []), data, description];
+    const fullProposal = [
+      targets,
+      values,
+      ...(useCompatibilityInterface ? [signatures] : []),
+      data,
+      description,
+    ];
 
     // proposal id
     const id = web3.utils.toBN(
       web3.utils.keccak256(
-        web3.eth.abi.encodeParameters(['address[]', 'uint256[]', 'bytes[]', 'bytes32'], shortProposal),
-      ),
+        web3.eth.abi.encodeParameters(
+          ['address[]', 'uint256[]', 'bytes[]', 'bytes32'],
+          shortProposal
+        )
+      )
     );
 
     this.currentProposal = {

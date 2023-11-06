@@ -20,7 +20,7 @@ class BridgeHelper {
     return this.bridge.relayAs(
       target.address || target,
       selector ? target.contract.methods[selector](...args).encodeABI() : '0x',
-      from,
+      from
     );
   }
 }

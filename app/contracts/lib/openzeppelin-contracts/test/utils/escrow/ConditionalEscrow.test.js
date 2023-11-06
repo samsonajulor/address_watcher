@@ -12,7 +12,7 @@ contract('ConditionalEscrow', function (accounts) {
 
   context('when withdrawal is allowed', function () {
     beforeEach(async function () {
-      await Promise.all(otherAccounts.map(payee => this.escrow.setAllowed(payee, true)));
+      await Promise.all(otherAccounts.map((payee) => this.escrow.setAllowed(payee, true)));
     });
 
     shouldBehaveLikeEscrow(owner, otherAccounts);
@@ -30,7 +30,7 @@ contract('ConditionalEscrow', function (accounts) {
 
       await expectRevert(
         this.escrow.withdraw(payee, { from: owner }),
-        'ConditionalEscrow: payee is not allowed to withdraw',
+        'ConditionalEscrow: payee is not allowed to withdraw'
       );
     });
   });

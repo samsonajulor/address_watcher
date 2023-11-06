@@ -1,6 +1,6 @@
 const { config } = require('hardhat');
 
-const optimizationsEnabled = config.solidity.compilers.some(c => c.settings.optimizer.enabled);
+const optimizationsEnabled = config.solidity.compilers.some((c) => c.settings.optimizer.enabled);
 
 /** Revert handler that supports custom errors. */
 async function expectRevertCustomError(promise, reason) {
@@ -11,7 +11,10 @@ async function expectRevertCustomError(promise, reason) {
     if (reason) {
       if (optimizationsEnabled) {
         // Optimizations currently mess with Hardhat's decoding of custom errors
-        expect(revert.message).to.include.oneOf([reason, 'unrecognized return data or custom error']);
+        expect(revert.message).to.include.oneOf([
+          reason,
+          'unrecognized return data or custom error',
+        ]);
       } else {
         expect(revert.message).to.include(reason);
       }

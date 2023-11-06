@@ -26,7 +26,9 @@ function shouldBehaveLikeVotes(mode = 'blocknumber') {
     });
 
     it('domain separator', async function () {
-      expect(await this.votes.DOMAIN_SEPARATOR()).to.equal(domainSeparator(await getDomain(this.votes)));
+      expect(await this.votes.DOMAIN_SEPARATOR()).to.equal(
+        domainSeparator(await getDomain(this.votes))
+      );
     });
 
     describe('delegation with signature', function () {
@@ -35,7 +37,7 @@ function shouldBehaveLikeVotes(mode = 'blocknumber') {
       const nonce = 0;
 
       const buildAndSignData = async (contract, message, pk) => {
-        const data = await getDomain(contract).then(domain => ({
+        const data = await getDomain(contract).then((domain) => ({
           primaryType: 'Delegation',
           types: { EIP712Domain: domainType(domain), Delegation },
           domain,
@@ -56,12 +58,19 @@ function shouldBehaveLikeVotes(mode = 'blocknumber') {
             nonce,
             expiry: MAX_UINT256,
           },
-          delegator.getPrivateKey(),
+          delegator.getPrivateKey()
         );
 
         expect(await this.votes.delegates(delegatorAddress)).to.be.equal(ZERO_ADDRESS);
 
-        const { receipt } = await this.votes.delegateBySig(delegatorAddress, nonce, MAX_UINT256, v, r, s);
+        const { receipt } = await this.votes.delegateBySig(
+          delegatorAddress,
+          nonce,
+          MAX_UINT256,
+          v,
+          r,
+          s
+        );
         const timepoint = await clockFromReceipt[mode](receipt);
 
         expectEvent(receipt, 'DelegateChanged', {
@@ -78,9 +87,13 @@ function shouldBehaveLikeVotes(mode = 'blocknumber') {
         expect(await this.votes.delegates(delegatorAddress)).to.be.equal(delegatorAddress);
 
         expect(await this.votes.getVotes(delegatorAddress)).to.be.bignumber.equal('1');
-        expect(await this.votes.getPastVotes(delegatorAddress, timepoint - 1)).to.be.bignumber.equal('0');
+        expect(
+          await this.votes.getPastVotes(delegatorAddress, timepoint - 1)
+        ).to.be.bignumber.equal('0');
         await time.advanceBlock();
-        expect(await this.votes.getPastVotes(delegatorAddress, timepoint)).to.be.bignumber.equal('1');
+        expect(await this.votes.getPastVotes(delegatorAddress, timepoint)).to.be.bignumber.equal(
+          '1'
+        );
       });
 
       it('rejects reused signature', async function () {
@@ -91,14 +104,14 @@ function shouldBehaveLikeVotes(mode = 'blocknumber') {
             nonce,
             expiry: MAX_UINT256,
           },
-          delegator.getPrivateKey(),
+          delegator.getPrivateKey()
         );
 
         await this.votes.delegateBySig(delegatorAddress, nonce, MAX_UINT256, v, r, s);
 
         await expectRevert(
           this.votes.delegateBySig(delegatorAddress, nonce, MAX_UINT256, v, r, s),
-          'Votes: invalid nonce',
+          'Votes: invalid nonce'
         );
       });
 
@@ -110,10 +123,17 @@ function shouldBehaveLikeVotes(mode = 'blocknumber') {
             nonce,
             expiry: MAX_UINT256,
           },
-          delegator.getPrivateKey(),
+          delegator.getPrivateKey()
         );
 
-        const receipt = await this.votes.delegateBySig(this.account1Delegatee, nonce, MAX_UINT256, v, r, s);
+        const receipt = await this.votes.delegateBySig(
+          this.account1Delegatee,
+          nonce,
+          MAX_UINT256,
+          v,
+          r,
+          s
+        );
         const { args } = receipt.logs.find(({ event }) => event === 'DelegateChanged');
         expect(args.delegator).to.not.be.equal(delegatorAddress);
         expect(args.fromDelegate).to.be.equal(ZERO_ADDRESS);
@@ -128,12 +148,12 @@ function shouldBehaveLikeVotes(mode = 'blocknumber') {
             nonce,
             expiry: MAX_UINT256,
           },
-          delegator.getPrivateKey(),
+          delegator.getPrivateKey()
         );
 
         await expectRevert(
           this.votes.delegateBySig(delegatorAddress, nonce + 1, MAX_UINT256, v, r, s),
-          'Votes: invalid nonce',
+          'Votes: invalid nonce'
         );
       });
 
@@ -147,12 +167,12 @@ function shouldBehaveLikeVotes(mode = 'blocknumber') {
             nonce,
             expiry,
           },
-          delegator.getPrivateKey(),
+          delegator.getPrivateKey()
         );
 
         await expectRevert(
           this.votes.delegateBySig(delegatorAddress, nonce, expiry, v, r, s),
-          'Votes: signature expired',
+          'Votes: signature expired'
         );
       });
     });
@@ -180,9 +200,13 @@ function shouldBehaveLikeVotes(mode = 'blocknumber') {
           expect(await this.votes.delegates(this.account1)).to.be.equal(this.account1);
 
           expect(await this.votes.getVotes(this.account1)).to.be.bignumber.equal('1');
-          expect(await this.votes.getPastVotes(this.account1, timepoint - 1)).to.be.bignumber.equal('0');
+          expect(await this.votes.getPastVotes(this.account1, timepoint - 1)).to.be.bignumber.equal(
+            '0'
+          );
           await time.advanceBlock();
-          expect(await this.votes.getPastVotes(this.account1, timepoint)).to.be.bignumber.equal('1');
+          expect(await this.votes.getPastVotes(this.account1, timepoint)).to.be.bignumber.equal(
+            '1'
+          );
         });
 
         it('delegation without tokens', async function () {
@@ -210,7 +234,9 @@ function shouldBehaveLikeVotes(mode = 'blocknumber') {
       it('call', async function () {
         expect(await this.votes.delegates(this.account1)).to.be.equal(this.account1);
 
-        const { receipt } = await this.votes.delegate(this.account1Delegatee, { from: this.account1 });
+        const { receipt } = await this.votes.delegate(this.account1Delegatee, {
+          from: this.account1,
+        });
         const timepoint = await clockFromReceipt[mode](receipt);
 
         expectEvent(receipt, 'DelegateChanged', {
@@ -233,11 +259,17 @@ function shouldBehaveLikeVotes(mode = 'blocknumber') {
 
         expect(await this.votes.getVotes(this.account1)).to.be.bignumber.equal('0');
         expect(await this.votes.getVotes(this.account1Delegatee)).to.be.bignumber.equal('1');
-        expect(await this.votes.getPastVotes(this.account1, timepoint - 1)).to.be.bignumber.equal('1');
-        expect(await this.votes.getPastVotes(this.account1Delegatee, timepoint - 1)).to.be.bignumber.equal('0');
+        expect(await this.votes.getPastVotes(this.account1, timepoint - 1)).to.be.bignumber.equal(
+          '1'
+        );
+        expect(
+          await this.votes.getPastVotes(this.account1Delegatee, timepoint - 1)
+        ).to.be.bignumber.equal('0');
         await time.advanceBlock();
         expect(await this.votes.getPastVotes(this.account1, timepoint)).to.be.bignumber.equal('0');
-        expect(await this.votes.getPastVotes(this.account1Delegatee, timepoint)).to.be.bignumber.equal('1');
+        expect(
+          await this.votes.getPastVotes(this.account1Delegatee, timepoint)
+        ).to.be.bignumber.equal('1');
       });
     });
 
@@ -338,8 +370,12 @@ function shouldBehaveLikeVotes(mode = 'blocknumber') {
           await time.advanceBlock();
 
           const latest = await this.votes.getVotes(this.account2);
-          expect(await this.votes.getPastVotes(this.account2, timepoint)).to.be.bignumber.equal(latest);
-          expect(await this.votes.getPastVotes(this.account2, timepoint + 1)).to.be.bignumber.equal(latest);
+          expect(await this.votes.getPastVotes(this.account2, timepoint)).to.be.bignumber.equal(
+            latest
+          );
+          expect(await this.votes.getPastVotes(this.account2, timepoint + 1)).to.be.bignumber.equal(
+            latest
+          );
         });
 
         it('returns zero if < first checkpoint block', async function () {
@@ -349,7 +385,9 @@ function shouldBehaveLikeVotes(mode = 'blocknumber') {
           await time.advanceBlock();
           await time.advanceBlock();
 
-          expect(await this.votes.getPastVotes(this.account2, timepoint - 1)).to.be.bignumber.equal('0');
+          expect(await this.votes.getPastVotes(this.account2, timepoint - 1)).to.be.bignumber.equal(
+            '0'
+          );
         });
       });
     });

@@ -249,12 +249,8 @@
     "absolutePath": "src/feeManager.sol",
     "id": 1077,
     "exportedSymbols": {
-      "FeeManager": [
-        1076
-      ],
-      "IERC20": [
-        190
-      ]
+      "FeeManager": [1076],
+      "IERC20": [190]
     },
     "nodeType": "SourceUnit",
     "src": "32:1646:5",
@@ -264,12 +260,7 @@
         "nodeType": "PragmaDirective",
         "src": "32:23:5",
         "nodes": [],
-        "literals": [
-          "solidity",
-          "^",
-          "0.8",
-          ".0"
-        ]
+        "literals": ["solidity", "^", "0.8", ".0"]
       },
       {
         "id": 916,
@@ -494,10 +485,7 @@
                       "id": 932,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "333:7:5",
                       "typeDescriptions": {
@@ -650,10 +638,7 @@
                       "id": 939,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "371:7:5",
                       "typeDescriptions": {
@@ -860,10 +845,7 @@
                       "id": 961,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "638:7:5",
                       "typeDescriptions": {
@@ -971,10 +953,7 @@
                       "id": 968,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "676:7:5",
                       "typeDescriptions": {
@@ -1154,10 +1133,7 @@
                       "id": 975,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "766:7:5",
                       "typeDescriptions": {
@@ -1348,10 +1324,7 @@
                       "id": 996,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "1013:7:5",
                       "typeDescriptions": {
@@ -1485,10 +1458,7 @@
                       "id": 1003,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "1051:7:5",
                       "typeDescriptions": {
@@ -1523,9 +1493,7 @@
                     "src": "1224:261:5",
                     "statements": [
                       {
-                        "assignments": [
-                          1024
-                        ],
+                        "assignments": [1024],
                         "declarations": [
                           {
                             "constant": false,
@@ -1598,9 +1566,7 @@
                         "src": "1238:41:5"
                       },
                       {
-                        "assignments": [
-                          1030
-                        ],
+                        "assignments": [1030],
                         "declarations": [
                           {
                             "constant": false,
@@ -1751,10 +1717,7 @@
                             "id": 1035,
                             "name": "require",
                             "nodeType": "Identifier",
-                            "overloadedDeclarations": [
-                              -18,
-                              -18
-                            ],
+                            "overloadedDeclarations": [-18, -18],
                             "referencedDeclaration": -18,
                             "src": "1336:7:5",
                             "typeDescriptions": {
@@ -1934,10 +1897,7 @@
                             "id": 1042,
                             "name": "require",
                             "nodeType": "Identifier",
-                            "overloadedDeclarations": [
-                              -18,
-                              -18
-                            ],
+                            "overloadedDeclarations": [-18, -18],
                             "referencedDeclaration": -18,
                             "src": "1402:7:5",
                             "typeDescriptions": {
@@ -2026,9 +1986,7 @@
                   },
                   "id": 1054,
                   "initializationExpression": {
-                    "assignments": [
-                      1013
-                    ],
+                    "assignments": [1013],
                     "declarations": [
                       {
                         "constant": false,
@@ -2224,10 +2182,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    1064,
-                    null
-                  ],
+                  "assignments": [1064, null],
                   "declarations": [
                     {
                       "constant": false,
@@ -2352,10 +2307,7 @@
                       "id": 1070,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "1652:7:5",
                       "typeDescriptions": {
@@ -2471,9 +2423,7 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "linearizedBaseContracts": [
-          1076
-        ],
+        "linearizedBaseContracts": [1076],
         "name": "FeeManager",
         "nameLocation": "137:10:5",
         "scope": 1077,

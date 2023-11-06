@@ -2,20 +2,22 @@
 
 Foundry (dapptools-style) property-based tests for [ERC4626] standard conformance.
 
-[ERC4626]: <https://eips.ethereum.org/EIPS/eip-4626>
+[erc4626]: https://eips.ethereum.org/EIPS/eip-4626
 
 You can read our post on "_[Generalized property tests for ERC4626 vaults][post]_."
 
-[post]: <https://a16zcrypto.com/generalized-property-tests-for-erc4626-vaults>
+[post]: https://a16zcrypto.com/generalized-property-tests-for-erc4626-vaults
 
 ## Overview
 
 #### What is it?
+
 - Test suites for checking if the given ERC4626 implementation satisfies the **standard requirements**.
 - Dapptools-style **property-based tests** for fuzzing or symbolic execution testing.
 - Tests that are **independent** from implementation details, thus applicable for any ERC4626 vaults.
 
 #### What isn’t it?
+
 - It does NOT test implementation-specific details, e.g., how to generate and distribute yields, how to compute the share price, etc.
 
 #### Testing properties:
@@ -39,6 +41,7 @@ You can read our post on "_[Generalized property tests for ERC4626 vaults][post]
 ## Usage
 
 **Step 0**: Install [foundry] and add [forge-std] in your vault repo:
+
 ```bash
 $ curl -L https://foundry.paradigm.xyz | bash
 
@@ -46,16 +49,17 @@ $ cd /path/to/your-erc4626-vault
 $ forge install foundry-rs/forge-std
 ```
 
-[foundry]: <https://getfoundry.sh/>
-[forge-std]: <https://github.com/foundry-rs/forge-std>
+[foundry]: https://getfoundry.sh/
+[forge-std]: https://github.com/foundry-rs/forge-std
 
 **Step 1**: Add this [erc4626-tests] as a dependency to your vault:
+
 ```bash
 $ cd /path/to/your-erc4626-vault
 $ forge install a16z/erc4626-tests
 ```
 
-[erc4626-tests]: <https://github.com/a16z/erc4626-tests>
+[erc4626-tests]: https://github.com/a16z/erc4626-tests
 
 **Step 2**: Extend the abstract test contract [`ERC4626Test`](ERC4626.test.sol) with your own custom vault setup method, for example:
 
@@ -80,15 +84,15 @@ contract ERC4626StdTest is ERC4626Test {
 ```
 
 Specifically, set the state variables as follows:
+
 - `_vault_`: the address of your ERC4626 vault.
 - `_underlying_`: the address of the underlying asset of your vault. Note that the default `setupVault()` and `setupYield()` methods of `ERC4626Test` assume that it implements `mint(address to, uint value)` and `burn(address from, uint value)`. You can override the setup methods with your own if such `mint()` and `burn()` are not implemented.
 - `_delta_`: the maximum approximation error size to be passed to [`assertApproxEqAbs()`]. It must be given as an absolute value (not a percentage) in the smallest unit (e.g., Wei or Satoshi). Note that all the tests are expected to pass with `__delta__ == 0` as long as your vault follows the [preferred rounding direction] as specified in the standard. If your vault doesn't follow the preferred rounding direction, you can set `__delta__` to a reasonable size of rounding errors where the adversarial profit of exploiting such rounding errors stays sufficiently small compared to the gas cost. (You can read our [post] for more about the adversarial profit.)
 - `_vaultMayBeEmpty`: when set to false, fuzz inputs that empties the vault are ignored.
 - `_unlimitedAmount`: when set to false, fuzz inputs are restricted to the currently available amount from the caller. Limiting the amount can speed up fuzzing, but may miss some edge cases.
 
-[`assertApproxEqAbs()`]: <https://book.getfoundry.sh/reference/forge-std/assertApproxEqAbs>
-
-[preferred rounding direction]: <https://eips.ethereum.org/EIPS/eip-4626#security-considerations>
+[`assertapproxeqabs()`]: https://book.getfoundry.sh/reference/forge-std/assertApproxEqAbs
+[preferred rounding direction]: https://eips.ethereum.org/EIPS/eip-4626#security-considerations
 
 **Step 3**: Run `forge test`
 
@@ -99,15 +103,16 @@ $ forge test
 ## Examples
 
 Below are examples of adding these property tests to existing ERC4626 vaults:
+
 - [OpenZeppelin ERC4626] [[diff](https://github.com/daejunpark/openzeppelin-contracts/pull/1/files)]
 - [Solmate ERC4626] [[diff](https://github.com/daejunpark/solmate/pull/1/files)]
 - [Revenue Distribution Token] [[diff](https://github.com/daejunpark/revenue-distribution-token/pull/1/files)]
 - [Yield Daddy ERC4626 wrappers] [[diff](https://github.com/daejunpark/yield-daddy/pull/1/files)][^bug]
 
-[OpenZeppelin ERC4626]: <https://github.com/OpenZeppelin/openzeppelin-contracts/blob/a1948250ab8c441f6d327a65754cb20d2b1b4554/contracts/token/ERC20/extensions/ERC4626.sol>
-[Solmate ERC4626]: <https://github.com/transmissions11/solmate/blob/c2594bf4635ad773a8f4763e20b7e79582e41535/src/mixins/ERC4626.sol>
-[Revenue Distribution Token]: <https://github.com/maple-labs/revenue-distribution-token/blob/be9592fd72bfa7142a217507f2d5500a7856329e/contracts/RevenueDistributionToken.sol>
-[Yield Daddy ERC4626 wrappers]: <https://github.com/timeless-fi/yield-daddy>
+[openzeppelin erc4626]: https://github.com/OpenZeppelin/openzeppelin-contracts/blob/a1948250ab8c441f6d327a65754cb20d2b1b4554/contracts/token/ERC20/extensions/ERC4626.sol
+[solmate erc4626]: https://github.com/transmissions11/solmate/blob/c2594bf4635ad773a8f4763e20b7e79582e41535/src/mixins/ERC4626.sol
+[revenue distribution token]: https://github.com/maple-labs/revenue-distribution-token/blob/be9592fd72bfa7142a217507f2d5500a7856329e/contracts/RevenueDistributionToken.sol
+[yield daddy erc4626 wrappers]: https://github.com/timeless-fi/yield-daddy
 
 [^bug]: Our property tests indeed revealed an [issue](https://github.com/timeless-fi/yield-daddy/issues/7) in their eToken testing mock contract. The tests passed after it is [fixed](https://github.com/daejunpark/yield-daddy/commit/721cf4bd766805fd409455434aa5fd1a9b2df25c).
 

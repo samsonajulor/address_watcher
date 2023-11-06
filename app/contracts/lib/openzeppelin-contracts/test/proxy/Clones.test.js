@@ -14,7 +14,12 @@ contract('Clones', function (accounts) {
       const factory = await Clones.new();
       const receipt = await factory.$clone(implementation);
       const address = receipt.logs.find(({ event }) => event === 'return$clone').args.instance;
-      await web3.eth.sendTransaction({ from: deployer, to: address, value: opts.value, data: initData });
+      await web3.eth.sendTransaction({
+        from: deployer,
+        to: address,
+        value: opts.value,
+        data: initData,
+      });
       return { address };
     });
   });
@@ -24,8 +29,14 @@ contract('Clones', function (accounts) {
       const salt = web3.utils.randomHex(32);
       const factory = await Clones.new();
       const receipt = await factory.$cloneDeterministic(implementation, salt);
-      const address = receipt.logs.find(({ event }) => event === 'return$cloneDeterministic').args.instance;
-      await web3.eth.sendTransaction({ from: deployer, to: address, value: opts.value, data: initData });
+      const address = receipt.logs.find(({ event }) => event === 'return$cloneDeterministic').args
+        .instance;
+      await web3.eth.sendTransaction({
+        from: deployer,
+        to: address,
+        value: opts.value,
+        data: initData,
+      });
       return { address };
     });
 
@@ -34,9 +45,15 @@ contract('Clones', function (accounts) {
       const salt = web3.utils.randomHex(32);
       const factory = await Clones.new();
       // deploy once
-      expectEvent(await factory.$cloneDeterministic(implementation, salt), 'return$cloneDeterministic');
+      expectEvent(
+        await factory.$cloneDeterministic(implementation, salt),
+        'return$cloneDeterministic'
+      );
       // deploy twice
-      await expectRevert(factory.$cloneDeterministic(implementation, salt), 'ERC1167: create2 failed');
+      await expectRevert(
+        factory.$cloneDeterministic(implementation, salt),
+        'ERC1167: create2 failed'
+      );
     });
 
     it('address prediction', async function () {
@@ -53,9 +70,13 @@ contract('Clones', function (accounts) {
 
       expect(computeCreate2Address(salt, creationCode, factory.address)).to.be.equal(predicted);
 
-      expectEvent(await factory.$cloneDeterministic(implementation, salt), 'return$cloneDeterministic', {
-        instance: predicted,
-      });
+      expectEvent(
+        await factory.$cloneDeterministic(implementation, salt),
+        'return$cloneDeterministic',
+        {
+          instance: predicted,
+        }
+      );
     });
   });
 });
