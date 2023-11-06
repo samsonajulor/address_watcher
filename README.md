@@ -33,3 +33,21 @@
 2. [Push](https://push.org/docs/)
 
 ###### Quicknode SWOT Analysis
+
+## Repository Settings
+
+### To Configure Husky, RUN
+
+```bash
+yarn
+```
+
+#### Husky would be fired on commit.
+
+_Husky would be fired on commit_
+
+## Documentation
+
+- cd into app folder `cd app`
+- run `yarn web3` to start the composedb, graphiql api and express server.
+  ...

@@ -1,3 +1,4 @@
 /dist
-/node_modules
-/frontend
+node_modules/
+/initial contributions
+.next

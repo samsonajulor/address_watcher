@@ -1,10 +1,10 @@
 import { DIDSession } from 'did-session';
 import { EthereumWebAuth, getAccountId } from '@didtools/pkh-ethereum';
 import NodeCache from 'node-cache';
-import ethers from 'ethers';
+import { ethers } from 'ethers';
 
-import type { CeramicApi } from '@ceramicnetwork/common';
-import type { ComposeClient } from '@composedb/client';
+import { CeramicApi } from '@ceramicnetwork/common';
+import { ComposeClient } from '@composedb/client';
 
 const cache = new NodeCache();
 const alchemyProviderUrl = 'https://eth-sepolia.g.alchemy.com/v2/3RXLLPbaLaKav4sgsrTv2r5YK2Hpblay';

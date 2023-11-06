@@ -2,16 +2,14 @@
 export const definition = {
   models: {
     BasicProfile: {
-      id: 'kjzl6hvfrbw6c9vcc737b30lijjihblppvrksismwwqdig8d75jzeydzkwl1z5r',
+      id: 'kjzl6hvfrbw6ca7o1k90nl286i8u9926emvm4rp2rou30s74fifd76t242gznfk',
       accountRelation: { type: 'single' },
     },
   },
   objects: {
     BasicProfile: {
-      name: { type: 'string', required: true },
-      emoji: { type: 'string', required: false },
-      gender: { type: 'string', required: false },
-      description: { type: 'string', required: false },
+      email: { type: 'string', required: false },
+      address: { type: 'string', required: true },
     },
   },
   enums: {},
