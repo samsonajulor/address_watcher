@@ -1043,18 +1043,10 @@
     "absolutePath": "src/MarketplaceReference.sol",
     "id": 44649,
     "exportedSymbols": {
-      "ERC721": [
-        44191
-      ],
-      "ERC721TokenReceiver": [
-        44211
-      ],
-      "Marketplace": [
-        44648
-      ],
-      "SignUtils": [
-        45306
-      ]
+      "ERC721": [44191],
+      "ERC721TokenReceiver": [44211],
+      "Marketplace": [44648],
+      "SignUtils": [45306]
     },
     "nodeType": "SourceUnit",
     "src": "39:3897:25",
@@ -1064,12 +1056,7 @@
         "nodeType": "PragmaDirective",
         "src": "39:24:25",
         "nodes": [],
-        "literals": [
-          "solidity",
-          "^",
-          "0.8",
-          ".13"
-        ]
+        "literals": ["solidity", "^", "0.8", ".13"]
       },
       {
         "id": 44246,
@@ -1364,9 +1351,7 @@
                 "pathNode": {
                   "id": 44265,
                   "name": "Listing",
-                  "nameLocations": [
-                    "407:7:25"
-                  ],
+                  "nameLocations": ["407:7:25"],
                   "nodeType": "IdentifierPath",
                   "referencedDeclaration": 44263,
                   "src": "407:7:25"
@@ -1724,9 +1709,7 @@
                     "pathNode": {
                       "id": 44301,
                       "name": "Listing",
-                      "nameLocations": [
-                        "973:7:25"
-                      ],
+                      "nameLocations": ["973:7:25"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 44263,
                       "src": "973:7:25"
@@ -1807,9 +1790,7 @@
                     "pathNode": {
                       "id": 44308,
                       "name": "Listing",
-                      "nameLocations": [
-                        "1036:7:25"
-                      ],
+                      "nameLocations": ["1036:7:25"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 44263,
                       "src": "1036:7:25"
@@ -1890,9 +1871,7 @@
                     "pathNode": {
                       "id": 44315,
                       "name": "Listing",
-                      "nameLocations": [
-                        "1097:7:25"
-                      ],
+                      "nameLocations": ["1097:7:25"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 44263,
                       "src": "1097:7:25"
@@ -3233,9 +3212,7 @@
                   }
                 },
                 {
-                  "assignments": [
-                    44423
-                  ],
+                  "assignments": [44423],
                   "declarations": [
                     {
                       "constant": false,
@@ -3258,9 +3235,7 @@
                         "pathNode": {
                           "id": 44421,
                           "name": "Listing",
-                          "nameLocations": [
-                            "2095:7:25"
-                          ],
+                          "nameLocations": ["2095:7:25"],
                           "nodeType": "IdentifierPath",
                           "referencedDeclaration": 44263,
                           "src": "2095:7:25"
@@ -4069,9 +4044,7 @@
                     "pathNode": {
                       "id": 44329,
                       "name": "Listing",
-                      "nameLocations": [
-                        "1190:7:25"
-                      ],
+                      "nameLocations": ["1190:7:25"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 44263,
                       "src": "1190:7:25"
@@ -4222,9 +4195,7 @@
                   }
                 },
                 {
-                  "assignments": [
-                    44508
-                  ],
+                  "assignments": [44508],
                   "declarations": [
                     {
                       "constant": false,
@@ -4247,9 +4218,7 @@
                         "pathNode": {
                           "id": 44506,
                           "name": "Listing",
-                          "nameLocations": [
-                            "2627:7:25"
-                          ],
+                          "nameLocations": ["2627:7:25"],
                           "nodeType": "IdentifierPath",
                           "referencedDeclaration": 44263,
                           "src": "2627:7:25"
@@ -5416,9 +5385,7 @@
                   }
                 },
                 {
-                  "assignments": [
-                    44602
-                  ],
+                  "assignments": [44602],
                   "declarations": [
                     {
                       "constant": false,
@@ -5441,9 +5408,7 @@
                         "pathNode": {
                           "id": 44600,
                           "name": "Listing",
-                          "nameLocations": [
-                            "3490:7:25"
-                          ],
+                          "nameLocations": ["3490:7:25"],
                           "nodeType": "IdentifierPath",
                           "referencedDeclaration": 44263,
                           "src": "3490:7:25"
@@ -6029,9 +5994,7 @@
                     "pathNode": {
                       "id": 44638,
                       "name": "Listing",
-                      "nameLocations": [
-                        "3833:7:25"
-                      ],
+                      "nameLocations": ["3833:7:25"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 44263,
                       "src": "3833:7:25"
@@ -6063,30 +6026,12 @@
         "internalFunctionIDs": {
           "22010": 1
         },
-        "linearizedBaseContracts": [
-          44648
-        ],
+        "linearizedBaseContracts": [44648],
         "name": "Marketplace",
         "nameLocation": "164:11:25",
         "scope": 44649,
-        "usedErrors": [
-          44274,
-          44276,
-          44278,
-          44280,
-          44282,
-          44284,
-          44286,
-          44288,
-          44292,
-          44294,
-          44298
-        ],
-        "usedEvents": [
-          44305,
-          44312,
-          44319
-        ]
+        "usedErrors": [44274, 44276, 44278, 44280, 44282, 44284, 44286, 44288, 44292, 44294, 44298],
+        "usedEvents": [44305, 44312, 44319]
       }
     ],
     "license": "UNLICENSED"

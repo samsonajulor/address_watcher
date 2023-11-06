@@ -66,9 +66,7 @@
     "absolutePath": "lib/openzeppelin-contracts/contracts/security/ReentrancyGuard.sol",
     "id": 43498,
     "exportedSymbols": {
-      "ReentrancyGuard": [
-        43497
-      ]
+      "ReentrancyGuard": [43497]
     },
     "nodeType": "SourceUnit",
     "src": "112:3015:19",
@@ -78,12 +76,7 @@
         "nodeType": "PragmaDirective",
         "src": "112:23:19",
         "nodes": [],
-        "literals": [
-          "solidity",
-          "^",
-          "0.8",
-          ".0"
-        ]
+        "literals": ["solidity", "^", "0.8", ".0"]
       },
       {
         "id": 43497,
@@ -478,10 +471,7 @@
                       "id": 43465,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "2460:7:19",
                       "typeDescriptions": {
@@ -784,9 +774,7 @@
           "text": " @dev Contract module that helps prevent reentrant calls to a function.\n Inheriting from `ReentrancyGuard` will make the {nonReentrant} modifier\n available, which can be applied to functions to make sure there are no nested\n (reentrant) calls to them.\n Note that because there is a single `nonReentrant` guard, functions marked as\n `nonReentrant` may not call one another. This can be worked around by making\n those functions `private`, and then adding `external` `nonReentrant` entry\n points to them.\n TIP: If you would like to learn more about reentrancy and alternative ways\n to protect against it, check out our blog post\n https://blog.openzeppelin.com/reentrancy-after-istanbul/[Reentrancy After Istanbul]."
         },
         "fullyImplemented": true,
-        "linearizedBaseContracts": [
-          43497
-        ],
+        "linearizedBaseContracts": [43497],
         "name": "ReentrancyGuard",
         "nameLocation": "906:15:19",
         "scope": 43498,

@@ -1,13 +1,13 @@
-import { Alchemy, AlchemySubscription, Network } from "alchemy-sdk";
-import { Txns } from "../types.ts";
-import { utils } from "web3";
+import { Alchemy, AlchemySubscription, Network } from 'alchemy-sdk';
+import { Txns } from '../types.ts';
+import { utils } from 'web3';
 
-import { decodeCalldata, fallbackDecoder } from "../utils/decodeKnownAbi.ts";
-import { ERC20ABI } from "../abis/erc20.ts";
-import { ERC721ABI } from "../abis/erc721.ts";
+import { decodeCalldata, fallbackDecoder } from '../utils/decodeKnownAbi.ts';
+import { ERC20ABI } from '../abis/erc20.ts';
+import { ERC721ABI } from '../abis/erc721.ts';
 
 const alchemy = new Alchemy({
-  apiKey: "3RXLLPbaLaKav4sgsrTv2r5YK2Hpblay",
+  apiKey: '3RXLLPbaLaKav4sgsrTv2r5YK2Hpblay',
   network: Network.ETH_SEPOLIA,
 });
 
@@ -22,9 +22,9 @@ alchemy.ws.on(
     fromAddress: mySepoliaAddress, // separate the from and to.
   },
   async (tx: Txns) => {
-    console.log("awaiting");
+    console.log('awaiting');
     // console.log(tx);
-    console.log(readValue(tx, "from"));
+    console.log(readValue(tx, 'from'));
     inspectContractInteraction(tx);
   }
 );
@@ -33,7 +33,7 @@ const inspectContractInteraction = async (tx: Txns) => {
   // Ensure it's a contract
   if (!(await isContract(tx.to))) return;
   const calldata = tx.input;
-  if (calldata === "0x") return;
+  if (calldata === '0x') return;
 
   console.log(calldata);
 
@@ -47,19 +47,19 @@ const inspectContractInteraction = async (tx: Txns) => {
 };
 
 const isContract = async (address: string) => {
-  const code = await alchemy.core.getCode(address, "latest");
-  return code !== "0x";
+  const code = await alchemy.core.getCode(address, 'latest');
+  return code !== '0x';
 };
 
-const readValue = (tx: Txns, origin: "from" | "to") => {
+const readValue = (tx: Txns, origin: 'from' | 'to') => {
   const weiValue = utils.toDecimal(tx.value);
 
-  if (weiValue === utils.toDecimal("0x0")) return "Nothing to see here";
+  if (weiValue === utils.toDecimal('0x0')) return 'Nothing to see here';
 
   // Now convert wei to ether
-  const etherValue = utils.fromWei(weiValue, "ether");
+  const etherValue = utils.fromWei(weiValue, 'ether');
 
-  if (origin == "from") {
+  if (origin == 'from') {
     return `${etherValue} ETH is about to be sent to ${tx.to}`;
   } else {
     return `You're about to receive ${etherValue} ETH from ${tx.from}`;

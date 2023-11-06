@@ -660,9 +660,7 @@
     "absolutePath": "lib/forge-std/lib/ds-test/src/test.sol",
     "id": 2292,
     "exportedSymbols": {
-      "DSTest": [
-        2291
-      ]
+      "DSTest": [2291]
     },
     "nodeType": "SourceUnit",
     "src": "689:19808:0",
@@ -672,12 +670,7 @@
         "nodeType": "PragmaDirective",
         "src": "689:24:0",
         "nodes": [],
-        "literals": [
-          "solidity",
-          ">=",
-          "0.5",
-          ".0"
-        ]
+        "literals": ["solidity", ">=", "0.5", ".0"]
       },
       {
         "id": 2291,
@@ -2137,9 +2130,7 @@
                     "src": "1927:470:0",
                     "statements": [
                       {
-                        "assignments": [
-                          127
-                        ],
+                        "assignments": [127],
                         "declarations": [
                           {
                             "constant": false,
@@ -2230,10 +2221,7 @@
                           "src": "2002:352:0",
                           "statements": [
                             {
-                              "assignments": [
-                                null,
-                                133
-                              ],
+                              "assignments": [null, 133],
                               "declarations": [
                                 null,
                                 {
@@ -2895,10 +2883,7 @@
                     "src": "2474:337:0",
                     "statements": [
                       {
-                        "assignments": [
-                          178,
-                          null
-                        ],
+                        "assignments": [178, null],
                         "declarations": [
                           {
                             "constant": false,
@@ -3481,9 +3466,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    222
-                  ],
+                  "assignments": [222],
                   "declarations": [
                     {
                       "constant": false,
@@ -3705,9 +3688,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    234
-                  ],
+                  "assignments": [234],
                   "declarations": [
                     {
                       "constant": false,
@@ -3778,9 +3759,7 @@
                   "src": "3160:1:0"
                 },
                 {
-                  "assignments": [
-                    240
-                  ],
+                  "assignments": [240],
                   "declarations": [
                     {
                       "constant": false,
@@ -4305,10 +4284,7 @@
                             "id": 283,
                             "name": "assertTrue",
                             "nodeType": "Identifier",
-                            "overloadedDeclarations": [
-                              269,
-                              290
-                            ],
+                            "overloadedDeclarations": [269, 290],
                             "referencedDeclaration": 269,
                             "src": "3578:10:0",
                             "typeDescriptions": {
@@ -4985,16 +4961,7 @@
                             "name": "assertEq",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [
-                              320,
-                              345,
-                              375,
-                              400,
-                              459,
-                              484,
-                              514,
-                              539,
-                              2012,
-                              2047
+                              320, 345, 375, 400, 459, 484, 514, 539, 2012, 2047
                             ],
                             "referencedDeclaration": 320,
                             "src": "4058:8:0",
@@ -5699,16 +5666,7 @@
                             "name": "assertEq",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [
-                              320,
-                              345,
-                              375,
-                              400,
-                              459,
-                              484,
-                              514,
-                              539,
-                              2012,
-                              2047
+                              320, 345, 375, 400, 459, 484, 514, 539, 2012, 2047
                             ],
                             "referencedDeclaration": 375,
                             "src": "4531:8:0",
@@ -5900,16 +5858,7 @@
                       "name": "assertEq",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        320,
-                        345,
-                        375,
-                        400,
-                        459,
-                        484,
-                        514,
-                        539,
-                        2012,
-                        2047
+                        320, 345, 375, 400, 459, 484, 514, 539, 2012, 2047
                       ],
                       "referencedDeclaration": 375,
                       "src": "4628:8:0",
@@ -6087,16 +6036,7 @@
                       "name": "assertEq",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        320,
-                        345,
-                        375,
-                        400,
-                        459,
-                        484,
-                        514,
-                        539,
-                        2012,
-                        2047
+                        320, 345, 375, 400, 459, 484, 514, 539, 2012, 2047
                       ],
                       "referencedDeclaration": 400,
                       "src": "4734:8:0",
@@ -6796,16 +6736,7 @@
                             "name": "assertEq",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [
-                              320,
-                              345,
-                              375,
-                              400,
-                              459,
-                              484,
-                              514,
-                              539,
-                              2012,
-                              2047
+                              320, 345, 375, 400, 459, 484, 514, 539, 2012, 2047
                             ],
                             "referencedDeclaration": 459,
                             "src": "5173:8:0",
@@ -7508,16 +7439,7 @@
                             "name": "assertEq",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [
-                              320,
-                              345,
-                              375,
-                              400,
-                              459,
-                              484,
-                              514,
-                              539,
-                              2012,
-                              2047
+                              320, 345, 375, 400, 459, 484, 514, 539, 2012, 2047
                             ],
                             "referencedDeclaration": 514,
                             "src": "5623:8:0",
@@ -8294,12 +8216,7 @@
                             "id": 592,
                             "name": "assertEqDecimal",
                             "nodeType": "Identifier",
-                            "overloadedDeclarations": [
-                              573,
-                              601,
-                              635,
-                              663
-                            ],
+                            "overloadedDeclarations": [573, 601, 635, 663],
                             "referencedDeclaration": 573,
                             "src": "6154:15:0",
                             "typeDescriptions": {
@@ -9102,12 +9019,7 @@
                             "id": 654,
                             "name": "assertEqDecimal",
                             "nodeType": "Identifier",
-                            "overloadedDeclarations": [
-                              573,
-                              601,
-                              635,
-                              663
-                            ],
+                            "overloadedDeclarations": [573, 601, 635, 663],
                             "referencedDeclaration": 635,
                             "src": "6709:15:0",
                             "typeDescriptions": {
@@ -9838,16 +9750,7 @@
                             "name": "assertNotEq",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [
-                              693,
-                              718,
-                              748,
-                              773,
-                              832,
-                              857,
-                              887,
-                              912,
-                              2087,
-                              2122
+                              693, 718, 748, 773, 832, 857, 887, 912, 2087, 2122
                             ],
                             "referencedDeclaration": 693,
                             "src": "7205:11:0",
@@ -10552,16 +10455,7 @@
                             "name": "assertNotEq",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [
-                              693,
-                              718,
-                              748,
-                              773,
-                              832,
-                              857,
-                              887,
-                              912,
-                              2087,
-                              2122
+                              693, 718, 748, 773, 832, 857, 887, 912, 2087, 2122
                             ],
                             "referencedDeclaration": 748,
                             "src": "7687:11:0",
@@ -10753,16 +10647,7 @@
                       "name": "assertNotEq",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        693,
-                        718,
-                        748,
-                        773,
-                        832,
-                        857,
-                        887,
-                        912,
-                        2087,
-                        2122
+                        693, 718, 748, 773, 832, 857, 887, 912, 2087, 2122
                       ],
                       "referencedDeclaration": 748,
                       "src": "7790:11:0",
@@ -10940,16 +10825,7 @@
                       "name": "assertNotEq",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        693,
-                        718,
-                        748,
-                        773,
-                        832,
-                        857,
-                        887,
-                        912,
-                        2087,
-                        2122
+                        693, 718, 748, 773, 832, 857, 887, 912, 2087, 2122
                       ],
                       "referencedDeclaration": 773,
                       "src": "7902:11:0",
@@ -11649,16 +11525,7 @@
                             "name": "assertNotEq",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [
-                              693,
-                              718,
-                              748,
-                              773,
-                              832,
-                              857,
-                              887,
-                              912,
-                              2087,
-                              2122
+                              693, 718, 748, 773, 832, 857, 887, 912, 2087, 2122
                             ],
                             "referencedDeclaration": 832,
                             "src": "8350:11:0",
@@ -12361,16 +12228,7 @@
                             "name": "assertNotEq",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [
-                              693,
-                              718,
-                              748,
-                              773,
-                              832,
-                              857,
-                              887,
-                              912,
-                              2087,
-                              2122
+                              693, 718, 748, 773, 832, 857, 887, 912, 2087, 2122
                             ],
                             "referencedDeclaration": 887,
                             "src": "8809:11:0",
@@ -13147,12 +13005,7 @@
                             "id": 965,
                             "name": "assertNotEqDecimal",
                             "nodeType": "Identifier",
-                            "overloadedDeclarations": [
-                              946,
-                              974,
-                              1008,
-                              1036
-                            ],
+                            "overloadedDeclarations": [946, 974, 1008, 1036],
                             "referencedDeclaration": 946,
                             "src": "9349:18:0",
                             "typeDescriptions": {
@@ -13955,12 +13808,7 @@
                             "id": 1027,
                             "name": "assertNotEqDecimal",
                             "nodeType": "Identifier",
-                            "overloadedDeclarations": [
-                              946,
-                              974,
-                              1008,
-                              1036
-                            ],
+                            "overloadedDeclarations": [946, 974, 1008, 1036],
                             "referencedDeclaration": 1008,
                             "src": "9913:18:0",
                             "typeDescriptions": {
@@ -14688,12 +14536,7 @@
                             "id": 1083,
                             "name": "assertGt",
                             "nodeType": "Identifier",
-                            "overloadedDeclarations": [
-                              1066,
-                              1091,
-                              1121,
-                              1146
-                            ],
+                            "overloadedDeclarations": [1066, 1091, 1121, 1146],
                             "referencedDeclaration": 1066,
                             "src": "10381:8:0",
                             "typeDescriptions": {
@@ -15394,12 +15237,7 @@
                             "id": 1138,
                             "name": "assertGt",
                             "nodeType": "Identifier",
-                            "overloadedDeclarations": [
-                              1066,
-                              1091,
-                              1121,
-                              1146
-                            ],
+                            "overloadedDeclarations": [1066, 1091, 1121, 1146],
                             "referencedDeclaration": 1121,
                             "src": "10821:8:0",
                             "typeDescriptions": {
@@ -16175,12 +16013,7 @@
                             "id": 1199,
                             "name": "assertGtDecimal",
                             "nodeType": "Identifier",
-                            "overloadedDeclarations": [
-                              1180,
-                              1208,
-                              1242,
-                              1270
-                            ],
+                            "overloadedDeclarations": [1180, 1208, 1242, 1270],
                             "referencedDeclaration": 1180,
                             "src": "11349:15:0",
                             "typeDescriptions": {
@@ -16983,12 +16816,7 @@
                             "id": 1261,
                             "name": "assertGtDecimal",
                             "nodeType": "Identifier",
-                            "overloadedDeclarations": [
-                              1180,
-                              1208,
-                              1242,
-                              1270
-                            ],
+                            "overloadedDeclarations": [1180, 1208, 1242, 1270],
                             "referencedDeclaration": 1242,
                             "src": "11901:15:0",
                             "typeDescriptions": {
@@ -17716,12 +17544,7 @@
                             "id": 1317,
                             "name": "assertGe",
                             "nodeType": "Identifier",
-                            "overloadedDeclarations": [
-                              1300,
-                              1325,
-                              1355,
-                              1380
-                            ],
+                            "overloadedDeclarations": [1300, 1325, 1355, 1380],
                             "referencedDeclaration": 1300,
                             "src": "12365:8:0",
                             "typeDescriptions": {
@@ -18422,12 +18245,7 @@
                             "id": 1372,
                             "name": "assertGe",
                             "nodeType": "Identifier",
-                            "overloadedDeclarations": [
-                              1300,
-                              1325,
-                              1355,
-                              1380
-                            ],
+                            "overloadedDeclarations": [1300, 1325, 1355, 1380],
                             "referencedDeclaration": 1355,
                             "src": "12804:8:0",
                             "typeDescriptions": {
@@ -19203,12 +19021,7 @@
                             "id": 1433,
                             "name": "assertGeDecimal",
                             "nodeType": "Identifier",
-                            "overloadedDeclarations": [
-                              1414,
-                              1442,
-                              1476,
-                              1504
-                            ],
+                            "overloadedDeclarations": [1414, 1442, 1476, 1504],
                             "referencedDeclaration": 1414,
                             "src": "13331:15:0",
                             "typeDescriptions": {
@@ -20011,12 +19824,7 @@
                             "id": 1495,
                             "name": "assertGeDecimal",
                             "nodeType": "Identifier",
-                            "overloadedDeclarations": [
-                              1414,
-                              1442,
-                              1476,
-                              1504
-                            ],
+                            "overloadedDeclarations": [1414, 1442, 1476, 1504],
                             "referencedDeclaration": 1476,
                             "src": "13882:15:0",
                             "typeDescriptions": {
@@ -20744,12 +20552,7 @@
                             "id": 1551,
                             "name": "assertLt",
                             "nodeType": "Identifier",
-                            "overloadedDeclarations": [
-                              1534,
-                              1559,
-                              1589,
-                              1614
-                            ],
+                            "overloadedDeclarations": [1534, 1559, 1589, 1614],
                             "referencedDeclaration": 1534,
                             "src": "14347:8:0",
                             "typeDescriptions": {
@@ -21450,12 +21253,7 @@
                             "id": 1606,
                             "name": "assertLt",
                             "nodeType": "Identifier",
-                            "overloadedDeclarations": [
-                              1534,
-                              1559,
-                              1589,
-                              1614
-                            ],
+                            "overloadedDeclarations": [1534, 1559, 1589, 1614],
                             "referencedDeclaration": 1589,
                             "src": "14787:8:0",
                             "typeDescriptions": {
@@ -22231,12 +22029,7 @@
                             "id": 1667,
                             "name": "assertLtDecimal",
                             "nodeType": "Identifier",
-                            "overloadedDeclarations": [
-                              1648,
-                              1676,
-                              1710,
-                              1738
-                            ],
+                            "overloadedDeclarations": [1648, 1676, 1710, 1738],
                             "referencedDeclaration": 1648,
                             "src": "15315:15:0",
                             "typeDescriptions": {
@@ -23039,12 +22832,7 @@
                             "id": 1729,
                             "name": "assertLtDecimal",
                             "nodeType": "Identifier",
-                            "overloadedDeclarations": [
-                              1648,
-                              1676,
-                              1710,
-                              1738
-                            ],
+                            "overloadedDeclarations": [1648, 1676, 1710, 1738],
                             "referencedDeclaration": 1710,
                             "src": "15867:15:0",
                             "typeDescriptions": {
@@ -23772,12 +23560,7 @@
                             "id": 1785,
                             "name": "assertLe",
                             "nodeType": "Identifier",
-                            "overloadedDeclarations": [
-                              1768,
-                              1793,
-                              1823,
-                              1848
-                            ],
+                            "overloadedDeclarations": [1768, 1793, 1823, 1848],
                             "referencedDeclaration": 1768,
                             "src": "16331:8:0",
                             "typeDescriptions": {
@@ -24478,12 +24261,7 @@
                             "id": 1840,
                             "name": "assertLe",
                             "nodeType": "Identifier",
-                            "overloadedDeclarations": [
-                              1768,
-                              1793,
-                              1823,
-                              1848
-                            ],
+                            "overloadedDeclarations": [1768, 1793, 1823, 1848],
                             "referencedDeclaration": 1823,
                             "src": "16770:8:0",
                             "typeDescriptions": {
@@ -25259,12 +25037,7 @@
                             "id": 1901,
                             "name": "assertLeDecimal",
                             "nodeType": "Identifier",
-                            "overloadedDeclarations": [
-                              1882,
-                              1910,
-                              1944,
-                              1972
-                            ],
+                            "overloadedDeclarations": [1882, 1910, 1944, 1972],
                             "referencedDeclaration": 1882,
                             "src": "17297:15:0",
                             "typeDescriptions": {
@@ -26067,12 +25840,7 @@
                             "id": 1963,
                             "name": "assertLeDecimal",
                             "nodeType": "Identifier",
-                            "overloadedDeclarations": [
-                              1882,
-                              1910,
-                              1944,
-                              1972
-                            ],
+                            "overloadedDeclarations": [1882, 1910, 1944, 1972],
                             "referencedDeclaration": 1944,
                             "src": "17848:15:0",
                             "typeDescriptions": {
@@ -27157,16 +26925,7 @@
                             "name": "assertEq",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [
-                              320,
-                              345,
-                              375,
-                              400,
-                              459,
-                              484,
-                              514,
-                              539,
-                              2012,
-                              2047
+                              320, 345, 375, 400, 459, 484, 514, 539, 2012, 2047
                             ],
                             "referencedDeclaration": 2012,
                             "src": "18474:8:0",
@@ -28225,16 +27984,7 @@
                             "name": "assertNotEq",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [
-                              693,
-                              718,
-                              748,
-                              773,
-                              832,
-                              857,
-                              887,
-                              912,
-                              2087,
-                              2122
+                              693, 718, 748, 773, 832, 857, 887, 912, 2087, 2122
                             ],
                             "referencedDeclaration": 2087,
                             "src": "19089:11:0",
@@ -28783,9 +28533,7 @@
                         },
                         "id": 2165,
                         "initializationExpression": {
-                          "assignments": [
-                            2141
-                          ],
+                          "assignments": [2141],
                           "declarations": [
                             {
                               "constant": false,
@@ -29620,10 +29368,7 @@
                             "id": 2225,
                             "name": "assertEq0",
                             "nodeType": "Identifier",
-                            "overloadedDeclarations": [
-                              2206,
-                              2233
-                            ],
+                            "overloadedDeclarations": [2206, 2233],
                             "referencedDeclaration": 2206,
                             "src": "19948:9:0",
                             "typeDescriptions": {
@@ -30370,10 +30115,7 @@
                             "id": 2282,
                             "name": "assertNotEq0",
                             "nodeType": "Identifier",
-                            "overloadedDeclarations": [
-                              2264,
-                              2290
-                            ],
+                            "overloadedDeclarations": [2264, 2290],
                             "referencedDeclaration": 2264,
                             "src": "20459:12:0",
                             "typeDescriptions": {
@@ -30517,31 +30259,12 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "linearizedBaseContracts": [
-          2291
-        ],
+        "linearizedBaseContracts": [2291],
         "name": "DSTest",
         "nameLocation": "724:6:0",
         "scope": 2292,
         "usedErrors": [],
-        "usedEvents": [
-          5,
-          9,
-          13,
-          17,
-          21,
-          25,
-          29,
-          33,
-          39,
-          45,
-          53,
-          61,
-          67,
-          73,
-          79,
-          85
-        ]
+        "usedEvents": [5, 9, 13, 17, 21, 25, 29, 33, 39, 45, 53, 61, 67, 73, 79, 85]
       }
     ],
     "license": "GPL-3.0-or-later"

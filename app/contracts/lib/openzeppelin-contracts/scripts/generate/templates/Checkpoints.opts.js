@@ -1,7 +1,7 @@
 // OPTIONS
 const VALUE_SIZES = [224, 160];
 
-const defaultOpts = size => ({
+const defaultOpts = (size) => ({
   historyTypeName: `Trace${size}`,
   checkpointTypeName: `Checkpoint${size}`,
   checkpointFieldName: '_checkpoints',
@@ -12,7 +12,7 @@ const defaultOpts = size => ({
 });
 
 module.exports = {
-  OPTS: VALUE_SIZES.map(size => defaultOpts(size)),
+  OPTS: VALUE_SIZES.map((size) => defaultOpts(size)),
   LEGACY_OPTS: {
     ...defaultOpts(224),
     historyTypeName: 'History',

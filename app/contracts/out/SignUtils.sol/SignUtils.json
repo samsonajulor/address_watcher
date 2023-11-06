@@ -226,12 +226,8 @@
     "absolutePath": "src/libraries/SignUtils.sol",
     "id": 45307,
     "exportedSymbols": {
-      "SignUtils": [
-        45306
-      ],
-      "console2": [
-        30081
-      ]
+      "SignUtils": [45306],
+      "console2": [30081]
     },
     "nodeType": "SourceUnit",
     "src": "39:2029:27",
@@ -241,12 +237,7 @@
         "nodeType": "PragmaDirective",
         "src": "39:24:27",
         "nodes": [],
-        "literals": [
-          "solidity",
-          "^",
-          "0.8",
-          ".13"
-        ]
+        "literals": ["solidity", "^", "0.8", ".13"]
       },
       {
         "id": 45150,
@@ -993,9 +984,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    45213
-                  ],
+                  "assignments": [45213],
                   "declarations": [
                     {
                       "constant": false,
@@ -1737,11 +1726,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    45267,
-                    45269,
-                    45271
-                  ],
+                  "assignments": [45267, 45269, 45271],
                   "declarations": [
                     {
                       "constant": false,
@@ -2195,10 +2180,7 @@
                       "id": 45295,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "1824:7:27",
                       "typeDescriptions": {
@@ -2604,9 +2586,7 @@
         "contractDependencies": [],
         "contractKind": "library",
         "fullyImplemented": true,
-        "linearizedBaseContracts": [
-          45306
-        ],
+        "linearizedBaseContracts": [45306],
         "name": "SignUtils",
         "nameLocation": "141:9:27",
         "scope": 45307,

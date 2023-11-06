@@ -16,7 +16,7 @@ function makeContractAddress(creator, nonce) {
     web3.utils
       .sha3(RLP.encode([creator, nonce]))
       .slice(12)
-      .substring(14),
+      .substring(14)
   );
 }
 
@@ -56,7 +56,7 @@ contract('GovernorCompatibilityBravo', function (accounts) {
           votingPeriod,
           proposalThreshold,
           this.timelock.address,
-          this.token.address,
+          this.token.address
         );
         this.receiver = await CallReceiver.new();
 
@@ -65,11 +65,26 @@ contract('GovernorCompatibilityBravo', function (accounts) {
         await web3.eth.sendTransaction({ from: owner, to: this.timelock.address, value });
 
         await this.token.$_mint(owner, tokenSupply);
-        await this.helper.delegate({ token: this.token, to: proposer, value: proposalThreshold }, { from: owner });
-        await this.helper.delegate({ token: this.token, to: voter1, value: web3.utils.toWei('10') }, { from: owner });
-        await this.helper.delegate({ token: this.token, to: voter2, value: web3.utils.toWei('7') }, { from: owner });
-        await this.helper.delegate({ token: this.token, to: voter3, value: web3.utils.toWei('5') }, { from: owner });
-        await this.helper.delegate({ token: this.token, to: voter4, value: web3.utils.toWei('2') }, { from: owner });
+        await this.helper.delegate(
+          { token: this.token, to: proposer, value: proposalThreshold },
+          { from: owner }
+        );
+        await this.helper.delegate(
+          { token: this.token, to: voter1, value: web3.utils.toWei('10') },
+          { from: owner }
+        );
+        await this.helper.delegate(
+          { token: this.token, to: voter2, value: web3.utils.toWei('7') },
+          { from: owner }
+        );
+        await this.helper.delegate(
+          { token: this.token, to: voter3, value: web3.utils.toWei('5') },
+          { from: owner }
+        );
+        await this.helper.delegate(
+          { token: this.token, to: voter4, value: web3.utils.toWei('2') },
+          { from: owner }
+        );
 
         // default proposal
         this.proposal = this.helper.setProposal(
@@ -80,7 +95,7 @@ contract('GovernorCompatibilityBravo', function (accounts) {
               signature: 'mockFunction()',
             },
           ],
-          '<proposal description>',
+          '<proposal description>'
         );
       });
 
@@ -108,7 +123,10 @@ contract('GovernorCompatibilityBravo', function (accounts) {
         // Run proposal
         const txPropose = await this.helper.propose({ from: proposer });
         await this.helper.waitForSnapshot();
-        await this.helper.vote({ support: Enums.VoteType.For, reason: 'This is nice' }, { from: voter1 });
+        await this.helper.vote(
+          { support: Enums.VoteType.For, reason: 'This is nice' },
+          { from: voter1 }
+        );
         await this.helper.vote({ support: Enums.VoteType.For }, { from: voter2 });
         await this.helper.vote({ support: Enums.VoteType.Against }, { from: voter3 });
         await this.helper.vote({ support: Enums.VoteType.Abstain }, { from: voter4 });
@@ -129,8 +147,12 @@ contract('GovernorCompatibilityBravo', function (accounts) {
         expect(proposal.id).to.be.bignumber.equal(this.proposal.id);
         expect(proposal.proposer).to.be.equal(proposer);
         expect(proposal.eta).to.be.bignumber.equal(await this.mock.proposalEta(this.proposal.id));
-        expect(proposal.startBlock).to.be.bignumber.equal(await this.mock.proposalSnapshot(this.proposal.id));
-        expect(proposal.endBlock).to.be.bignumber.equal(await this.mock.proposalDeadline(this.proposal.id));
+        expect(proposal.startBlock).to.be.bignumber.equal(
+          await this.mock.proposalSnapshot(this.proposal.id)
+        );
+        expect(proposal.endBlock).to.be.bignumber.equal(
+          await this.mock.proposalDeadline(this.proposal.id)
+        );
         expect(proposal.canceled).to.be.equal(false);
         expect(proposal.executed).to.be.equal(true);
 
@@ -167,7 +189,9 @@ contract('GovernorCompatibilityBravo', function (accounts) {
           // values: this.proposal.values,
           signatures: this.proposal.signatures.map(() => ''), // this event doesn't contain the proposal detail
           calldatas: this.proposal.fulldata,
-          voteStart: web3.utils.toBN(await clockFromReceipt[mode](txPropose.receipt)).add(votingDelay),
+          voteStart: web3.utils
+            .toBN(await clockFromReceipt[mode](txPropose.receipt))
+            .add(votingDelay),
           voteEnd: web3.utils
             .toBN(await clockFromReceipt[mode](txPropose.receipt))
             .add(votingDelay)
@@ -184,7 +208,7 @@ contract('GovernorCompatibilityBravo', function (accounts) {
         await this.helper.vote({ support: Enums.VoteType.For }, { from: voter1 });
         await expectRevert(
           this.helper.vote({ support: Enums.VoteType.For }, { from: voter1 }),
-          'GovernorCompatibilityBravo: vote already cast',
+          'GovernorCompatibilityBravo: vote already cast'
         );
       });
 
@@ -193,7 +217,10 @@ contract('GovernorCompatibilityBravo', function (accounts) {
         this.helper.setProposal(
           [
             { target, data: this.receiver.contract.methods.mockFunction().encodeABI() },
-            { target, data: this.receiver.contract.methods.mockFunctionWithArgs(17, 42).encodeABI() },
+            {
+              target,
+              data: this.receiver.contract.methods.mockFunctionWithArgs(17, 42).encodeABI(),
+            },
             { target, signature: 'mockFunctionNonPayable()' },
             {
               target,
@@ -201,12 +228,15 @@ contract('GovernorCompatibilityBravo', function (accounts) {
               data: web3.eth.abi.encodeParameters(['uint256', 'uint256'], [18, 43]),
             },
           ],
-          '<proposal description>',
+          '<proposal description>'
         );
 
         await this.helper.propose({ from: proposer });
         await this.helper.waitForSnapshot();
-        await this.helper.vote({ support: Enums.VoteType.For, reason: 'This is nice' }, { from: voter1 });
+        await this.helper.vote(
+          { support: Enums.VoteType.For, reason: 'This is nice' },
+          { from: voter1 }
+        );
         await this.helper.waitForDeadline();
         await this.helper.queue();
         await this.helper.waitForEta();
@@ -233,10 +263,13 @@ contract('GovernorCompatibilityBravo', function (accounts) {
             signatures: ['mockFunction()'], // One signature
             data: ['0x', this.receiver.contract.methods.mockFunctionWithArgs(17, 42).encodeABI()], // Two data entries
           },
-          '<proposal description>',
+          '<proposal description>'
         );
 
-        await expectRevert(this.helper.propose({ from: proposer }), 'GovernorBravo: invalid signatures length');
+        await expectRevert(
+          this.helper.propose({ from: proposer }),
+          'GovernorBravo: invalid signatures length'
+        );
       });
 
       describe('should revert', function () {
@@ -244,7 +277,7 @@ contract('GovernorCompatibilityBravo', function (accounts) {
           it('if proposal does not meet proposalThreshold', async function () {
             await expectRevert(
               this.helper.propose({ from: other }),
-              'Governor: proposer votes below proposal threshold',
+              'Governor: proposer votes below proposal threshold'
             );
           });
         });
@@ -255,7 +288,7 @@ contract('GovernorCompatibilityBravo', function (accounts) {
             await this.helper.waitForSnapshot();
             await expectRevert(
               this.helper.vote({ support: 5 }, { from: voter1 }),
-              'GovernorCompatibilityBravo: invalid vote type',
+              'GovernorCompatibilityBravo: invalid vote type'
             );
           });
         });
@@ -275,7 +308,10 @@ contract('GovernorCompatibilityBravo', function (accounts) {
 
         it('cannot cancel is proposer is still above threshold', async function () {
           await this.helper.propose({ from: proposer });
-          await expectRevert(this.helper.cancel('external'), 'GovernorBravo: proposer above threshold');
+          await expectRevert(
+            this.helper.cancel('external'),
+            'GovernorBravo: proposer above threshold'
+          );
         });
       });
     });

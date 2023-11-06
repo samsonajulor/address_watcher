@@ -1,9 +1,9 @@
 import app from './index';
 import { logger } from './config';
 import { AddressInfo } from 'net';
-import http from 'http';
+import { createServer } from 'http';
 
-const server = http.createServer(app);
+const server = createServer(app);
 
 async function startApp() {
   try {

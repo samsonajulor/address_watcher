@@ -1,35 +1,46 @@
 import { Request, Response } from 'express';
 import { GenericAnyType, ResponseCode, StatusCode } from '../@types';
-import { Toolbox, sendEmail } from '../utils';
-import { env, logger } from '../config';
-import { customAlphabet } from 'nanoid';
-import { numbers } from 'nanoid-dictionary';
+import { logger } from '../config';
+import { getUserData, updateUserData } from '../service/methods';
 
-const nanoid = customAlphabet(numbers, 6); // sample random number for otp if needed
-
-// import needed stuff from toolbox
-
-export async function getOTP(req: Request, res: Response) {
+export async function saveAddress(req: Request, res: Response) {
   try {
-    const otp = nanoid();
+    const { address, email, owner } = req.body;
 
-    const message = `Hello, your OTP is ${otp}`;
+    await updateUserData({ address, email, owner });
 
-    await sendEmail('samsonajulor@gmail.com', 'Your otp is here', message); //  sample mailer
+    const data = await getUserData(owner);
 
     return res.status(StatusCode.OK).json({
       status: !!ResponseCode.SUCCESS,
-      message: 'OTP sent successfully',
-      data: {
-        otp,
-        expiresIn: '5 minutes',
-      },
-    }); // sample success response
+      message: 'user data successfully updated',
+      data,
+    });
   } catch (error: GenericAnyType) {
     logger('error', error.message); // always log
     return res.status(error.statusCode || StatusCode.INTERNAL_SERVER_ERROR).json({
       status: !!ResponseCode.FAILURE,
       message: error.message || 'Something went wrong',
     });
-  } // sample error response.
+  }
+}
+
+export async function getAddressData(req: Request, res: Response) {
+  try {
+    const { address } = req.body;
+
+    const data = await getUserData(address);
+
+    return res.status(StatusCode.OK).json({
+      status: !!ResponseCode.SUCCESS,
+      message: 'user data fetch successfully',
+      data,
+    });
+  } catch (error: GenericAnyType) {
+    logger('error', error.message); // always log
+    return res.status(error.statusCode || StatusCode.INTERNAL_SERVER_ERROR).json({
+      status: !!ResponseCode.FAILURE,
+      message: error.message || 'Something went wrong',
+    });
+  }
 }

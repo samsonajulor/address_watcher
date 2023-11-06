@@ -1400,18 +1400,10 @@
     "absolutePath": "test/Counter.t.sol",
     "id": 45394,
     "exportedSymbols": {
-      "Counter": [
-        44233
-      ],
-      "CounterTest": [
-        45393
-      ],
-      "Test": [
-        12199
-      ],
-      "console2": [
-        30081
-      ]
+      "Counter": [44233],
+      "CounterTest": [45393],
+      "Test": [12199],
+      "console2": [30081]
     },
     "nodeType": "SourceUnit",
     "src": "39:525:29",
@@ -1421,12 +1413,7 @@
         "nodeType": "PragmaDirective",
         "src": "39:24:29",
         "nodes": [],
-        "literals": [
-          "solidity",
-          "^",
-          "0.8",
-          ".13"
-        ]
+        "literals": ["solidity", "^", "0.8", ".13"]
       },
       {
         "id": 45333,
@@ -1520,9 +1507,7 @@
               "pathNode": {
                 "id": 45338,
                 "name": "Counter",
-                "nameLocations": [
-                  "196:7:29"
-                ],
+                "nameLocations": ["196:7:29"],
                 "nodeType": "IdentifierPath",
                 "referencedDeclaration": 44233,
                 "src": "196:7:29"
@@ -1589,9 +1574,7 @@
                           "pathNode": {
                             "id": 45344,
                             "name": "Counter",
-                            "nameLocations": [
-                              "273:7:29"
-                            ],
+                            "nameLocations": ["273:7:29"],
                             "nodeType": "IdentifierPath",
                             "referencedDeclaration": 44233,
                             "src": "273:7:29"
@@ -1874,26 +1857,8 @@
                       "name": "assertEq",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2485,
-                        2510,
-                        2523,
-                        2539,
-                        2581,
-                        2623,
-                        2665,
-                        2702,
-                        2739,
-                        2776,
-                        320,
-                        345,
-                        375,
-                        400,
-                        459,
-                        484,
-                        514,
-                        539,
-                        2012,
-                        2047
+                        2485, 2510, 2523, 2539, 2581, 2623, 2665, 2702, 2739, 2776, 320, 345, 375,
+                        400, 459, 484, 514, 539, 2012, 2047
                       ],
                       "referencedDeclaration": 514,
                       "src": "397:8:29",
@@ -2106,26 +2071,8 @@
                       "name": "assertEq",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2485,
-                        2510,
-                        2523,
-                        2539,
-                        2581,
-                        2623,
-                        2665,
-                        2702,
-                        2739,
-                        2776,
-                        320,
-                        345,
-                        375,
-                        400,
-                        459,
-                        484,
-                        514,
-                        539,
-                        2012,
-                        2047
+                        2485, 2510, 2523, 2539, 2581, 2623, 2665, 2702, 2739, 2776, 320, 345, 375,
+                        400, 459, 484, 514, 539, 2012, 2047
                       ],
                       "referencedDeclaration": 514,
                       "src": "525:8:29",
@@ -2214,9 +2161,7 @@
             "baseName": {
               "id": 45336,
               "name": "Test",
-              "nameLocations": [
-                "185:4:29"
-              ],
+              "nameLocations": ["185:4:29"],
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 12199,
               "src": "185:4:29"
@@ -2227,51 +2172,19 @@
           }
         ],
         "canonicalName": "CounterTest",
-        "contractDependencies": [
-          44233
-        ],
+        "contractDependencies": [44233],
         "contractKind": "contract",
         "fullyImplemented": true,
         "linearizedBaseContracts": [
-          45393,
-          12199,
-          12148,
-          7700,
-          7375,
-          6582,
-          4522,
-          3784,
-          2291,
-          2357,
-          2354
+          45393, 12199, 12148, 7700, 7375, 6582, 4522, 3784, 2291, 2357, 2354
         ],
         "name": "CounterTest",
         "nameLocation": "170:11:29",
         "scope": 45394,
         "usedErrors": [],
         "usedEvents": [
-          5,
-          9,
-          13,
-          17,
-          21,
-          25,
-          29,
-          33,
-          39,
-          45,
-          53,
-          61,
-          67,
-          73,
-          79,
-          85,
-          2379,
-          2384,
-          2389,
-          2396,
-          2403,
-          2410
+          5, 9, 13, 17, 21, 25, 29, 33, 39, 45, 53, 61, 67, 73, 79, 85, 2379, 2384, 2389, 2396,
+          2403, 2410
         ]
       }
     ],

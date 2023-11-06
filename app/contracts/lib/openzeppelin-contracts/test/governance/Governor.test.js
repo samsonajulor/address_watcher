@@ -44,7 +44,7 @@ contract('Governor', function (accounts) {
           votingPeriod, // initialVotingPeriod
           0, // initialProposalThreshold
           this.token.address, // tokenAddress
-          10, // quorumNumeratorValue
+          10 // quorumNumeratorValue
         );
         this.receiver = await CallReceiver.new();
 
@@ -53,10 +53,22 @@ contract('Governor', function (accounts) {
         await web3.eth.sendTransaction({ from: owner, to: this.mock.address, value });
 
         await this.token.$_mint(owner, tokenSupply);
-        await this.helper.delegate({ token: this.token, to: voter1, value: web3.utils.toWei('10') }, { from: owner });
-        await this.helper.delegate({ token: this.token, to: voter2, value: web3.utils.toWei('7') }, { from: owner });
-        await this.helper.delegate({ token: this.token, to: voter3, value: web3.utils.toWei('5') }, { from: owner });
-        await this.helper.delegate({ token: this.token, to: voter4, value: web3.utils.toWei('2') }, { from: owner });
+        await this.helper.delegate(
+          { token: this.token, to: voter1, value: web3.utils.toWei('10') },
+          { from: owner }
+        );
+        await this.helper.delegate(
+          { token: this.token, to: voter2, value: web3.utils.toWei('7') },
+          { from: owner }
+        );
+        await this.helper.delegate(
+          { token: this.token, to: voter3, value: web3.utils.toWei('5') },
+          { from: owner }
+        );
+        await this.helper.delegate(
+          { token: this.token, to: voter4, value: web3.utils.toWei('2') },
+          { from: owner }
+        );
 
         this.proposal = this.helper.setProposal(
           [
@@ -66,11 +78,17 @@ contract('Governor', function (accounts) {
               value,
             },
           ],
-          '<proposal description>',
+          '<proposal description>'
         );
       });
 
-      shouldSupportInterfaces(['ERC165', 'ERC1155Receiver', 'Governor', 'GovernorWithParams', 'GovernorCancel']);
+      shouldSupportInterfaces([
+        'ERC165',
+        'ERC1155Receiver',
+        'Governor',
+        'GovernorWithParams',
+        'GovernorCancel',
+      ]);
       shouldBehaveLikeEIP6372(mode);
 
       it('deployment check', async function () {
@@ -84,7 +102,9 @@ contract('Governor', function (accounts) {
 
       it('nominal workflow', async function () {
         // Before
-        expect(await this.mock.proposalProposer(this.proposal.id)).to.be.equal(constants.ZERO_ADDRESS);
+        expect(await this.mock.proposalProposer(this.proposal.id)).to.be.equal(
+          constants.ZERO_ADDRESS
+        );
         expect(await this.mock.hasVoted(this.proposal.id, owner)).to.be.equal(false);
         expect(await this.mock.hasVoted(this.proposal.id, voter1)).to.be.equal(false);
         expect(await this.mock.hasVoted(this.proposal.id, voter2)).to.be.equal(false);
@@ -101,7 +121,9 @@ contract('Governor', function (accounts) {
           // values: this.proposal.values,
           signatures: this.proposal.signatures,
           calldatas: this.proposal.data,
-          voteStart: web3.utils.toBN(await clockFromReceipt[mode](txPropose.receipt)).add(votingDelay),
+          voteStart: web3.utils
+            .toBN(await clockFromReceipt[mode](txPropose.receipt))
+            .add(votingDelay),
           voteEnd: web3.utils
             .toBN(await clockFromReceipt[mode](txPropose.receipt))
             .add(votingDelay)
@@ -112,33 +134,48 @@ contract('Governor', function (accounts) {
         await this.helper.waitForSnapshot();
 
         expectEvent(
-          await this.helper.vote({ support: Enums.VoteType.For, reason: 'This is nice' }, { from: voter1 }),
+          await this.helper.vote(
+            { support: Enums.VoteType.For, reason: 'This is nice' },
+            { from: voter1 }
+          ),
           'VoteCast',
           {
             voter: voter1,
             support: Enums.VoteType.For,
             reason: 'This is nice',
             weight: web3.utils.toWei('10'),
-          },
+          }
         );
 
-        expectEvent(await this.helper.vote({ support: Enums.VoteType.For }, { from: voter2 }), 'VoteCast', {
-          voter: voter2,
-          support: Enums.VoteType.For,
-          weight: web3.utils.toWei('7'),
-        });
+        expectEvent(
+          await this.helper.vote({ support: Enums.VoteType.For }, { from: voter2 }),
+          'VoteCast',
+          {
+            voter: voter2,
+            support: Enums.VoteType.For,
+            weight: web3.utils.toWei('7'),
+          }
+        );
 
-        expectEvent(await this.helper.vote({ support: Enums.VoteType.Against }, { from: voter3 }), 'VoteCast', {
-          voter: voter3,
-          support: Enums.VoteType.Against,
-          weight: web3.utils.toWei('5'),
-        });
+        expectEvent(
+          await this.helper.vote({ support: Enums.VoteType.Against }, { from: voter3 }),
+          'VoteCast',
+          {
+            voter: voter3,
+            support: Enums.VoteType.Against,
+            weight: web3.utils.toWei('5'),
+          }
+        );
 
-        expectEvent(await this.helper.vote({ support: Enums.VoteType.Abstain }, { from: voter4 }), 'VoteCast', {
-          voter: voter4,
-          support: Enums.VoteType.Abstain,
-          weight: web3.utils.toWei('2'),
-        });
+        expectEvent(
+          await this.helper.vote({ support: Enums.VoteType.Abstain }, { from: voter4 }),
+          'VoteCast',
+          {
+            voter: voter4,
+            support: Enums.VoteType.Abstain,
+            weight: web3.utils.toWei('2'),
+          }
+        );
 
         await this.helper.waitForDeadline();
 
@@ -163,7 +200,7 @@ contract('Governor', function (accounts) {
 
         const signature = (contract, message) =>
           getDomain(contract)
-            .then(domain => ({
+            .then((domain) => ({
               primaryType: 'Ballot',
               types: {
                 EIP712Domain: domainType(domain),
@@ -175,7 +212,7 @@ contract('Governor', function (accounts) {
               domain,
               message,
             }))
-            .then(data => ethSigUtil.signTypedMessage(voterBySig.getPrivateKey(), { data }))
+            .then((data) => ethSigUtil.signTypedMessage(voterBySig.getPrivateKey(), { data }))
             .then(fromRpcSig);
 
         await this.token.delegate(voterBySigAddress, { from: voter1 });
@@ -183,10 +220,14 @@ contract('Governor', function (accounts) {
         // Run proposal
         await this.helper.propose();
         await this.helper.waitForSnapshot();
-        expectEvent(await this.helper.vote({ support: Enums.VoteType.For, signature }), 'VoteCast', {
-          voter: voterBySigAddress,
-          support: Enums.VoteType.For,
-        });
+        expectEvent(
+          await this.helper.vote({ support: Enums.VoteType.For, signature }),
+          'VoteCast',
+          {
+            voter: voterBySigAddress,
+            support: Enums.VoteType.For,
+          }
+        );
         await this.helper.waitForDeadline();
         await this.helper.execute();
 
@@ -207,7 +248,7 @@ contract('Governor', function (accounts) {
               value,
             },
           ],
-          '<proposal description>',
+          '<proposal description>'
         );
 
         // Before
@@ -238,7 +279,7 @@ contract('Governor', function (accounts) {
           it('if proposal does not exist', async function () {
             await expectRevert(
               this.helper.vote({ support: Enums.VoteType.For }, { from: voter1 }),
-              'Governor: unknown proposal id',
+              'Governor: unknown proposal id'
             );
           });
 
@@ -246,7 +287,7 @@ contract('Governor', function (accounts) {
             await this.helper.propose();
             await expectRevert(
               this.helper.vote({ support: Enums.VoteType.For }, { from: voter1 }),
-              'Governor: vote not currently active',
+              'Governor: vote not currently active'
             );
           });
 
@@ -255,7 +296,7 @@ contract('Governor', function (accounts) {
             await this.helper.waitForSnapshot();
             await expectRevert(
               this.helper.vote({ support: web3.utils.toBN('255') }),
-              'GovernorVotingSimple: invalid value for enum VoteType',
+              'GovernorVotingSimple: invalid value for enum VoteType'
             );
           });
 
@@ -265,7 +306,7 @@ contract('Governor', function (accounts) {
             await this.helper.vote({ support: Enums.VoteType.For }, { from: voter1 });
             await expectRevert(
               this.helper.vote({ support: Enums.VoteType.For }, { from: voter1 }),
-              'GovernorVotingSimple: vote already cast',
+              'GovernorVotingSimple: vote already cast'
             );
           });
 
@@ -274,7 +315,7 @@ contract('Governor', function (accounts) {
             await this.helper.waitForDeadline();
             await expectRevert(
               this.helper.vote({ support: Enums.VoteType.For }, { from: voter1 }),
-              'Governor: vote not currently active',
+              'Governor: vote not currently active'
             );
           });
         });
@@ -313,7 +354,7 @@ contract('Governor', function (accounts) {
                   data: this.receiver.contract.methods.mockFunctionRevertsNoReason().encodeABI(),
                 },
               ],
-              '<proposal description>',
+              '<proposal description>'
             );
 
             await this.helper.propose();
@@ -331,7 +372,7 @@ contract('Governor', function (accounts) {
                   data: this.receiver.contract.methods.mockFunctionRevertsReason().encodeABI(),
                 },
               ],
-              '<proposal description>',
+              '<proposal description>'
             );
 
             await this.helper.propose();
@@ -359,19 +400,29 @@ contract('Governor', function (accounts) {
 
         it('Pending & Active', async function () {
           await this.helper.propose();
-          expect(await this.mock.state(this.proposal.id)).to.be.bignumber.equal(Enums.ProposalState.Pending);
+          expect(await this.mock.state(this.proposal.id)).to.be.bignumber.equal(
+            Enums.ProposalState.Pending
+          );
           await this.helper.waitForSnapshot();
-          expect(await this.mock.state(this.proposal.id)).to.be.bignumber.equal(Enums.ProposalState.Pending);
+          expect(await this.mock.state(this.proposal.id)).to.be.bignumber.equal(
+            Enums.ProposalState.Pending
+          );
           await this.helper.waitForSnapshot(+1);
-          expect(await this.mock.state(this.proposal.id)).to.be.bignumber.equal(Enums.ProposalState.Active);
+          expect(await this.mock.state(this.proposal.id)).to.be.bignumber.equal(
+            Enums.ProposalState.Active
+          );
         });
 
         it('Defeated', async function () {
           await this.helper.propose();
           await this.helper.waitForDeadline();
-          expect(await this.mock.state(this.proposal.id)).to.be.bignumber.equal(Enums.ProposalState.Active);
+          expect(await this.mock.state(this.proposal.id)).to.be.bignumber.equal(
+            Enums.ProposalState.Active
+          );
           await this.helper.waitForDeadline(+1);
-          expect(await this.mock.state(this.proposal.id)).to.be.bignumber.equal(Enums.ProposalState.Defeated);
+          expect(await this.mock.state(this.proposal.id)).to.be.bignumber.equal(
+            Enums.ProposalState.Defeated
+          );
         });
 
         it('Succeeded', async function () {
@@ -379,9 +430,13 @@ contract('Governor', function (accounts) {
           await this.helper.waitForSnapshot();
           await this.helper.vote({ support: Enums.VoteType.For }, { from: voter1 });
           await this.helper.waitForDeadline();
-          expect(await this.mock.state(this.proposal.id)).to.be.bignumber.equal(Enums.ProposalState.Active);
+          expect(await this.mock.state(this.proposal.id)).to.be.bignumber.equal(
+            Enums.ProposalState.Active
+          );
           await this.helper.waitForDeadline(+1);
-          expect(await this.mock.state(this.proposal.id)).to.be.bignumber.equal(Enums.ProposalState.Succeeded);
+          expect(await this.mock.state(this.proposal.id)).to.be.bignumber.equal(
+            Enums.ProposalState.Succeeded
+          );
         });
 
         it('Executed', async function () {
@@ -390,7 +445,9 @@ contract('Governor', function (accounts) {
           await this.helper.vote({ support: Enums.VoteType.For }, { from: voter1 });
           await this.helper.waitForDeadline();
           await this.helper.execute();
-          expect(await this.mock.state(this.proposal.id)).to.be.bignumber.equal(Enums.ProposalState.Executed);
+          expect(await this.mock.state(this.proposal.id)).to.be.bignumber.equal(
+            Enums.ProposalState.Executed
+          );
         });
       });
 
@@ -404,12 +461,14 @@ contract('Governor', function (accounts) {
             await this.helper.propose();
 
             await this.helper.cancel('internal');
-            expect(await this.mock.state(this.proposal.id)).to.be.bignumber.equal(Enums.ProposalState.Canceled);
+            expect(await this.mock.state(this.proposal.id)).to.be.bignumber.equal(
+              Enums.ProposalState.Canceled
+            );
 
             await this.helper.waitForSnapshot();
             await expectRevert(
               this.helper.vote({ support: Enums.VoteType.For }, { from: voter1 }),
-              'Governor: vote not currently active',
+              'Governor: vote not currently active'
             );
           });
 
@@ -419,7 +478,9 @@ contract('Governor', function (accounts) {
             await this.helper.vote({ support: Enums.VoteType.For }, { from: voter1 });
 
             await this.helper.cancel('internal');
-            expect(await this.mock.state(this.proposal.id)).to.be.bignumber.equal(Enums.ProposalState.Canceled);
+            expect(await this.mock.state(this.proposal.id)).to.be.bignumber.equal(
+              Enums.ProposalState.Canceled
+            );
 
             await this.helper.waitForDeadline();
             await expectRevert(this.helper.execute(), 'Governor: proposal not successful');
@@ -432,7 +493,9 @@ contract('Governor', function (accounts) {
             await this.helper.waitForDeadline();
 
             await this.helper.cancel('internal');
-            expect(await this.mock.state(this.proposal.id)).to.be.bignumber.equal(Enums.ProposalState.Canceled);
+            expect(await this.mock.state(this.proposal.id)).to.be.bignumber.equal(
+              Enums.ProposalState.Canceled
+            );
 
             await expectRevert(this.helper.execute(), 'Governor: proposal not successful');
           });
@@ -462,7 +525,10 @@ contract('Governor', function (accounts) {
           it('after proposal - restricted to proposer', async function () {
             await this.helper.propose();
 
-            await expectRevert(this.helper.cancel('external', { from: owner }), 'Governor: only proposer can cancel');
+            await expectRevert(
+              this.helper.cancel('external', { from: owner }),
+              'Governor: only proposer can cancel'
+            );
           });
 
           it('after vote started', async function () {
@@ -514,7 +580,7 @@ contract('Governor', function (accounts) {
               values: [web3.utils.toWei('0')],
               data: [this.receiver.contract.methods.mockFunction().encodeABI()],
             },
-            '<proposal description>',
+            '<proposal description>'
           );
           await expectRevert(this.helper.propose(), 'Governor: invalid proposal length');
         });
@@ -526,7 +592,7 @@ contract('Governor', function (accounts) {
               values: [],
               data: [this.receiver.contract.methods.mockFunction().encodeABI()],
             },
-            '<proposal description>',
+            '<proposal description>'
           );
           await expectRevert(this.helper.propose(), 'Governor: invalid proposal length');
         });
@@ -538,7 +604,7 @@ contract('Governor', function (accounts) {
               values: [web3.utils.toWei('0')],
               data: [],
             },
-            '<proposal description>',
+            '<proposal description>'
           );
           await expectRevert(this.helper.propose(), 'Governor: invalid proposal length');
         });
@@ -566,7 +632,7 @@ contract('Governor', function (accounts) {
                     value,
                   },
                 ],
-                `<proposal description>#wrong-suffix=${proposer}`,
+                `<proposal description>#wrong-suffix=${proposer}`
               );
             });
 
@@ -589,7 +655,7 @@ contract('Governor', function (accounts) {
                     value,
                   },
                 ],
-                `<proposal description>#proposer=0x3C44CdDdB6a900fa2b585dd299e03d12FA429XYZ`, // XYZ are not a valid hex char
+                `<proposal description>#proposer=0x3C44CdDdB6a900fa2b585dd299e03d12FA429XYZ` // XYZ are not a valid hex char
               );
             });
 
@@ -613,7 +679,7 @@ contract('Governor', function (accounts) {
                   value,
                 },
               ],
-              `<proposal description>#proposer=${proposer}`,
+              `<proposal description>#proposer=${proposer}`
             );
           });
 
@@ -622,7 +688,10 @@ contract('Governor', function (accounts) {
           });
 
           it('someone else cannot propose', async function () {
-            await expectRevert(this.helper.propose({ from: voter1 }), 'Governor: proposer restricted');
+            await expectRevert(
+              this.helper.propose({ from: voter1 }),
+              'Governor: proposer restricted'
+            );
           });
         });
       });
@@ -637,7 +706,10 @@ contract('Governor', function (accounts) {
         });
 
         it('setProposalThreshold is protected', async function () {
-          await expectRevert(this.mock.setProposalThreshold('1000000000000000000'), 'Governor: onlyGovernance');
+          await expectRevert(
+            this.mock.setProposalThreshold('1000000000000000000'),
+            'Governor: onlyGovernance'
+          );
         });
 
         it('can setVotingDelay through governance', async function () {
@@ -648,7 +720,7 @@ contract('Governor', function (accounts) {
                 data: this.mock.contract.methods.setVotingDelay('0').encodeABI(),
               },
             ],
-            '<proposal description>',
+            '<proposal description>'
           );
 
           await this.helper.propose();
@@ -656,7 +728,10 @@ contract('Governor', function (accounts) {
           await this.helper.vote({ support: Enums.VoteType.For }, { from: voter1 });
           await this.helper.waitForDeadline();
 
-          expectEvent(await this.helper.execute(), 'VotingDelaySet', { oldVotingDelay: '4', newVotingDelay: '0' });
+          expectEvent(await this.helper.execute(), 'VotingDelaySet', {
+            oldVotingDelay: '4',
+            newVotingDelay: '0',
+          });
 
           expect(await this.mock.votingDelay()).to.be.bignumber.equal('0');
         });
@@ -669,7 +744,7 @@ contract('Governor', function (accounts) {
                 data: this.mock.contract.methods.setVotingPeriod('32').encodeABI(),
               },
             ],
-            '<proposal description>',
+            '<proposal description>'
           );
 
           await this.helper.propose();
@@ -677,7 +752,10 @@ contract('Governor', function (accounts) {
           await this.helper.vote({ support: Enums.VoteType.For }, { from: voter1 });
           await this.helper.waitForDeadline();
 
-          expectEvent(await this.helper.execute(), 'VotingPeriodSet', { oldVotingPeriod: '16', newVotingPeriod: '32' });
+          expectEvent(await this.helper.execute(), 'VotingPeriodSet', {
+            oldVotingPeriod: '16',
+            newVotingPeriod: '32',
+          });
 
           expect(await this.mock.votingPeriod()).to.be.bignumber.equal('32');
         });
@@ -690,7 +768,7 @@ contract('Governor', function (accounts) {
                 data: this.mock.contract.methods.setVotingPeriod('0').encodeABI(),
               },
             ],
-            '<proposal description>',
+            '<proposal description>'
           );
 
           await this.helper.propose();
@@ -706,10 +784,12 @@ contract('Governor', function (accounts) {
             [
               {
                 target: this.mock.address,
-                data: this.mock.contract.methods.setProposalThreshold('1000000000000000000').encodeABI(),
+                data: this.mock.contract.methods
+                  .setProposalThreshold('1000000000000000000')
+                  .encodeABI(),
               },
             ],
-            '<proposal description>',
+            '<proposal description>'
           );
 
           await this.helper.propose();
@@ -752,7 +832,12 @@ contract('Governor', function (accounts) {
 
           beforeEach(async function () {
             this.token = await ERC1155.new(uri);
-            await this.token.$_mintBatch(owner, Object.keys(tokenIds), Object.values(tokenIds), '0x');
+            await this.token.$_mintBatch(
+              owner,
+              Object.keys(tokenIds),
+              Object.values(tokenIds),
+              '0x'
+            );
           });
 
           it('can receive ERC1155 safeTransfer', async function () {
@@ -761,7 +846,7 @@ contract('Governor', function (accounts) {
               this.mock.address,
               ...Object.entries(tokenIds)[0], // id + amount
               '0x',
-              { from: owner },
+              { from: owner }
             );
           });
 
@@ -772,7 +857,7 @@ contract('Governor', function (accounts) {
               Object.keys(tokenIds),
               Object.values(tokenIds),
               '0x',
-              { from: owner },
+              { from: owner }
             );
           });
         });

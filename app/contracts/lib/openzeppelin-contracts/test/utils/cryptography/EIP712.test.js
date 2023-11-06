@@ -55,13 +55,16 @@ contract('EIP712', function (accounts) {
           it('adjusts when behind proxy', async function () {
             const factory = await Clones.new();
             const cloneReceipt = await factory.$clone(this.eip712.address);
-            const cloneAddress = cloneReceipt.logs.find(({ event }) => event === 'return$clone').args.instance;
+            const cloneAddress = cloneReceipt.logs.find(({ event }) => event === 'return$clone')
+              .args.instance;
             const clone = new EIP712Verifier(cloneAddress);
 
             const cloneDomain = { ...this.domain, verifyingContract: clone.address };
 
             const reportedDomain = await getDomain(clone);
-            expect(mapValues(reportedDomain, String)).to.be.deep.equal(mapValues(cloneDomain, String));
+            expect(mapValues(reportedDomain, String)).to.be.deep.equal(
+              mapValues(cloneDomain, String)
+            );
 
             const expectedSeparator = await domainSeparator(cloneDomain);
             expect(await clone.$_domainSeparatorV4()).to.equal(expectedSeparator);
@@ -71,7 +74,9 @@ contract('EIP712', function (accounts) {
 
       it('hash digest', async function () {
         const structhash = web3.utils.randomHex(32);
-        expect(await this.eip712.$_hashTypedDataV4(structhash)).to.be.equal(hashTypedData(this.domain, structhash));
+        expect(await this.eip712.$_hashTypedDataV4(structhash)).to.be.equal(
+          hashTypedData(this.domain, structhash)
+        );
       });
 
       it('digest', async function () {
@@ -96,7 +101,12 @@ contract('EIP712', function (accounts) {
         const wallet = Wallet.generate();
         const signature = ethSigUtil.signTypedMessage(wallet.getPrivateKey(), { data });
 
-        await this.eip712.verify(signature, wallet.getAddressString(), message.to, message.contents);
+        await this.eip712.verify(
+          signature,
+          wallet.getAddressString(),
+          message.to,
+          message.contents
+        );
       });
     });
   }

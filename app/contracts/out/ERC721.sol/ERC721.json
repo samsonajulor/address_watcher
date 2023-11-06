@@ -738,12 +738,8 @@
     "absolutePath": "lib/solmate/src/tokens/ERC721.sol",
     "id": 43884,
     "exportedSymbols": {
-      "ERC721": [
-        43863
-      ],
-      "ERC721TokenReceiver": [
-        43883
-      ]
+      "ERC721": [43863],
+      "ERC721TokenReceiver": [43883]
     },
     "nodeType": "SourceUnit",
     "src": "42:7323:18",
@@ -753,12 +749,7 @@
         "nodeType": "PragmaDirective",
         "src": "42:24:18",
         "nodes": [],
-        "literals": [
-          "solidity",
-          ">=",
-          "0.8",
-          ".0"
-        ]
+        "literals": ["solidity", ">=", "0.8", ".0"]
       },
       {
         "id": 43863,
@@ -1522,10 +1513,7 @@
                       "id": 43372,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "1410:7:18",
                       "typeDescriptions": {
@@ -1771,10 +1759,7 @@
                       "id": 43395,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "1564:7:18",
                       "typeDescriptions": {
@@ -2243,9 +2228,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    43444
-                  ],
+                  "assignments": [43444],
                   "declarations": [
                     {
                       "constant": false,
@@ -2503,10 +2486,7 @@
                       "id": 43449,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "2563:7:18",
                       "typeDescriptions": {
@@ -3182,10 +3162,7 @@
                       "id": 43510,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "3065:7:18",
                       "typeDescriptions": {
@@ -3338,10 +3315,7 @@
                       "id": 43519,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "3119:7:18",
                       "typeDescriptions": {
@@ -3655,10 +3629,7 @@
                       "id": 43529,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "3176:7:18",
                       "typeDescriptions": {
@@ -4582,10 +4553,7 @@
                       "id": 43595,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "3853:7:18",
                       "typeDescriptions": {
@@ -5173,10 +5141,7 @@
                       "id": 43637,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "4284:7:18",
                       "typeDescriptions": {
@@ -5748,10 +5713,7 @@
                       "id": 43689,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "5309:7:18",
                       "typeDescriptions": {
@@ -5929,10 +5891,7 @@
                       "id": 43699,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "5366:7:18",
                       "typeDescriptions": {
@@ -6319,9 +6278,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    43739
-                  ],
+                  "assignments": [43739],
                   "declarations": [
                     {
                       "constant": false,
@@ -6518,10 +6475,7 @@
                       "id": 43744,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "5713:7:18",
                       "typeDescriptions": {
@@ -7402,10 +7356,7 @@
                       "id": 43792,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "6279:7:18",
                       "typeDescriptions": {
@@ -7997,10 +7948,7 @@
                       "id": 43834,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "6674:7:18",
                       "typeDescriptions": {
@@ -8148,18 +8096,12 @@
           "text": "@notice Modern, minimalist, and gas efficient ERC-721 implementation.\n @author Solmate (https://github.com/transmissions11/solmate/blob/main/src/tokens/ERC721.sol)"
         },
         "fullyImplemented": false,
-        "linearizedBaseContracts": [
-          43863
-        ],
+        "linearizedBaseContracts": [43863],
         "name": "ERC721",
         "nameLocation": "257:6:18",
         "scope": 43884,
         "usedErrors": [],
-        "usedEvents": [
-          43330,
-          43338,
-          43346
-        ]
+        "usedEvents": [43330, 43338, 43346]
       },
       {
         "id": 43883,
@@ -8403,9 +8345,7 @@
           "text": "@notice A generic interface for a contract which properly accepts ERC721 tokens.\n @author Solmate (https://github.com/transmissions11/solmate/blob/main/src/tokens/ERC721.sol)"
         },
         "fullyImplemented": true,
-        "linearizedBaseContracts": [
-          43883
-        ],
+        "linearizedBaseContracts": [43883],
         "name": "ERC721TokenReceiver",
         "nameLocation": "7126:19:18",
         "scope": 43884,

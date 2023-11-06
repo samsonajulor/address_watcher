@@ -195,12 +195,8 @@
     "absolutePath": "lib/openzeppelin-contracts/contracts/access/Ownable.sol",
     "id": 43433,
     "exportedSymbols": {
-      "Context": [
-        43635
-      ],
-      "Ownable": [
-        43432
-      ]
+      "Context": [43635],
+      "Ownable": [43432]
     },
     "nodeType": "SourceUnit",
     "src": "102:2514:18",
@@ -210,12 +206,7 @@
         "nodeType": "PragmaDirective",
         "src": "102:23:18",
         "nodes": [],
-        "literals": [
-          "solidity",
-          "^",
-          "0.8",
-          ".0"
-        ]
+        "literals": ["solidity", "^", "0.8", ".0"]
       },
       {
         "id": 43322,
@@ -738,10 +729,7 @@
                       "id": 43364,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "1414:7:18",
                       "typeDescriptions": {
@@ -931,9 +919,7 @@
                 "modifierName": {
                   "id": 43377,
                   "name": "onlyOwner",
-                  "nameLocations": [
-                    "1868:9:18"
-                  ],
+                  "nameLocations": ["1868:9:18"],
                   "nodeType": "IdentifierPath",
                   "referencedDeclaration": 43351,
                   "src": "1868:9:18"
@@ -1097,10 +1083,7 @@
                       "id": 43396,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "2154:7:18",
                       "typeDescriptions": {
@@ -1200,9 +1183,7 @@
                 "modifierName": {
                   "id": 43393,
                   "name": "onlyOwner",
-                  "nameLocations": [
-                    "2134:9:18"
-                  ],
+                  "nameLocations": ["2134:9:18"],
                   "nodeType": "IdentifierPath",
                   "referencedDeclaration": 43351,
                   "src": "2134:9:18"
@@ -1271,9 +1252,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    43418
-                  ],
+                  "assignments": [43418],
                   "declarations": [
                     {
                       "constant": false,
@@ -1499,9 +1478,7 @@
             "baseName": {
               "id": 43324,
               "name": "Context",
-              "nameLocations": [
-                "683:7:18"
-              ],
+              "nameLocations": ["683:7:18"],
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 43635,
               "src": "683:7:18"
@@ -1521,17 +1498,12 @@
           "text": " @dev Contract module which provides a basic access control mechanism, where\n there is an account (an owner) that can be granted exclusive access to\n specific functions.\n By default, the owner account will be the one that deploys the contract. This\n can later be changed with {transferOwnership}.\n This module is used through inheritance. It will make available the modifier\n `onlyOwner`, which can be applied to your functions to restrict their use to\n the owner."
         },
         "fullyImplemented": true,
-        "linearizedBaseContracts": [
-          43432,
-          43635
-        ],
+        "linearizedBaseContracts": [43432, 43635],
         "name": "Ownable",
         "nameLocation": "672:7:18",
         "scope": 43433,
         "usedErrors": [],
-        "usedEvents": [
-          43333
-        ]
+        "usedEvents": [43333]
       }
     ],
     "license": "MIT"

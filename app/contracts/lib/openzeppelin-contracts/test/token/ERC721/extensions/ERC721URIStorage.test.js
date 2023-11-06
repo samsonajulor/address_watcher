@@ -1,7 +1,9 @@
 const { BN, expectEvent, expectRevert } = require('@openzeppelin/test-helpers');
 const { expect } = require('chai');
 
-const { shouldSupportInterfaces } = require('../../../utils/introspection/SupportsInterface.behavior');
+const {
+  shouldSupportInterfaces,
+} = require('../../../utils/introspection/SupportsInterface.behavior');
 
 const ERC721URIStorageMock = artifacts.require('$ERC721URIStorageMock');
 
@@ -50,7 +52,7 @@ contract('ERC721URIStorage', function (accounts) {
     it('reverts when setting for non existent token id', async function () {
       await expectRevert(
         this.token.$_setTokenURI(nonExistentTokenId, sampleUri),
-        'ERC721URIStorage: URI set of nonexistent token',
+        'ERC721URIStorage: URI set of nonexistent token'
       );
     });
 

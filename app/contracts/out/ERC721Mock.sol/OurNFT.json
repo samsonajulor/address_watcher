@@ -782,15 +782,9 @@
     "absolutePath": "src/ERC721Mock.sol",
     "id": 43916,
     "exportedSymbols": {
-      "ERC721": [
-        43863
-      ],
-      "ERC721TokenReceiver": [
-        43883
-      ],
-      "OurNFT": [
-        43915
-      ]
+      "ERC721": [43863],
+      "ERC721TokenReceiver": [43883],
+      "OurNFT": [43915]
     },
     "nodeType": "SourceUnit",
     "src": "39:356:19",
@@ -800,12 +794,7 @@
         "nodeType": "PragmaDirective",
         "src": "39:24:19",
         "nodes": [],
-        "literals": [
-          "solidity",
-          "^",
-          "0.8",
-          ".13"
-        ]
+        "literals": ["solidity", "^", "0.8", ".13"]
       },
       {
         "id": 43886,
@@ -860,9 +849,7 @@
                 }
               ]
             },
-            "baseFunctions": [
-              43357
-            ],
+            "baseFunctions": [43357],
             "functionSelector": "c87b56dd",
             "implemented": true,
             "kind": "function",
@@ -1151,9 +1138,7 @@
             "baseName": {
               "id": 43887,
               "name": "ERC721",
-              "nameLocations": [
-                "121:6:19"
-              ],
+              "nameLocations": ["121:6:19"],
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 43863,
               "src": "121:6:19"
@@ -1167,19 +1152,12 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "linearizedBaseContracts": [
-          43915,
-          43863
-        ],
+        "linearizedBaseContracts": [43915, 43863],
         "name": "OurNFT",
         "nameLocation": "111:6:19",
         "scope": 43916,
         "usedErrors": [],
-        "usedEvents": [
-          43330,
-          43338,
-          43346
-        ]
+        "usedEvents": [43330, 43338, 43346]
       }
     ],
     "license": "UNLICENSED"

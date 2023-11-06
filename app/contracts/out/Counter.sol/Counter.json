@@ -137,9 +137,7 @@
     "absolutePath": "src/Counter.sol",
     "id": 44234,
     "exportedSymbols": {
-      "Counter": [
-        44233
-      ]
+      "Counter": [44233]
     },
     "nodeType": "SourceUnit",
     "src": "39:219:24",
@@ -149,12 +147,7 @@
         "nodeType": "PragmaDirective",
         "src": "39:24:24",
         "nodes": [],
-        "literals": [
-          "solidity",
-          "^",
-          "0.8",
-          ".13"
-        ]
+        "literals": ["solidity", "^", "0.8", ".13"]
       },
       {
         "id": 44233,
@@ -372,9 +365,7 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "linearizedBaseContracts": [
-          44233
-        ],
+        "linearizedBaseContracts": [44233],
         "name": "Counter",
         "nameLocation": "74:7:24",
         "scope": 44234,

@@ -23,10 +23,12 @@ wss.on('connection', async (ws) => {
     // ws.send(JSON.stringify(event));
     const data = await decodeTxHash(event);
     if (data === false) {
-      console.log('I was supposed to stop')
+      console.log('I was supposed to stop');
       subscription.off('data', () => console.log('Sub was turned off'));
     }
-    console.log('<<<<<<<<<>>>>>>>>>>>><<<<<<<<<>>>>>>>>>>>><<<<<<<<<>>>>>>>>>>>><<<<<<<<<>>>>>>>>>>>>');
+    console.log(
+      '<<<<<<<<<>>>>>>>>>>>><<<<<<<<<>>>>>>>>>>>><<<<<<<<<>>>>>>>>>>>><<<<<<<<<>>>>>>>>>>>>'
+    );
     if (data?.to === mySepoliaAddress || data?.from === mySepoliaAddress) {
       console.log('I am supposed to send an email here');
       subscription.unsubscribe();

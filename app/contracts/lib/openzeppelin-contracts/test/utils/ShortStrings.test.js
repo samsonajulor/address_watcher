@@ -16,7 +16,7 @@ contract('ShortStrings', function () {
     this.mock = await ShortStrings.new();
   });
 
-  for (const str of [0, 1, 16, 31, 32, 64, 1024].map(length => 'a'.repeat(length))) {
+  for (const str of [0, 1, 16, 31, 32, 64, 1024].map((length) => 'a'.repeat(length))) {
     describe(`with string length ${str.length}`, function () {
       it('encode / decode', async function () {
         if (str.length < 32) {

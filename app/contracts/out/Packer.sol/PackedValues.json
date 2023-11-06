@@ -107,10 +107,7 @@
       }
     },
     "settings": {
-      "remappings": [
-        "ds-test/=lib/forge-std/lib/ds-test/src/",
-        "forge-std/=lib/forge-std/src/"
-      ],
+      "remappings": ["ds-test/=lib/forge-std/lib/ds-test/src/", "forge-std/=lib/forge-std/src/"],
       "optimizer": {
         "enabled": true,
         "runs": 200
@@ -139,9 +136,7 @@
     "absolutePath": "src/Packer.sol",
     "id": 43399,
     "exportedSymbols": {
-      "PackedValues": [
-        43398
-      ]
+      "PackedValues": [43398]
     },
     "nodeType": "SourceUnit",
     "src": "32:511:19",
@@ -151,12 +146,7 @@
         "nodeType": "PragmaDirective",
         "src": "32:23:19",
         "nodes": [],
-        "literals": [
-          "solidity",
-          "^",
-          "0.8",
-          ".0"
-        ]
+        "literals": ["solidity", "^", "0.8", ".0"]
       },
       {
         "id": 43398,
@@ -743,9 +733,7 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "linearizedBaseContracts": [
-          43398
-        ],
+        "linearizedBaseContracts": [43398],
         "name": "PackedValues",
         "nameLocation": "66:12:19",
         "scope": 43399,

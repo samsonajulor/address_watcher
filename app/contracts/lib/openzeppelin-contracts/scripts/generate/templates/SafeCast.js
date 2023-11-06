@@ -80,7 +80,7 @@ pragma solidity ^0.8.0;
  */
 `;
 
-const toUintDownCast = length => `\
+const toUintDownCast = (length) => `\
 /**
  * @dev Returns the downcasted uint${length} from uint256, reverting on
  * overflow (when the input is greater than largest uint${length}).
@@ -100,7 +100,7 @@ function toUint${length}(uint256 value) internal pure returns (uint${length}) {
 `;
 
 /* eslint-disable max-len */
-const toIntDownCast = length => `\
+const toIntDownCast = (length) => `\
 /**
  * @dev Returns the downcasted int${length} from int256, reverting on
  * overflow (when the input is less than smallest int${length} or
@@ -121,7 +121,7 @@ function toInt${length}(int256 value) internal pure returns (int${length} downca
 `;
 /* eslint-enable max-len */
 
-const toInt = length => `\
+const toInt = (length) => `\
 /**
  * @dev Converts an unsigned uint${length} into a signed int${length}.
  *
@@ -138,7 +138,7 @@ function toInt${length}(uint${length} value) internal pure returns (int${length}
 }
 `;
 
-const toUint = length => `\
+const toUint = (length) => `\
 /**
  * @dev Converts a signed int${length} into an unsigned uint${length}.
  *
@@ -159,5 +159,5 @@ module.exports = format(
   header.trimEnd(),
   'library SafeCast {',
   [...LENGTHS.map(toUintDownCast), toUint(256), ...LENGTHS.map(toIntDownCast), toInt(256)],
-  '}',
+  '}'
 );

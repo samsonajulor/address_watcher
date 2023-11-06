@@ -22,7 +22,7 @@ contract('TokenTimelock', function (accounts) {
       const pastReleaseTime = (await time.latest()).sub(time.duration.years(1));
       await expectRevert(
         TokenTimelock.new(this.token.address, beneficiary, pastReleaseTime),
-        'TokenTimelock: release time is before current time',
+        'TokenTimelock: release time is before current time'
       );
     });
 
@@ -40,12 +40,18 @@ contract('TokenTimelock', function (accounts) {
       });
 
       it('cannot be released before time limit', async function () {
-        await expectRevert(this.timelock.release(), 'TokenTimelock: current time is before release time');
+        await expectRevert(
+          this.timelock.release(),
+          'TokenTimelock: current time is before release time'
+        );
       });
 
       it('cannot be released just before time limit', async function () {
         await time.increaseTo(this.releaseTime.sub(time.duration.seconds(3)));
-        await expectRevert(this.timelock.release(), 'TokenTimelock: current time is before release time');
+        await expectRevert(
+          this.timelock.release(),
+          'TokenTimelock: current time is before release time'
+        );
       });
 
       it('can be released just after limit', async function () {

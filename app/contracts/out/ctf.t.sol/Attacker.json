@@ -259,84 +259,32 @@
     "absolutePath": "test/ctf.t.sol",
     "id": 44638,
     "exportedSymbols": {
-      "Attacker": [
-        44637
-      ],
-      "Context": [
-        43532
-      ],
-      "DSTest": [
-        2291
-      ],
-      "FeeManager": [
-        44396
-      ],
-      "IERC20": [
-        43510
-      ],
-      "Ownable": [
-        43432
-      ],
-      "StakeKing": [
-        43967
-      ],
-      "StakingContractTest": [
-        44636
-      ],
-      "StdAssertions": [
-        3784
-      ],
-      "StdChains": [
-        4522
-      ],
-      "StdCheats": [
-        7375
-      ],
-      "StdInvariant": [
-        7700
-      ],
-      "StdStorage": [
-        8450
-      ],
-      "StdStyle": [
-        11300
-      ],
-      "StdUtils": [
-        12148
-      ],
-      "Test": [
-        12199
-      ],
-      "TestBase": [
-        2357
-      ],
-      "Vm": [
-        13892
-      ],
-      "console": [
-        21956
-      ],
-      "console2": [
-        30081
-      ],
-      "erc20Token": [
-        44233
-      ],
-      "safeconsole": [
-        43319
-      ],
-      "stdError": [
-        7441
-      ],
-      "stdJson": [
-        8276
-      ],
-      "stdMath": [
-        8418
-      ],
-      "stdStorage": [
-        10089
-      ]
+      "Attacker": [44637],
+      "Context": [43532],
+      "DSTest": [2291],
+      "FeeManager": [44396],
+      "IERC20": [43510],
+      "Ownable": [43432],
+      "StakeKing": [43967],
+      "StakingContractTest": [44636],
+      "StdAssertions": [3784],
+      "StdChains": [4522],
+      "StdCheats": [7375],
+      "StdInvariant": [7700],
+      "StdStorage": [8450],
+      "StdStyle": [11300],
+      "StdUtils": [12148],
+      "Test": [12199],
+      "TestBase": [2357],
+      "Vm": [13892],
+      "console": [21956],
+      "console2": [30081],
+      "erc20Token": [44233],
+      "safeconsole": [43319],
+      "stdError": [7441],
+      "stdJson": [8276],
+      "stdMath": [8418],
+      "stdStorage": [10089]
     },
     "nodeType": "SourceUnit",
     "src": "32:2211:24",
@@ -346,12 +294,7 @@
         "nodeType": "PragmaDirective",
         "src": "32:23:24",
         "nodes": [],
-        "literals": [
-          "solidity",
-          "^",
-          "0.8",
-          ".0"
-        ]
+        "literals": ["solidity", "^", "0.8", ".0"]
       },
       {
         "id": 44399,
@@ -432,9 +375,7 @@
               "pathNode": {
                 "id": 44405,
                 "name": "StakeKing",
-                "nameLocations": [
-                  "220:9:24"
-                ],
+                "nameLocations": ["220:9:24"],
                 "nodeType": "IdentifierPath",
                 "referencedDeclaration": 43967,
                 "src": "220:9:24"
@@ -470,9 +411,7 @@
               "pathNode": {
                 "id": 44408,
                 "name": "erc20Token",
-                "nameLocations": [
-                  "245:10:24"
-                ],
+                "nameLocations": ["245:10:24"],
                 "nodeType": "IdentifierPath",
                 "referencedDeclaration": 44233,
                 "src": "245:10:24"
@@ -508,9 +447,7 @@
               "pathNode": {
                 "id": 44411,
                 "name": "FeeManager",
-                "nameLocations": [
-                  "266:10:24"
-                ],
+                "nameLocations": ["266:10:24"],
                 "nodeType": "IdentifierPath",
                 "referencedDeclaration": 44396,
                 "src": "266:10:24"
@@ -979,9 +916,7 @@
                           "pathNode": {
                             "id": 44441,
                             "name": "erc20Token",
-                            "nameLocations": [
-                              "499:10:24"
-                            ],
+                            "nameLocations": ["499:10:24"],
                             "nodeType": "IdentifierPath",
                             "referencedDeclaration": 44233,
                             "src": "499:10:24"
@@ -1062,9 +997,7 @@
                           "pathNode": {
                             "id": 44451,
                             "name": "FeeManager",
-                            "nameLocations": [
-                              "559:10:24"
-                            ],
+                            "nameLocations": ["559:10:24"],
                             "nodeType": "IdentifierPath",
                             "referencedDeclaration": 44396,
                             "src": "559:10:24"
@@ -1269,9 +1202,7 @@
                           "pathNode": {
                             "id": 44458,
                             "name": "StakeKing",
-                            "nameLocations": [
-                              "597:9:24"
-                            ],
+                            "nameLocations": ["597:9:24"],
                             "nodeType": "IdentifierPath",
                             "referencedDeclaration": 43967,
                             "src": "597:9:24"
@@ -2225,26 +2156,8 @@
                       "name": "assertEq",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2485,
-                        2510,
-                        2523,
-                        2539,
-                        2581,
-                        2623,
-                        2665,
-                        2702,
-                        2739,
-                        2776,
-                        320,
-                        345,
-                        375,
-                        400,
-                        459,
-                        484,
-                        514,
-                        539,
-                        2012,
-                        2047
+                        2485, 2510, 2523, 2539, 2581, 2623, 2665, 2702, 2739, 2776, 320, 345, 375,
+                        400, 459, 484, 514, 539, 2012, 2047
                       ],
                       "referencedDeclaration": 514,
                       "src": "1027:8:24",
@@ -3197,26 +3110,8 @@
                       "name": "assertEq",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2485,
-                        2510,
-                        2523,
-                        2539,
-                        2581,
-                        2623,
-                        2665,
-                        2702,
-                        2739,
-                        2776,
-                        320,
-                        345,
-                        375,
-                        400,
-                        459,
-                        484,
-                        514,
-                        539,
-                        2012,
-                        2047
+                        2485, 2510, 2523, 2539, 2581, 2623, 2665, 2702, 2739, 2776, 320, 345, 375,
+                        400, 459, 484, 514, 539, 2012, 2047
                       ],
                       "referencedDeclaration": 514,
                       "src": "2089:8:24",
@@ -3390,26 +3285,8 @@
                       "name": "assertEq",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2485,
-                        2510,
-                        2523,
-                        2539,
-                        2581,
-                        2623,
-                        2665,
-                        2702,
-                        2739,
-                        2776,
-                        320,
-                        345,
-                        375,
-                        400,
-                        459,
-                        484,
-                        514,
-                        539,
-                        2012,
-                        2047
+                        2485, 2510, 2523, 2539, 2581, 2623, 2665, 2702, 2739, 2776, 320, 345, 375,
+                        400, 459, 484, 514, 539, 2012, 2047
                       ],
                       "referencedDeclaration": 514,
                       "src": "2136:8:24",
@@ -3470,9 +3347,7 @@
             "baseName": {
               "id": 44403,
               "name": "Test",
-              "nameLocations": [
-                "209:4:24"
-              ],
+              "nameLocations": ["209:4:24"],
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 12199,
               "src": "209:4:24"
@@ -3483,53 +3358,19 @@
           }
         ],
         "canonicalName": "StakingContractTest",
-        "contractDependencies": [
-          43967,
-          44233,
-          44396
-        ],
+        "contractDependencies": [43967, 44233, 44396],
         "contractKind": "contract",
         "fullyImplemented": true,
         "linearizedBaseContracts": [
-          44636,
-          12199,
-          12148,
-          7700,
-          7375,
-          6582,
-          4522,
-          3784,
-          2291,
-          2357,
-          2354
+          44636, 12199, 12148, 7700, 7375, 6582, 4522, 3784, 2291, 2357, 2354
         ],
         "name": "StakingContractTest",
         "nameLocation": "186:19:24",
         "scope": 44638,
         "usedErrors": [],
         "usedEvents": [
-          5,
-          9,
-          13,
-          17,
-          21,
-          25,
-          29,
-          33,
-          39,
-          45,
-          53,
-          61,
-          67,
-          73,
-          79,
-          85,
-          2379,
-          2384,
-          2389,
-          2396,
-          2403,
-          2410
+          5, 9, 13, 17, 21, 25, 29, 33, 39, 45, 53, 61, 67, 73, 79, 85, 2379, 2384, 2389, 2396,
+          2403, 2410
         ]
       },
       {
@@ -3543,9 +3384,7 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "linearizedBaseContracts": [
-          44637
-        ],
+        "linearizedBaseContracts": [44637],
         "name": "Attacker",
         "nameLocation": "2204:8:24",
         "scope": 44638,

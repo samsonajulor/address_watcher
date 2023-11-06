@@ -300,7 +300,7 @@ contract('SafeMath', function () {
         const b = new BN('1234');
 
         expect(
-          await this.safeMath.methods['$sub(uint256,uint256,string)'](a, b, 'MyErrorMessage'),
+          await this.safeMath.methods['$sub(uint256,uint256,string)'](a, b, 'MyErrorMessage')
         ).to.be.bignumber.equal(a.sub(b));
       });
 
@@ -310,7 +310,7 @@ contract('SafeMath', function () {
 
         await expectRevert(
           this.safeMath.methods['$sub(uint256,uint256,string)'](a, b, 'MyErrorMessage'),
-          'MyErrorMessage',
+          'MyErrorMessage'
         );
       });
     });
@@ -321,7 +321,7 @@ contract('SafeMath', function () {
         const b = new BN('5678');
 
         expect(
-          await this.safeMath.methods['$div(uint256,uint256,string)'](a, b, 'MyErrorMessage'),
+          await this.safeMath.methods['$div(uint256,uint256,string)'](a, b, 'MyErrorMessage')
         ).to.be.bignumber.equal(a.div(b));
       });
 
@@ -330,7 +330,7 @@ contract('SafeMath', function () {
         const b = new BN('5678');
 
         expect(
-          await this.safeMath.methods['$div(uint256,uint256,string)'](a, b, 'MyErrorMessage'),
+          await this.safeMath.methods['$div(uint256,uint256,string)'](a, b, 'MyErrorMessage')
         ).to.be.bignumber.equal('0');
       });
 
@@ -339,7 +339,7 @@ contract('SafeMath', function () {
         const b = new BN('5678');
 
         expect(
-          await this.safeMath.methods['$div(uint256,uint256,string)'](a, b, 'MyErrorMessage'),
+          await this.safeMath.methods['$div(uint256,uint256,string)'](a, b, 'MyErrorMessage')
         ).to.be.bignumber.equal('1');
       });
 
@@ -349,7 +349,7 @@ contract('SafeMath', function () {
 
         await expectRevert(
           this.safeMath.methods['$div(uint256,uint256,string)'](a, b, 'MyErrorMessage'),
-          'MyErrorMessage',
+          'MyErrorMessage'
         );
       });
     });
@@ -361,7 +361,7 @@ contract('SafeMath', function () {
           const b = new BN('5678');
 
           expect(
-            await this.safeMath.methods['$mod(uint256,uint256,string)'](a, b, 'MyErrorMessage'),
+            await this.safeMath.methods['$mod(uint256,uint256,string)'](a, b, 'MyErrorMessage')
           ).to.be.bignumber.equal(a.mod(b));
         });
 
@@ -370,7 +370,7 @@ contract('SafeMath', function () {
           const b = new BN('5678');
 
           expect(
-            await this.safeMath.methods['$mod(uint256,uint256,string)'](a, b, 'MyErrorMessage'),
+            await this.safeMath.methods['$mod(uint256,uint256,string)'](a, b, 'MyErrorMessage')
           ).to.be.bignumber.equal(a.mod(b));
         });
 
@@ -379,7 +379,7 @@ contract('SafeMath', function () {
           const b = new BN('5678');
 
           expect(
-            await this.safeMath.methods['$mod(uint256,uint256,string)'](a, b, 'MyErrorMessage'),
+            await this.safeMath.methods['$mod(uint256,uint256,string)'](a, b, 'MyErrorMessage')
           ).to.be.bignumber.equal(a.mod(b));
         });
 
@@ -388,7 +388,7 @@ contract('SafeMath', function () {
           const b = new BN('5678');
 
           expect(
-            await this.safeMath.methods['$mod(uint256,uint256,string)'](a, b, 'MyErrorMessage'),
+            await this.safeMath.methods['$mod(uint256,uint256,string)'](a, b, 'MyErrorMessage')
           ).to.be.bignumber.equal(a.mod(b));
         });
       });
@@ -399,7 +399,7 @@ contract('SafeMath', function () {
 
         await expectRevert(
           this.safeMath.methods['$mod(uint256,uint256,string)'](a, b, 'MyErrorMessage'),
-          'MyErrorMessage',
+          'MyErrorMessage'
         );
       });
     });

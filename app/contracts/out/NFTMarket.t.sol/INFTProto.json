@@ -365,30 +365,14 @@
     "absolutePath": "test/NFTMarket.t.sol",
     "id": 46065,
     "exportedSymbols": {
-      "ECDSA": [
-        44230
-      ],
-      "IERC165": [
-        44242
-      ],
-      "IERC721": [
-        43613
-      ],
-      "INFTProto": [
-        45748
-      ],
-      "NFTMarketplace": [
-        45723
-      ],
-      "NFTMarketplaceTest": [
-        46064
-      ],
-      "Test": [
-        12199
-      ],
-      "console2": [
-        30081
-      ]
+      "ECDSA": [44230],
+      "IERC165": [44242],
+      "IERC721": [43613],
+      "INFTProto": [45748],
+      "NFTMarketplace": [45723],
+      "NFTMarketplaceTest": [46064],
+      "Test": [12199],
+      "console2": [30081]
     },
     "nodeType": "SourceUnit",
     "src": "32:5138:28",
@@ -398,12 +382,7 @@
         "nodeType": "PragmaDirective",
         "src": "32:23:28",
         "nodes": [],
-        "literals": [
-          "solidity",
-          "^",
-          "0.8",
-          ".0"
-        ]
+        "literals": ["solidity", "^", "0.8", ".0"]
       },
       {
         "id": 45728,
@@ -688,9 +667,7 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "linearizedBaseContracts": [
-          45748
-        ],
+        "linearizedBaseContracts": [45748],
         "name": "INFTProto",
         "nameLocation": "360:9:28",
         "scope": 46065,
@@ -711,9 +688,7 @@
             "libraryName": {
               "id": 45751,
               "name": "ECDSA",
-              "nameLocations": [
-                "574:5:28"
-              ],
+              "nameLocations": ["574:5:28"],
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 44230,
               "src": "574:5:28"
@@ -928,9 +903,7 @@
               "pathNode": {
                 "id": 45767,
                 "name": "NFTMarketplace",
-                "nameLocations": [
-                  "770:14:28"
-                ],
+                "nameLocations": ["770:14:28"],
                 "nodeType": "IdentifierPath",
                 "referencedDeclaration": 45723,
                 "src": "770:14:28"
@@ -1417,9 +1390,7 @@
                           "pathNode": {
                             "id": 45802,
                             "name": "NFTMarketplace",
-                            "nameLocations": [
-                              "1213:14:28"
-                            ],
+                            "nameLocations": ["1213:14:28"],
                             "nodeType": "IdentifierPath",
                             "referencedDeclaration": 45723,
                             "src": "1213:14:28"
@@ -1876,13 +1847,7 @@
                   "src": "1514:45:28"
                 },
                 {
-                  "assignments": [
-                    45846,
-                    45848,
-                    45850,
-                    45852,
-                    45854
-                  ],
+                  "assignments": [45846, 45848, 45850, 45852, 45854],
                   "declarations": [
                     {
                       "constant": false,
@@ -3418,9 +3383,7 @@
                   "src": "2474:26:28"
                 },
                 {
-                  "assignments": [
-                    45970
-                  ],
+                  "assignments": [45970],
                   "declarations": [
                     {
                       "constant": false,
@@ -3443,9 +3406,7 @@
                         "pathNode": {
                           "id": 45968,
                           "name": "INFTProto",
-                          "nameLocations": [
-                            "2547:9:28"
-                          ],
+                          "nameLocations": ["2547:9:28"],
                           "nodeType": "IdentifierPath",
                           "referencedDeclaration": 45748,
                           "src": "2547:9:28"
@@ -3692,9 +3653,7 @@
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
-                      "names": [
-                        "value"
-                      ],
+                      "names": ["value"],
                       "nodeType": "FunctionCallOptions",
                       "options": [
                         {
@@ -3917,13 +3876,7 @@
                   "src": "2967:45:28"
                 },
                 {
-                  "assignments": [
-                    46006,
-                    46008,
-                    46010,
-                    46012,
-                    46014
-                  ],
+                  "assignments": [46006, 46008, 46010, 46012, 46014],
                   "declarations": [
                     {
                       "constant": false,
@@ -4388,9 +4341,7 @@
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
-                      "names": [
-                        "value"
-                      ],
+                      "names": ["value"],
                       "nodeType": "FunctionCallOptions",
                       "options": [
                         {
@@ -4673,9 +4624,7 @@
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
-                      "names": [
-                        "value"
-                      ],
+                      "names": ["value"],
                       "nodeType": "FunctionCallOptions",
                       "options": [
                         {
@@ -4749,9 +4698,7 @@
             "baseName": {
               "id": 45749,
               "name": "Test",
-              "nameLocations": [
-                "557:4:28"
-              ],
+              "nameLocations": ["557:4:28"],
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 12199,
               "src": "557:4:28"
@@ -4762,54 +4709,22 @@
           }
         ],
         "canonicalName": "NFTMarketplaceTest",
-        "contractDependencies": [
-          45723
-        ],
+        "contractDependencies": [45723],
         "contractKind": "contract",
         "fullyImplemented": true,
         "internalFunctionIDs": {
           "22010": 1
         },
         "linearizedBaseContracts": [
-          46064,
-          12199,
-          12148,
-          7700,
-          7375,
-          6582,
-          4522,
-          3784,
-          2291,
-          2357,
-          2354
+          46064, 12199, 12148, 7700, 7375, 6582, 4522, 3784, 2291, 2357, 2354
         ],
         "name": "NFTMarketplaceTest",
         "nameLocation": "535:18:28",
         "scope": 46065,
         "usedErrors": [],
         "usedEvents": [
-          5,
-          9,
-          13,
-          17,
-          21,
-          25,
-          29,
-          33,
-          39,
-          45,
-          53,
-          61,
-          67,
-          73,
-          79,
-          85,
-          2379,
-          2384,
-          2389,
-          2396,
-          2403,
-          2410
+          5, 9, 13, 17, 21, 25, 29, 33, 39, 45, 53, 61, 67, 73, 79, 85, 2379, 2384, 2389, 2396,
+          2403, 2410
         ]
       }
     ],

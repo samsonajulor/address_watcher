@@ -31,10 +31,7 @@
       }
     },
     "settings": {
-      "remappings": [
-        "ds-test/=lib/forge-std/lib/ds-test/src/",
-        "forge-std/=lib/forge-std/src/"
-      ],
+      "remappings": ["ds-test/=lib/forge-std/lib/ds-test/src/", "forge-std/=lib/forge-std/src/"],
       "optimizer": {
         "enabled": true,
         "runs": 200
@@ -87,24 +84,12 @@
     "absolutePath": "lib/forge-std/src/StdCheats.sol",
     "id": 7415,
     "exportedSymbols": {
-      "StdCheats": [
-        7414
-      ],
-      "StdCheatsSafe": [
-        6621
-      ],
-      "StdStorage": [
-        8489
-      ],
-      "Vm": [
-        13931
-      ],
-      "console2": [
-        30120
-      ],
-      "stdStorage": [
-        10128
-      ]
+      "StdCheats": [7414],
+      "StdCheatsSafe": [6621],
+      "StdStorage": [8489],
+      "Vm": [13931],
+      "console2": [30120],
+      "stdStorage": [10128]
     },
     "nodeType": "SourceUnit",
     "src": "32:31422:5",
@@ -114,25 +99,14 @@
         "nodeType": "PragmaDirective",
         "src": "32:31:5",
         "nodes": [],
-        "literals": [
-          "solidity",
-          ">=",
-          "0.6",
-          ".2",
-          "<",
-          "0.9",
-          ".0"
-        ]
+        "literals": ["solidity", ">=", "0.6", ".2", "<", "0.9", ".0"]
       },
       {
         "id": 4564,
         "nodeType": "PragmaDirective",
         "src": "65:33:5",
         "nodes": [],
-        "literals": [
-          "experimental",
-          "ABIEncoderV2"
-        ]
+        "literals": ["experimental", "ABIEncoderV2"]
       },
       {
         "id": 4567,
@@ -251,9 +225,7 @@
               "pathNode": {
                 "id": 4572,
                 "name": "Vm",
-                "nameLocations": [
-                  "266:2:5"
-                ],
+                "nameLocations": ["266:2:5"],
                 "nodeType": "IdentifierPath",
                 "referencedDeclaration": 13931,
                 "src": "266:2:5"
@@ -737,9 +709,7 @@
                   "pathNode": {
                     "id": 4605,
                     "name": "RawTx1559Detail",
-                    "nameLocations": [
-                      "998:15:5"
-                    ],
+                    "nameLocations": ["998:15:5"],
                     "nodeType": "IdentifierPath",
                     "referencedDeclaration": 4629,
                     "src": "998:15:5"
@@ -815,9 +785,7 @@
                     "pathNode": {
                       "id": 4611,
                       "name": "AccessList",
-                      "nameLocations": [
-                        "1125:10:5"
-                      ],
+                      "nameLocations": ["1125:10:5"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 4721,
                       "src": "1125:10:5"
@@ -1209,9 +1177,7 @@
                   "pathNode": {
                     "id": 4641,
                     "name": "Tx1559Detail",
-                    "nameLocations": [
-                      "1470:12:5"
-                    ],
+                    "nameLocations": ["1470:12:5"],
                     "nodeType": "IdentifierPath",
                     "referencedDeclaration": 4665,
                     "src": "1470:12:5"
@@ -1287,9 +1253,7 @@
                     "pathNode": {
                       "id": 4647,
                       "name": "AccessList",
-                      "nameLocations": [
-                        "1557:10:5"
-                      ],
+                      "nameLocations": ["1557:10:5"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 4721,
                       "src": "1557:10:5"
@@ -1708,9 +1672,7 @@
                   "pathNode": {
                     "id": 4679,
                     "name": "TxDetailLegacy",
-                    "nameLocations": [
-                      "2179:14:5"
-                    ],
+                    "nameLocations": ["2179:14:5"],
                     "nodeType": "IdentifierPath",
                     "referencedDeclaration": 4715,
                     "src": "2179:14:5"
@@ -1759,9 +1721,7 @@
                     "pathNode": {
                       "id": 4683,
                       "name": "AccessList",
-                      "nameLocations": [
-                        "2250:10:5"
-                      ],
+                      "nameLocations": ["2250:10:5"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 4721,
                       "src": "2250:10:5"
@@ -2466,9 +2426,7 @@
                     "pathNode": {
                       "id": 4736,
                       "name": "RawReceiptLog",
-                      "nameLocations": [
-                        "3119:13:5"
-                      ],
+                      "nameLocations": ["3119:13:5"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 4847,
                       "src": "3119:13:5"
@@ -2852,9 +2810,7 @@
                     "pathNode": {
                       "id": 4765,
                       "name": "ReceiptLog",
-                      "nameLocations": [
-                        "3515:10:5"
-                      ],
+                      "nameLocations": ["3515:10:5"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 4867,
                       "src": "3515:10:5"
@@ -3146,9 +3102,7 @@
                     "pathNode": {
                       "id": 4788,
                       "name": "Receipt",
-                      "nameLocations": [
-                        "3912:7:5"
-                      ],
+                      "nameLocations": ["3912:7:5"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 4779,
                       "src": "3912:7:5"
@@ -3219,9 +3173,7 @@
                     "pathNode": {
                       "id": 4794,
                       "name": "Tx1559",
-                      "nameLocations": [
-                        "3967:6:5"
-                      ],
+                      "nameLocations": ["3967:6:5"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 4646,
                       "src": "3967:6:5"
@@ -3265,9 +3217,7 @@
                     "pathNode": {
                       "id": 4798,
                       "name": "TxReturn",
-                      "nameLocations": [
-                        "3998:8:5"
-                      ],
+                      "nameLocations": ["3998:8:5"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 4872,
                       "src": "3998:8:5"
@@ -3423,9 +3373,7 @@
                     "pathNode": {
                       "id": 4811,
                       "name": "RawReceipt",
-                      "nameLocations": [
-                        "4148:10:5"
-                      ],
+                      "nameLocations": ["4148:10:5"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 4750,
                       "src": "4148:10:5"
@@ -3469,9 +3417,7 @@
                     "pathNode": {
                       "id": 4815,
                       "name": "TxReturn",
-                      "nameLocations": [
-                        "4179:8:5"
-                      ],
+                      "nameLocations": ["4179:8:5"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 4872,
                       "src": "4179:8:5"
@@ -3542,9 +3488,7 @@
                     "pathNode": {
                       "id": 4821,
                       "name": "RawTx1559",
-                      "nameLocations": [
-                        "4236:9:5"
-                      ],
+                      "nameLocations": ["4236:9:5"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 4610,
                       "src": "4236:9:5"
@@ -4324,9 +4268,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    4891
-                  ],
+                  "assignments": [4891],
                   "declarations": [
                     {
                       "constant": false,
@@ -4501,10 +4443,7 @@
                       "id": 4894,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "5549:7:5",
                       "typeDescriptions": {
@@ -4533,9 +4472,7 @@
                   "src": "5549:111:5"
                 },
                 {
-                  "assignments": [
-                    4902
-                  ],
+                  "assignments": [4902],
                   "declarations": [
                     {
                       "constant": false,
@@ -4570,9 +4507,7 @@
                   "src": "5671:12:5"
                 },
                 {
-                  "assignments": [
-                    4905
-                  ],
+                  "assignments": [4905],
                   "declarations": [
                     {
                       "constant": false,
@@ -6126,10 +6061,7 @@
                                   "id": 5020,
                                   "name": "assumeNotPrecompile",
                                   "nodeType": "Identifier",
-                                  "overloadedDeclarations": [
-                                    5261,
-                                    5404
-                                  ],
+                                  "overloadedDeclarations": [5261, 5404],
                                   "referencedDeclaration": 5261,
                                   "src": "7158:19:5",
                                   "typeDescriptions": {
@@ -6415,9 +6347,7 @@
                     "pathNode": {
                       "id": 4984,
                       "name": "AddressType",
-                      "nameLocations": [
-                        "6762:11:5"
-                      ],
+                      "nameLocations": ["6762:11:5"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 4883,
                       "src": "6762:11:5"
@@ -6498,12 +6428,7 @@
                       "id": 5051,
                       "name": "assumeAddressIsNot",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        5040,
-                        5062,
-                        5092,
-                        5130
-                      ],
+                      "overloadedDeclarations": [5040, 5062, 5092, 5130],
                       "referencedDeclaration": 5040,
                       "src": "7430:18:5",
                       "typeDescriptions": {
@@ -6573,12 +6498,7 @@
                       "id": 5056,
                       "name": "assumeAddressIsNot",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        5040,
-                        5062,
-                        5092,
-                        5130
-                      ],
+                      "overloadedDeclarations": [5040, 5062, 5092, 5130],
                       "referencedDeclaration": 5040,
                       "src": "7478:18:5",
                       "typeDescriptions": {
@@ -6666,9 +6586,7 @@
                     "pathNode": {
                       "id": 5043,
                       "name": "AddressType",
-                      "nameLocations": [
-                        "7351:11:5"
-                      ],
+                      "nameLocations": ["7351:11:5"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 4883,
                       "src": "7351:11:5"
@@ -6703,9 +6621,7 @@
                     "pathNode": {
                       "id": 5046,
                       "name": "AddressType",
-                      "nameLocations": [
-                        "7377:11:5"
-                      ],
+                      "nameLocations": ["7377:11:5"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 4883,
                       "src": "7377:11:5"
@@ -6786,12 +6702,7 @@
                       "id": 5076,
                       "name": "assumeAddressIsNot",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        5040,
-                        5062,
-                        5092,
-                        5130
-                      ],
+                      "overloadedDeclarations": [5040, 5062, 5092, 5130],
                       "referencedDeclaration": 5040,
                       "src": "7714:18:5",
                       "typeDescriptions": {
@@ -6861,12 +6772,7 @@
                       "id": 5081,
                       "name": "assumeAddressIsNot",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        5040,
-                        5062,
-                        5092,
-                        5130
-                      ],
+                      "overloadedDeclarations": [5040, 5062, 5092, 5130],
                       "referencedDeclaration": 5040,
                       "src": "7762:18:5",
                       "typeDescriptions": {
@@ -6936,12 +6842,7 @@
                       "id": 5086,
                       "name": "assumeAddressIsNot",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        5040,
-                        5062,
-                        5092,
-                        5130
-                      ],
+                      "overloadedDeclarations": [5040, 5062, 5092, 5130],
                       "referencedDeclaration": 5040,
                       "src": "7810:18:5",
                       "typeDescriptions": {
@@ -7029,9 +6930,7 @@
                     "pathNode": {
                       "id": 5065,
                       "name": "AddressType",
-                      "nameLocations": [
-                        "7588:11:5"
-                      ],
+                      "nameLocations": ["7588:11:5"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 4883,
                       "src": "7588:11:5"
@@ -7066,9 +6965,7 @@
                     "pathNode": {
                       "id": 5068,
                       "name": "AddressType",
-                      "nameLocations": [
-                        "7622:11:5"
-                      ],
+                      "nameLocations": ["7622:11:5"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 4883,
                       "src": "7622:11:5"
@@ -7103,9 +7000,7 @@
                     "pathNode": {
                       "id": 5071,
                       "name": "AddressType",
-                      "nameLocations": [
-                        "7656:11:5"
-                      ],
+                      "nameLocations": ["7656:11:5"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 4883,
                       "src": "7656:11:5"
@@ -7186,12 +7081,7 @@
                       "id": 5109,
                       "name": "assumeAddressIsNot",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        5040,
-                        5062,
-                        5092,
-                        5130
-                      ],
+                      "overloadedDeclarations": [5040, 5062, 5092, 5130],
                       "referencedDeclaration": 5040,
                       "src": "8080:18:5",
                       "typeDescriptions": {
@@ -7261,12 +7151,7 @@
                       "id": 5114,
                       "name": "assumeAddressIsNot",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        5040,
-                        5062,
-                        5092,
-                        5130
-                      ],
+                      "overloadedDeclarations": [5040, 5062, 5092, 5130],
                       "referencedDeclaration": 5040,
                       "src": "8128:18:5",
                       "typeDescriptions": {
@@ -7336,12 +7221,7 @@
                       "id": 5119,
                       "name": "assumeAddressIsNot",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        5040,
-                        5062,
-                        5092,
-                        5130
-                      ],
+                      "overloadedDeclarations": [5040, 5062, 5092, 5130],
                       "referencedDeclaration": 5040,
                       "src": "8176:18:5",
                       "typeDescriptions": {
@@ -7411,12 +7291,7 @@
                       "id": 5124,
                       "name": "assumeAddressIsNot",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        5040,
-                        5062,
-                        5092,
-                        5130
-                      ],
+                      "overloadedDeclarations": [5040, 5062, 5092, 5130],
                       "referencedDeclaration": 5040,
                       "src": "8224:18:5",
                       "typeDescriptions": {
@@ -7504,9 +7379,7 @@
                     "pathNode": {
                       "id": 5095,
                       "name": "AddressType",
-                      "nameLocations": [
-                        "7920:11:5"
-                      ],
+                      "nameLocations": ["7920:11:5"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 4883,
                       "src": "7920:11:5"
@@ -7541,9 +7414,7 @@
                     "pathNode": {
                       "id": 5098,
                       "name": "AddressType",
-                      "nameLocations": [
-                        "7954:11:5"
-                      ],
+                      "nameLocations": ["7954:11:5"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 4883,
                       "src": "7954:11:5"
@@ -7578,9 +7449,7 @@
                     "pathNode": {
                       "id": 5101,
                       "name": "AddressType",
-                      "nameLocations": [
-                        "7988:11:5"
-                      ],
+                      "nameLocations": ["7988:11:5"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 4883,
                       "src": "7988:11:5"
@@ -7615,9 +7484,7 @@
                     "pathNode": {
                       "id": 5104,
                       "name": "AddressType",
-                      "nameLocations": [
-                        "8022:11:5"
-                      ],
+                      "nameLocations": ["8022:11:5"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 4883,
                       "src": "8022:11:5"
@@ -7747,10 +7614,7 @@
                       "id": 5137,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "8682:7:5",
                       "typeDescriptions": {
@@ -7779,9 +7643,7 @@
                   "src": "8682:167:5"
                 },
                 {
-                  "assignments": [
-                    5146
-                  ],
+                  "assignments": [5146],
                   "declarations": [
                     {
                       "constant": false,
@@ -7888,9 +7750,7 @@
                   "src": "8859:47:5"
                 },
                 {
-                  "assignments": [
-                    5154
-                  ],
+                  "assignments": [5154],
                   "declarations": [
                     {
                       "constant": false,
@@ -8132,10 +7992,7 @@
                   "src": "8974:25:5"
                 },
                 {
-                  "assignments": [
-                    5172,
-                    null
-                  ],
+                  "assignments": [5172, null],
                   "declarations": [
                     {
                       "constant": false,
@@ -8277,9 +8134,7 @@
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
-                      "names": [
-                        "value"
-                      ],
+                      "names": ["value"],
                       "nodeType": "FunctionCallOptions",
                       "options": [
                         {
@@ -9282,10 +9137,7 @@
                       "id": 5254,
                       "name": "assumeNotPrecompile",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        5261,
-                        5404
-                      ],
+                      "overloadedDeclarations": [5261, 5404],
                       "referencedDeclaration": 5404,
                       "src": "9863:19:5",
                       "typeDescriptions": {
@@ -11720,9 +11572,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    5438
-                  ],
+                  "assignments": [5438],
                   "declarations": [
                     {
                       "constant": false,
@@ -11822,9 +11672,7 @@
                   "src": "12193:38:5"
                 },
                 {
-                  "assignments": [
-                    5445
-                  ],
+                  "assignments": [5445],
                   "declarations": [
                     {
                       "constant": false,
@@ -11924,9 +11772,7 @@
                   "src": "12241:44:5"
                 },
                 {
-                  "assignments": [
-                    5453
-                  ],
+                  "assignments": [5453],
                   "declarations": [
                     {
                       "constant": false,
@@ -11949,9 +11795,7 @@
                         "pathNode": {
                           "id": 5451,
                           "name": "RawEIP1559ScriptArtifact",
-                          "nameLocations": [
-                            "12295:24:5"
-                          ],
+                          "nameLocations": ["12295:24:5"],
                           "nodeType": "IdentifierPath",
                           "referencedDeclaration": 4825,
                           "src": "12295:24:5"
@@ -12067,9 +11911,7 @@
                   "src": "12295:96:5"
                 },
                 {
-                  "assignments": [
-                    5463
-                  ],
+                  "assignments": [5463],
                   "declarations": [
                     {
                       "constant": false,
@@ -12092,9 +11934,7 @@
                         "pathNode": {
                           "id": 5461,
                           "name": "EIP1559ScriptArtifact",
-                          "nameLocations": [
-                            "12401:21:5"
-                          ],
+                          "nameLocations": ["12401:21:5"],
                           "nodeType": "IdentifierPath",
                           "referencedDeclaration": 4802,
                           "src": "12401:21:5"
@@ -12796,9 +12636,7 @@
                     "pathNode": {
                       "id": 5433,
                       "name": "EIP1559ScriptArtifact",
-                      "nameLocations": [
-                        "12149:21:5"
-                      ],
+                      "nameLocations": ["12149:21:5"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 4802,
                       "src": "12149:21:5"
@@ -12832,9 +12670,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    5536
-                  ],
+                  "assignments": [5536],
                   "declarations": [
                     {
                       "constant": false,
@@ -12858,9 +12694,7 @@
                           "pathNode": {
                             "id": 5533,
                             "name": "Tx1559",
-                            "nameLocations": [
-                              "12999:6:5"
-                            ],
+                            "nameLocations": ["12999:6:5"],
                             "nodeType": "IdentifierPath",
                             "referencedDeclaration": 4646,
                             "src": "12999:6:5"
@@ -12939,9 +12773,7 @@
                           "pathNode": {
                             "id": 5537,
                             "name": "Tx1559",
-                            "nameLocations": [
-                              "13025:6:5"
-                            ],
+                            "nameLocations": ["13025:6:5"],
                             "nodeType": "IdentifierPath",
                             "referencedDeclaration": 4646,
                             "src": "13025:6:5"
@@ -13178,9 +13010,7 @@
                   },
                   "id": 5566,
                   "initializationExpression": {
-                    "assignments": [
-                      5546
-                    ],
+                    "assignments": [5546],
                     "declarations": [
                       {
                         "constant": false,
@@ -13300,9 +13130,7 @@
                       "pathNode": {
                         "id": 5522,
                         "name": "RawTx1559",
-                        "nameLocations": [
-                          "12914:9:5"
-                        ],
+                        "nameLocations": ["12914:9:5"],
                         "nodeType": "IdentifierPath",
                         "referencedDeclaration": 4610,
                         "src": "12914:9:5"
@@ -13353,9 +13181,7 @@
                       "pathNode": {
                         "id": 5527,
                         "name": "Tx1559",
-                        "nameLocations": [
-                          "12972:6:5"
-                        ],
+                        "nameLocations": ["12972:6:5"],
                         "nodeType": "IdentifierPath",
                         "referencedDeclaration": 4646,
                         "src": "12972:6:5"
@@ -13397,9 +13223,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    5581
-                  ],
+                  "assignments": [5581],
                   "declarations": [
                     {
                       "constant": false,
@@ -13422,9 +13246,7 @@
                         "pathNode": {
                           "id": 5579,
                           "name": "Tx1559",
-                          "nameLocations": [
-                            "13311:6:5"
-                          ],
+                          "nameLocations": ["13311:6:5"],
                           "nodeType": "IdentifierPath",
                           "referencedDeclaration": 4646,
                           "src": "13311:6:5"
@@ -13980,9 +13802,7 @@
                     "pathNode": {
                       "id": 5571,
                       "name": "RawTx1559",
-                      "nameLocations": [
-                        "13231:9:5"
-                      ],
+                      "nameLocations": ["13231:9:5"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 4610,
                       "src": "13231:9:5"
@@ -14024,9 +13844,7 @@
                     "pathNode": {
                       "id": 5575,
                       "name": "Tx1559",
-                      "nameLocations": [
-                        "13286:6:5"
-                      ],
+                      "nameLocations": ["13286:6:5"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 4646,
                       "src": "13286:6:5"
@@ -14060,9 +13878,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    5641
-                  ],
+                  "assignments": [5641],
                   "declarations": [
                     {
                       "constant": false,
@@ -14085,9 +13901,7 @@
                         "pathNode": {
                           "id": 5639,
                           "name": "Tx1559Detail",
-                          "nameLocations": [
-                            "13861:12:5"
-                          ],
+                          "nameLocations": ["13861:12:5"],
                           "nodeType": "IdentifierPath",
                           "referencedDeclaration": 4665,
                           "src": "13861:12:5"
@@ -14904,9 +14718,7 @@
                     "pathNode": {
                       "id": 5631,
                       "name": "RawTx1559Detail",
-                      "nameLocations": [
-                        "13729:15:5"
-                      ],
+                      "nameLocations": ["13729:15:5"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 4629,
                       "src": "13729:15:5"
@@ -14948,9 +14760,7 @@
                     "pathNode": {
                       "id": 5635,
                       "name": "Tx1559Detail",
-                      "nameLocations": [
-                        "13826:12:5"
-                      ],
+                      "nameLocations": ["13826:12:5"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 4665,
                       "src": "13826:12:5"
@@ -14984,9 +14794,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    5720
-                  ],
+                  "assignments": [5720],
                   "declarations": [
                     {
                       "constant": false,
@@ -15086,9 +14894,7 @@
                   "src": "14416:44:5"
                 },
                 {
-                  "assignments": [
-                    5727
-                  ],
+                  "assignments": [5727],
                   "declarations": [
                     {
                       "constant": false,
@@ -15208,9 +15014,7 @@
                   "src": "14470:73:5"
                 },
                 {
-                  "assignments": [
-                    5738
-                  ],
+                  "assignments": [5738],
                   "declarations": [
                     {
                       "constant": false,
@@ -15234,9 +15038,7 @@
                           "pathNode": {
                             "id": 5735,
                             "name": "RawTx1559",
-                            "nameLocations": [
-                              "14553:9:5"
-                            ],
+                            "nameLocations": ["14553:9:5"],
                             "nodeType": "IdentifierPath",
                             "referencedDeclaration": 4610,
                             "src": "14553:9:5"
@@ -15494,9 +15296,7 @@
                       "pathNode": {
                         "id": 5714,
                         "name": "Tx1559",
-                        "nameLocations": [
-                          "14389:6:5"
-                        ],
+                        "nameLocations": ["14389:6:5"],
                         "nodeType": "IdentifierPath",
                         "referencedDeclaration": 4646,
                         "src": "14389:6:5"
@@ -15538,9 +15338,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    5763
-                  ],
+                  "assignments": [5763],
                   "declarations": [
                     {
                       "constant": false,
@@ -15640,9 +15438,7 @@
                   "src": "14797:44:5"
                 },
                 {
-                  "assignments": [
-                    5770
-                  ],
+                  "assignments": [5770],
                   "declarations": [
                     {
                       "constant": false,
@@ -15879,9 +15675,7 @@
                   "src": "14851:87:5"
                 },
                 {
-                  "assignments": [
-                    5785
-                  ],
+                  "assignments": [5785],
                   "declarations": [
                     {
                       "constant": false,
@@ -15997,9 +15791,7 @@
                   "src": "14948:61:5"
                 },
                 {
-                  "assignments": [
-                    5794
-                  ],
+                  "assignments": [5794],
                   "declarations": [
                     {
                       "constant": false,
@@ -16022,9 +15814,7 @@
                         "pathNode": {
                           "id": 5792,
                           "name": "RawTx1559",
-                          "nameLocations": [
-                            "15019:9:5"
-                          ],
+                          "nameLocations": ["15019:9:5"],
                           "nodeType": "IdentifierPath",
                           "referencedDeclaration": 4610,
                           "src": "15019:9:5"
@@ -16287,9 +16077,7 @@
                     "pathNode": {
                       "id": 5758,
                       "name": "Tx1559",
-                      "nameLocations": [
-                        "14772:6:5"
-                      ],
+                      "nameLocations": ["14772:6:5"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 4646,
                       "src": "14772:6:5"
@@ -16323,9 +16111,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    5817
-                  ],
+                  "assignments": [5817],
                   "declarations": [
                     {
                       "constant": false,
@@ -16425,9 +16211,7 @@
                   "src": "15302:44:5"
                 },
                 {
-                  "assignments": [
-                    5824
-                  ],
+                  "assignments": [5824],
                   "declarations": [
                     {
                       "constant": false,
@@ -16547,9 +16331,7 @@
                   "src": "15356:69:5"
                 },
                 {
-                  "assignments": [
-                    5835
-                  ],
+                  "assignments": [5835],
                   "declarations": [
                     {
                       "constant": false,
@@ -16573,9 +16355,7 @@
                           "pathNode": {
                             "id": 5832,
                             "name": "RawReceipt",
-                            "nameLocations": [
-                              "15435:10:5"
-                            ],
+                            "nameLocations": ["15435:10:5"],
                             "nodeType": "IdentifierPath",
                             "referencedDeclaration": 4750,
                             "src": "15435:10:5"
@@ -16833,9 +16613,7 @@
                       "pathNode": {
                         "id": 5811,
                         "name": "Receipt",
-                        "nameLocations": [
-                          "15274:7:5"
-                        ],
+                        "nameLocations": ["15274:7:5"],
                         "nodeType": "IdentifierPath",
                         "referencedDeclaration": 4779,
                         "src": "15274:7:5"
@@ -16877,9 +16655,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    5860
-                  ],
+                  "assignments": [5860],
                   "declarations": [
                     {
                       "constant": false,
@@ -16979,9 +16755,7 @@
                   "src": "15691:44:5"
                 },
                 {
-                  "assignments": [
-                    5867
-                  ],
+                  "assignments": [5867],
                   "declarations": [
                     {
                       "constant": false,
@@ -17218,9 +16992,7 @@
                   "src": "15745:83:5"
                 },
                 {
-                  "assignments": [
-                    5882
-                  ],
+                  "assignments": [5882],
                   "declarations": [
                     {
                       "constant": false,
@@ -17336,9 +17108,7 @@
                   "src": "15838:61:5"
                 },
                 {
-                  "assignments": [
-                    5891
-                  ],
+                  "assignments": [5891],
                   "declarations": [
                     {
                       "constant": false,
@@ -17361,9 +17131,7 @@
                         "pathNode": {
                           "id": 5889,
                           "name": "RawReceipt",
-                          "nameLocations": [
-                            "15909:10:5"
-                          ],
+                          "nameLocations": ["15909:10:5"],
                           "nodeType": "IdentifierPath",
                           "referencedDeclaration": 4750,
                           "src": "15909:10:5"
@@ -17626,9 +17394,7 @@
                     "pathNode": {
                       "id": 5855,
                       "name": "Receipt",
-                      "nameLocations": [
-                        "15665:7:5"
-                      ],
+                      "nameLocations": ["15665:7:5"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 4779,
                       "src": "15665:7:5"
@@ -17662,9 +17428,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    5919
-                  ],
+                  "assignments": [5919],
                   "declarations": [
                     {
                       "constant": false,
@@ -17688,9 +17452,7 @@
                           "pathNode": {
                             "id": 5916,
                             "name": "Receipt",
-                            "nameLocations": [
-                              "16169:7:5"
-                            ],
+                            "nameLocations": ["16169:7:5"],
                             "nodeType": "IdentifierPath",
                             "referencedDeclaration": 4779,
                             "src": "16169:7:5"
@@ -17769,9 +17531,7 @@
                           "pathNode": {
                             "id": 5920,
                             "name": "Receipt",
-                            "nameLocations": [
-                              "16201:7:5"
-                            ],
+                            "nameLocations": ["16201:7:5"],
                             "nodeType": "IdentifierPath",
                             "referencedDeclaration": 4779,
                             "src": "16201:7:5"
@@ -18008,9 +17768,7 @@
                   },
                   "id": 5949,
                   "initializationExpression": {
-                    "assignments": [
-                      5929
-                    ],
+                    "assignments": [5929],
                     "declarations": [
                       {
                         "constant": false,
@@ -18130,9 +17888,7 @@
                       "pathNode": {
                         "id": 5905,
                         "name": "RawReceipt",
-                        "nameLocations": [
-                          "16077:10:5"
-                        ],
+                        "nameLocations": ["16077:10:5"],
                         "nodeType": "IdentifierPath",
                         "referencedDeclaration": 4750,
                         "src": "16077:10:5"
@@ -18183,9 +17939,7 @@
                       "pathNode": {
                         "id": 5910,
                         "name": "Receipt",
-                        "nameLocations": [
-                          "16141:7:5"
-                        ],
+                        "nameLocations": ["16141:7:5"],
                         "nodeType": "IdentifierPath",
                         "referencedDeclaration": 4779,
                         "src": "16141:7:5"
@@ -18227,9 +17981,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    5964
-                  ],
+                  "assignments": [5964],
                   "declarations": [
                     {
                       "constant": false,
@@ -18252,9 +18004,7 @@
                         "pathNode": {
                           "id": 5962,
                           "name": "Receipt",
-                          "nameLocations": [
-                            "16516:7:5"
-                          ],
+                          "nameLocations": ["16516:7:5"],
                           "nodeType": "IdentifierPath",
                           "referencedDeclaration": 4779,
                           "src": "16516:7:5"
@@ -19557,9 +19307,7 @@
                     "pathNode": {
                       "id": 5954,
                       "name": "RawReceipt",
-                      "nameLocations": [
-                        "16429:10:5"
-                      ],
+                      "nameLocations": ["16429:10:5"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 4750,
                       "src": "16429:10:5"
@@ -19601,9 +19349,7 @@
                     "pathNode": {
                       "id": 5958,
                       "name": "Receipt",
-                      "nameLocations": [
-                        "16490:7:5"
-                      ],
+                      "nameLocations": ["16490:7:5"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 4779,
                       "src": "16490:7:5"
@@ -19637,9 +19383,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    6089
-                  ],
+                  "assignments": [6089],
                   "declarations": [
                     {
                       "constant": false,
@@ -19663,9 +19407,7 @@
                           "pathNode": {
                             "id": 6086,
                             "name": "ReceiptLog",
-                            "nameLocations": [
-                              "17531:10:5"
-                            ],
+                            "nameLocations": ["17531:10:5"],
                             "nodeType": "IdentifierPath",
                             "referencedDeclaration": 4867,
                             "src": "17531:10:5"
@@ -19744,9 +19486,7 @@
                           "pathNode": {
                             "id": 6090,
                             "name": "ReceiptLog",
-                            "nameLocations": [
-                              "17562:10:5"
-                            ],
+                            "nameLocations": ["17562:10:5"],
                             "nodeType": "IdentifierPath",
                             "referencedDeclaration": 4867,
                             "src": "17562:10:5"
@@ -21126,9 +20866,7 @@
                   },
                   "id": 6207,
                   "initializationExpression": {
-                    "assignments": [
-                      6099
-                    ],
+                    "assignments": [6099],
                     "declarations": [
                       {
                         "constant": false,
@@ -21248,9 +20986,7 @@
                       "pathNode": {
                         "id": 6075,
                         "name": "RawReceiptLog",
-                        "nameLocations": [
-                          "17401:13:5"
-                        ],
+                        "nameLocations": ["17401:13:5"],
                         "nodeType": "IdentifierPath",
                         "referencedDeclaration": 4847,
                         "src": "17401:13:5"
@@ -21301,9 +21037,7 @@
                       "pathNode": {
                         "id": 6080,
                         "name": "ReceiptLog",
-                        "nameLocations": [
-                          "17496:10:5"
-                        ],
+                        "nameLocations": ["17496:10:5"],
                         "nodeType": "IdentifierPath",
                         "referencedDeclaration": 4867,
                         "src": "17496:10:5"
@@ -21345,9 +21079,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    6221
-                  ],
+                  "assignments": [6221],
                   "declarations": [
                     {
                       "constant": false,
@@ -21756,10 +21488,7 @@
                       "id": 6232,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "18723:7:5",
                       "typeDescriptions": {
@@ -21907,9 +21636,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    6251
-                  ],
+                  "assignments": [6251],
                   "declarations": [
                     {
                       "constant": false,
@@ -22250,10 +21977,7 @@
                       "id": 6258,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "19102:7:5",
                       "typeDescriptions": {
@@ -22374,9 +22098,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    6282
-                  ],
+                  "assignments": [6282],
                   "declarations": [
                     {
                       "constant": false,
@@ -22790,10 +22512,7 @@
                       "id": 6293,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "19589:7:5",
                       "typeDescriptions": {
@@ -22974,9 +22693,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    6314
-                  ],
+                  "assignments": [6314],
                   "declarations": [
                     {
                       "constant": false,
@@ -23322,10 +23039,7 @@
                       "id": 6321,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "19991:7:5",
                       "typeDescriptions": {
@@ -24140,9 +23854,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    6391
-                  ],
+                  "assignments": [6391],
                   "declarations": [
                     {
                       "constant": false,
@@ -24484,9 +24196,7 @@
                   "src": "21071:18:5"
                 },
                 {
-                  "assignments": [
-                    6418
-                  ],
+                  "assignments": [6418],
                   "declarations": [
                     {
                       "constant": false,
@@ -24961,9 +24671,7 @@
                     "pathNode": {
                       "id": 6436,
                       "name": "Account",
-                      "nameLocations": [
-                        "21384:7:5"
-                      ],
+                      "nameLocations": ["21384:7:5"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 4877,
                       "src": "21384:7:5"
@@ -25445,10 +25153,7 @@
                       "id": 6486,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "21819:7:5",
                       "typeDescriptions": {
@@ -26277,9 +25982,7 @@
                   "src": "22382:21:5"
                 },
                 {
-                  "assignments": [
-                    6559
-                  ],
+                  "assignments": [6559],
                   "declarations": [
                     {
                       "constant": false,
@@ -26712,9 +26415,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    6603
-                  ],
+                  "assignments": [6603],
                   "declarations": [
                     {
                       "constant": false,
@@ -26802,9 +26503,7 @@
                   "src": "23950:62:5"
                 },
                 {
-                  "assignments": [
-                    6611
-                  ],
+                  "assignments": [6611],
                   "declarations": [
                     {
                       "constant": false,
@@ -27048,9 +26747,7 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "linearizedBaseContracts": [
-          6621
-        ],
+        "linearizedBaseContracts": [6621],
         "name": "StdCheatsSafe",
         "nameLocation": "246:13:5",
         "scope": 7415,
@@ -27071,9 +26768,7 @@
             "libraryName": {
               "id": 6624,
               "name": "stdStorage",
-              "nameLocations": [
-                "24286:10:5"
-              ],
+              "nameLocations": ["24286:10:5"],
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 10128,
               "src": "24286:10:5"
@@ -27084,9 +26779,7 @@
               "pathNode": {
                 "id": 6625,
                 "name": "StdStorage",
-                "nameLocations": [
-                  "24301:10:5"
-                ],
+                "nameLocations": ["24301:10:5"],
                 "nodeType": "IdentifierPath",
                 "referencedDeclaration": 8489,
                 "src": "24301:10:5"
@@ -27121,9 +26814,7 @@
               "pathNode": {
                 "id": 6628,
                 "name": "StdStorage",
-                "nameLocations": [
-                  "24318:10:5"
-                ],
+                "nameLocations": ["24318:10:5"],
                 "nodeType": "IdentifierPath",
                 "referencedDeclaration": 8489,
                 "src": "24318:10:5"
@@ -27159,9 +26850,7 @@
               "pathNode": {
                 "id": 6631,
                 "name": "Vm",
-                "nameLocations": [
-                  "24351:2:5"
-                ],
+                "nameLocations": ["24351:2:5"],
                 "nodeType": "IdentifierPath",
                 "referencedDeclaration": 13931,
                 "src": "24351:2:5"
@@ -30737,11 +30426,7 @@
                       "id": 6925,
                       "name": "deal",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        6916,
-                        6933,
-                        7056
-                      ],
+                      "overloadedDeclarations": [6916, 6933, 7056],
                       "referencedDeclaration": 7056,
                       "src": "27007:4:5",
                       "typeDescriptions": {
@@ -30982,10 +30667,7 @@
                       "id": 6944,
                       "name": "dealERC1155",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        6953,
-                        7177
-                      ],
+                      "overloadedDeclarations": [6953, 7177],
                       "referencedDeclaration": 7177,
                       "src": "27269:11:5",
                       "typeDescriptions": {
@@ -31160,10 +30842,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    null,
-                    6965
-                  ],
+                  "assignments": [null, 6965],
                   "declarations": [
                     null,
                     {
@@ -31335,9 +31014,7 @@
                   "src": "27447:83:5"
                 },
                 {
-                  "assignments": [
-                    6976
-                  ],
+                  "assignments": [6976],
                   "declarations": [
                     {
                       "constant": false,
@@ -31730,10 +31407,7 @@
                     "src": "27750:402:5",
                     "statements": [
                       {
-                        "assignments": [
-                          null,
-                          7002
-                        ],
+                        "assignments": [null, 7002],
                         "declarations": [
                           null,
                           {
@@ -31889,9 +31563,7 @@
                         "src": "27764:82:5"
                       },
                       {
-                        "assignments": [
-                          7012
-                        ],
+                        "assignments": [7012],
                         "declarations": [
                           {
                             "constant": false,
@@ -32598,10 +32270,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    null,
-                    7070
-                  ],
+                  "assignments": [null, 7070],
                   "declarations": [
                     null,
                     {
@@ -32789,9 +32458,7 @@
                   "src": "28309:87:5"
                 },
                 {
-                  "assignments": [
-                    7082
-                  ],
+                  "assignments": [7082],
                   "declarations": [
                     {
                       "constant": false,
@@ -33237,10 +32904,7 @@
                     "src": "28629:599:5",
                     "statements": [
                       {
-                        "assignments": [
-                          null,
-                          7111
-                        ],
+                        "assignments": [null, 7111],
                         "declarations": [
                           null,
                           {
@@ -33506,10 +33170,7 @@
                             "id": 7121,
                             "name": "require",
                             "nodeType": "Identifier",
-                            "overloadedDeclarations": [
-                              -18,
-                              -18
-                            ],
+                            "overloadedDeclarations": [-18, -18],
                             "referencedDeclaration": -18,
                             "src": "28743:7:5",
                             "typeDescriptions": {
@@ -33538,9 +33199,7 @@
                         "src": "28743:166:5"
                       },
                       {
-                        "assignments": [
-                          7130
-                        ],
+                        "assignments": [7130],
                         "declarations": [
                           {
                             "constant": false,
@@ -34327,10 +33986,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    7187,
-                    7189
-                  ],
+                  "assignments": [7187, 7189],
                   "declarations": [
                     {
                       "constant": false,
@@ -34573,10 +34229,7 @@
                       "id": 7199,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "29508:7:5",
                       "typeDescriptions": {
@@ -34605,10 +34258,7 @@
                   "src": "29508:83:5"
                 },
                 {
-                  "assignments": [
-                    null,
-                    7205
-                  ],
+                  "assignments": [null, 7205],
                   "declarations": [
                     null,
                     {
@@ -34872,9 +34522,7 @@
                   "src": "29639:129:5"
                 },
                 {
-                  "assignments": [
-                    7222
-                  ],
+                  "assignments": [7222],
                   "declarations": [
                     {
                       "constant": false,
@@ -35013,10 +34661,7 @@
                   "src": "29778:56:5"
                 },
                 {
-                  "assignments": [
-                    null,
-                    7232
-                  ],
+                  "assignments": [null, 7232],
                   "declarations": [
                     null,
                     {
@@ -35188,9 +34833,7 @@
                   "src": "29885:85:5"
                 },
                 {
-                  "assignments": [
-                    7243
-                  ],
+                  "assignments": [7243],
                   "declarations": [
                     {
                       "constant": false,
@@ -36350,11 +35993,7 @@
                       "id": 7313,
                       "name": "deployCodeTo",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        7321,
-                        7338,
-                        7391
-                      ],
+                      "overloadedDeclarations": [7321, 7338, 7391],
                       "referencedDeclaration": 7391,
                       "src": "30469:12:5",
                       "typeDescriptions": {
@@ -36551,11 +36190,7 @@
                       "id": 7330,
                       "name": "deployCodeTo",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        7321,
-                        7338,
-                        7391
-                      ],
+                      "overloadedDeclarations": [7321, 7338, 7391],
                       "referencedDeclaration": 7391,
                       "src": "30617:12:5",
                       "typeDescriptions": {
@@ -36702,9 +36337,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    7350
-                  ],
+                  "assignments": [7350],
                   "declarations": [
                     {
                       "constant": false,
@@ -36958,10 +36591,7 @@
                   "src": "30836:52:5"
                 },
                 {
-                  "assignments": [
-                    7368,
-                    7370
-                  ],
+                  "assignments": [7368, 7370],
                   "declarations": [
                     {
                       "constant": false,
@@ -37083,9 +36713,7 @@
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
-                      "names": [
-                        "value"
-                      ],
+                      "names": ["value"],
                       "nodeType": "FunctionCallOptions",
                       "options": [
                         {
@@ -37172,10 +36800,7 @@
                       "id": 7378,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "30983:7:5",
                       "typeDescriptions": {
@@ -37435,10 +37060,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    7397,
-                    null
-                  ],
+                  "assignments": [7397, null],
                   "declarations": [
                     {
                       "constant": false,
@@ -37730,9 +37352,7 @@
             "baseName": {
               "id": 6622,
               "name": "StdCheatsSafe",
-              "nameLocations": [
-                "24260:13:5"
-              ],
+              "nameLocations": ["24260:13:5"],
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 6621,
               "src": "24260:13:5"
@@ -37746,10 +37366,7 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "linearizedBaseContracts": [
-          7414,
-          6621
-        ],
+        "linearizedBaseContracts": [7414, 6621],
         "name": "StdCheats",
         "nameLocation": "24247:9:5",
         "scope": 7415,

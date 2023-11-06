@@ -8,7 +8,9 @@ module.exports.anchor = function anchor({ item, contract }) {
   }
   res += item.name;
   if ('parameters' in item) {
-    const signature = item.parameters.parameters.map(v => v.typeName.typeDescriptions.typeString).join(',');
+    const signature = item.parameters.parameters
+      .map((v) => v.typeName.typeDescriptions.typeString)
+      .join(',');
     res += slug('(' + signature + ')');
   }
   if (isNodeType('VariableDeclaration', item)) {
@@ -23,23 +25,27 @@ module.exports.inheritance = function ({ item, build }) {
   }
 
   return item.linearizedBaseContracts
-    .map(id => build.deref('ContractDefinition', id))
+    .map((id) => build.deref('ContractDefinition', id))
     .filter((c, i) => c.name !== 'Context' || i === 0);
 };
 
 module.exports['has-functions'] = function ({ item }) {
-  return item.inheritance.some(c => c.functions.length > 0);
+  return item.inheritance.some((c) => c.functions.length > 0);
 };
 
 module.exports['has-events'] = function ({ item }) {
-  return item.inheritance.some(c => c.events.length > 0);
+  return item.inheritance.some((c) => c.events.length > 0);
 };
 
 module.exports['inherited-functions'] = function ({ item }) {
   const { inheritance } = item;
-  const baseFunctions = new Set(inheritance.flatMap(c => c.functions.flatMap(f => f.baseFunctions ?? [])));
+  const baseFunctions = new Set(
+    inheritance.flatMap((c) => c.functions.flatMap((f) => f.baseFunctions ?? []))
+  );
   return inheritance.map((contract, i) => ({
     contract,
-    functions: contract.functions.filter(f => !baseFunctions.has(f.id) && (f.name !== 'constructor' || i === 0)),
+    functions: contract.functions.filter(
+      (f) => !baseFunctions.has(f.id) && (f.name !== 'constructor' || i === 0)
+    ),
   }));
 };

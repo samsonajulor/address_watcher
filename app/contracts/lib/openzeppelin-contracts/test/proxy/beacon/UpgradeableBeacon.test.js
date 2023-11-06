@@ -9,7 +9,10 @@ contract('UpgradeableBeacon', function (accounts) {
   const [owner, other] = accounts;
 
   it('cannot be created with non-contract implementation', async function () {
-    await expectRevert(UpgradeableBeacon.new(accounts[0]), 'UpgradeableBeacon: implementation is not a contract');
+    await expectRevert(
+      UpgradeableBeacon.new(accounts[0]),
+      'UpgradeableBeacon: implementation is not a contract'
+    );
   });
 
   context('once deployed', async function () {
@@ -32,13 +35,16 @@ contract('UpgradeableBeacon', function (accounts) {
     it('cannot be upgraded to a non-contract', async function () {
       await expectRevert(
         this.beacon.upgradeTo(other, { from: owner }),
-        'UpgradeableBeacon: implementation is not a contract',
+        'UpgradeableBeacon: implementation is not a contract'
       );
     });
 
     it('cannot be upgraded by other account', async function () {
       const v2 = await Implementation2.new();
-      await expectRevert(this.beacon.upgradeTo(v2.address, { from: other }), 'Ownable: caller is not the owner');
+      await expectRevert(
+        this.beacon.upgradeTo(v2.address, { from: other }),
+        'Ownable: caller is not the owner'
+      );
     });
   });
 });

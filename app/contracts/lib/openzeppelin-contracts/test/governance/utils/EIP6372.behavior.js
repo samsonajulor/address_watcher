@@ -7,7 +7,9 @@ function shouldBehaveLikeEIP6372(mode = 'blocknumber') {
     });
 
     it('clock is correct', async function () {
-      expect(await this.mock.clock()).to.be.bignumber.equal(await clock[mode]().then(web3.utils.toBN));
+      expect(await this.mock.clock()).to.be.bignumber.equal(
+        await clock[mode]().then(web3.utils.toBN)
+      );
     });
 
     it('CLOCK_MODE is correct', async function () {

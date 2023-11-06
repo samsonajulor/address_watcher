@@ -9,13 +9,13 @@ const web3 = new Web3(sockets);
 const app = express();
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
-  // const wss = new WebSocket('ws://127.0.0.1:8545', { maxPayload: 1000 * 1024 * 1024 });
+// const wss = new WebSocket('ws://127.0.0.1:8545', { maxPayload: 1000 * 1024 * 1024 });
 const dolapoAccountAbsContract = '0x2Dc05be382590198Ae61a514Db80f015bb1DAb27';
 
-async function eventWatcher () {
- const data = await web3.eth.getBlockNumber();
+async function eventWatcher() {
+  const data = await web3.eth.getBlockNumber();
 
- return Number(data);
+  return Number(data);
 }
 
 wss.on('connection', async (ws) => {
@@ -28,7 +28,7 @@ wss.on('connection', async (ws) => {
   });
 
   subscription.on('data', (event) => {
-   console.log(event, 'event fetched')
+    console.log(event, 'event fetched');
     // ws.send(JSON.stringify(event));
   });
 
@@ -44,7 +44,6 @@ server.listen(3000, () => {
   console.log('Server started on http://localhost:3000');
 });
 
-
 eventWatcher().then((data) => {
- console.log(data)
-})
+  console.log(data);
+});

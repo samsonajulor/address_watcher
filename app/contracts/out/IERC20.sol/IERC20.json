@@ -461,9 +461,7 @@
     "absolutePath": "lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol",
     "id": 191,
     "exportedSymbols": {
-      "IERC20": [
-        190
-      ]
+      "IERC20": [190]
     },
     "nodeType": "SourceUnit",
     "src": "106:2631:1",
@@ -473,12 +471,7 @@
         "nodeType": "PragmaDirective",
         "src": "106:23:1",
         "nodes": [],
-        "literals": [
-          "solidity",
-          "^",
-          "0.8",
-          ".0"
-        ]
+        "literals": ["solidity", "^", "0.8", ".0"]
       },
       {
         "id": 190,
@@ -1370,17 +1363,12 @@
           "text": " @dev Interface of the ERC20 standard as defined in the EIP."
         },
         "fullyImplemented": false,
-        "linearizedBaseContracts": [
-          190
-        ],
+        "linearizedBaseContracts": [190],
         "name": "IERC20",
         "nameLocation": "212:6:1",
         "scope": 191,
         "usedErrors": [],
-        "usedEvents": [
-          124,
-          133
-        ]
+        "usedEvents": [124, 133]
       }
     ],
     "license": "MIT"

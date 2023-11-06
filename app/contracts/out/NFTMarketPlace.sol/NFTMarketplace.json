@@ -1128,27 +1128,13 @@
     "absolutePath": "src/NFTMarketPlace.sol",
     "id": 44760,
     "exportedSymbols": {
-      "Context": [
-        43635
-      ],
-      "IERC165": [
-        43647
-      ],
-      "IERC721": [
-        43613
-      ],
-      "NFTMarketplace": [
-        44759
-      ],
-      "Ownable": [
-        43432
-      ],
-      "ReentrancyGuard": [
-        43497
-      ],
-      "SignUtils": [
-        44919
-      ]
+      "Context": [43635],
+      "IERC165": [43647],
+      "IERC721": [43613],
+      "NFTMarketplace": [44759],
+      "Ownable": [43432],
+      "ReentrancyGuard": [43497],
+      "SignUtils": [44919]
     },
     "nodeType": "SourceUnit",
     "src": "32:5650:25",
@@ -1158,12 +1144,7 @@
         "nodeType": "PragmaDirective",
         "src": "32:23:25",
         "nodes": [],
-        "literals": [
-          "solidity",
-          "^",
-          "0.8",
-          ".0"
-        ]
+        "literals": ["solidity", "^", "0.8", ".0"]
       },
       {
         "id": 44246,
@@ -1642,9 +1623,7 @@
               "pathNode": {
                 "id": 44294,
                 "name": "IERC721",
-                "nameLocations": [
-                  "1026:7:25"
-                ],
+                "nameLocations": ["1026:7:25"],
                 "nodeType": "IdentifierPath",
                 "referencedDeclaration": 43613,
                 "src": "1026:7:25"
@@ -1761,9 +1740,7 @@
                 "pathNode": {
                   "id": 44302,
                   "name": "Order",
-                  "nameLocations": [
-                    "1142:5:25"
-                  ],
+                  "nameLocations": ["1142:5:25"],
                   "nodeType": "IdentifierPath",
                   "referencedDeclaration": 44293,
                   "src": "1142:5:25"
@@ -2402,10 +2379,7 @@
                       "id": 44349,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "1763:7:25",
                       "typeDescriptions": {
@@ -2545,9 +2519,7 @@
                 "modifierName": {
                   "id": 44366,
                   "name": "onlyOwner",
-                  "nameLocations": [
-                    "1929:9:25"
-                  ],
+                  "nameLocations": ["1929:9:25"],
                   "nodeType": "IdentifierPath",
                   "referencedDeclaration": 43351,
                   "src": "1929:9:25"
@@ -4030,9 +4002,7 @@
                 "modifierName": {
                   "id": 44386,
                   "name": "nonReentrant",
-                  "nameLocations": [
-                    "2127:12:25"
-                  ],
+                  "nameLocations": ["2127:12:25"],
                   "nodeType": "IdentifierPath",
                   "referencedDeclaration": 43462,
                   "src": "2127:12:25"
@@ -5005,9 +4975,7 @@
                   }
                 },
                 {
-                  "assignments": [
-                    44574
-                  ],
+                  "assignments": [44574],
                   "declarations": [
                     {
                       "constant": false,
@@ -5030,9 +4998,7 @@
                         "pathNode": {
                           "id": 44572,
                           "name": "Order",
-                          "nameLocations": [
-                            "4078:5:25"
-                          ],
+                          "nameLocations": ["4078:5:25"],
                           "nodeType": "IdentifierPath",
                           "referencedDeclaration": 44293,
                           "src": "4078:5:25"
@@ -5169,9 +5135,7 @@
                     "src": "4168:573:25",
                     "statements": [
                       {
-                        "assignments": [
-                          44585
-                        ],
+                        "assignments": [44585],
                         "declarations": [
                           {
                             "constant": false,
@@ -5544,10 +5508,7 @@
                             "id": 44598,
                             "name": "require",
                             "nodeType": "Identifier",
-                            "overloadedDeclarations": [
-                              -18,
-                              -18
-                            ],
+                            "overloadedDeclarations": [-18, -18],
                             "referencedDeclaration": -18,
                             "src": "4308:7:25",
                             "typeDescriptions": {
@@ -6074,9 +6035,7 @@
                 "modifierName": {
                   "id": 44535,
                   "name": "nonReentrant",
-                  "nameLocations": [
-                    "3720:12:25"
-                  ],
+                  "nameLocations": ["3720:12:25"],
                   "nodeType": "IdentifierPath",
                   "referencedDeclaration": 43462,
                   "src": "3720:12:25"
@@ -6144,9 +6103,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    44666
-                  ],
+                  "assignments": [44666],
                   "declarations": [
                     {
                       "constant": false,
@@ -6169,9 +6126,7 @@
                         "pathNode": {
                           "id": 44664,
                           "name": "Order",
-                          "nameLocations": [
-                            "4909:5:25"
-                          ],
+                          "nameLocations": ["4909:5:25"],
                           "nodeType": "IdentifierPath",
                           "referencedDeclaration": 44293,
                           "src": "4909:5:25"
@@ -6670,9 +6625,7 @@
                 "modifierName": {
                   "id": 44690,
                   "name": "onlyOwner",
-                  "nameLocations": [
-                    "5134:9:25"
-                  ],
+                  "nameLocations": ["5134:9:25"],
                   "nodeType": "IdentifierPath",
                   "referencedDeclaration": 43351,
                   "src": "5134:9:25"
@@ -6902,9 +6855,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    44723
-                  ],
+                  "assignments": [44723],
                   "declarations": [
                     {
                       "constant": false,
@@ -6927,9 +6878,7 @@
                         "pathNode": {
                           "id": 44721,
                           "name": "Order",
-                          "nameLocations": [
-                            "5408:5:25"
-                          ],
+                          "nameLocations": ["5408:5:25"],
                           "nodeType": "IdentifierPath",
                           "referencedDeclaration": 44293,
                           "src": "5408:5:25"
@@ -7056,9 +7005,7 @@
                 "modifierName": {
                   "id": 44718,
                   "name": "onlyOwner",
-                  "nameLocations": [
-                    "5388:9:25"
-                  ],
+                  "nameLocations": ["5388:9:25"],
                   "nodeType": "IdentifierPath",
                   "referencedDeclaration": 43351,
                   "src": "5388:9:25"
@@ -7153,9 +7100,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    44746
-                  ],
+                  "assignments": [44746],
                   "declarations": [
                     {
                       "constant": false,
@@ -7178,9 +7123,7 @@
                         "pathNode": {
                           "id": 44744,
                           "name": "Order",
-                          "nameLocations": [
-                            "5590:5:25"
-                          ],
+                          "nameLocations": ["5590:5:25"],
                           "nodeType": "IdentifierPath",
                           "referencedDeclaration": 44293,
                           "src": "5590:5:25"
@@ -7307,9 +7250,7 @@
                 "modifierName": {
                   "id": 44741,
                   "name": "onlyOwner",
-                  "nameLocations": [
-                    "5570:9:25"
-                  ],
+                  "nameLocations": ["5570:9:25"],
                   "nodeType": "IdentifierPath",
                   "referencedDeclaration": 43351,
                   "src": "5570:9:25"
@@ -7399,9 +7340,7 @@
             "baseName": {
               "id": 44251,
               "name": "ReentrancyGuard",
-              "nameLocations": [
-                "361:15:25"
-              ],
+              "nameLocations": ["361:15:25"],
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 43497,
               "src": "361:15:25"
@@ -7414,9 +7353,7 @@
             "baseName": {
               "id": 44253,
               "name": "Ownable",
-              "nameLocations": [
-                "378:7:25"
-              ],
+              "nameLocations": ["378:7:25"],
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 43432,
               "src": "378:7:25"
@@ -7433,36 +7370,14 @@
         "internalFunctionIDs": {
           "22010": 1
         },
-        "linearizedBaseContracts": [
-          44759,
-          43432,
-          43635,
-          43497
-        ],
+        "linearizedBaseContracts": [44759, 43432, 43635, 43497],
         "name": "NFTMarketplace",
         "nameLocation": "343:14:25",
         "scope": 44760,
         "usedErrors": [
-          44256,
-          44258,
-          44260,
-          44262,
-          44264,
-          44266,
-          44268,
-          44270,
-          44272,
-          44274,
-          44276,
-          44278
+          44256, 44258, 44260, 44262, 44264, 44266, 44268, 44270, 44272, 44274, 44276, 44278
         ],
-        "usedEvents": [
-          43333,
-          44329,
-          44333,
-          44339,
-          44345
-        ]
+        "usedEvents": [43333, 44329, 44333, 44339, 44345]
       }
     ],
     "license": "MIT"

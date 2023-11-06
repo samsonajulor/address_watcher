@@ -38,7 +38,7 @@ contract('GovernorPreventLateQuorum', function (accounts) {
           0,
           this.token.address,
           lateQuorumVoteExtension,
-          quorum,
+          quorum
         );
         this.receiver = await CallReceiver.new();
 
@@ -47,10 +47,22 @@ contract('GovernorPreventLateQuorum', function (accounts) {
         await web3.eth.sendTransaction({ from: owner, to: this.mock.address, value });
 
         await this.token.$_mint(owner, tokenSupply);
-        await this.helper.delegate({ token: this.token, to: voter1, value: web3.utils.toWei('10') }, { from: owner });
-        await this.helper.delegate({ token: this.token, to: voter2, value: web3.utils.toWei('7') }, { from: owner });
-        await this.helper.delegate({ token: this.token, to: voter3, value: web3.utils.toWei('5') }, { from: owner });
-        await this.helper.delegate({ token: this.token, to: voter4, value: web3.utils.toWei('2') }, { from: owner });
+        await this.helper.delegate(
+          { token: this.token, to: voter1, value: web3.utils.toWei('10') },
+          { from: owner }
+        );
+        await this.helper.delegate(
+          { token: this.token, to: voter2, value: web3.utils.toWei('7') },
+          { from: owner }
+        );
+        await this.helper.delegate(
+          { token: this.token, to: voter3, value: web3.utils.toWei('5') },
+          { from: owner }
+        );
+        await this.helper.delegate(
+          { token: this.token, to: voter4, value: web3.utils.toWei('2') },
+          { from: owner }
+        );
 
         // default proposal
         this.proposal = this.helper.setProposal(
@@ -61,7 +73,7 @@ contract('GovernorPreventLateQuorum', function (accounts) {
               data: this.receiver.contract.methods.mockFunction().encodeABI(),
             },
           ],
-          '<proposal description>',
+          '<proposal description>'
         );
       });
 
@@ -71,7 +83,9 @@ contract('GovernorPreventLateQuorum', function (accounts) {
         expect(await this.mock.votingDelay()).to.be.bignumber.equal(votingDelay);
         expect(await this.mock.votingPeriod()).to.be.bignumber.equal(votingPeriod);
         expect(await this.mock.quorum(0)).to.be.bignumber.equal(quorum);
-        expect(await this.mock.lateQuorumVoteExtension()).to.be.bignumber.equal(lateQuorumVoteExtension);
+        expect(await this.mock.lateQuorumVoteExtension()).to.be.bignumber.equal(
+          lateQuorumVoteExtension
+        );
       });
 
       it('nominal workflow unaffected', async function () {
@@ -90,13 +104,15 @@ contract('GovernorPreventLateQuorum', function (accounts) {
         expect(await this.mock.hasVoted(this.proposal.id, voter3)).to.be.equal(true);
         expect(await this.mock.hasVoted(this.proposal.id, voter4)).to.be.equal(true);
 
-        await this.mock.proposalVotes(this.proposal.id).then(results => {
+        await this.mock.proposalVotes(this.proposal.id).then((results) => {
           expect(results.forVotes).to.be.bignumber.equal(web3.utils.toWei('17'));
           expect(results.againstVotes).to.be.bignumber.equal(web3.utils.toWei('5'));
           expect(results.abstainVotes).to.be.bignumber.equal(web3.utils.toWei('2'));
         });
 
-        const voteStart = web3.utils.toBN(await clockFromReceipt[mode](txPropose.receipt)).add(votingDelay);
+        const voteStart = web3.utils
+          .toBN(await clockFromReceipt[mode](txPropose.receipt))
+          .add(votingDelay);
         const voteEnd = web3.utils
           .toBN(await clockFromReceipt[mode](txPropose.receipt))
           .add(votingDelay)
@@ -121,12 +137,16 @@ contract('GovernorPreventLateQuorum', function (accounts) {
         const txPropose = await this.helper.propose({ from: proposer });
 
         // compute original schedule
-        const startBlock = web3.utils.toBN(await clockFromReceipt[mode](txPropose.receipt)).add(votingDelay);
+        const startBlock = web3.utils
+          .toBN(await clockFromReceipt[mode](txPropose.receipt))
+          .add(votingDelay);
         const endBlock = web3.utils
           .toBN(await clockFromReceipt[mode](txPropose.receipt))
           .add(votingDelay)
           .add(votingPeriod);
-        expect(await this.mock.proposalSnapshot(this.proposal.id)).to.be.bignumber.equal(startBlock);
+        expect(await this.mock.proposalSnapshot(this.proposal.id)).to.be.bignumber.equal(
+          startBlock
+        );
         expect(await this.mock.proposalDeadline(this.proposal.id)).to.be.bignumber.equal(endBlock);
 
         // wait for the last minute to vote
@@ -134,22 +154,32 @@ contract('GovernorPreventLateQuorum', function (accounts) {
         const txVote = await this.helper.vote({ support: Enums.VoteType.For }, { from: voter2 });
 
         // cannot execute yet
-        expect(await this.mock.state(this.proposal.id)).to.be.bignumber.equal(Enums.ProposalState.Active);
+        expect(await this.mock.state(this.proposal.id)).to.be.bignumber.equal(
+          Enums.ProposalState.Active
+        );
 
         // compute new extended schedule
         const extendedDeadline = web3.utils
           .toBN(await clockFromReceipt[mode](txVote.receipt))
           .add(lateQuorumVoteExtension);
-        expect(await this.mock.proposalSnapshot(this.proposal.id)).to.be.bignumber.equal(startBlock);
-        expect(await this.mock.proposalDeadline(this.proposal.id)).to.be.bignumber.equal(extendedDeadline);
+        expect(await this.mock.proposalSnapshot(this.proposal.id)).to.be.bignumber.equal(
+          startBlock
+        );
+        expect(await this.mock.proposalDeadline(this.proposal.id)).to.be.bignumber.equal(
+          extendedDeadline
+        );
 
         // still possible to vote
         await this.helper.vote({ support: Enums.VoteType.Against }, { from: voter1 });
 
         await this.helper.waitForDeadline();
-        expect(await this.mock.state(this.proposal.id)).to.be.bignumber.equal(Enums.ProposalState.Active);
+        expect(await this.mock.state(this.proposal.id)).to.be.bignumber.equal(
+          Enums.ProposalState.Active
+        );
         await this.helper.waitForDeadline(+1);
-        expect(await this.mock.state(this.proposal.id)).to.be.bignumber.equal(Enums.ProposalState.Defeated);
+        expect(await this.mock.state(this.proposal.id)).to.be.bignumber.equal(
+          Enums.ProposalState.Defeated
+        );
 
         // check extension event
         expectEvent(txVote, 'ProposalExtended', { proposalId: this.proposal.id, extendedDeadline });
@@ -168,7 +198,7 @@ contract('GovernorPreventLateQuorum', function (accounts) {
                 data: this.mock.contract.methods.setLateQuorumVoteExtension('0').encodeABI(),
               },
             ],
-            '<proposal description>',
+            '<proposal description>'
           );
 
           await this.helper.propose();

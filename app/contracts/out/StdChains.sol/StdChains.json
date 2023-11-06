@@ -31,10 +31,7 @@
       }
     },
     "settings": {
-      "remappings": [
-        "ds-test/=lib/forge-std/lib/ds-test/src/",
-        "forge-std/=lib/forge-std/src/"
-      ],
+      "remappings": ["ds-test/=lib/forge-std/lib/ds-test/src/", "forge-std/=lib/forge-std/src/"],
       "optimizer": {
         "enabled": true,
         "runs": 200
@@ -71,12 +68,8 @@
     "absolutePath": "lib/forge-std/src/StdChains.sol",
     "id": 4562,
     "exportedSymbols": {
-      "StdChains": [
-        4561
-      ],
-      "VmSafe": [
-        13459
-      ]
+      "StdChains": [4561],
+      "VmSafe": [13459]
     },
     "nodeType": "SourceUnit",
     "src": "32:11091:4",
@@ -86,15 +79,7 @@
         "nodeType": "PragmaDirective",
         "src": "32:31:4",
         "nodes": [],
-        "literals": [
-          "solidity",
-          ">=",
-          "0.6",
-          ".2",
-          "<",
-          "0.9",
-          ".0"
-        ]
+        "literals": ["solidity", ">=", "0.6", ".2", "<", "0.9", ".0"]
       },
       {
         "id": 3827,
@@ -149,9 +134,7 @@
               "pathNode": {
                 "id": 3829,
                 "name": "VmSafe",
-                "nameLocations": [
-                  "1933:6:4"
-                ],
+                "nameLocations": ["1933:6:4"],
                 "nodeType": "IdentifierPath",
                 "referencedDeclaration": 13459,
                 "src": "1933:6:4"
@@ -677,9 +660,7 @@
                 "pathNode": {
                   "id": 3865,
                   "name": "Chain",
-                  "nameLocations": [
-                    "2891:5:4"
-                  ],
+                  "nameLocations": ["2891:5:4"],
                   "nodeType": "IdentifierPath",
                   "referencedDeclaration": 3863,
                   "src": "2891:5:4"
@@ -991,10 +972,7 @@
                       "id": 3887,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "3355:7:4",
                       "typeDescriptions": {
@@ -1355,10 +1333,7 @@
                       "id": 3907,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "3542:7:4",
                       "typeDescriptions": {
@@ -1548,9 +1523,7 @@
                     "pathNode": {
                       "id": 3883,
                       "name": "Chain",
-                      "nameLocations": [
-                        "3325:5:4"
-                      ],
+                      "nameLocations": ["3325:5:4"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 3863,
                       "src": "3325:5:4"
@@ -1663,10 +1636,7 @@
                       "id": 3939,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "3876:7:4",
                       "typeDescriptions": {
@@ -1731,9 +1701,7 @@
                   "src": "3961:21:4"
                 },
                 {
-                  "assignments": [
-                    3950
-                  ],
+                  "assignments": [3950],
                   "declarations": [
                     {
                       "constant": false,
@@ -2154,10 +2122,7 @@
                       "id": 3961,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "4085:7:4",
                       "typeDescriptions": {
@@ -2347,9 +2312,7 @@
                     "pathNode": {
                       "id": 3935,
                       "name": "Chain",
-                      "nameLocations": [
-                        "3846:5:4"
-                      ],
+                      "nameLocations": ["3846:5:4"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 3863,
                       "src": "3846:5:4"
@@ -2522,10 +2485,7 @@
                       "id": 3996,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "4492:7:4",
                       "typeDescriptions": {
@@ -2649,10 +2609,7 @@
                       "id": 4007,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "4656:7:4",
                       "typeDescriptions": {
@@ -2717,9 +2674,7 @@
                   "src": "4757:21:4"
                 },
                 {
-                  "assignments": [
-                    4019
-                  ],
+                  "assignments": [4019],
                   "declarations": [
                     {
                       "constant": false,
@@ -3408,10 +3363,7 @@
                       "id": 4025,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "4850:7:4",
                       "typeDescriptions": {
@@ -3440,9 +3392,7 @@
                   "src": "4850:431:4"
                 },
                 {
-                  "assignments": [
-                    4065
-                  ],
+                  "assignments": [4065],
                   "declarations": [
                     {
                       "constant": false,
@@ -3767,18 +3717,8 @@
                       "isPure": false,
                       "kind": "structConstructorCall",
                       "lValueRequested": false,
-                      "nameLocations": [
-                        "5428:4:4",
-                        "5446:7:4",
-                        "5470:10:4",
-                        "5494:6:4"
-                      ],
-                      "names": [
-                        "name",
-                        "chainId",
-                        "chainAlias",
-                        "rpcUrl"
-                      ],
+                      "nameLocations": ["5428:4:4", "5446:7:4", "5470:10:4", "5494:6:4"],
+                      "names": ["name", "chainId", "chainAlias", "rpcUrl"],
                       "nodeType": "FunctionCall",
                       "src": "5421:95:4",
                       "tryCall": false,
@@ -3940,9 +3880,7 @@
                     "pathNode": {
                       "id": 3991,
                       "name": "ChainData",
-                      "nameLocations": [
-                        "4441:9:4"
-                      ],
+                      "nameLocations": ["4441:9:4"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 3854,
                       "src": "4441:9:4"
@@ -4115,16 +4053,8 @@
                         "isPure": false,
                         "kind": "structConstructorCall",
                         "lValueRequested": false,
-                        "nameLocations": [
-                          "5764:4:4",
-                          "5782:7:4",
-                          "5806:6:4"
-                        ],
-                        "names": [
-                          "name",
-                          "chainId",
-                          "rpcUrl"
-                        ],
+                        "nameLocations": ["5764:4:4", "5782:7:4", "5806:6:4"],
+                        "names": ["name", "chainId", "rpcUrl"],
                         "nodeType": "FunctionCall",
                         "src": "5753:75:4",
                         "tryCall": false,
@@ -4148,10 +4078,7 @@
                       "id": 4106,
                       "name": "setChain",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        4098,
-                        4119
-                      ],
+                      "overloadedDeclarations": [4098, 4119],
                       "referencedDeclaration": 4098,
                       "src": "5732:8:4",
                       "typeDescriptions": {
@@ -4238,9 +4165,7 @@
                     "pathNode": {
                       "id": 4101,
                       "name": "Chain",
-                      "nameLocations": [
-                        "5685:5:4"
-                      ],
+                      "nameLocations": ["5685:5:4"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 3863,
                       "src": "5685:5:4"
@@ -4280,9 +4205,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    4127
-                  ],
+                  "assignments": [4127],
                   "declarations": [
                     {
                       "constant": false,
@@ -4374,9 +4297,7 @@
                   "src": "5926:30:4"
                 },
                 {
-                  "assignments": [
-                    4134
-                  ],
+                  "assignments": [4134],
                   "declarations": [
                     {
                       "constant": false,
@@ -4492,9 +4413,7 @@
                     "src": "6060:198:4",
                     "statements": [
                       {
-                        "assignments": [
-                          4153
-                        ],
+                        "assignments": [4153],
                         "declarations": [
                           {
                             "constant": false,
@@ -5015,9 +4934,7 @@
                   },
                   "id": 4189,
                   "initializationExpression": {
-                    "assignments": [
-                      4142
-                    ],
+                    "assignments": [4142],
                     "declarations": [
                       {
                         "constant": false,
@@ -5502,9 +5419,7 @@
                               "src": "6751:858:4",
                               "statements": [
                                 {
-                                  "assignments": [
-                                    4234
-                                  ],
+                                  "assignments": [4234],
                                   "declarations": [
                                     {
                                       "constant": false,
@@ -6001,9 +5916,7 @@
                                   }
                                 },
                                 {
-                                  "assignments": [
-                                    4272
-                                  ],
+                                  "assignments": [4272],
                                   "declarations": [
                                     {
                                       "constant": false,
@@ -6791,9 +6704,7 @@
                     "pathNode": {
                       "id": 4199,
                       "name": "Chain",
-                      "nameLocations": [
-                        "6490:5:4"
-                      ],
+                      "nameLocations": ["6490:5:4"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 3863,
                       "src": "6490:5:4"
@@ -6835,9 +6746,7 @@
                     "pathNode": {
                       "id": 4203,
                       "name": "Chain",
-                      "nameLocations": [
-                        "6527:5:4"
-                      ],
+                      "nameLocations": ["6527:5:4"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 3863,
                       "src": "6527:5:4"
@@ -10337,9 +10246,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    4532
-                  ],
+                  "assignments": [4532],
                   "declarations": [
                     {
                       "constant": false,
@@ -10574,10 +10481,7 @@
                       "id": 4548,
                       "name": "setChain",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        4098,
-                        4119
-                      ],
+                      "overloadedDeclarations": [4098, 4119],
                       "referencedDeclaration": 4098,
                       "src": "11035:8:4",
                       "typeDescriptions": {
@@ -10723,9 +10627,7 @@
                     "pathNode": {
                       "id": 4526,
                       "name": "ChainData",
-                      "nameLocations": [
-                        "10876:9:4"
-                      ],
+                      "nameLocations": ["10876:9:4"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 3854,
                       "src": "10876:9:4"
@@ -10766,9 +10668,7 @@
           "text": " StdChains provides information about EVM compatible chains that can be used in scripts/tests.\n For each chain, the chain's name, chain ID, and a default RPC URL are provided. Chains are\n identified by their alias, which is the same as the alias in the `[rpc_endpoints]` section of\n the `foundry.toml` file. For best UX, ensure the alias in the `foundry.toml` file match the\n alias used in this contract, which can be found as the first argument to the\n `setChainWithDefaultRpcUrl` call in the `initializeStdChains` function.\n There are two main ways to use this contract:\n   1. Set a chain with `setChain(string memory chainAlias, ChainData memory chain)` or\n      `setChain(string memory chainAlias, Chain memory chain)`\n   2. Get a chain with `getChain(string memory chainAlias)` or `getChain(uint256 chainId)`.\n The first time either of those are used, chains are initialized with the default set of RPC URLs.\n This is done in `initializeStdChains`, which uses `setChainWithDefaultRpcUrl`. Defaults are recorded in\n `defaultRpcUrls`.\n The `setChain` function is straightforward, and it simply saves off the given chain data.\n The `getChain` methods use `getChainWithUpdatedRpcUrl` to return a chain. For example, let's say\n we want to retrieve the RPC URL for `mainnet`:\n   - If you have specified data with `setChain`, it will return that.\n   - If you have configured a mainnet RPC URL in `foundry.toml`, it will return the URL, provided it\n     is valid (e.g. a URL is specified, or an environment variable is given and exists).\n   - If neither of the above conditions is met, the default data is returned.\n Summarizing the above, the prioritization hierarchy is `setChain` -> `foundry.toml` -> environment variable -> defaults."
         },
         "fullyImplemented": true,
-        "linearizedBaseContracts": [
-          4561
-        ],
+        "linearizedBaseContracts": [4561],
         "name": "StdChains",
         "nameLocation": "1917:9:4",
         "scope": 4562,

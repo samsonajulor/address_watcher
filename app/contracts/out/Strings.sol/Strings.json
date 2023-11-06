@@ -82,15 +82,9 @@
     "absolutePath": "lib/openzeppelin-contracts/contracts/utils/Strings.sol",
     "id": 43865,
     "exportedSymbols": {
-      "Math": [
-        45108
-      ],
-      "SignedMath": [
-        45213
-      ],
-      "Strings": [
-        43864
-      ]
+      "Math": [45108],
+      "SignedMath": [45213],
+      "Strings": [43864]
     },
     "nodeType": "SourceUnit",
     "src": "101:2679:22",
@@ -100,12 +94,7 @@
         "nodeType": "PragmaDirective",
         "src": "101:23:22",
         "nodes": [],
-        "literals": [
-          "solidity",
-          "^",
-          "0.8",
-          ".0"
-        ]
+        "literals": ["solidity", "^", "0.8", ".0"]
       },
       {
         "id": 43638,
@@ -243,9 +232,7 @@
                   "src": "528:609:22",
                   "statements": [
                     {
-                      "assignments": [
-                        43655
-                      ],
+                      "assignments": [43655],
                       "declarations": [
                         {
                           "constant": false,
@@ -379,9 +366,7 @@
                       "src": "552:38:22"
                     },
                     {
-                      "assignments": [
-                        43664
-                      ],
+                      "assignments": [43664],
                       "declarations": [
                         {
                           "constant": false,
@@ -476,9 +461,7 @@
                       "src": "604:41:22"
                     },
                     {
-                      "assignments": [
-                        43671
-                      ],
+                      "assignments": [43671],
                       "declarations": [
                         {
                           "constant": false,
@@ -1169,10 +1152,7 @@
                               "id": 43712,
                               "name": "toString",
                               "nodeType": "Identifier",
-                              "overloadedDeclarations": [
-                                43694,
-                                43722
-                              ],
+                              "overloadedDeclarations": [43694, 43722],
                               "referencedDeclaration": 43694,
                               "src": "1376:8:22",
                               "typeDescriptions": {
@@ -1529,11 +1509,7 @@
                           "id": 43730,
                           "name": "toHexString",
                           "nodeType": "Identifier",
-                          "overloadedDeclarations": [
-                            43742,
-                            43818,
-                            43838
-                          ],
+                          "overloadedDeclarations": [43742, 43818, 43838],
                           "referencedDeclaration": 43818,
                           "src": "1636:11:22",
                           "typeDescriptions": {
@@ -1662,9 +1638,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    43753
-                  ],
+                  "assignments": [43753],
                   "declarations": [
                     {
                       "constant": false,
@@ -2208,9 +2182,7 @@
                   },
                   "id": 43804,
                   "initializationExpression": {
-                    "assignments": [
-                      43776
-                    ],
+                    "assignments": [43776],
                     "declarations": [
                       {
                         "constant": false,
@@ -2439,10 +2411,7 @@
                       "id": 43805,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "2162:7:22",
                       "typeDescriptions": {
@@ -2789,11 +2758,7 @@
                       "id": 43826,
                       "name": "toHexString",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        43742,
-                        43818,
-                        43838
-                      ],
+                      "overloadedDeclarations": [43742, 43818, 43838],
                       "referencedDeclaration": 43818,
                       "src": "2497:11:22",
                       "typeDescriptions": {
@@ -3258,9 +3223,7 @@
           "text": " @dev String operations."
         },
         "fullyImplemented": true,
-        "linearizedBaseContracts": [
-          43864
-        ],
+        "linearizedBaseContracts": [43864],
         "name": "Strings",
         "nameLocation": "228:7:22",
         "scope": 43865,

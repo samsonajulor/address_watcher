@@ -1534,15 +1534,9 @@
     "absolutePath": "test/Helpers.sol",
     "id": 45543,
     "exportedSymbols": {
-      "Helpers": [
-        45542
-      ],
-      "Test": [
-        12199
-      ],
-      "console2": [
-        30081
-      ]
+      "Helpers": [45542],
+      "Test": [12199],
+      "console2": [30081]
     },
     "nodeType": "SourceUnit",
     "src": "39:1347:30",
@@ -1552,12 +1546,7 @@
         "nodeType": "PragmaDirective",
         "src": "39:24:30",
         "nodes": [],
-        "literals": [
-          "solidity",
-          "^",
-          "0.8",
-          ".13"
-        ]
+        "literals": ["solidity", "^", "0.8", ".13"]
       },
       {
         "id": 45398,
@@ -2093,9 +2082,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    45454
-                  ],
+                  "assignments": [45454],
                   "declarations": [
                     {
                       "constant": false,
@@ -2447,11 +2434,7 @@
                   "src": "868:100:30"
                 },
                 {
-                  "assignments": [
-                    45477,
-                    45479,
-                    45481
-                  ],
+                  "assignments": [45477, 45479, 45481],
                   "declarations": [
                     {
                       "constant": false,
@@ -3509,9 +3492,7 @@
             "baseName": {
               "id": 45399,
               "name": "Test",
-              "nameLocations": [
-                "157:4:30"
-              ],
+              "nameLocations": ["157:4:30"],
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 12199,
               "src": "157:4:30"
@@ -3526,45 +3507,15 @@
         "contractKind": "contract",
         "fullyImplemented": true,
         "linearizedBaseContracts": [
-          45542,
-          12199,
-          12148,
-          7700,
-          7375,
-          6582,
-          4522,
-          3784,
-          2291,
-          2357,
-          2354
+          45542, 12199, 12148, 7700, 7375, 6582, 4522, 3784, 2291, 2357, 2354
         ],
         "name": "Helpers",
         "nameLocation": "146:7:30",
         "scope": 45543,
         "usedErrors": [],
         "usedEvents": [
-          5,
-          9,
-          13,
-          17,
-          21,
-          25,
-          29,
-          33,
-          39,
-          45,
-          53,
-          61,
-          67,
-          73,
-          79,
-          85,
-          2379,
-          2384,
-          2389,
-          2396,
-          2403,
-          2410
+          5, 9, 13, 17, 21, 25, 29, 33, 39, 45, 53, 61, 67, 73, 79, 85, 2379, 2384, 2389, 2396,
+          2403, 2410
         ]
       }
     ],

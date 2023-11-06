@@ -26,7 +26,8 @@ function hexStringToBuffer(hexstr) {
 }
 
 async function getDomain(contract) {
-  const { fields, name, version, chainId, verifyingContract, salt, extensions } = await contract.eip712Domain();
+  const { fields, name, version, chainId, verifyingContract, salt, extensions } =
+    await contract.eip712Domain();
 
   if (extensions.length > 0) {
     throw Error('Extensions not implemented');
@@ -48,13 +49,19 @@ function domainType(domain) {
 
 function domainSeparator(domain) {
   return bufferToHexString(
-    ethSigUtil.TypedDataUtils.hashStruct('EIP712Domain', domain, { EIP712Domain: domainType(domain) }),
+    ethSigUtil.TypedDataUtils.hashStruct('EIP712Domain', domain, {
+      EIP712Domain: domainType(domain),
+    })
   );
 }
 
 function hashTypedData(domain, structHash) {
   return bufferToHexString(
-    keccak256(Buffer.concat(['0x1901', domainSeparator(domain), structHash].map(str => hexStringToBuffer(str)))),
+    keccak256(
+      Buffer.concat(
+        ['0x1901', domainSeparator(domain), structHash].map((str) => hexStringToBuffer(str))
+      )
+    )
   );
 }
 

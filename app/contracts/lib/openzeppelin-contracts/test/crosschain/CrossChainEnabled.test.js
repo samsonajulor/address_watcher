@@ -21,12 +21,16 @@ function shouldBehaveLikeReceiver(sender = randomAddress()) {
   it('should restrict to cross-chain call from a invalid sender', async function () {
     await expectRevertCustomError(
       this.bridge.call(sender, this.receiver, 'crossChainOwnerRestricted()'),
-      `InvalidCrossChainSender("${sender}", "${await this.receiver.owner()}")`,
+      `InvalidCrossChainSender("${sender}", "${await this.receiver.owner()}")`
     );
   });
 
   it('should grant access to cross-chain call from the owner', async function () {
-    await this.bridge.call(await this.receiver.owner(), this.receiver, 'crossChainOwnerRestricted()');
+    await this.bridge.call(
+      await this.receiver.owner(),
+      this.receiver,
+      'crossChainOwnerRestricted()'
+    );
   });
 }
 

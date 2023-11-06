@@ -19,7 +19,7 @@ import "./math/SafeCast.sol";
  */
 `;
 
-const types = opts => `\
+const types = (opts) => `\
 struct ${opts.historyTypeName} {
     ${opts.checkpointTypeName}[] ${opts.checkpointFieldName};
 }
@@ -31,7 +31,7 @@ struct ${opts.checkpointTypeName} {
 `;
 
 /* eslint-disable max-len */
-const operations = opts => `\
+const operations = (opts) => `\
 /**
  * @dev Pushes a (\`key\`, \`value\`) pair into a ${opts.historyTypeName} so that it is stored as the checkpoint.
  *
@@ -89,7 +89,7 @@ function upperLookupRecent(${opts.historyTypeName} storage self, ${opts.keyTypeN
 }
 `;
 
-const legacyOperations = opts => `\
+const legacyOperations = (opts) => `\
 /**
  * @dev Returns the value at a given block number. If a checkpoint is not available at that block, the closest one
  * before it is returned, or zero otherwise. Because the number returned corresponds to that at the end of the
@@ -157,7 +157,7 @@ function push(
 }
 `;
 
-const common = opts => `\
+const common = (opts) => `\
 /**
  * @dev Returns the value in the most recent checkpoint, or zero if there are no checkpoints.
  */
@@ -298,7 +298,7 @@ module.exports = format(
     legacyOperations(LEGACY_OPTS),
     common(LEGACY_OPTS),
     // New flavors
-    ...OPTS.flatMap(opts => [types(opts), operations(opts), common(opts)]),
+    ...OPTS.flatMap((opts) => [types(opts), operations(opts), common(opts)]),
   ],
-  '}',
+  '}'
 );

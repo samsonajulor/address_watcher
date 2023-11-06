@@ -34,7 +34,9 @@ contract('ERC20Permit', function (accounts) {
   });
 
   it('domain separator', async function () {
-    expect(await this.token.DOMAIN_SEPARATOR()).to.equal(await getDomain(this.token).then(domainSeparator));
+    expect(await this.token.DOMAIN_SEPARATOR()).to.equal(
+      await getDomain(this.token).then(domainSeparator)
+    );
   });
 
   describe('permit', function () {
@@ -46,7 +48,7 @@ contract('ERC20Permit', function (accounts) {
     const maxDeadline = MAX_UINT256;
 
     const buildData = (contract, deadline = maxDeadline) =>
-      getDomain(contract).then(domain => ({
+      getDomain(contract).then((domain) => ({
         primaryType: 'Permit',
         types: { EIP712Domain: domainType(domain), Permit },
         domain,
@@ -55,7 +57,7 @@ contract('ERC20Permit', function (accounts) {
 
     it('accepts owner signature', async function () {
       const { v, r, s } = await buildData(this.token)
-        .then(data => ethSigUtil.signTypedMessage(wallet.getPrivateKey(), { data }))
+        .then((data) => ethSigUtil.signTypedMessage(wallet.getPrivateKey(), { data }))
         .then(fromRpcSig);
 
       await this.token.permit(owner, spender, value, maxDeadline, v, r, s);
@@ -66,14 +68,14 @@ contract('ERC20Permit', function (accounts) {
 
     it('rejects reused signature', async function () {
       const { v, r, s } = await buildData(this.token)
-        .then(data => ethSigUtil.signTypedMessage(wallet.getPrivateKey(), { data }))
+        .then((data) => ethSigUtil.signTypedMessage(wallet.getPrivateKey(), { data }))
         .then(fromRpcSig);
 
       await this.token.permit(owner, spender, value, maxDeadline, v, r, s);
 
       await expectRevert(
         this.token.permit(owner, spender, value, maxDeadline, v, r, s),
-        'ERC20Permit: invalid signature',
+        'ERC20Permit: invalid signature'
       );
     });
 
@@ -81,12 +83,12 @@ contract('ERC20Permit', function (accounts) {
       const otherWallet = Wallet.generate();
 
       const { v, r, s } = await buildData(this.token)
-        .then(data => ethSigUtil.signTypedMessage(otherWallet.getPrivateKey(), { data }))
+        .then((data) => ethSigUtil.signTypedMessage(otherWallet.getPrivateKey(), { data }))
         .then(fromRpcSig);
 
       await expectRevert(
         this.token.permit(owner, spender, value, maxDeadline, v, r, s),
-        'ERC20Permit: invalid signature',
+        'ERC20Permit: invalid signature'
       );
     });
 
@@ -94,10 +96,13 @@ contract('ERC20Permit', function (accounts) {
       const deadline = (await time.latest()) - time.duration.weeks(1);
 
       const { v, r, s } = await buildData(this.token, deadline)
-        .then(data => ethSigUtil.signTypedMessage(wallet.getPrivateKey(), { data }))
+        .then((data) => ethSigUtil.signTypedMessage(wallet.getPrivateKey(), { data }))
         .then(fromRpcSig);
 
-      await expectRevert(this.token.permit(owner, spender, value, deadline, v, r, s), 'ERC20Permit: expired deadline');
+      await expectRevert(
+        this.token.permit(owner, spender, value, deadline, v, r, s),
+        'ERC20Permit: expired deadline'
+      );
     });
   });
 });

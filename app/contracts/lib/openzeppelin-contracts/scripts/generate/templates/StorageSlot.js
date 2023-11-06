@@ -8,13 +8,13 @@ const TYPES = [
   { type: 'uint256', isValueType: true, version: '4.1' },
   { type: 'string', isValueType: false, version: '4.9' },
   { type: 'bytes', isValueType: false, version: '4.9' },
-].map(type => Object.assign(type, { struct: (type.name ?? capitalize(type.type)) + 'Slot' }));
+].map((type) => Object.assign(type, { struct: (type.name ?? capitalize(type.type)) + 'Slot' }));
 
-const VERSIONS = unique(TYPES.map(t => t.version)).map(
-  version =>
-    `_Available since v${version} for ${TYPES.filter(t => t.version == version)
-      .map(t => `\`${t.type}\``)
-      .join(', ')}._`,
+const VERSIONS = unique(TYPES.map((t) => t.version)).map(
+  (version) =>
+    `_Available since v${version} for ${TYPES.filter((t) => t.version == version)
+      .map((t) => `\`${t.type}\``)
+      .join(', ')}._`
 );
 
 const header = `\
@@ -44,17 +44,17 @@ pragma solidity ^0.8.0;
  * }
  * \`\`\`
  *
-${VERSIONS.map(s => ` * ${s}`).join('\n')}
+${VERSIONS.map((s) => ` * ${s}`).join('\n')}
  */
 `;
 
-const struct = type => `\
+const struct = (type) => `\
 struct ${type.struct} {
   ${type.type} value;
 }
 `;
 
-const get = type => `\
+const get = (type) => `\
 /**
  * @dev Returns an \`${type.struct}\` with member \`value\` located at \`slot\`.
  */
@@ -66,7 +66,7 @@ function get${type.struct}(bytes32 slot) internal pure returns (${type.struct} s
 }
 `;
 
-const getStorage = type => `\
+const getStorage = (type) => `\
 /**
  * @dev Returns an \`${type.struct}\` representation of the ${type.type} storage pointer \`store\`.
  */
@@ -82,6 +82,9 @@ function get${type.struct}(${type.type} storage store) internal pure returns (${
 module.exports = format(
   header.trimEnd(),
   'library StorageSlot {',
-  [...TYPES.map(struct), ...TYPES.flatMap(type => [get(type), type.isValueType ? '' : getStorage(type)])],
-  '}',
+  [
+    ...TYPES.map(struct),
+    ...TYPES.flatMap((type) => [get(type), type.isValueType ? '' : getStorage(type)]),
+  ],
+  '}'
 );

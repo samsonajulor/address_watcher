@@ -926,10 +926,7 @@
       }
     },
     "settings": {
-      "remappings": [
-        "ds-test/=lib/forge-std/lib/ds-test/src/",
-        "forge-std/=lib/forge-std/src/"
-      ],
+      "remappings": ["ds-test/=lib/forge-std/lib/ds-test/src/", "forge-std/=lib/forge-std/src/"],
       "optimizer": {
         "enabled": true,
         "runs": 200
@@ -958,9 +955,7 @@
     "absolutePath": "lib/forge-std/src/interfaces/IMulticall3.sol",
     "id": 30284,
     "exportedSymbols": {
-      "IMulticall3": [
-        30283
-      ]
+      "IMulticall3": [30283]
     },
     "nodeType": "SourceUnit",
     "src": "32:2153:17",
@@ -970,25 +965,14 @@
         "nodeType": "PragmaDirective",
         "src": "32:31:17",
         "nodes": [],
-        "literals": [
-          "solidity",
-          ">=",
-          "0.6",
-          ".2",
-          "<",
-          "0.9",
-          ".0"
-        ]
+        "literals": ["solidity", ">=", "0.6", ".2", "<", "0.9", ".0"]
       },
       {
         "id": 30123,
         "nodeType": "PragmaDirective",
         "src": "65:33:17",
         "nodes": [],
-        "literals": [
-          "experimental",
-          "ABIEncoderV2"
-        ]
+        "literals": ["experimental", "ABIEncoderV2"]
       },
       {
         "id": 30283,
@@ -1384,9 +1368,7 @@
                       "pathNode": {
                         "id": 30150,
                         "name": "Call",
-                        "nameLocations": [
-                          "525:4:17"
-                        ],
+                        "nameLocations": ["525:4:17"],
                         "nodeType": "IdentifierPath",
                         "referencedDeclaration": 30128,
                         "src": "525:4:17"
@@ -1523,9 +1505,7 @@
                       "pathNode": {
                         "id": 30162,
                         "name": "Call3",
-                        "nameLocations": [
-                          "672:5:17"
-                        ],
+                        "nameLocations": ["672:5:17"],
                         "nodeType": "IdentifierPath",
                         "referencedDeclaration": 30135,
                         "src": "672:5:17"
@@ -1576,9 +1556,7 @@
                       "pathNode": {
                         "id": 30167,
                         "name": "Result",
-                        "nameLocations": [
-                          "722:6:17"
-                        ],
+                        "nameLocations": ["722:6:17"],
                         "nodeType": "IdentifierPath",
                         "referencedDeclaration": 30149,
                         "src": "722:6:17"
@@ -1645,9 +1623,7 @@
                       "pathNode": {
                         "id": 30173,
                         "name": "Call3Value",
-                        "nameLocations": [
-                          "781:10:17"
-                        ],
+                        "nameLocations": ["781:10:17"],
                         "nodeType": "IdentifierPath",
                         "referencedDeclaration": 30144,
                         "src": "781:10:17"
@@ -1698,9 +1674,7 @@
                       "pathNode": {
                         "id": 30178,
                         "name": "Result",
-                        "nameLocations": [
-                          "836:6:17"
-                        ],
+                        "nameLocations": ["836:6:17"],
                         "nodeType": "IdentifierPath",
                         "referencedDeclaration": 30149,
                         "src": "836:6:17"
@@ -1767,9 +1741,7 @@
                       "pathNode": {
                         "id": 30184,
                         "name": "Call",
-                        "nameLocations": [
-                          "897:4:17"
-                        ],
+                        "nameLocations": ["897:4:17"],
                         "nodeType": "IdentifierPath",
                         "referencedDeclaration": 30128,
                         "src": "897:4:17"
@@ -1874,9 +1846,7 @@
                       "pathNode": {
                         "id": 30193,
                         "name": "Result",
-                        "nameLocations": [
-                          "1010:6:17"
-                        ],
+                        "nameLocations": ["1010:6:17"],
                         "nodeType": "IdentifierPath",
                         "referencedDeclaration": 30149,
                         "src": "1010:6:17"
@@ -2588,9 +2558,7 @@
                       "pathNode": {
                         "id": 30255,
                         "name": "Call",
-                        "nameLocations": [
-                          "1883:4:17"
-                        ],
+                        "nameLocations": ["1883:4:17"],
                         "nodeType": "IdentifierPath",
                         "referencedDeclaration": 30128,
                         "src": "1883:4:17"
@@ -2641,9 +2609,7 @@
                       "pathNode": {
                         "id": 30260,
                         "name": "Result",
-                        "nameLocations": [
-                          "1956:6:17"
-                        ],
+                        "nameLocations": ["1956:6:17"],
                         "nodeType": "IdentifierPath",
                         "referencedDeclaration": 30149,
                         "src": "1956:6:17"
@@ -2737,9 +2703,7 @@
                       "pathNode": {
                         "id": 30268,
                         "name": "Call",
-                        "nameLocations": [
-                          "2041:4:17"
-                        ],
+                        "nameLocations": ["2041:4:17"],
                         "nodeType": "IdentifierPath",
                         "referencedDeclaration": 30128,
                         "src": "2041:4:17"
@@ -2844,9 +2808,7 @@
                       "pathNode": {
                         "id": 30277,
                         "name": "Result",
-                        "nameLocations": [
-                          "2154:6:17"
-                        ],
+                        "nameLocations": ["2154:6:17"],
                         "nodeType": "IdentifierPath",
                         "referencedDeclaration": 30149,
                         "src": "2154:6:17"
@@ -2883,9 +2845,7 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "linearizedBaseContracts": [
-          30283
-        ],
+        "linearizedBaseContracts": [30283],
         "name": "IMulticall3",
         "nameLocation": "110:11:17",
         "scope": 30284,

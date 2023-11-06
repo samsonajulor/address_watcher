@@ -17,7 +17,7 @@ function extractLayouts(path) {
   const deref = astDereferencer(output);
 
   for (const src in output.contracts) {
-    if (skipPath.some(prefix => src.startsWith(prefix))) {
+    if (skipPath.some((prefix) => src.startsWith(prefix))) {
       continue;
     }
 
@@ -30,7 +30,7 @@ function extractLayouts(path) {
         contractDef,
         decoder,
         deref,
-        output.contracts[src][contractDef.name].storageLayout,
+        output.contracts[src][contractDef.name].storageLayout
       );
     }
   }

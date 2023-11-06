@@ -12,7 +12,7 @@ async function batchInBlock(txs) {
     // disable auto-mining
     await network.provider.send('evm_setAutomine', [false]);
     // send all transactions
-    const promises = txs.map(fn => fn());
+    const promises = txs.map((fn) => fn());
     // wait for node to have all pending transactions
     while (txs.length > (await countPendingTransactions())) {
       await queue();

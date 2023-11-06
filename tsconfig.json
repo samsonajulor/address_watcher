@@ -1,19 +1,14 @@
 {
   "compilerOptions": {
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "target": "ESNext",
-    "jsx": "react",
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "resolveJsonModule": true,
+    "target": "es2016",
+    "module": "commonjs",
+    "rootDir": "./src",
+    "outDir": "./dist",
     "esModuleInterop": true,
-    "allowImportingTsExtensions": true,
-    "noEmit": true
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "typeRoots": ["./src/@types", "./node_modules/@types"]
   },
-  "exclude": ["node_modules", "**/node_modules/*"],
-  "ts-node": {
-    // Tell ts-node CLI to install the --loader automatically
-    "esm": true
-  }
+  "include": ["src"]
 }

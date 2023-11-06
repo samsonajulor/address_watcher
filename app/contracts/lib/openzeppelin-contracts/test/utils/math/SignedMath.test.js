@@ -70,7 +70,7 @@ contract('SignedMath', function () {
         for (const y of valuesY) {
           expect(await this.math.$average(x, y)).to.be.bignumber.equal(
             bnAverage(x, y),
-            `Bad result for average(${x}, ${y})`,
+            `Bad result for average(${x}, ${y})`
           );
         }
       }

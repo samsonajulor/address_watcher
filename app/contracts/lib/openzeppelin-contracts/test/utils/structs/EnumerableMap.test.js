@@ -5,12 +5,12 @@ const EnumerableMap = artifacts.require('$EnumerableMap');
 
 const { shouldBehaveLikeMap } = require('./EnumerableMap.behavior');
 
-const getMethods = ms => {
+const getMethods = (ms) => {
   return mapValues(
     ms,
-    m =>
+    (m) =>
       (self, ...args) =>
-        self.methods[m](0, ...args),
+        self.methods[m](0, ...args)
   );
 };
 
@@ -52,7 +52,7 @@ contract('EnumerableMap', function (accounts) {
       {
         setReturn: `return$set_${library}_AddressToUintMap_address_uint256`,
         removeReturn: `return$remove_${library}_AddressToUintMap_address`,
-      },
+      }
     );
   });
 
@@ -76,14 +76,14 @@ contract('EnumerableMap', function (accounts) {
       {
         setReturn: `return$set_${library}_UintToAddressMap_uint256_address`,
         removeReturn: `return$remove_${library}_UintToAddressMap_uint256`,
-      },
+      }
     );
   });
 
   // Bytes32ToBytes32Map
   describe('Bytes32ToBytes32Map', function () {
     shouldBehaveLikeMap(
-      [keyA, keyB, keyC].map(k => '0x' + k.toString(16).padEnd(64, '0')),
+      [keyA, keyB, keyC].map((k) => '0x' + k.toString(16).padEnd(64, '0')),
       [bytesA, bytesB, bytesC],
       constants.ZERO_BYTES32,
       getMethods({
@@ -100,7 +100,7 @@ contract('EnumerableMap', function (accounts) {
       {
         setReturn: `return$set_${library}_Bytes32ToBytes32Map_bytes32_bytes32`,
         removeReturn: `return$remove_${library}_Bytes32ToBytes32Map_bytes32`,
-      },
+      }
     );
   });
 
@@ -108,7 +108,7 @@ contract('EnumerableMap', function (accounts) {
   describe('UintToUintMap', function () {
     shouldBehaveLikeMap(
       [keyA, keyB, keyC],
-      [keyA, keyB, keyC].map(k => k.add(new BN('1332'))),
+      [keyA, keyB, keyC].map((k) => k.add(new BN('1332'))),
       new BN('0'),
       getMethods({
         set: '$set(uint256,uint256,uint256)',
@@ -124,7 +124,7 @@ contract('EnumerableMap', function (accounts) {
       {
         setReturn: `return$set_${library}_UintToUintMap_uint256_uint256`,
         removeReturn: `return$remove_${library}_UintToUintMap_uint256`,
-      },
+      }
     );
   });
 
@@ -148,7 +148,7 @@ contract('EnumerableMap', function (accounts) {
       {
         setReturn: `return$set_${library}_Bytes32ToUintMap_bytes32_uint256`,
         removeReturn: `return$remove_${library}_Bytes32ToUintMap_bytes32`,
-      },
+      }
     );
   });
 });
