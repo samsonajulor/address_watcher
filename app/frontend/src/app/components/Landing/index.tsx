@@ -1,8 +1,8 @@
-import Header from "./Header";
-// import Hero from "./Hero.tsx";
-// import Features from "./Features.tsx";
-// import Steps from "./Steps.tsx";
-// import Chains from "./Chains.tsx";
+import Header from './Header';
+import Hero from './Hero';
+import Features from './Features';
+import Steps from './Steps';
+import Chains from "./Chains";
 // import Cta from "./Cta.tsx";
 // import Footer from "./Footer.tsx";
 // import Infos from "./Infos.tsx";
@@ -10,9 +10,19 @@ import Header from "./Header";
 const Landing = () => {
   return (
     <div>
-        <Header />
+      <Header />
+      <div className="justify-center items-start bg-gray-950 flex flex-col">
+        <Hero />
+        <Features />
+        <Steps />
+        
+        <Chains />
+        {/* <Infos /> */}
+        {/* <Cta /> */}
+        {/* <Footer />  */}
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Landing
+export default Landing;
