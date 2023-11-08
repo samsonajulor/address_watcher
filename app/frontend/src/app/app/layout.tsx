@@ -8,15 +8,14 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const [tab, setTab] = useState('overview');
-  const navigate = (data: string) => {
-    setTab(data);
-  };
+  
   return (
     <section>
-      <Sidebar tab={navigate} />
-      <nav></nav>
-      {children}
+      <Sidebar />
+      <div className="flex max-md:flex-col max-md:items-stretch max-md:gap-0">
+         {children}
+      </div>
+     
     </section>
   );
 }

@@ -1,10 +1,11 @@
+
 'use client';
 // separate oute usestate and dialog
 
 import { useState } from 'react';
 import { Dialog } from '@headlessui/react';
-import Modal from './Modal';
-import DashHead from './DashHead';
+import Modal from './components/Modal';
+import DashHead from './components/DashHead';
 
 const Overview = () => {
   let [isOpen, setIsOpen] = useState(false);
