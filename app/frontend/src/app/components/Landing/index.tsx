@@ -2,10 +2,10 @@ import Header from './Header';
 import Hero from './Hero';
 import Features from './Features';
 import Steps from './Steps';
-import Chains from "./Chains";
-// import Cta from "./Cta.tsx";
-// import Footer from "./Footer.tsx";
-// import Infos from "./Infos.tsx";
+import Chains from './Chains';
+import Infos from './Infos';
+import Cta from './Cta';
+import Footer from './Footer';
 
 const Landing = () => {
   return (
@@ -15,11 +15,10 @@ const Landing = () => {
         <Hero />
         <Features />
         <Steps />
-        
         <Chains />
-        {/* <Infos /> */}
-        {/* <Cta /> */}
-        {/* <Footer />  */}
+        <Infos />
+        <Cta />
+        <Footer />
       </div>
     </div>
   );
