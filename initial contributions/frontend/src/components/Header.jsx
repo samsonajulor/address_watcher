@@ -35,25 +35,25 @@ const Header = () => {
             </button>
           </div>
           <div className="items-start self-center hidden lg:flex w-[521px] max-w-full justify-between gap-5 my-auto max-md:flex-wrap max-md:justify-center">
-            <div className="text-orange-400 text-2xl font-bold self-stretch">
+            <div className="text-orange-400 text-xl font-bold self-stretch">
               Home
             </div>
-            <div className="text-white text-2xl font-bold self-stretch">
+            <div className="text-white text-xl font-bold self-stretch">
               About
             </div>
-            <div className="text-white text-2xl font-bold self-stretch">
+            <div className="text-white text-xl font-bold self-stretch">
               Pricing
             </div>
             <Link
               to="/dashboard"
-              className="text-white text-2xl font-bold self-stretch whitespace-nowrap hover:text-orange-300"
+              className="text-white text-xl font-bold self-stretch whitespace-nowrap hover:text-orange-300"
             >
               Dashboard
             </Link>
           </div>
           <Link
             to="/register"
-            className="text-white text-xl hidden lg:flex font-bold self-stretch whitespace-nowrap justify-center items-center bg-violet-800 px-6 py-3 rounded-2xl max-md:px-5"
+            className="text-white text-xl hidden lg:flex font-bold self-stretch whitespace-nowrap justify-center items-center bg-violet-800 px-6 py-3 rounded-xl max-md:px-5"
           >
             Register
           </Link>

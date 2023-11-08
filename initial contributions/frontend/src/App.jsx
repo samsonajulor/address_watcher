@@ -1,14 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Hero from "./components/Hero";
-import WhyUs from "./components/WhyUs";
-
-import Landing from "./components/Landing";
-import Register from "./components/Register";
-import Login from "./components/Login";
-import Overview from "./components/Overview";
-import Activity from "./components/Activity";
-import Modal from "./components/Modal";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
 
 function App() {
@@ -25,17 +19,11 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />}></Route>
-        <Route path="/dashboard/" element={<Overview />}></Route>
-        <Route path="/dashboard/overview" element={<Overview />}></Route>
-        <Route path="/dashboard/activity" element={<Activity />}></Route>
+        <Route path="/dashboard/" element={<Dashboard />}></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="*" element={<NoMatch />} />
       </Routes>
-
-      {/* <Register /> */}
-      {/* <Login /> */}
-      {/* <Modal /> */}
     </Router>
   );
 }

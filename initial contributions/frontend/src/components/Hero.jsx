@@ -3,7 +3,7 @@ import push from "../assets/push-rem.png";
 
 const Hero = () => {
   return (
-    <div className="justify-center items-center bg-gray-950 self-stretch flex w-full flex-col px-20 py-6 mt-10 max-md:max-w-full max-md:px-8">
+    <div className="justify-center items-center bg-gray-950 self-stretch flex w-full flex-col px-20 mt-10 max-md:max-w-full max-md:px-8">
       <div className="items-start self-center flex w-full flex-col max-md:max-w-full">
         <div className="justify-between self-stretch max-md:max-w-full">
           <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
@@ -12,7 +12,7 @@ const Hero = () => {
                 <div className="justify-center items-center flex max-w-full flex-col self-start">
                   <div className="text-orange-400 text-7xl font-bold leading-tight self-stretch max-md:max-w-full max-md:text-4xl max-md:leading-[52px]">
                     <span className="text-white">Welcome to the </span>
-                    <span className="text-violet-800">address</span>
+                    <span className="text-violet-700">address</span>
                     <span className="text-white"> </span>
                     <span className="text-orange-400">watcher</span>
                   </div>

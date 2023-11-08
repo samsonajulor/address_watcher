@@ -1,49 +1,53 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const Sidebar = (props) => {
-  const overview = props.active == "overview" ? "text-violet-800" : "";
-  const activity = props.active == "activity" ? "text-violet-800" : "";
-  // const explore = on == "explore"? "text-violet-800" : "";
-  // const settings = on == "settings"? "text-violet-800" : "";
+const Sidebar = ({tab}) => {
+  const [active, setActive] = useState("overview");
+
+  tab(active);
+
+  const handleClick = (link) => {
+    setActive(link);
+  };
 
   return (
-    <div className="flex flex-col items-stretch w-[17%] max-md:w-full max-md:ml-0">
-      <div className="fixed bg-gray-900 min-h-screen flex flex-col justify-between w-full max-w-[325px] grow mx-auto px-16 py-20 max-md:pb-24 max-md:px-5">
-        <Link
-          to="/"
-          className="text-4xl text-center tracking-[6.16px] bg-clip-text self-stretch whitespace-nowrap max-md:text-3xl"
-        >
-          Watcher
-        </Link>
+      <div className="fixed bg-gray-900 min-h-screen flex flex-col justify-between w-[250px] grow p-10 max-md:pb-24 max-md:px-5">
+        <Link to="/" className="text-3xl text-center bg-clip-text max-md:text-4xl">
+            Watcher
+          </Link>
         <div className="items-start self-center flex w-[105px] max-w-full flex-col max-md:mt-10">
-          <Link
-            to="/dashboard/overview"
-            className={`${overview} text-2xl font-bold self-stretch whitespace-nowrap`}
+          <div
+            className={`text-xl font-bold self-stretch cursor-pointer whitespace-nowrap ${
+              active === "overview" ? "text-violet-700" : ""
+            }`}
+            onClick={() => handleClick("overview")}
           >
             Overview
-          </Link>
-          <Link
-            to="/dashboard/activity"
-            className={`${activity} text-2xl font-bold self-stretch whitespace-nowrap mt-16 max-md:mt-10`}
+          </div>
+          <div
+            className={`text-xl font-bold self-stretch cursor-pointer whitespace-nowrap mt-16 max-md:mt-10 ${
+              active === "activity" ? "text-violet-700" : ""
+            }`}
+            onClick={() => handleClick("activity")}
           >
             Activity
-          </Link>
-          <div className="text-white text-2xl font-bold self-stretch whitespace-nowrap mt-16 max-md:mt-10">
+          </div>
+          <div className="text-white text-xl font-bold self-stretch cursor-pointer whitespace-nowrap mt-16 max-md:mt-10">
             Explore
           </div>
-          <div className="text-white text-2xl font-bold self-stretch whitespace-nowrap mt-16 max-md:mt-10">
+          <div className="text-white text-xl font-bold self-stretch cursor-pointer whitespace-nowrap mt-16 max-md:mt-10">
             Settings
           </div>
         </div>
         <Link
-          to="/"
-          className="text-white text-2xl font-bold self-stretch whitespace-nowrap justify-center items-center bg-violet-800 mb-0 w-full pl-12 pr-12 pt-7 pb-6 rounded-2xl max-md:mt-10 max-md:mb-2.5 max-md:px-5"
-        >
-          Logout
-        </Link>
+            to="/"
+            className="text-white text-xl flex font-bold self-stretch whitespace-nowrap justify-center items-center bg-violet-800 px-6 py-3 rounded-xl max-md:px-5"
+          >
+            Logout
+          </Link>
       </div>
-    </div>
   );
 };
 
 export default Sidebar;
+
