@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 export default function Register() {
   return (
@@ -11,9 +11,7 @@ export default function Register() {
               <span className="text-violet-700">Watcher</span>
             </div>
             <div className="items-start self-stretch flex gap-2.5 mt-1">
-              <div className="text-white font-bold">
-                Already registered?
-              </div>
+              <div className="text-white font-bold">Already registered?</div>
               <Link
                 to="/login"
                 className="text-orange-400 font-bold self-stretch whitespace-nowrap"
