@@ -17,6 +17,26 @@ export const USER_DATA = gql(`
   }
 `);
 
+export const GET_USER_COUNT = gql(`
+  query Count {
+    userDataCount
+  }
+`)
+
+export const GET_ALL_USERS = gql(`
+query Users($first: Int) {
+ 
+  userDataIndex(first: $first) {
+    edges {
+      node {
+        address
+        email
+      }
+    }
+  }
+}
+`) 
+
 export const ADD_EMAIL = gql(`
   mutation AddUserData($input: CreateUserDataInput!) {
     createUserData(input: $input) {

@@ -6,7 +6,7 @@ import Modal from './components/Modal';
 import NewModal from './components/NewModal';
 import DashHead from './components/DashHead';
 import {useQuery} from '@apollo/client';
-import {USER_DATA} from 'src/utils/gql';
+import {GET_ALL_USERS, GET_USER_COUNT, USER_DATA} from 'src/utils/gql';
 import {useComposeContext} from 'src/app/app/contexts/ComposeProvider';
 import {DIDSession} from 'did-session';
 import {PlusIcon} from '@heroicons/react/24/outline';
@@ -40,9 +40,19 @@ const Overview = ({session}: {session: DIDSession;}) => {
     address: string;
   }>();
 
+  const [totalCount, setTotalCount] = useState(0);
+
   const {loading, error, data} = useQuery(USER_DATA, {
     variables: {
       nodeId: session.id,
+    }
+  });
+
+  const totalUsers = useQuery(GET_USER_COUNT);
+
+  const allUsers = useQuery(GET_ALL_USERS, {
+    variables: {
+      first: totalCount ?? 0
     }
   });
 
@@ -53,14 +63,38 @@ const Overview = ({session}: {session: DIDSession;}) => {
         node: {userData: dt},
       } = data;
 
-      console.log(data);
-
 
       if (dt) {
         setUserData(dt);
       }
     }
   }, [loading, error, data]);
+
+  useEffect(() => {
+    const {loading, error, data} = totalUsers;
+    if (!loading && !error && data) {
+      setTotalCount(Number(data.userDataCount));
+    }
+  }, [totalUsers]);
+
+  useEffect(() => {
+    const {loading, error, data} = allUsers;
+    if (!loading && !error && data) {
+      console.log(data);
+      const {
+        userDataIndex: {edges}
+      } = data;
+      // setTotalCount(Number(data.userDataCount));
+
+      if (edges) {
+        const newData = edges.map(({node: arr}) => arr);
+        console.log(newData);
+      }
+
+
+    }
+  }, [totalUsers, allUsers]);
+
 
 
 
@@ -79,8 +113,9 @@ const Overview = ({session}: {session: DIDSession;}) => {
       </Dialog>
       <div className="justify-between w-full flex gap-5 mt-14 max-md:max-w-full max-md:flex-wrap max-md:mt-10 max-md:mb-2.5">
         <div className="text-violet-600 text-xl">
-          Registered Addresses
+          Total Users: {totalCount}
         </div>
+        <p></p>
         {/* <div className="flex gap-2">
           <PlusIcon
             className=" w-4 max-w-full text-orange-400"
