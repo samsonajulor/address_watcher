@@ -1,45 +1,152 @@
 'use client';
-// separate oute usestate and dialog
 
-import { useState } from 'react';
-import { Dialog } from '@headlessui/react';
-import Modal from './Modal';
-import DashHead from './DashHead';
+import {useEffect, useState} from 'react';
+import {Dialog} from '@headlessui/react';
+import Modal from './components/Modal';
+import NewModal from './components/NewModal';
+import DashHead from './components/DashHead';
+import {useQuery} from '@apollo/client';
+import {GET_ALL_USERS, GET_USER_COUNT, USER_DATA} from 'src/utils/gql';
+import {useComposeContext} from 'src/app/app/contexts/ComposeProvider';
+import {DIDSession} from 'did-session';
+import {PlusIcon} from '@heroicons/react/24/outline';
 
-const Overview = () => {
-  let [isOpen, setIsOpen] = useState(false);
+const App = () => {
+  const {session, isConnected} = useComposeContext();
+
+
+
 
   return (
     <div className="flex flex-col items-stretch ml-[250px] w-full max-md:w-full max-md:ml-0">
-      <div className="justify-center items-center bg-gray-950 flex grow flex-col w-full mx-auto pt-10 pb-24 px-16 max-md:max-w-full max-md:pb-24 max-md:px-5">
+      <div className="justify-center items-center bg-gray-950 flex grow flex-col w-full mx-auto p-8 max-md:max-w-full max-md:pb-24 max-md:px-5">
         <DashHead />
-        {/* can be in layout since static */}
-        <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-50">
-          <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
-            <Dialog.Panel>
-              <Modal />
-            </Dialog.Panel>
-          </div>
-        </Dialog>
-        <div className="justify-between items-start self-center flex w-full gap-5 mt-14 pr-1 max-md:max-w-full max-md:flex-wrap max-md:mt-10 max-md:mb-2.5">
-          <div className="text-violet-600 text-xl self-stretch grow shrink basis-auto">
-            Registered Addresses
-          </div>
-          <div className="justify-between items-start self-stretch flex gap-2">
-            <img
-              loading="lazy"
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/937f5637-9b08-4409-8aff-b70efc053f0a?apiKey=6d09e386ed084a5db605f780c970c7a9&"
-              className="aspect-square object-contain object-center w-4 overflow-hidden self-stretch max-w-full"
-            />
-            <div
-              className="text-orange-400 text-lg self-center whitespace-nowrap my-auto cursor-pointer"
-              onClick={() => setIsOpen(true)}
-            >
-              Add an address
-            </div>
-          </div>
+
+        {
+          (isConnected && session?.did) ? <Overview session={session} /> : <p className='mt-20 font-bold text-3xl'>
+            Connect to Start
+          </p>
+        }
+      </div>
+    </div>
+  );
+
+};
+
+const Overview = ({session}: {session: DIDSession;}) => {
+  let [isOpen, setIsOpen] = useState(false);
+  const [userData, setUserData] = useState<{
+    email: string;
+    address: string;
+  }>();
+
+  const [totalCount, setTotalCount] = useState(0);
+
+  const {loading, error, data} = useQuery(USER_DATA, {
+    variables: {
+      nodeId: session.id,
+    }
+  });
+
+  const totalUsers = useQuery(GET_USER_COUNT);
+
+  const allUsers = useQuery(GET_ALL_USERS, {
+    variables: {
+      first: totalCount ?? 0
+    }
+  });
+
+
+  useEffect(() => {
+    if (!loading && !error && data) {
+      const {
+        node: {userData: dt},
+      } = data;
+
+
+      if (dt) {
+        setUserData(dt);
+      }
+    }
+  }, [loading, error, data]);
+
+  useEffect(() => {
+    const {loading, error, data} = totalUsers;
+    if (!loading && !error && data) {
+      setTotalCount(Number(data.userDataCount));
+    }
+  }, [totalUsers]);
+
+  useEffect(() => {
+    const {loading, error, data} = allUsers;
+    if (!loading && !error && data) {
+      console.log(data);
+      const {
+        userDataIndex: {edges}
+      } = data;
+      // setTotalCount(Number(data.userDataCount));
+
+      if (edges) {
+        const newData = edges.map(({node: arr}) => arr);
+        console.log(newData);
+      }
+
+
+    }
+  }, [totalUsers, allUsers]);
+
+
+
+
+
+
+  return (
+    <>
+      {/* can be in layout since static */}
+      <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-50">
+        <div className="fixed inset-0 flex w-screen h-screen bg-black/20 items-center justify-center p-4">
+          <Dialog.Panel>
+            {/* <Modal /> */}
+            <NewModal setIsOpen={setIsOpen} _email={userData?.email} />
+          </Dialog.Panel>
         </div>
-        <div className="justify-between self-stretch mb-0 mt-14 max-md:max-w-full max-md:mr-1.5 max-md:mt-10 max-md:mb-2.5">
+      </Dialog>
+      <div className="justify-between w-full flex gap-5 mt-14 max-md:max-w-full max-md:flex-wrap max-md:mt-10 max-md:mb-2.5">
+        <div className="text-violet-600 text-xl">
+          Total Users: {totalCount}
+        </div>
+        <p></p>
+        {/* <div className="flex gap-2">
+          <PlusIcon
+            className=" w-4 max-w-full text-orange-400"
+          />
+          <div
+            className="text-orange-400 text-lg self-center whitespace-nowrap my-auto cursor-pointer"
+            onClick={() => setIsOpen(true)}
+          >
+            Add an address
+          </div>
+        </div> */}
+      </div>
+
+      <div className='grid gap-2 place-content-center text-center h-40'>
+        {userData ? <>
+          <p>Your registered email is: {userData.email}</p>
+          <p onClick={() => setIsOpen(true)} className="text-[12px] text-orange-400 cursor-pointer hover:text-orange-600">Edit email</p>
+        </> : <>
+          <p>You have no registered email</p>
+          <button
+            className="text-orange-400 text-lg cursor-pointer"
+            onClick={() => setIsOpen(true)}
+          >
+            Add an address
+
+          </button>
+        </>}
+      </div>
+
+
+      {/* <div className="justify-between self-stretch mb-0 mt-14 max-md:max-w-full max-md:mr-1.5 max-md:mt-10 max-md:mb-2.5">
           <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
             <div className="flex flex-col items-stretch w-[35%] max-md:w-full max-md:ml-0">
               <div className="items-start flex grow flex-col max-md:mt-10">
@@ -146,10 +253,9 @@ const Overview = () => {
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
+        </div> */}
+    </>
   );
 };
 
-export default Overview;
+export default App;
