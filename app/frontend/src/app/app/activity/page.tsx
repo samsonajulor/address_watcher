@@ -1,4 +1,4 @@
-import DashHead from './DashHead';
+import DashHead from '../components/DashHead';
 
 const Activity = () => {
   return (
