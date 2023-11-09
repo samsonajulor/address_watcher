@@ -2,14 +2,14 @@
 export const definition = {
   models: {
     BasicProfile: {
-      id: 'kjzl6hvfrbw6ca7o1k90nl286i8u9926emvm4rp2rou30s74fifd76t242gznfk',
+      id: 'kjzl6hvfrbw6c9yo6bm25li6wz1ikgl65yrkzjjgwldvnf6vwf1pkm28gh2b5e7',
       accountRelation: { type: 'single' },
     },
   },
   objects: {
     BasicProfile: {
       email: { type: 'string', required: false },
-      address: { type: 'string', required: true },
+      owner: { type: 'string', required: true },
     },
   },
   enums: {},

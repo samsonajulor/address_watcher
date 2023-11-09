@@ -1,0 +1,15 @@
+type Profile @loadModel(id: "$PROFILE_ID") {
+  id: ID!
+}
+
+type Article
+  @createModel(
+    accountRelation: LIST
+    description: "Text written by an author"
+  ) {
+  author: DID! @documentAccount
+  title: String! @string(maxLength: 50)
+  date: DateTime!
+  content: String! @string(maxLength: 100000)
+  profileId: StreamID! @documentReference(model: "Profile")
+}

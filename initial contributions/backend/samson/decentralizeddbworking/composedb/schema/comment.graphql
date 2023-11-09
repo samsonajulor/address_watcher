@@ -1,0 +1,10 @@
+type Article @loadModel(id: "$ARTICLE_ID") {
+  id: ID!
+}
+
+type Comment
+  @createModel(accountRelation: LIST, description: "A comment on an article") {
+  author: DID! @documentAccount
+  content: String! @string(maxLength: 5000)
+  articleId: StreamID! @documentReference(model: "Article")
+}

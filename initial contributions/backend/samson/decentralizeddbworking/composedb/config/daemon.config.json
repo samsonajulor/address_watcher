@@ -1,0 +1,21 @@
+{
+  "anchor": { "auth-method": "did" },
+  "http-api": {
+    "cors-allowed-origins": [".*"],
+    "admin-dids": ["did:key:z6MkujRfFN2N44zrhDySsizXzj1pwE35G6EFUbbfprnr9hQo"]
+  },
+  "ipfs": { "mode": "bundled", "disable-peer-data-sync": false },
+  "logger": { "log-level": 2, "log-to-files": false },
+  "metrics": { "metrics-exporter-enabled": false },
+  "network": { "name": "testnet-clay" },
+  "node": {
+    "privateSeedUrl": "inplace:ed25519#2c8008b44013c7d805dfa43d63d5e2afcd6c994ed1b4ea7263f452a2b413316d"
+  },
+  "state-store": { "mode": "fs", "local-directory": "/home/samsonajulor/.ceramic/statestore/" },
+  "indexing": {
+    "db": "sqlite:///home/samsonajulor/.ceramic/indexing.sqlite",
+    "allow-queries-before-historical-sync": true,
+    "disable-composedb": false,
+    "enable-historical-sync": false
+  }
+}

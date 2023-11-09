@@ -1,5 +1,18 @@
 # Basic copy of the basicProfile datamodel. 
 type BasicProfile @createModel(accountRelation: SINGLE, description: "A basic Profile") {
-  address: String! @string(minLength: 3, maxLength: 100)
+  owner: String! @string(minLength: 3, maxLength: 100)
   email: String @string(minLength: 3, maxLength: 100)
+  # addresses: String @string(minLength: 3, maxLength: 1000000)
+  # subscriptionType: SubscriptionType
+  # notificationType: NotificationType
+}
+
+type SubscriptionType {
+  txIn: Int! @int(min: 1)
+  txOut: Int! @int(min: 1)
+}
+
+type NotificationType {
+  email: Int! @int(min: 1)
+  sms: Int! @int(min: 1)
 }
