@@ -10,12 +10,10 @@ import {GET_ALL_USERS, GET_USER_COUNT, USER_DATA} from 'src/utils/gql';
 import {useComposeContext} from 'src/app/app/contexts/ComposeProvider';
 import {DIDSession} from 'did-session';
 import {PlusIcon} from '@heroicons/react/24/outline';
-import { subscribe } from 'src/utils/wssSubscriptions';
+import {subscribe} from 'src/utils/wssSubscriptions';
 
 const App = () => {
   const {session, isConnected} = useComposeContext();
-
-
 
 
   return (
@@ -69,7 +67,7 @@ const Overview = ({session}: {session: DIDSession;}) => {
         setUserData(dt);
       }
     }
-    subscribe();
+    // subscribe();
   }, [loading, error, data]);
 
   useEffect(() => {
@@ -79,24 +77,24 @@ const Overview = ({session}: {session: DIDSession;}) => {
     }
   }, [totalUsers]);
 
-  useEffect(() => {
-    const {loading, error, data} = allUsers;
-    if (!loading && !error && data) {
-      console.log(data);
-      const {
-        userDataIndex: {edges}
-      } = data;
-      // setTotalCount(Number(data.userDataCount));
+  // useEffect(() => {
+  //   const {loading, error, data} = allUsers;
+  //   if (!loading && !error && data) {
+  //     console.log(data);
+  //     const {
+  //       userDataIndex: {edges}
+  //     } = data;
+  //     // setTotalCount(Number(data.userDataCount));
 
-      if (edges) {
-        const newData = edges.map(({node: arr}) => arr);
-        console.log(newData);
-        localStorage.setItem('allUsers', JSON.stringify(newData));
-      }
+  //     if (edges) {
+  //       const newData = edges.map(({node: arr}) => arr);
+  //       console.log(newData);
+  //       localStorage.setItem('allUsers', JSON.stringify(newData));
+  //     }
 
 
-    }
-  }, [totalUsers, allUsers]);
+  //   }
+  // }, [totalUsers, allUsers]);
 
   return (
     <>
@@ -143,8 +141,8 @@ const Overview = ({session}: {session: DIDSession;}) => {
         </>}
       </div>
 
-
-      {/* <div className="justify-between self-stretch mb-0 mt-14 max-md:max-w-full max-md:mr-1.5 max-md:mt-10 max-md:mb-2.5">
+      <>
+        {/* <div className="justify-between self-stretch mb-0 mt-14 max-md:max-w-full max-md:mr-1.5 max-md:mt-10 max-md:mb-2.5">
           <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
             <div className="flex flex-col items-stretch w-[35%] max-md:w-full max-md:ml-0">
               <div className="items-start flex grow flex-col max-md:mt-10">
@@ -252,6 +250,7 @@ const Overview = ({session}: {session: DIDSession;}) => {
             </div>
           </div>
         </div> */}
+      </>
     </>
   );
 };

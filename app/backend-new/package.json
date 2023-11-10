@@ -1,0 +1,36 @@
+{
+  "name": "watcher-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "Group III",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "alc": "ts-node ./alchemy/pendingTx.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com"
+  },
+  "keywords": [
+    "backend"
+  ],
+  "bugs": {
+    "url": "https://github.com/"
+  },
+  "homepage": "https://github.com/",
+  "dependencies": {
+    "@types/express": "^4.17.20",
+    "alchemy-sdk": "^2.10.1",
+    "axios": "^1.6.1",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "graphql": "^16.8.1",
+    "nodemailer": "^6.9.7",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2",
+    "web3": "^4.2.2",
+    "ws": "^8.14.2"
+  }
+}
