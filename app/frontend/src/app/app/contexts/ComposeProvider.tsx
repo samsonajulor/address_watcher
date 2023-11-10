@@ -12,7 +12,8 @@ import {apolloClient} from "src/config/apollo-client";
 const definition: RuntimeCompositeDefinition = definitionJson as RuntimeCompositeDefinition;
 
 export const compose = new ComposeClient({
-   ceramic: 'http://localhost:7007',
+   ceramic: 'http://192.168.1.69:7007',
+   // ceramic: 'http://localhost:7007',
    definition,
 });
 
@@ -36,7 +37,17 @@ const ComposeContext = createContext<{address: `0x${string}` | undefined; isConn
 const ComposeProvider = ({children}: {
    children: React.ReactNode;
 }) => {
-   const {address, isConnected} = useAccount();
+   const {address, isConnected} = useAccount({
+      onConnect({address}) {
+         if (!address) return;
+         runCompose(address).then((session) => {
+            setSession(session);
+         });
+      },
+      onDisconnect() {
+         setSession(undefined);
+      }
+   });
    const [session, setSession] = useState<DIDSession>();
 
    useEffect(() => {
@@ -46,39 +57,70 @@ const ComposeProvider = ({children}: {
    }, [session, address]);
 
 
+   const runCompose = async (address: `0x${string}`) => {
+      const wind = window as Window;
+      const accountId = await getAccountId(wind.ethereum, address);
+      console.log({accountId});
 
 
-   useEffect(() => {
-      if (!isConnected) {
-         setSession(undefined);
-      }
-      if (address) {
+      const authMethod = await EthereumWebAuth.getAuthMethod(wind.ethereum, accountId);
+
+      console.log({
+         compose
+      });
 
 
-         const runCompose = async () => {
-            const wind = window as Window;
-            const accountId = await getAccountId(wind.ethereum, address);
-            const authMethod = await EthereumWebAuth.getAuthMethod(wind.ethereum, accountId);
+      const session = await DIDSession.get(accountId, authMethod, {
+         resources: compose.resources,
+      });
 
-            const session = await DIDSession.get(accountId, authMethod, {
-               resources: compose.resources,
-            });
+      console.log({session});
 
-            compose.setDID(session.did);
+      compose.setDID(session.did);
 
-            console.log(session);
+      console.log(session);
 
-            return session;
-         };
+      return session;
+   };
 
-         runCompose().then((session) => {
-            setSession(session);
-         });
 
-      } else {
-         setSession(undefined);
-      }
-   }, [isConnected, address]);
+   // useEffect(() => {
+   //    if (!isConnected) {
+   //       setSession(undefined);
+   //    }
+   //    if (isConnected && address) {
+
+
+   //       const runCompose = async () => {
+   //          const wind = window as Window;
+   //          const accountId = await getAccountId(wind.ethereum, address);
+   //          console.log({accountId});
+
+   //          const authMethod = await EthereumWebAuth.getAuthMethod(wind.ethereum, accountId);
+
+   //          console.log({authMethod});
+
+   //          const session = await DIDSession.get(accountId, authMethod, {
+   //             resources: compose.resources,
+   //          });
+
+   //          console.log({session});
+
+   //          compose.setDID(session.did);
+
+   //          console.log(session);
+
+   //          return session;
+   //       };
+
+   //       runCompose().then((session) => {
+   //          setSession(session);
+   //       });
+
+   //    } else {
+   //       setSession(undefined);
+   //    }
+   // }, [isConnected, address]);
 
    return <ComposeContext.Provider value={{
       address, isConnected, session

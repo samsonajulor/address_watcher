@@ -21,6 +21,8 @@ const renderHTML = () => {
   </div>`);
 };
 
+let current: any;
+
 setInterval(async () => {
 
   const data = (await getUsers());
@@ -29,7 +31,11 @@ setInterval(async () => {
     acc[user.address.toLowerCase()] = user.email;
     return acc;
   }, {});
-  console.log(addressToEmail, 'addressToEmail');
+
+  if (JSON.stringify(current) !== JSON.stringify(addressToEmail)) {
+    current = addressToEmail;
+    console.log({addressToEmail});
+  }
 
   const inspectTransaction = async (tx: Txns, origin: 'from' | 'to') => {
     console.log('awaiting');

@@ -21,13 +21,13 @@ export default function DashboardLayout({
       <ApolloProvider client={apolloClient}>
         <WagmiConfig config={wagmiConfig}>
           <RainbowKitProvider chains={chains}>
-          <ComposeProvider>
-            <WSSProvider>
-                <div className="flex max-md:flex-col max-md:items-stretch max-md:gap-0">
-                  {children}
-                </div>
-            </WSSProvider>
-              </ComposeProvider>
+            <ComposeProvider>
+              {/* <WSSProvider> */}
+              <div className="flex max-md:flex-col max-md:items-stretch max-md:gap-0">
+                {children}
+              </div>
+              {/* </WSSProvider> */}
+            </ComposeProvider>
           </RainbowKitProvider>
         </WagmiConfig>
       </ApolloProvider>
