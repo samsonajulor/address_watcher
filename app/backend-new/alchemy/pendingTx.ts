@@ -13,11 +13,10 @@ const alchemy = new Alchemy({
   network: Network.ETH_SEPOLIA,
 });
 
-const renderHTML = () => {
-  return document.write(`<div>
-    <h1 style={
-      
-    }></h1>
+const renderHTML = (value, others) => {
+  return (`<div>
+    <h1>${value}</h1>
+    <p>${others}</p>
   </div>`);
 };
 
@@ -41,13 +40,15 @@ setInterval(async () => {
     console.log('awaiting');
     // console.log(tx);
     console.log(readValue(tx, origin));
-    inspectContractInteraction(tx);
+    const ctx = await inspectContractInteraction(tx);
 
     const recipient = (origin === 'from' ? tx.from : tx.to).toLowerCase();
 
+    const msg = renderHTML(readValue(tx, origin), ctx);
+
     await sendEmail(
       addressToEmail[recipient],
-      "Address Notification", readValue(tx, origin)
+      "Address Notification", msg
     );
   };
 
@@ -85,7 +86,7 @@ const inspectContractInteraction = async (tx: Txns) => {
     decodeCalldata(ERC721ABI, calldata) ??
     fallbackDecoder(calldata);
 
-  console.log(decoded);
+  return (decoded);
 };
 
 const isContract = async (address: string) => {
