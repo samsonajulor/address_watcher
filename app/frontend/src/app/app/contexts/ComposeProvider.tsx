@@ -38,12 +38,6 @@ const ComposeProvider = ({children}: {
    children: React.ReactNode;
 }) => {
    const {address, isConnected} = useAccount({
-      onConnect({address}) {
-         if (!address) return;
-         runCompose(address).then((session) => {
-            setSession(session);
-         });
-      },
       onDisconnect() {
          setSession(undefined);
       }
@@ -84,43 +78,20 @@ const ComposeProvider = ({children}: {
    };
 
 
-   // useEffect(() => {
-   //    if (!isConnected) {
-   //       setSession(undefined);
-   //    }
-   //    if (isConnected && address) {
+   useEffect(() => {
+      if (!isConnected) {
+         setSession(undefined);
+      }
+      if (isConnected && address) {
 
+         runCompose(address).then((session) => {
+            setSession(session);
+         });
 
-   //       const runCompose = async () => {
-   //          const wind = window as Window;
-   //          const accountId = await getAccountId(wind.ethereum, address);
-   //          console.log({accountId});
-
-   //          const authMethod = await EthereumWebAuth.getAuthMethod(wind.ethereum, accountId);
-
-   //          console.log({authMethod});
-
-   //          const session = await DIDSession.get(accountId, authMethod, {
-   //             resources: compose.resources,
-   //          });
-
-   //          console.log({session});
-
-   //          compose.setDID(session.did);
-
-   //          console.log(session);
-
-   //          return session;
-   //       };
-
-   //       runCompose().then((session) => {
-   //          setSession(session);
-   //       });
-
-   //    } else {
-   //       setSession(undefined);
-   //    }
-   // }, [isConnected, address]);
+      } else {
+         setSession(undefined);
+      }
+   }, [isConnected, address]);
 
    return <ComposeContext.Provider value={{
       address, isConnected, session
