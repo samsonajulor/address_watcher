@@ -1,17 +1,1 @@
-{
-  "models": {
-    "UserData": {
-      "id": "kjzl6hvfrbw6cat34ezo0lmg4r0595f2uy6yzlysmjj2tuhn51004ta7gr0m7vp",
-      "accountRelation": { "type": "single" }
-    }
-  },
-  "objects": {
-    "UserData": {
-      "email": { "type": "string", "required": true },
-      "address": { "type": "string", "required": true },
-      "owner": { "type": "view", "viewType": "documentAccount" }
-    }
-  },
-  "enums": {},
-  "accountData": { "userData": { "type": "node", "name": "UserData" } }
-}
+{"models":{"UserData":{"id":"kjzl6hvfrbw6cat34ezo0lmg4r0595f2uy6yzlysmjj2tuhn51004ta7gr0m7vp","accountRelation":{"type":"single"}}},"objects":{"UserData":{"email":{"type":"string","required":true},"address":{"type":"string","required":true},"owner":{"type":"view","viewType":"documentAccount"}}},"enums":{},"accountData":{"userData":{"type":"node","name":"UserData"}}}

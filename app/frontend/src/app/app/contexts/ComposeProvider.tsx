@@ -12,8 +12,8 @@ import {apolloClient} from "src/config/apollo-client";
 const definition: RuntimeCompositeDefinition = definitionJson as RuntimeCompositeDefinition;
 
 export const compose = new ComposeClient({
-  ceramic: 'http://192.168.1.31:7007/',
-  definition,
+   ceramic: 'http://localhost:7007',
+   definition,
 });
 
 
