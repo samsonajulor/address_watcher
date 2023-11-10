@@ -1,4 +1,4 @@
-import {gql} from "@apollo/client";
+import { gql } from '@apollo/client';
 
 export const USER_DATA = gql(`
   query UserData($nodeId: ID!) {
@@ -21,7 +21,7 @@ export const GET_USER_COUNT = gql(`
   query Count {
     userDataCount
   }
-`)
+`);
 
 export const GET_ALL_USERS = gql(`
 query Users($first: Int) {
@@ -35,7 +35,7 @@ query Users($first: Int) {
     }
   }
 }
-`) 
+`);
 
 export const ADD_EMAIL = gql(`
   mutation AddUserData($input: CreateUserDataInput!) {

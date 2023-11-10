@@ -1,0 +1,4 @@
+
+#!/usr/bin/env sh
+
+node /home/samsonajulor/github/web3/address_watcher/initial contributions/backend/samson/decentralizeddbworking/wheel/ceramic-app/node_modules/.bin/ceramic "$@"

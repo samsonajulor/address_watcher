@@ -10,6 +10,7 @@ import {GET_ALL_USERS, GET_USER_COUNT, USER_DATA} from 'src/utils/gql';
 import {useComposeContext} from 'src/app/app/contexts/ComposeProvider';
 import {DIDSession} from 'did-session';
 import {PlusIcon} from '@heroicons/react/24/outline';
+import { subscribe } from 'src/utils/wssSubscriptions';
 
 const App = () => {
   const {session, isConnected} = useComposeContext();
@@ -68,6 +69,7 @@ const Overview = ({session}: {session: DIDSession;}) => {
         setUserData(dt);
       }
     }
+    subscribe();
   }, [loading, error, data]);
 
   useEffect(() => {
@@ -89,16 +91,12 @@ const Overview = ({session}: {session: DIDSession;}) => {
       if (edges) {
         const newData = edges.map(({node: arr}) => arr);
         console.log(newData);
+        localStorage.setItem('allUsers', JSON.stringify(newData));
       }
 
 
     }
   }, [totalUsers, allUsers]);
-
-
-
-
-
 
   return (
     <>

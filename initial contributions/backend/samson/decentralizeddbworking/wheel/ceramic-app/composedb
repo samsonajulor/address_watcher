@@ -1,0 +1,6 @@
+
+#!/usr/bin/env sh
+export DID_PRIVATE_KEY=c59c784919ac913a4a01c3dc447b29f78091466c891d5c07d3d9183f46c621a3
+export CERAMIC_URL=http://127.0.0.1:7007
+
+node /home/samsonajulor/github/web3/address_watcher/initial contributions/backend/samson/decentralizeddbworking/wheel/ceramic-app/node_modules/.bin/composedb "$@"

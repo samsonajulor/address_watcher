@@ -6,6 +6,7 @@ import {WagmiConfig} from 'wagmi';
 import {chains, wagmiConfig} from 'src/config/walletconnect';
 import {RainbowKitProvider} from '@rainbow-me/rainbowkit';
 import {ComposeProvider} from 'src/app/app/contexts/ComposeProvider';
+import WSSProvider from 'src/app/app/contexts/WssProvider';
 
 export default function DashboardLayout({
   children, // will be a page or nested layout
@@ -20,19 +21,16 @@ export default function DashboardLayout({
       <ApolloProvider client={apolloClient}>
         <WagmiConfig config={wagmiConfig}>
           <RainbowKitProvider chains={chains}>
-            <ComposeProvider>
-              <div className="flex max-md:flex-col max-md:items-stretch max-md:gap-0">
-                {children}
-              </div>
-            </ComposeProvider>
-
+          <ComposeProvider>
+            <WSSProvider>
+                <div className="flex max-md:flex-col max-md:items-stretch max-md:gap-0">
+                  {children}
+                </div>
+            </WSSProvider>
+              </ComposeProvider>
           </RainbowKitProvider>
         </WagmiConfig>
-
       </ApolloProvider>
-
-
-
     </section>
   );
 }

@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "ceramic": "ceramic daemon --config=config/daemon.config.json"
+    "account": "node scripts/setup-account",
+    "schema": "node scripts/setup-schema",
+    "ceramic": "ceramic daemon --config=config/daemon.config.json",
+    "graphql": "composedb graphql:server --graphiql composites/blog.runtime.json --ceramic-url=http://0.0.0.0:7007 --did-private-key=$(cat account/admin-key) --port=5005"
   },
   "keywords": [],
   "author": "",
