@@ -20,6 +20,7 @@ type DecodeData =
   | { header: 'Unknown'; sig: string; decodedName: any; decodedData: string }
   | null;
 
+// Work on this function
 const renderHTML = (value: string, others: DecodeData, tx: Txns) => {
   if (!others || others == null) return '';
   if (others.header === 'ERC20') {
@@ -92,7 +93,7 @@ setInterval(async () => {
     const msg = renderHTML(readValue(tx, origin), ctx, tx);
 
     // Test for result, Load format.html on live server to view result
-    fs.writeFile('format.html', msg, (err) => {
+    fs.writeFile('alchemy/format.html', msg, (err) => {
       if (err) return console.log(err);
       console.log('File writing done');
     });
