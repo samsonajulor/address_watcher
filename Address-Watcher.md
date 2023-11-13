@@ -7,7 +7,7 @@
   - [Introduction](#introduction)
   - [Statement of Problem](#statement-of-problem)
     - [**Lack of Real-Time Monitoring:**](#lack-of-real-time-monitoring)
-    - [Limited Customization and Flexibility:](#limited-customization-and-flexibility)
+    - [**Limited Customization and Flexibility:**](#limited-customization-and-flexibility)
     - [Security Concerns:](#security-concerns)
     - [Fragmented User Experience:](#fragmented-user-experience)
   - [Significance  of the Project.](#significance--of-the-project)
@@ -34,7 +34,7 @@ The current absence of a dedicated and user-friendly Address Watcher Dapp create
 ### **Lack of Real-Time Monitoring:** 
 
 Existing tools often fail to provide real-time monitoring of blockchain addresses. Users are unable to receive immediate notifications or updates about transactions, token transfers, or other activities related to their watched addresses. This lack of real-time information puts users at a disadvantage, especially in dynamic and fast-paced blockchain environments.
-### Limited Customization and Flexibility:
+### **Limited Customization and Flexibility:**
 
  Users face challenges in customizing the parameters for address monitoring according to their specific needs. A one-size-fits-all approach is insufficient, and users require the ability to set personalized alerts and criteria based on transaction amounts, frequency, or other relevant factors. The absence of such customization limits the effectiveness of address monitoring tools.
 ### Security Concerns: 
