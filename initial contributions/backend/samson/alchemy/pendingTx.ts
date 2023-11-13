@@ -17,10 +17,10 @@ const mySepoliaAddress = '0xe24d295154c2d78a7a860e809d57598e551813bd';
 
 const inspectTransaction = async (tx: Txns, origin: 'from' | 'to') => {
   console.log('awaiting');
-    // console.log(tx);
-    console.log(readValue(tx, origin));
-    inspectContractInteraction(tx);
-}
+  // console.log(tx);
+  console.log(readValue(tx, origin));
+  inspectContractInteraction(tx);
+};
 
 alchemy.ws.on(
   {
@@ -35,7 +35,7 @@ alchemy.ws.on(
     fromAddress: mySepoliaAddress, // separate the from and to.
   },
   (tx: Txns) => inspectTransaction(tx, 'from')
-)
+);
 
 const inspectContractInteraction = async (tx: Txns) => {
   // Ensure it's a contract
