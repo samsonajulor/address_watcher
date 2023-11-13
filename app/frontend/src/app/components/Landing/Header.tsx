@@ -19,18 +19,13 @@ const Header = () => {
             <div className="text-orange-400 text-xl font-bold self-stretch">Home</div>
             <div className="text-white text-xl font-bold self-stretch">About</div>
             <div className="text-white text-xl font-bold self-stretch">Pricing</div>
-            <Link
-              href="/dashboard"
-              className="text-white text-xl font-bold self-stretch whitespace-nowrap hover:text-orange-300"
-            >
-              Dashboard
-            </Link>
+
           </div>
           <Link
-            href="/register"
+            href="/app"
             className="text-white text-xl hidden lg:flex font-bold self-stretch whitespace-nowrap justify-center items-center bg-violet-800 px-6 py-3 rounded-xl max-md:px-5"
           >
-            Register
+            Dashboard
           </Link>
         </div>
       </nav>
