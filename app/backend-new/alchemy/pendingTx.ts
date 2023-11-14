@@ -1,92 +1,142 @@
-import {Alchemy, AlchemySubscription, Network} from 'alchemy-sdk';
-import {Txns} from '../types.ts';
-import {utils} from 'web3';
+import { Alchemy, AlchemySubscription, Network } from 'alchemy-sdk';
+import { Txns } from '../types.ts';
+import { utils } from 'web3';
 
-import {decodeCalldata, fallbackDecoder} from '../utils/decodeKnownAbi.ts';
-import {ERC20ABI} from '../abis/erc20.ts';
-import {ERC721ABI} from '../abis/erc721.ts';
-import {getUsers} from '../app';
-import {sendEmail} from '../utils/nodemailer';
+import { decodeCalldata, fallbackDecoder } from '../utils/decodeKnownAbi.ts';
+import { ERC20ABI } from '../abis/erc20.ts';
+import { ERC721ABI } from '../abis/erc721.ts';
+import { getUsers } from '../app';
+import { sendEmail } from '../utils/nodemailer';
+import fs from 'fs';
+import { ethers } from 'ethers';
 
 const alchemy = new Alchemy({
-  apiKey: '3RXLLPbaLaKav4sgsrTv2r5YK2Hpblay',
-  network: Network.ETH_SEPOLIA,
+  apiKey: 'fTxkuelVKsi8eUlvM7KH9iYqt11NLBXV',
+  network: Network.ETH_MAINNET,
 });
 
-const renderHTML = (value, others) => {
-  return (`<div>
-    <h1>${value}</h1>
-    <p>${others}</p>
-  </div>`);
+type DecodeData =
+  | { header: 'ERC20' | 'ERC721'; name: any; params: ethers.Result }
+  | { header: 'Unknown'; sig: string; decodedName: any; decodedData: string }
+  | null;
+
+// Work on this function
+const renderHTML = (value: string, others: DecodeData, tx: Txns) => {
+  if (!others || others == null) return '';
+  if (others.header === 'ERC20') {
+    return `<div>
+      <h4>${value}</h4>
+      <p>Token Interaction</p>
+      <p>${others.name}</p>
+      <div>
+        ${others.params
+          ?.map((item: any) => {
+            return `<p>${item}</p>`;
+          })
+          .join('')}
+      </div>
+    </div>`;
+  }
+
+  if (others.header === 'ERC721') {
+    return `<div>
+      <h4>${value}</h4>
+      <p>NFT Interaction</p>
+      <p>${others.name}</p>
+      <div>
+        ${others.params
+          ?.map((item: any) => {
+            return `<p>${item}</p>`;
+          })
+          .join('')}
+      </div>
+    </div>`;
+  }
+
+  if (others.header === 'Unknown')
+    return `<div>
+    <h5>${value}</h5>
+    <p>Contract Interaction</p>
+    <p>${others.sig}</p>
+    
+  </div>`;
+
+  return '';
 };
 
 let current: any;
 
+const test = '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2';
+
 setInterval(async () => {
+  // const data = (await getUsers());
+  // const addresses = data.map((user: {address: any;}) => user.address);
+  // const addressToEmail = data.reduce((acc: any, user: {address: string, email: string;}) => {
+  //   acc[user.address.toLowerCase()] = user.email;
+  //   return acc;
+  // }, {});
 
-  const data = (await getUsers());
-  const addresses = data.map((user: {address: any;}) => user.address);
-  const addressToEmail = data.reduce((acc: any, user: {address: string, email: string;}) => {
-    acc[user.address.toLowerCase()] = user.email;
-    return acc;
-  }, {});
-
-  if (JSON.stringify(current) !== JSON.stringify(addressToEmail)) {
-    current = addressToEmail;
-    console.log({addressToEmail});
-  }
+  // if (JSON.stringify(current) !== JSON.stringify(addressToEmail)) {
+  //   current = addressToEmail;
+  //   console.log({addressToEmail});
+  // }
 
   const inspectTransaction = async (tx: Txns, origin: 'from' | 'to') => {
     console.log('awaiting');
+    alchemy.ws.removeAllListeners();
     // console.log(tx);
     console.log(readValue(tx, origin));
     const ctx = await inspectContractInteraction(tx);
 
     const recipient = (origin === 'from' ? tx.from : tx.to).toLowerCase();
 
-    const msg = renderHTML(readValue(tx, origin), ctx);
+    const msg = renderHTML(readValue(tx, origin), ctx, tx);
 
-    await sendEmail(
-      addressToEmail[recipient],
-      "Address Notification", msg
-    );
+    // Test for result, Load format.html on live server to view result
+    fs.writeFile('alchemy/format.html', msg, (err) => {
+      if (err) return console.log(err);
+      console.log('File writing done');
+    });
+
+    // await sendEmail(
+    //   addressToEmail[recipient],
+    //   "Address Notification", msg
+    // );
   };
 
   alchemy.ws.on(
     {
       method: AlchemySubscription.PENDING_TRANSACTIONS,
-      toAddress: addresses, // separate the from and to.
+      toAddress: test, // separate the from and to.
     },
     (tx: Txns) => inspectTransaction(tx, 'to')
   );
   alchemy.ws.on(
     {
       method: AlchemySubscription.PENDING_TRANSACTIONS,
-      fromAddress: addresses, // separate the from and to.
+      fromAddress: test, // separate the from and to.
     },
     (tx: Txns) => inspectTransaction(tx, 'from')
   );
 
   setTimeout(() => {
     alchemy.ws.removeAllListeners();
-  }, 4000);
-}, 5000);
+  }, 11000);
+}, 12000);
 
 const inspectContractInteraction = async (tx: Txns) => {
   // Ensure it's a contract
-  if (!(await isContract(tx.to))) return;
+  if (!(await isContract(tx.to))) return null;
   const calldata = tx.input;
-  if (calldata === '0x') return;
-
-  console.log(calldata);
+  if (calldata === '0x') return null;
 
   // Check if it matches ERC20 Txns, ERC721txns, or any other
   const decoded =
-    decodeCalldata(ERC20ABI, calldata) ??
-    decodeCalldata(ERC721ABI, calldata) ??
+    decodeCalldata(ERC20ABI, calldata, 'ERC20') ??
+    decodeCalldata(ERC721ABI, calldata, 'ERC721') ??
     fallbackDecoder(calldata);
 
-  return (decoded);
+  return decoded;
 };
 
 const isContract = async (address: string) => {
@@ -108,9 +158,6 @@ const readValue = (tx: Txns, origin: 'from' | 'to') => {
     return `You're about to receive ${etherValue} ETH from ${tx.from}`;
   }
 };
-
-
-
 
 // Subscription for new blocks on Eth Mainnet.
 // alchemy.ws.on("block", (blockNumber) =>
