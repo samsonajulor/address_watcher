@@ -1,6 +1,7 @@
+import { ethers } from 'ethers';
 import { eth, utils } from 'web3';
 
-export const decodeCalldata = (abi: any[], calldata: string) => {
+export const decodeCalldata = (abi: any[], calldata: string, header: 'ERC20' | 'ERC721') => {
   const match = abi.find((item: { type: string; name: any; inputs: any }) => {
     if (item.type === 'function') {
       const signature =
@@ -11,13 +12,14 @@ export const decodeCalldata = (abi: any[], calldata: string) => {
     return false;
   });
 
-  if (match && match.inputs && match.inputs.length > 0)
+  if (match && match.inputs && match.inputs.length > 0) {
+    const iface = new ethers.Interface(abi);
     return {
+      header: header,
       name: match.name,
-      params: eth.abi.decodeParameters(match.inputs, calldata),
+      params: iface.decodeFunctionData(match.name, calldata),
     };
-
-  return;
+  } else return null;
 };
 
 const bytes_dir = 'https://www.4byte.directory/api/v1/signatures/?hex_signature=';
@@ -28,7 +30,14 @@ const fetchSignature = async (functionSelector: string) => {
   return data;
 };
 
-export const fallbackDecoder = async (calldata: string) => {
+export const fallbackDecoder = async (
+  calldata: string
+): Promise<{
+  header: 'Unknown';
+  sig: string;
+  decodedName: any;
+  decodedData: string;
+}> => {
   const functionSelector = calldata.slice(0, 10);
   const dynamicDataOffset = parseInt(calldata.slice(10, 74), 16);
   const dynamicDataLength =
@@ -40,6 +49,7 @@ export const fallbackDecoder = async (calldata: string) => {
   const decodedData = Buffer.from(dynamicData, 'hex').toString();
 
   return {
+    header: 'Unknown',
     sig: functionSelector,
     decodedName: await fetchSignature(functionSelector),
     decodedData,

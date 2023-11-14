@@ -4,6 +4,8 @@
     "moduleResolution": "Node",
     "target": "ESNext",
     "allowImportingTsExtensions": true,
+    "allowSyntheticDefaultImports": true,
+    "noEmit": true,
     "strictNullChecks": true,
     "strictFunctionTypes": true
   },
