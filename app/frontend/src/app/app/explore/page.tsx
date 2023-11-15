@@ -1,5 +1,5 @@
 'use client';
-import React, {useEffect, useMemo, useRef} from 'react';
+import React, {useEffect, useMemo, useRef, useState} from 'react';
 import DashHead from 'src/app/app/components/DashHead';
 
 import {publicClient} from 'src/config/walletconnect';
@@ -9,6 +9,7 @@ import {Line} from 'react-chartjs-2';
 import 'chart.js/auto';
 import Select, {Value} from 'src/app/app/components/Select';
 import {ChartData} from 'chart.js/auto';
+import DropdownInput from 'src/app/app/components/DropdownInput';
 
 interface ChartOneState {
    series: {
@@ -48,8 +49,8 @@ const Explore = () => {
    const tran = useRef();
    const {address} = useComposeContext();
    const [data, setData] = React.useState<{x: Date; y: string;}[]>();
-   const [period, setPeriod] = React.useState<Value>('daily');
-   const threshold = 2;
+   const [period, setPeriod] = React.useState<Value>('weekly');
+   const [threshold, setThreshold] = useState(1.2);
 
    const getBalances = async () => {
       const _data = [];
@@ -64,7 +65,7 @@ const Explore = () => {
          start: currentTime - 7 * 24 * 60 * 60 * 1000,
          end: currentTime,
       } : {
-         duration: 24 * 60 * 60 * 1000,
+         duration: 4 * 24 * 60 * 60 * 1000,
          start: currentTime - 30 * 24 * 60 * 60 * 1000,
          end: currentTime,
       };
@@ -129,15 +130,24 @@ const Explore = () => {
             borderWidth: 0.7
          }
       ],
-   }), [data]);
+   }), [data, period, threshold]);
 
    return (
       <div>
          <DashHead />
-         <div className='grid gap-5 mt-5'>
-            <p>Explore</p>
-            <Select inputs={periods} onSelect={setPeriod} />
+         <div className='grid gap-5'>
+
+
+            <div className="flex justify-between">
+               <p className='text-2xl font-bold'>Explore</p>
+               <div className="flex gap-4 items-center">
+                  <DropdownInput value={threshold} onUpdate={setThreshold} />
+                  <Select inputs={periods} onSelect={setPeriod} />
+               </div>
+            </div>
+
             <Line options={options} data={chartData} />
+
          </div>
 
       </div>

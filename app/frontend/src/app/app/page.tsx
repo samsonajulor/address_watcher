@@ -112,17 +112,6 @@ const Overview = ({session}: {session: DIDSession;}) => {
           Total Users: {totalCount}
         </div>
         <p></p>
-        {/* <div className="flex gap-2">
-          <PlusIcon
-            className=" w-4 max-w-full text-orange-400"
-          />
-          <div
-            className="text-orange-400 text-lg self-center whitespace-nowrap my-auto cursor-pointer"
-            onClick={() => setIsOpen(true)}
-          >
-            Add an address
-          </div>
-        </div> */}
       </div>
 
       <div className='grid gap-2 place-content-center text-center h-40'>

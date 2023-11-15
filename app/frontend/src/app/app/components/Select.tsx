@@ -6,7 +6,7 @@ export type Value = 'daily' | 'weekly' | 'monthly';
 
 
 export default function Select({inputs, onSelect}: {inputs: {value: Value;}[], onSelect: (value: Value) => void;}) {
-   const [selected, setSelected] = useState(inputs[0]);
+   const [selected, setSelected] = useState(inputs[1]);
 
    useEffect(() => {
       onSelect(selected.value);
@@ -15,7 +15,7 @@ export default function Select({inputs, onSelect}: {inputs: {value: Value;}[], o
    return (
       <div className="w-28">
          <Listbox value={selected} onChange={setSelected}>
-            <div className="relative mt-1">
+            <div className="relative">
                <Listbox.Button className="relative w-full cursor-default rounded-lg bg-gray-900 py-1 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 text-sm">
                   <span className="block truncate">{selected.value}</span>
                   <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
