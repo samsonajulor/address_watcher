@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+import { ethers } from 'ethers';
+
+export const transaction = (value, others, tx) => {
+  return `
+  <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -53,7 +57,7 @@
             </tr>
             <tr>
               <td style="text-align: center">
-                <a href="https://web3bridge.com" title="logo" target="_blank"> Watcher </a>
+                <a href="https://address-watcher.vercel.app" title="logo" target="_blank">Watcher</a>
               </td>
             </tr>
             <tr>
@@ -91,7 +95,7 @@
                           font-family: 'Rubik', sans-serif;
                         "
                       >
-                        Watcher Alert 👀: Incoming Transaction
+                        Watcher Alert 👀: Token Transaction
                       </h1>
                       <span
                         style="
@@ -102,20 +106,34 @@
                           width: 100px;
                         "
                       ></span>
-                      <p style="color: #455056; font-size: 15px; line-height: 24px; margin: 0">
-                        Hello Samuel. Watcher has detected the an incoming transaction being made to
-                        your address.
+                      <div>
+                      <p style="color: #455056; font-size: 1rem; line-height: 24px; margin: 0">
+                        Hello Samuel. Watcher has detected a transaction being made on your address.
                       </p>
-                      <p style="color: #455056; font-size: 15px; line-height: 24px">
+                      <h4 style="color: #455056">${value}</h4>
+                      <p style="color: #455056; font-size: 1rem; line-height: 24px; font-weight: semibold">
                         Below are the details:
                       </p>
-                      <ul style="text-decoration-style: none">
-                        <li>Transaction type: In</li>
-                        <li>Transaction time: Oct 5, 2023</li>
-                        <li>Amount: 5 ETH</li>
+                      <ul style="list-style: none; color: #455056; width: 80vw; text-align: left">
+                        <li style="margin-top: 5px"><span style="font-weight: 600">Transaction type:</span> Token transaction</li>
+                        <li style="margin-top: 5px"><span style="font-weight: 600">Function name:</span> ${
+                          others.name
+                        }</li>
+                        <li style="margin-top: 5px; word-wrap: break-word"><span style="font-weight: 600">Function arguments:</span> ${others.params
+                          ?.map((item: any) => {
+                            return `<p style="margin: 0">${item}</p>`;
+                          })
+                          .join('')}</li>
+                        <li style="margin-top: 5px"><span style="font-weight: 600">Amount:</span> ${ethers.formatEther(
+                          tx.value
+                        )} ETH</li>
+                        <li style="margin-top: 5px"><span style="font-weight: 600">Timestamp:</span> ${new Date().toLocaleTimeString()}</li>
+                        <li style="margin-top: 5px; word-wrap: break-word"><span style="font-weight: 600">Hash:</span> ${
+                          tx.hash
+                        }</li>
                       </ul>
                       <a
-                        href="{{link}}"
+                        href={https://sepolia.etherscan.io/${tx.hash}}
                         style="
                           background: #20e277;
                           text-decoration: none !important;
@@ -152,7 +170,7 @@
                     margin: 0 0 0;
                   "
                 >
-                  &copy; Copyright {{year}} <strong>www.web3bridge.com</strong>
+                  &copy; Copyright ${new Date().getFullYear()} <strong>Address Watcher</strong>
                 </p>
               </td>
             </tr>
@@ -166,3 +184,5 @@
     <!--/100% body table-->
   </body>
 </html>
+  `;
+};
