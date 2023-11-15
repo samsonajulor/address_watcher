@@ -17,17 +17,17 @@ const App = () => {
 
 
   return (
-    <div className="flex flex-col items-stretch ml-[250px] w-full max-md:w-full max-md:ml-0">
-      <div className="justify-center items-center bg-gray-950 flex grow flex-col w-full mx-auto p-8 max-md:max-w-full max-md:pb-24 max-md:px-5">
-        <DashHead />
 
-        {
-          (isConnected && session?.did) ? <Overview session={session} /> : <p className='mt-20 font-bold text-3xl'>
-            Connect to Start
-          </p>
-        }
-      </div>
+    <div className="justify-center items-center bg-gray-950 flex grow flex-col w-full mx-auto max-md:max-w-full max-md:pb-24 max-md:px-5">
+      <DashHead />
+
+      {
+        (isConnected && session?.did) ? <Overview session={session} /> : <p className='mt-20 font-bold text-3xl'>
+          Connect to Start
+        </p>
+      }
     </div>
+
   );
 
 };
