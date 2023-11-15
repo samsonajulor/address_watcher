@@ -9,6 +9,8 @@ import { getUsers } from '../app';
 import { sendEmail } from '../utils/nodemailer';
 import fs from 'fs';
 import { ethers } from 'ethers';
+import { transaction } from './transaction.ts';
+import { interaction } from './interaction.ts';
 
 const alchemy = new Alchemy({
   apiKey: 'fTxkuelVKsi8eUlvM7KH9iYqt11NLBXV',
@@ -24,18 +26,7 @@ type DecodeData =
 const renderHTML = (value: string, others: DecodeData, tx: Txns) => {
   if (!others || others == null) return '';
   if (others.header === 'ERC20') {
-    return `<div>
-      <h4>${value}</h4>
-      <p>Token Interaction</p>
-      <p>${others.name}</p>
-      <div>
-        ${others.params
-          ?.map((item: any) => {
-            return `<p>${item}</p>`;
-          })
-          .join('')}
-      </div>
-    </div>`;
+    return transaction(value, others, tx);
   }
 
   if (others.header === 'ERC721') {
@@ -53,13 +44,9 @@ const renderHTML = (value: string, others: DecodeData, tx: Txns) => {
     </div>`;
   }
 
-  if (others.header === 'Unknown')
-    return `<div>
-    <h5>${value}</h5>
-    <p>Contract Interaction</p>
-    <p>${others.sig}</p>
-    
-  </div>`;
+  if (others.header === 'Unknown') {
+    return interaction(value, others, tx);
+  }
 
   return '';
 };

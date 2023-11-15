@@ -1,4 +1,7 @@
+import { ethers } from 'ethers';
 
+export const interaction = (value, others, tx) => {
+  return `
   <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -107,19 +110,25 @@
                         Hello Samuel. Watcher has detected a contract interaction being executed with
                         your address.
                       </p>
-                      <h4 style="color: #455056">You're about to receive 0.0001 ETH from 0x52c8882da800c3c896cb7cbd1f884c036c193b87</h4>
+                      <h4 style="color: #455056">${value}</h4>
                       <p style="color: #455056; font-size: 1rem; line-height: 24px; font-weight: semibold">
                         Below are the details:
                       </p>
                       <ul style="list-style: none; color: #455056; width: 80vw; text-align: left">
                         <li style="margin-top: 5px"><span style="font-weight: 600">Transaction type:</span> Contract interaction</li>
-                        <li style="margin-top: 5px"><span style="font-weight: 600">Function signature:</span> 0xd0e30db0</li>
-                        <li style="margin-top: 5px"><span style="font-weight: 600">Amount:</span> 0.0001 ETH</li>
-                        <li style="margin-top: 5px"><span style="font-weight: 600">Timestamp:</span> 1:20:50 AM</li>
-                        <li style="margin-top: 5px; word-wrap: break-word"><span style="font-weight: 600">Hash:</span> 0x9a961fea56a3d937257c6b61cd8f24d60f8bf23e826f0fef49abff8efa602555</li>
+                        <li style="margin-top: 5px"><span style="font-weight: 600">Function signature:</span> ${
+                          others.sig
+                        }</li>
+                        <li style="margin-top: 5px"><span style="font-weight: 600">Amount:</span> ${ethers.formatEther(
+                          tx.value
+                        )} ETH</li>
+                        <li style="margin-top: 5px"><span style="font-weight: 600">Timestamp:</span> ${new Date().toLocaleTimeString()}</li>
+                        <li style="margin-top: 5px; word-wrap: break-word"><span style="font-weight: 600">Hash:</span> ${
+                          tx.hash
+                        }</li>
                       </ul>
                       <a
-                        href={https://sepolia.etherscan.io/0x9a961fea56a3d937257c6b61cd8f24d60f8bf23e826f0fef49abff8efa602555}
+                        href={https://sepolia.etherscan.io/${tx.hash}}
                         style="
                           background: #20e277;
                           text-decoration: none !important;
@@ -156,7 +165,7 @@
                     margin: 0 0 0;
                   "
                 >
-                  &copy; Copyright 2023 <strong>Address Watcher</strong>
+                  &copy; Copyright ${new Date().getFullYear()} <strong>Address Watcher</strong>
                 </p>
               </td>
             </tr>
@@ -170,3 +179,5 @@
     <!--/100% body table-->
   </body>
 </html>
+`;
+};
