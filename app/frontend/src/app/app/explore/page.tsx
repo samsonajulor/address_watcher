@@ -235,9 +235,9 @@ const Explore = () => {
             <div className="flex justify-between">
                <p className='text-2xl font-bold'>Explore</p>
                <div className="flex gap-4 items-center">
-                  <Select inputs={dtTypes} onSelect={setDataType} />
+                  <Select inputs={dtTypes} onSelect={(str) => setDataType(str as DtType)} />
                   <DropdownInput value={threshold} onUpdate={setThreshold} />
-                  <Select inputs={periods} onSelect={setPeriod} />
+                  <Select inputs={periods} onSelect={(str) => setPeriod(str as Value)} />
                </div>
             </div>
 
