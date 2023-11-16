@@ -22,10 +22,6 @@ export const sendEmail = async (to: string, subject: string, html: string) => {
       to,
       subject,
       html,
-      // context: {
-      //   name: name,
-      // },
-      // may have to set handlebar to call {name} in html
     });
     console.log(`mail sent to ${to}`, info);
     return info;
