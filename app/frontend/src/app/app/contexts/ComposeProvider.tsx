@@ -92,7 +92,7 @@ const ComposeProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <ComposeContext.Provider
       value={{
-        address,
+        address: address?.toLowerCase() as `0x${string}`,
         isConnected,
         session,
       }}
