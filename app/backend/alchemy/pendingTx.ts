@@ -113,7 +113,7 @@ setInterval(async () => {
   setTimeout(() => {
     alchemy.ws.removeAllListeners();
     console.log('Clearing listeners...');
-  }, 11900);
+  }, 11990);
 }, 12000);
 
 const inspectContractInteraction = async (tx: Txns) => {

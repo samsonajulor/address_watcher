@@ -133,7 +133,7 @@ export const transaction = (value, others, tx) => {
                         }</li>
                       </ul>
                       <a
-                        href={https://sepolia.etherscan.io/${tx.hash}}
+                        href=https://sepolia.etherscan.io/${tx.hash}
                         style="
                           background: #20e277;
                           text-decoration: none !important;
