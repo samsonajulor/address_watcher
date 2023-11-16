@@ -68,10 +68,12 @@ setInterval(async () => {
     console.log({ addressToEmail });
   }
 
+  console.log('Restarting watcher...');
+
   const inspectTransaction = async (tx: Txns, origin: 'from' | 'to') => {
     console.log('awaiting');
     alchemy.ws.removeAllListeners();
-    // console.log(tx);
+
     console.log(readValue(tx, origin));
     const ctx = await inspectContractInteraction(tx);
 
@@ -84,6 +86,8 @@ setInterval(async () => {
     //   if (err) return console.log(err);
     //   console.log('File writing done');
     // });
+
+    console.log({ msg });
 
     await sendEmail(addressToEmail[recipient], 'Address Notification', msg);
   };
@@ -105,7 +109,8 @@ setInterval(async () => {
 
   setTimeout(() => {
     alchemy.ws.removeAllListeners();
-  }, 11000);
+    console.log('Clearing listeners...');
+  }, 11900);
 }, 12000);
 
 const inspectContractInteraction = async (tx: Txns) => {
