@@ -2,7 +2,7 @@
 import React, {useEffect, useMemo, useRef, useState} from 'react';
 import DashHead from 'src/app/app/components/DashHead';
 
-import {publicClient} from 'src/config/walletconnect';
+import {ethersProvider, publicClient} from 'src/config/walletconnect';
 import {useComposeContext} from 'src/app/app/contexts/ComposeProvider';
 import {formatEther} from 'viem';
 import {Bar, Chart, Line} from 'react-chartjs-2';
@@ -11,6 +11,10 @@ import Select, {Value} from 'src/app/app/components/Select';
 import {ChartData} from 'chart.js/auto';
 import DropdownInput from 'src/app/app/components/DropdownInput';
 import moment from 'moment';
+import {ethers} from 'ethers';
+import useHistory from 'src/hooks/useHistory';
+import useEffectOnce from 'src/hooks/useEffectOnce';
+
 
 interface ChartOneState {
    series: {
@@ -50,9 +54,12 @@ const periods: {value: Value;}[] = [
 const Explore = () => {
    const tran = useRef();
    const {address} = useComposeContext();
+
    const [data, setData] = React.useState<{x: Date; y: string;}[]>();
    const [period, setPeriod] = React.useState<Value>('weekly');
-   const [threshold, setThreshold] = useState(2000);
+   const [threshold, setThreshold] = useState(2);
+   const history = useHistory(address, period, (data) => (Number(data.value) > 0));
+
 
    const getBalances = async () => {
       const _data = [];
@@ -95,14 +102,15 @@ const Explore = () => {
       return _data.reverse();
    };
 
-   useEffect(() => {
-      let ignore = false;
-      if (!address) return;
-      getBalances().then((data) => !ignore && setData(data)
-      ).catch(error => console.error({a: 456, error}));
 
-      return () => {ignore = true;};
-   }, [period, address]);
+
+
+   useEffectOnce(() => {
+      getBalances().then((data) => setData(data)
+      ).catch(error => console.error({a: 456, error}));
+      console.log(history);
+
+   }, [period, address, history]);
 
    const chartData = useMemo<ChartData<'line'>>(() => ({
       labels: data?.map(d => {

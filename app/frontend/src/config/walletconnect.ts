@@ -5,6 +5,10 @@ import { sepolia } from 'wagmi/chains';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
 import { createPublicClient, http } from 'viem';
+import { ethers } from 'ethers';
+import { EtherscanProvider } from 'ethers';
+import { Networkish } from 'ethers';
+import { BlockTag } from 'ethers';
 
 const { chains, publicClient: _client } = configureChains(
   [sepolia],
@@ -21,13 +25,37 @@ const wagmiConfig = createConfig({
   publicClient: _client,
 });
 
-const transport = http(
-  `https://eth-sepolia.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_ID}`
-);
+const rpc = `https://eth-sepolia.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_ID}`;
+
+const transport = http(rpc);
 
 const publicClient = createPublicClient({
   chain: sepolia,
   transport,
 });
 
-export { chains, wagmiConfig, publicClient };
+export default class MyEtherscanProvider extends EtherscanProvider {
+  constructor(networkish: Networkish, apiKey?: string) {
+    super(networkish, apiKey);
+  }
+
+  async getHistory(
+    address: string,
+    startBlock?: BlockTag,
+    endBlock?: BlockTag
+  ): Promise<Array<any>> {
+    const params = {
+      action: 'txlist',
+      address,
+      startblock: startBlock == null ? 0 : startBlock,
+      endblock: endBlock == null ? 99999999 : endBlock,
+      sort: 'asc',
+    };
+
+    return this.fetch('account', params);
+  }
+}
+
+const ethersProvider = new MyEtherscanProvider('sepolia');
+
+export { chains, wagmiConfig, publicClient, ethersProvider };
