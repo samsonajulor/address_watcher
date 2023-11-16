@@ -4,6 +4,7 @@ import DashHead from '../components/DashHead';
 import { useComposeContext } from '../contexts/ComposeProvider';
 import React, { useMemo } from 'react';
 import { FiSend } from 'react-icons/fi';
+import { AiOutlineInteraction } from 'react-icons/ai';
 import { Value } from '../components/Select';
 import moment from 'moment';
 import { formatEther } from 'viem';
@@ -67,17 +68,28 @@ const History = () => {
                 {hist.functionName === '' ? (
                   hist.to === address ? (
                     <>
-                      <FiSend />
-                      <div className="text-white text-lg font-bold self-center grow shrink basis-auto my-auto max-md:max-w-full">
+                      <div>
+                        <FiSend className="text-violet-700 rotate-90" />
+                        <div className='flex '>
+                          <p>Transfer from {hist.from}</p>
+                          <small className="text-gray-500">
+                            {moment(Number(hist.timeStamp) * 1000).format(
+                              'MMMM Do YYYY, h:mm:ss a'
+                            )}
+                          </small>
+                        </div>
+                      </div>
+                      <div>{hist.value} ETH</div>
+                      {/* <div className="text-white text-lg font-bold self-center grow shrink basis-auto my-auto max-md:max-w-full">
                         You received {hist.value} ETH from {hist.from}
                       </div>
                       <div className="text-white text-lg font-bold self-center whitespace-nowrap my-auto">
                         {moment(Number(hist.timeStamp) * 1000).format('MMMM Do YYYY, h:mm:ss a')}
-                      </div>
+                      </div> */}
                     </>
                   ) : (
                     <>
-                      <FiSend />
+                      <FiSend className="text-violet-700" />
                       <div className="text-white text-lg font-bold self-center grow shrink basis-auto my-auto max-md:max-w-full">
                         You sent {hist.value} ETH to {hist.to}
                       </div>
@@ -88,7 +100,7 @@ const History = () => {
                   )
                 ) : (
                   <>
-                    <FiSend />
+                    <AiOutlineInteraction className="text-violet-700" />
                     <div className="text-white text-lg font-bold self-center grow shrink basis-auto my-auto max-md:max-w-full">
                       You interacted with the function {hist.functionName} in the contract {hist.to}
                     </div>
