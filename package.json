@@ -10,7 +10,7 @@
     "build-ts": "tsc",
     "format": "cross-env prettier --write ./**/*.{js,ts,md,json} --config ./.prettierrc",
     "prepare": "husky install && npx husky set .husky/pre-commit \"yarn format && git add .\"",
-    "install-all": "cd app/backend && yarn  && cd ../frontend && yarn "
+    "install-all": "yarn && cd app/backend && yarn  && cd ../frontend && yarn "
   },
   "repository": {
     "type": "git",
@@ -27,7 +27,8 @@
     "cross-env": "^7.0.3",
     "husky": "^8.0.1",
     "lint-staged": "^15.0.2",
-    "react-icons": "^4.11.0"
+    "react-icons": "^4.11.0",
+    "sharp": "^0.32.6"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.10",
