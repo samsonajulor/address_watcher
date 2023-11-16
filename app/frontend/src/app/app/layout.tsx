@@ -23,7 +23,7 @@ export default function DashboardLayout({
           <RainbowKitProvider chains={chains}>
             <ComposeProvider>
               {/* <WSSProvider> */}
-              <div className="ml-[250px] p-8">
+              <div className="lg:ml-[250px] p-8">
                 {children}
               </div>
               {/* </WSSProvider> */}

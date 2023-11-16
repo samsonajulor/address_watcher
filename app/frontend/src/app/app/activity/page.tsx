@@ -1,15 +1,66 @@
+'use client';
+import useHistory from 'src/hooks/useHistory';
 import DashHead from '../components/DashHead';
+import { useComposeContext } from '../contexts/ComposeProvider';
+import React from 'react';
+import { Value } from '../components/Select';
+
+const periods: { value: Value }[] = [
+  {
+    value: 'daily',
+  },
+  {
+    value: 'weekly',
+  },
+  {
+    value: 'monthly',
+  },
+];
 
 const Activity = () => {
+  const { address } = useComposeContext();
+  const [period, setPeriod] = React.useState<Value>('weekly');
+  const history = useHistory(address, period, (data) => Number(data.value) > 0);
+
   return (
-    <div className="flex flex-col items-stretch ml-[250px] w-full max-md:w-full max-md:ml-0">
-      <div className="justify-center items-center bg-gray-950 flex grow flex-col w-full mx-auto pt-10 pb-24 px-16 max-md:max-w-full max-md:pb-24 max-md:px-5">
+    <div className="flex flex-col items-stretch w-full max-md:w-full max-md:ml-0">
+      <div className="justify-center items-center bg-gray-950 flex grow flex-col w-full mx-auto max-md:max-w-full max-md:pb-24 max-md:px-5">
         <DashHead />
         {/* can be in layout since static */}
-        <div className="justify-between items-center self-center flex w-full flex-col mt-14 max-md:max-w-full max-md:mt-10 max-md:mb-2.5">
-          <div className="text-violet-700 text-xl self-center whitespace-nowrap">Activity</div>
-          <div className="items-end self-stretch flex grow flex-col mt-10 max-md:max-w-full max-md:mt-10">
-            <div className="justify-between items-start self-center flex w-full gap-5 max-md:max-w-full max-md:flex-wrap max-md:justify-center">
+        <div className="justify-between flex w-full flex-col mt-14 max-md:max-w-full max-md:mt-10 max-md:mb-2.5">
+          <div className="text-2xl font-bold">Activity</div>
+          <div className="self-stretch flex grow flex-col mt-10 max-md:max-w-full max-md:mt-10">
+            <h1>Hello World</h1>
+            {history.map((hist) => {
+              return (
+                <div className="mb-5">
+                  <p>{hist.functionName}</p>
+                  <p>{hist.value}</p>
+                  <p>{hist.from}</p>
+                  <p>{hist.to}</p>
+                  <p>{hist.timeStamp}</p>
+                  <p>{hist.hash}</p>
+                  <p>{hist.txreceipt_status}</p>
+                  {hist.functionName !== '' ? (
+                    <h2>
+                      <p>This is a contract interaction</p>
+                      <p>
+                        You are about to interact with the function {hist.functionName} in the
+                        contract {hist.to}
+                      </p>
+                    </h2>
+                  ) : (
+                    <h2>
+                      <p>This is a normal asset transfer</p>
+                      <p>
+                        You are about to transfer {hist.value} ETH to {hist.to}
+                      </p>
+                    </h2>
+                  )}
+                </div>
+              );
+            })}
+            {/* <div className="justify-between items-start self-center flex w-full gap-5 max-md:max-w-full max-md:flex-wrap max-md:justify-center">
               <img
                 loading="lazy"
                 src="https://cdn.builder.io/api/v1/image/assets/TEMP/94314a0c-ea85-42fa-98e8-b4a804eb5e71?apiKey=6d09e386ed084a5db605f780c970c7a9&"
@@ -86,7 +137,7 @@ const Activity = () => {
               <div className="text-white text-lg font-bold self-center whitespace-nowrap my-auto">
                 09/11/23 8:05am
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

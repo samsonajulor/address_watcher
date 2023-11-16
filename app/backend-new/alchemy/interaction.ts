@@ -107,7 +107,7 @@ export const interaction = (value, others, tx) => {
                         "
                       ></span>
                       <p style="color: #455056; font-size: 1rem; line-height: 24px; margin: 0">
-                        Hello Samuel. Watcher has detected a contract interaction being executed with
+                        Hello there! Watcher has detected a contract interaction being executed with
                         your address.
                       </p>
                       <h4 style="color: #455056">${value}</h4>

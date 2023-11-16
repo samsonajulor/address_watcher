@@ -3,7 +3,7 @@ import DashHead from "src/app/app/components/DashHead";
 
 const Activity = () => {
   return (
-    <div className="flex flex-col items-stretch ml-[250px] w-full max-md:w-full max-md:ml-0">
+    <div className="flex flex-col items-stretch w-full max-md:w-full max-md:ml-0">
       <div className="justify-center items-center bg-gray-950 flex grow flex-col w-full mx-auto pt-10 pb-24 px-16 max-md:max-w-full max-md:pb-24 max-md:px-5">
         <DashHead />
         {/* can be in layout since static */}

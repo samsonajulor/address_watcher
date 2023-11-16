@@ -56,17 +56,17 @@ let current: any;
 const test = '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2';
 
 setInterval(async () => {
-  // const data = (await getUsers());
-  // const addresses = data.map((user: {address: any;}) => user.address);
-  // const addressToEmail = data.reduce((acc: any, user: {address: string, email: string;}) => {
-  //   acc[user.address.toLowerCase()] = user.email;
-  //   return acc;
-  // }, {});
+  const data = await getUsers();
+  const addresses = data.map((user: { address: any }) => user.address);
+  const addressToEmail = data.reduce((acc: any, user: { address: string; email: string }) => {
+    acc[user.address.toLowerCase()] = user.email;
+    return acc;
+  }, {});
 
-  // if (JSON.stringify(current) !== JSON.stringify(addressToEmail)) {
-  //   current = addressToEmail;
-  //   console.log({addressToEmail});
-  // }
+  if (JSON.stringify(current) !== JSON.stringify(addressToEmail)) {
+    current = addressToEmail;
+    console.log({ addressToEmail });
+  }
 
   const inspectTransaction = async (tx: Txns, origin: 'from' | 'to') => {
     console.log('awaiting');
@@ -80,28 +80,25 @@ setInterval(async () => {
     const msg = renderHTML(readValue(tx, origin), ctx, tx);
 
     // Test for result, Load format.html on live server to view result
-    fs.writeFile('alchemy/format.html', msg, (err) => {
-      if (err) return console.log(err);
-      console.log('File writing done');
-    });
+    // fs.writeFile('alchemy/format.html', msg, (err) => {
+    //   if (err) return console.log(err);
+    //   console.log('File writing done');
+    // });
 
-    // await sendEmail(
-    //   addressToEmail[recipient],
-    //   "Address Notification", msg
-    // );
+    await sendEmail(addressToEmail[recipient], 'Address Notification', msg);
   };
 
   alchemy.ws.on(
     {
       method: AlchemySubscription.PENDING_TRANSACTIONS,
-      toAddress: test, // separate the from and to.
+      toAddress: addresses, // separate the from and to.
     },
     (tx: Txns) => inspectTransaction(tx, 'to')
   );
   alchemy.ws.on(
     {
       method: AlchemySubscription.PENDING_TRANSACTIONS,
-      fromAddress: test, // separate the from and to.
+      fromAddress: addresses, // separate the from and to.
     },
     (tx: Txns) => inspectTransaction(tx, 'from')
   );

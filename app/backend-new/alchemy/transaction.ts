@@ -108,7 +108,7 @@ export const transaction = (value, others, tx) => {
                       ></span>
                       <div>
                       <p style="color: #455056; font-size: 1rem; line-height: 24px; margin: 0">
-                        Hello Samuel. Watcher has detected a transaction being made on your address.
+                        Hello there! Watcher has detected a transaction being made on your address.
                       </p>
                       <h4 style="color: #455056">${value}</h4>
                       <p style="color: #455056; font-size: 1rem; line-height: 24px; font-weight: semibold">

@@ -22,7 +22,7 @@ query Users($first: Int) {
 `;
 
 // GraphQL server URL
-const serverUrl = 'http://localhost:5005/graphql';
+const serverUrl = 'http://192.168.1.29:5005/graphql';
 
 export const getUsers = async () => {
   try {
@@ -43,7 +43,10 @@ export const getUsers = async () => {
 
     if (edges) {
       const newData = edges.map(({ node: arr }) => arr);
+      console.log(newData);
       return newData;
     }
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
 };
