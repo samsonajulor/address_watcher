@@ -1,19 +1,19 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { Dialog } from '@headlessui/react';
+import {useEffect, useState} from 'react';
+import {Dialog} from '@headlessui/react';
 import Modal from './components/Modal';
 import NewModal from './components/NewModal';
 import DashHead from './components/DashHead';
-import { useQuery } from '@apollo/client';
-import { GET_ALL_USERS, GET_USER_COUNT, USER_DATA } from 'src/utils/gql';
-import { useComposeContext } from 'src/app/app/contexts/ComposeProvider';
-import { DIDSession } from 'did-session';
-import { PlusIcon } from '@heroicons/react/24/outline';
-import { subscribe } from 'src/utils/wssSubscriptions';
+import {useQuery} from '@apollo/client';
+import {GET_ALL_USERS, GET_USER_COUNT, USER_DATA} from 'src/utils/gql';
+import {useComposeContext} from 'src/app/app/contexts/ComposeProvider';
+import {DIDSession} from 'did-session';
+import {PlusIcon} from '@heroicons/react/24/outline';
+import {subscribe} from 'src/utils/wssSubscriptions';
 
 const App = () => {
-  const { session, isConnected } = useComposeContext();
+  const {session, isConnected} = useComposeContext();
 
   return (
     <div className="justify-center items-center bg-gray-950 flex grow flex-col w-full mx-auto max-md:max-w-full max-md:pb-24 max-md:px-5">
@@ -28,7 +28,7 @@ const App = () => {
   );
 };
 
-const Overview = ({ session }: { session: DIDSession }) => {
+const Overview = ({session}: {session: DIDSession;}) => {
   let [isOpen, setIsOpen] = useState(false);
   const [userData, setUserData] = useState<{
     email: string;
@@ -37,7 +37,7 @@ const Overview = ({ session }: { session: DIDSession }) => {
 
   const [totalCount, setTotalCount] = useState(0);
 
-  const { loading, error, data } = useQuery(USER_DATA, {
+  const {loading, error, data} = useQuery(USER_DATA, {
     variables: {
       nodeId: session.id,
     },
@@ -54,7 +54,7 @@ const Overview = ({ session }: { session: DIDSession }) => {
   useEffect(() => {
     if (!loading && !error && data) {
       const {
-        node: { userData: dt },
+        node: {userData: dt},
       } = data;
 
       if (dt) {
@@ -65,29 +65,12 @@ const Overview = ({ session }: { session: DIDSession }) => {
   }, [loading, error, data]);
 
   useEffect(() => {
-    const { loading, error, data } = totalUsers;
+    const {loading, error, data} = totalUsers;
     if (!loading && !error && data) {
       setTotalCount(Number(data.userDataCount));
     }
   }, [totalUsers]);
 
-  // useEffect(() => {
-  //   const {loading, error, data} = allUsers;
-  //   if (!loading && !error && data) {
-  //     console.log(data);
-  //     const {
-  //       userDataIndex: {edges}
-  //     } = data;
-  //     // setTotalCount(Number(data.userDataCount));
-
-  //     if (edges) {
-  //       const newData = edges.map(({node: arr}) => arr);
-  //       console.log(newData);
-  //       localStorage.setItem('allUsers', JSON.stringify(newData));
-  //     }
-
-  //   }
-  // }, [totalUsers, allUsers]);
 
   return (
     <>
@@ -128,117 +111,6 @@ const Overview = ({ session }: { session: DIDSession }) => {
           </>
         )}
       </div>
-
-      <>
-        {/* <div className="justify-between self-stretch mb-0 mt-14 max-md:max-w-full max-md:mr-1.5 max-md:mt-10 max-md:mb-2.5">
-          <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
-            <div className="flex flex-col items-stretch w-[35%] max-md:w-full max-md:ml-0">
-              <div className="items-start flex grow flex-col max-md:mt-10">
-                <div className="text-white text-xl font-bold self-stretch whitespace-nowrap">
-                  Addresses
-                </div>
-                <div className="items-start self-stretch flex grow flex-col mt-16 max-md:mt-10">
-                  <div className="text-white text-lg tracking-[2.4px] self-stretch whitespace-nowrap">
-                    0x9434E0…33B5DE
-                  </div>
-                  <div className="text-white text-lg tracking-[2.4px] self-stretch whitespace-nowrap mt-16 max-md:mt-10">
-                    0x9434E0…33B5DE
-                  </div>
-                  <div className="text-white text-lg tracking-[2.4px] self-stretch whitespace-nowrap mt-16 max-md:mt-10">
-                    0x9434E0…33B5DE
-                  </div>
-                  <div className="text-white text-lg tracking-[2.4px] self-stretch whitespace-nowrap mt-16 max-md:mt-10">
-                    0x9434E0…33B5DE
-                  </div>
-                  <div className="text-white text-lg tracking-[2.4px] self-stretch whitespace-nowrap mt-16 max-md:mt-10">
-                    0x9434E0…33B5DE
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-col items-stretch w-[35%] ml-5 max-md:w-full max-md:ml-0">
-              <div className="items-start flex grow flex-col max-md:mt-10">
-                <div className="text-white text-xl font-bold self-stretch whitespace-nowrap">
-                  Alerts
-                </div>
-                <div className="justify-center items-start self-stretch flex grow flex-col mt-16 max-md:mt-10">
-                  <div className="text-white text-lg self-stretch whitespace-nowrap">
-                    in, out, high gas
-                  </div>
-                  <div className="text-white text-lg self-stretch whitespace-nowrap mt-16 max-md:mt-10">
-                    in, out
-                  </div>
-                  <div className="text-white text-lg self-stretch whitespace-nowrap mt-16 max-md:mt-10">
-                    in, out, contract
-                  </div>
-                  <div className="text-white text-lg self-stretch whitespace-nowrap mt-16 max-md:mt-10">
-                    out, high gas
-                  </div>
-                  <div className="text-white text-lg self-stretch whitespace-nowrap mt-16 max-md:mt-10">
-                    high gas, contract
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-col items-stretch w-[24%] ml-5 max-md:w-full max-md:ml-0">
-              <div className="items-start flex grow flex-col max-md:mt-10">
-                <div className="text-white text-xl font-bold self-stretch whitespace-nowrap">
-                  Notifs
-                </div>
-                <div className="justify-center items-start self-stretch flex grow flex-col mt-16 max-md:mt-10">
-                  <div className="text-white text-lg self-stretch whitespace-nowrap">Email</div>
-                  <div className="text-white text-lg self-stretch whitespace-nowrap mt-16 max-md:mt-10">
-                    SMS
-                  </div>
-                  <div className="text-white text-lg self-stretch whitespace-nowrap mt-16 max-md:mt-10">
-                    Push notif
-                  </div>
-                  <div className="text-white text-lg self-stretch whitespace-nowrap mt-16 max-md:mt-10">
-                    SMS
-                  </div>
-                  <div className="text-white text-lg self-stretch whitespace-nowrap mt-16 max-md:mt-10">
-                    Email
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-col items-stretch w-[6%] ml-5 max-md:w-full max-md:ml-0">
-              <div className="items-center flex grow flex-col pb-4 max-md:mt-10">
-                <div className="text-white text-xl font-bold self-stretch whitespace-nowrap">
-                  Edit
-                </div>
-                <div className="items-center self-center gap-1 flex w-6 max-w-full flex-col mt-20 max-md:mt-10">
-                  <img
-                    loading="lazy"
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/ce84a335-aca4-4ad2-a77a-c12efab979e0?apiKey=6d09e386ed084a5db605f780c970c7a9&"
-                    className="aspect-square object-contain object-center w-5 overflow-hidden self-stretch"
-                  />
-                  <img
-                    loading="lazy"
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/8344e682-a28a-4032-b185-114de79c980d?apiKey=6d09e386ed084a5db605f780c970c7a9&"
-                    className="aspect-square object-contain object-center w-5 overflow-hidden self-stretch mt-16 max-md:mt-10"
-                  />
-                  <img
-                    loading="lazy"
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/ab152934-4f96-46e1-a68c-5b292818d0aa?apiKey=6d09e386ed084a5db605f780c970c7a9&"
-                    className="aspect-square object-contain object-center w-5 overflow-hidden self-stretch mt-16 max-md:mt-10"
-                  />
-                  <img
-                    loading="lazy"
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/560cf6b1-211f-4e83-b2cd-d98224462802?apiKey=6d09e386ed084a5db605f780c970c7a9&"
-                    className="aspect-square object-contain object-center w-5 overflow-hidden self-stretch mt-16 max-md:mt-10"
-                  />
-                  <img
-                    loading="lazy"
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/bb39a2c6-77c3-489c-93d6-0fd6e75c292e?apiKey=6d09e386ed084a5db605f780c970c7a9&"
-                    className="aspect-square object-contain object-center w-5 overflow-hidden self-stretch grow mt-16 max-md:mt-10"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> */}
-      </>
     </>
   );
 };
