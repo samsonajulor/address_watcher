@@ -65,7 +65,7 @@ const History = () => {
           });
           return (
             <div className="self-stretch flex grow flex-col mt-14 max-md:max-w-full max-md:mt-10">
-              <div className="justify-between items-start self-center flex w-full gap-5 max-md:max-w-full max-md:flex-wrap max-md:justify-center">
+              <div className="justify-between items-start self-center flex w-full gap-5 max-md:max-w-full max-md:flex-wrap max-md:justify-start">
                 {hist.functionName === '' ? (
                   hist.to === address ? (
                     <>
@@ -80,7 +80,7 @@ const History = () => {
                           </p>
                         </div>
                       </div>
-                      <div className='font-medium'>{hist.value} ETH</div>
+                      <div className='font-medium ml-14'>{hist.value} ETH</div>
                       {/* <div className="text-white text-lg font-bold self-center grow shrink basis-auto my-auto max-md:max-w-full">
                         You received {hist.value} ETH from {hist.from}
                       </div>
@@ -101,7 +101,7 @@ const History = () => {
                           </p>
                         </div>
                       </div>
-                      <div className='font-medium'>{hist.value} ETH</div>
+                      <div className='font-medium ml-14'>{hist.value} ETH</div>
                       {/* <FiSend className="text-violet-700" />
                       <div className="text-white text-lg font-semibold self-center grow shrink basis-auto my-auto max-md:max-w-full">
                         You sent {hist.value} ETH to {hist.to}
@@ -117,7 +117,7 @@ const History = () => {
                       <FiSend className="text-violet-700 rotate-45" />
                       <div className='flex flex-col'>
                         <p className='text-lg font-semibold'>Contract interaction with {hist.functionName}</p>
-                        <p className='text-base text-violet-200'>At {hist.to}</p>
+                        <p className='text-base text-violet-200'>{hist.to}</p>
                         <p className="text-gray-400">
                           {moment(Number(hist.timeStamp) * 1000).format(
                             'MMMM Do YYYY, h:mm:ss a'
@@ -125,14 +125,7 @@ const History = () => {
                         </p>
                       </div>
                     </div>
-                    <div className='font-medium'>{hist.value} ETH</div>
-                    {/* <FiSend className="text-violet-700 rotate-45" />
-                    <div className="text-white text-lg font-bold self-center grow shrink basis-auto my-auto max-md:max-w-full">
-                      You interacted with the function {hist.functionName} in the contract {hist.to}
-                    </div>
-                    <div className="text-white text-lg font-bold self-center whitespace-nowrap my-auto">
-                      {moment(Number(hist.timeStamp) * 1000).format('MMMM Do YYYY, h:mm:ss a')}
-                    </div> */}
+                    <div className='font-medium ml-14'>{hist.value} ETH</div>
                   </>
                 )}
               </div>
