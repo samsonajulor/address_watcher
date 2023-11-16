@@ -15,6 +15,8 @@ import {ethers} from 'ethers';
 import useHistory from 'src/hooks/useHistory';
 import useEffectOnce from 'src/hooks/useEffectOnce';
 
+export type DtType = "balance" | "inflow" | "outflow";
+
 
 interface ChartOneState {
    series: {
@@ -39,14 +41,27 @@ const options = {
 };
 
 const periods: {value: Value;}[] = [
-   {
-      value: "daily"
-   },
+
    {
       value: "weekly"
    },
    {
+      value: "daily"
+   },
+   {
       value: "monthly"
+   }
+];
+
+const dtTypes: {value: DtType;}[] = [
+   {
+      value: "balance"
+   },
+   {
+      value: "inflow"
+   },
+   {
+      value: "outflow"
    }
 ];
 
@@ -55,11 +70,77 @@ const Explore = () => {
    const tran = useRef();
    const {address} = useComposeContext();
 
-   const [data, setData] = React.useState<{x: Date; y: string;}[]>();
+   const [balData, setBalData] = React.useState<{x: Date; y: string;}[]>();
    const [period, setPeriod] = React.useState<Value>('weekly');
+   const [dataType, setDataType] = React.useState<DtType>('balance');
    const [threshold, setThreshold] = useState(2);
    const history = useHistory(address, period, (data) => (Number(data.value) > 0));
 
+
+   const formattedHistory = useMemo(
+      () => {
+         const _new = history.map((hist) => ({
+            ...hist,
+            value: formatEther(BigInt(hist.value)),
+            from: hist.from.toLowerCase(),
+            to: hist.to.toLowerCase(),
+         }));
+
+         const _data: {[key: string]: any[];} = {
+            inflow: [],
+            outflow: [],
+         };
+
+         _new.forEach((hist) => {
+            if (hist.to === address) {
+               _data.inflow.push({x: new Date(Number(hist.timeStamp) * 1000), y: hist.value});
+            }
+            if (hist.from === address) {
+               _data.outflow.push({x: new Date(Number(hist.timeStamp) * 1000), y: hist.value});
+            }
+         });
+
+
+
+         const cumulate = (data: {x: Date; y: string;}[]) => {
+            let cum = 0;
+            return data.map((d) => ({
+               x: d.x,
+               y: cum += Number(d.y),
+            }));
+         };
+
+
+
+         return {
+            inflow: cumulate(_data.inflow),
+            outflow: cumulate(_data.outflow),
+         };
+      },
+      [history, address, period]
+   );
+
+   const data = useMemo(() => {
+      if (!balData) {
+         return [];
+      }
+
+      if (dataType === 'balance') {
+         return balData;
+      }
+
+      if (dataType === 'inflow') {
+         return formattedHistory.inflow;
+      }
+
+      return formattedHistory.outflow;
+
+
+   }, [formattedHistory, balData, period, dataType]);
+
+   useEffect(() => {
+      console.log(data);
+   }, [data]);
 
    const getBalances = async () => {
       const _data = [];
@@ -105,11 +186,11 @@ const Explore = () => {
 
 
 
-   useEffectOnce(() => {
-      getBalances().then((data) => setData(data)
-      ).catch(error => console.error({a: 456, error}));
-      console.log(history);
 
+
+   useEffectOnce(() => {
+      getBalances().then((data) => setBalData(data)
+      ).catch(error => console.error({a: 456, error}));
    }, [period, address, history]);
 
    const chartData = useMemo<ChartData<'line'>>(() => ({
@@ -154,6 +235,7 @@ const Explore = () => {
             <div className="flex justify-between">
                <p className='text-2xl font-bold'>Explore</p>
                <div className="flex gap-4 items-center">
+                  <Select inputs={dtTypes} onSelect={setDataType} />
                   <DropdownInput value={threshold} onUpdate={setThreshold} />
                   <Select inputs={periods} onSelect={setPeriod} />
                </div>

@@ -1,6 +1,6 @@
-import { useEffect, useMemo, useState } from 'react';
-import { Value } from 'src/app/app/components/Select';
-import { ethersProvider, publicClient } from 'src/config/walletconnect';
+import {useEffect, useMemo, useState} from 'react';
+import {Value} from 'src/app/app/components/Select';
+import {ethersProvider, publicClient} from 'src/config/walletconnect';
 import useEffectOnce from 'src/hooks/useEffectOnce';
 
 export interface TxHistory {
@@ -60,7 +60,7 @@ const useHistory = (
     getHistory().then((result) => {
       setHistory(result);
     });
-  }, [address, filterCondition, period]);
+  }, [diffBlock]);
 
   return history;
 };

@@ -5,8 +5,8 @@ import {CheckIcon, ChevronUpDownIcon} from '@heroicons/react/20/solid';
 export type Value = 'daily' | 'weekly' | 'monthly';
 
 
-export default function Select({inputs, onSelect}: {inputs: {value: Value;}[], onSelect: (value: Value) => void;}) {
-   const [selected, setSelected] = useState(inputs[1]);
+export default function Select({inputs, onSelect}: {inputs: {value: string;}[], onSelect: (value: string) => void;}) {
+   const [selected, setSelected] = useState(inputs[0]);
 
    useEffect(() => {
       onSelect(selected.value);
