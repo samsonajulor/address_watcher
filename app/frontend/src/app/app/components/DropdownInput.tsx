@@ -17,7 +17,7 @@ export default function DropdownInput({value, onUpdate}: {value: number; onUpdat
       }
    };
    return (
-      <div className="w-max px-2">
+      <div className="w-full px-2">
          <Popover className="relative" >
             {({open, close}) => (
                <>
@@ -37,7 +37,7 @@ export default function DropdownInput({value, onUpdate}: {value: number; onUpdat
                      leaveFrom="opacity-100 translate-y-0"
                      leaveTo="opacity-0 translate-y-1"
                   >
-                     <Popover.Panel className="absolute left-1/2 z-10 mt-3 w-screen max-w-max -translate-x-1/2 transform lg:max-w-3xl">
+                     <Popover.Panel className="absolute left-1/2 z-10 mt-3 max-w-max -translate-x-1/2 transform">
                         <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black/5">
                            <div className="relative flex gap-1 bg-gray-600/40 p-1">
                               <input className='rounded-md w-20 bg-gray-900 px-2 py-0.5 text-sm outline-none' type="number" value={input} onChange={(e) => setInput(Number(e.target.value))} step={0.1} />

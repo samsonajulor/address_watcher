@@ -36,7 +36,7 @@ export default function Select({inputs, onSelect}: {inputs: {value: Value;}[], o
                         <Listbox.Option
                            key={personIdx}
                            className={({active}) =>
-                              `relative cursor-default select-none py-1 pl-10 pr-4 ${active ? 'bg-violet-400 text-white' : 'text-white'
+                              `relative cursor-default select-none py-1 pl-6 pr-4 ${active ? 'bg-violet-400 text-white' : 'text-white'
                               }`
                            }
                            value={input}
@@ -50,8 +50,8 @@ export default function Select({inputs, onSelect}: {inputs: {value: Value;}[], o
                                     {input.value}
                                  </span>
                                  {selected ? (
-                                    <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-500">
-                                       <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                                    <span className="absolute inset-y-0 left-0 flex items-center pl-1 text-amber-500">
+                                       <CheckIcon className="h-4 w-4" aria-hidden="true" />
                                     </span>
                                  ) : null}
                               </>

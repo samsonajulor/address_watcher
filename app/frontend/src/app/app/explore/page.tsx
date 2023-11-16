@@ -5,11 +5,12 @@ import DashHead from 'src/app/app/components/DashHead';
 import {publicClient} from 'src/config/walletconnect';
 import {useComposeContext} from 'src/app/app/contexts/ComposeProvider';
 import {formatEther} from 'viem';
-import {Line} from 'react-chartjs-2';
+import {Bar, Chart, Line} from 'react-chartjs-2';
 import 'chart.js/auto';
 import Select, {Value} from 'src/app/app/components/Select';
 import {ChartData} from 'chart.js/auto';
 import DropdownInput from 'src/app/app/components/DropdownInput';
+import moment from 'moment';
 
 interface ChartOneState {
    series: {
@@ -20,6 +21,7 @@ interface ChartOneState {
 
 const options = {
    responsive: true,
+
 
    plugins: {
       legend: {
@@ -50,24 +52,21 @@ const Explore = () => {
    const {address} = useComposeContext();
    const [data, setData] = React.useState<{x: Date; y: string;}[]>();
    const [period, setPeriod] = React.useState<Value>('weekly');
-   const [threshold, setThreshold] = useState(1.2);
+   const [threshold, setThreshold] = useState(2000);
 
    const getBalances = async () => {
       const _data = [];
 
       const currentTime = Date.now();
       const historicDate = period === 'daily' ? {
-         duration: 4 * 60 * 60 * 1000,
-         start: currentTime - 24 * 60 * 60 * 1000,
-         end: currentTime,
-      } : period === 'weekly' ? {
          duration: 24 * 60 * 60 * 1000,
-         start: currentTime - 7 * 24 * 60 * 60 * 1000,
-         end: currentTime,
+         range: 14,
+      } : period === 'weekly' ? {
+         duration: 7 * 24 * 60 * 60 * 1000,
+         range: 12,
       } : {
-         duration: 4 * 24 * 60 * 60 * 1000,
-         start: currentTime - 30 * 24 * 60 * 60 * 1000,
-         end: currentTime,
+         duration: 30 * 24 * 60 * 60 * 1000,
+         range: 12,
       };
 
       let blockNum = await publicClient.getBlockNumber({
@@ -77,7 +76,7 @@ const Explore = () => {
 
       const blockDuration = Math.floor(historicDate.duration / 13200);
 
-      for (let i = historicDate.end; i > historicDate.start; i -= historicDate.duration) {
+      for (let i = 0; i < historicDate.range; i++) {
 
          const balance = await publicClient.getBalance({
             address: address!,
@@ -85,7 +84,7 @@ const Explore = () => {
          });
 
          _data.push({
-            x: new Date(i),
+            x: new Date(currentTime - (historicDate.duration * i)),
             y: formatEther(balance),
          });
 
@@ -108,27 +107,33 @@ const Explore = () => {
    const chartData = useMemo<ChartData<'line'>>(() => ({
       labels: data?.map(d => {
          if (period === 'daily') {
-            return d.x.toLocaleTimeString();
+            return moment(d.x).format("MMM D");
          } else if (period === 'weekly') {
-            return d.x.toLocaleDateString();
+            return moment(d.x).format("MMM Do");
          } else {
-            return d.x.getDate();
+            return moment(d.x).format('MMM');
          }
       }),
       datasets: [
          {
             label: 'Balance',
             data: data?.map(d => Number(d.y)) ?? [0, 0, 0, 0, 0, 0],
-            tension: 0.7,
-            pointRadius: 2,
             borderWidth: 1,
+            fill: true,
+            borderColor: ' rgba(167, 184, 159, 1)',
+            pointStyle: false,
+            tension: 0.4,
+            backgroundColor: 'rgb(167, 184, 159, 0.04)',
          },
          {
             label: 'Budget Threshold',
             data: data?.map(d => threshold) ?? [0, 0, 0, 0, 0, 0],
             pointStyle: false,
-            borderWidth: 0.7
-         }
+            borderWidth: 0.5,
+            borderDash: [5, 5],
+            borderColor: 'red',
+         },
+
       ],
    }), [data, period, threshold]);
 
@@ -146,7 +151,10 @@ const Explore = () => {
                </div>
             </div>
 
-            <Line options={options} data={chartData} />
+            <div className="grid gap-4 grid-col-3">
+               <Line options={options} data={chartData} className='col-span-2' />
+
+            </div>
 
          </div>
 
