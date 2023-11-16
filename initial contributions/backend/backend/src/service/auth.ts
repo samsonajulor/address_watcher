@@ -1,14 +1,14 @@
-import { DIDSession } from 'did-session';
-import { EthereumNodeAuth, getAccountId } from './externalFuncs';
+import {DIDSession} from 'did-session';
+import {EthereumNodeAuth, getAccountId} from './externalFuncs';
 // import { EthereumNodeAuth, getAccountId } from '@didtools/pkh-ethereum';
 import NodeCache from 'node-cache';
-import { ethers } from 'ethers';
-import web3 from 'web3';
+import {ethers} from 'ethers';
+import web3 from 'web3/lib/commonjs';
 
-import { CeramicApi } from '@ceramicnetwork/common';
-import { ComposeClient } from '@composedb/client';
-import { GenericAnyType } from '../@types';
-import { env } from '../config';
+import {CeramicApi} from '@ceramicnetwork/common';
+import {ComposeClient} from '@composedb/client';
+import {GenericAnyType} from '../@types';
+import {env} from '../config';
 
 const cache = new NodeCache();
 const alchemyProviderUrl = 'https://eth-sepolia.g.alchemy.com/v2/3RXLLPbaLaKav4sgsrTv2r5YK2Hpblay';
@@ -59,7 +59,7 @@ export const authenticateCeramic = async (
       //  *        This is not done here to allow you to add more datamodels to your application.
       //  */
       // // TODO: update resources to only provide access to our composities
-      session = await DIDSession.authorize(authMethod, { resources: ['ceramic://*'] });
+      session = await DIDSession.authorize(authMethod, {resources: ['ceramic://*']});
       // // Set the session in node-cache.
       cache.set('did', session.serialize() /* optional expiration time in seconds */);
     }

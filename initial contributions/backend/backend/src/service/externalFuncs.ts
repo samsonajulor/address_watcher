@@ -1,9 +1,9 @@
-import { Cacao, SiweMessage, AuthMethod, AuthMethodOpts } from '@didtools/cacao';
-import { randomString } from '@stablelib/random';
-import { AccountId } from 'caip';
-import { safeSend, normalizeAccountId } from '../utils/did-session';
-import { bytesToHex, utf8ToBytes } from '@noble/hashes/utils';
-import { sign } from 'web3-eth-accounts';
+import {Cacao, SiweMessage, AuthMethod, AuthMethodOpts} from '@didtools/cacao';
+import {randomString} from '@stablelib/random';
+import {AccountId} from 'caip';
+import {safeSend, normalizeAccountId} from '../utils/did-session';
+import {bytesToHex, utf8ToBytes} from '@noble/hashes/utils';
+import {sign} from 'web3-eth-accounts/lib/commonjs';
 
 /**
  * SIWX Version
@@ -71,7 +71,7 @@ async function createCACAO(
 
   const PKBytes32 = PKBuffer.slice(0, 32);
 
-  const { signature } = sign(siweMessage.signMessage(), PKBytes32);
+  const {signature} = sign(siweMessage.signMessage(), PKBytes32);
 
   siweMessage.signature = signature;
   return Cacao.fromSiweMessage(siweMessage);
@@ -88,5 +88,5 @@ async function requestChainId(provider: any): Promise<number> {
 export async function getAccountId(ethProvider: any, address: string): Promise<AccountId> {
   const ethChainId = await requestChainId(ethProvider);
   const chainId = `${CHAIN_NAMESPACE}:${ethChainId}`;
-  return new AccountId({ address: address.toLowerCase(), chainId });
+  return new AccountId({address: address.toLowerCase(), chainId});
 }
