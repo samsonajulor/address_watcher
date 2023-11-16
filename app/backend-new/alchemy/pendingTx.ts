@@ -13,8 +13,8 @@ import { transaction } from './transaction.ts';
 import { interaction } from './interaction.ts';
 
 const alchemy = new Alchemy({
-  apiKey: 'fTxkuelVKsi8eUlvM7KH9iYqt11NLBXV',
-  network: Network.ETH_MAINNET,
+  apiKey: '3RXLLPbaLaKav4sgsrTv2r5YK2Hpblay',
+  network: Network.ETH_SEPOLIA,
 });
 
 type DecodeData =
