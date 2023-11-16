@@ -11,6 +11,7 @@ import fs from 'fs';
 import { ethers } from 'ethers';
 import { transaction } from './transaction.ts';
 import { interaction } from './interaction.ts';
+import { valueTx } from './value.ts';
 
 const alchemy = new Alchemy({
   apiKey: '3RXLLPbaLaKav4sgsrTv2r5YK2Hpblay',
@@ -24,7 +25,9 @@ type DecodeData =
 
 // Work on this function
 const renderHTML = (value: string, others: DecodeData, tx: Txns) => {
-  if (!others || others == null) return '';
+  if (!others || others == null) {
+    return valueTx(value, tx);
+  }
   if (others.header === 'ERC20') {
     return transaction(value, others, tx);
   }
