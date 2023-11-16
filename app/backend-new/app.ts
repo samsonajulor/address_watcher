@@ -1,5 +1,8 @@
 import axios from 'axios';
+import { config } from 'dotenv';
 import { print } from 'graphql';
+
+config();
 
 // Define your GraphQL query
 const userCount = `
@@ -22,7 +25,7 @@ query Users($first: Int) {
 `;
 
 // GraphQL server URL
-const serverUrl = 'http://192.168.1.29:5005/graphql';
+const serverUrl = process.env.GRAPHQL_SERVER_URL!;
 
 export const getUsers = async () => {
   try {
@@ -43,7 +46,6 @@ export const getUsers = async () => {
 
     if (edges) {
       const newData = edges.map(({ node: arr }) => arr);
-      console.log(newData);
       return newData;
     }
   } catch (error) {
