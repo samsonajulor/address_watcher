@@ -1,16 +1,16 @@
 'use client';
 import useHistory from 'src/hooks/useHistory';
 import DashHead from '../components/DashHead';
-import { useComposeContext } from '../contexts/ComposeProvider';
-import React, { useMemo } from 'react';
-import { FiSend } from 'react-icons/fi';
-import { GrTransaction } from "react-icons/gr";
-import { Value } from '../components/Select';
+import {useComposeContext} from '../contexts/ComposeProvider';
+import React, {useMemo} from 'react';
+import {FiSend} from 'react-icons/fi';
+import {GrTransaction} from "react-icons/gr";
+import {Value} from '../components/Select';
 import moment from 'moment';
-import { formatEther } from 'viem';
-import { InfinitySpin } from 'react-loader-spinner';
+import {formatEther} from 'viem';
+import {InfinitySpin} from 'react-loader-spinner';
 
-const periods: { value: Value }[] = [
+const periods: {value: Value;}[] = [
   {
     value: 'daily',
   },
@@ -23,7 +23,7 @@ const periods: { value: Value }[] = [
 ];
 
 const Activity = () => {
-  const { isConnected } = useComposeContext();
+  const {isConnected} = useComposeContext();
 
   return (
     <div className="justify-center items-center bg-gray-950 flex grow flex-col w-full mx-auto max-md:max-w-full max-md:pb-24 max-md:px-5">
@@ -37,7 +37,7 @@ const Activity = () => {
 };
 
 const History = () => {
-  const { address } = useComposeContext();
+  const {address} = useComposeContext();
   const [period, setPeriod] = React.useState<Value>('weekly');
   const history = useHistory(address, period, (data) => Number(data.value) > 0);
 
@@ -64,7 +64,7 @@ const History = () => {
             confFrom: hist.from === address,
           });
           return (
-            <div className="self-stretch flex grow flex-col mt-14 max-md:max-w-full max-md:mt-10">
+            <div key={hist.hash} className="self-stretch flex grow flex-col mt-14 max-md:max-w-full max-md:mt-10">
               <div className="justify-between items-start self-center flex w-full gap-5 max-md:max-w-full max-md:flex-wrap max-md:justify-center">
                 {hist.functionName === '' ? (
                   hist.to === address ? (
@@ -141,13 +141,13 @@ const History = () => {
         })
       ) : (
         <div className='absolute w-full h-screen grid place-content-center top-0 left-0 bg-black/60'>
-            <div className=''>
-               <InfinitySpin
-                  width='200'
-                  color="#6d28d9"
-               />
-            </div>
-         </div>
+          <div className=''>
+            <InfinitySpin
+              width='200'
+              color="#6d28d9"
+            />
+          </div>
+        </div>
       )}
     </div>
   );
