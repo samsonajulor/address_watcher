@@ -3,9 +3,32 @@ import {Value} from "src/app/app/components/Select";
 import {ethersProvider, publicClient} from "src/config/walletconnect";
 import useEffectOnce from "src/hooks/useEffectOnce";
 
+export interface TxHistory {
+   blockNumber: string;
+   timeStamp: string;
+   hash: string;
+   nonce: string;
+   blockHash: string;
+   transactionIndex: string;
+   from: string;
+   to: string;
+   value: string;
+   gas: string;
+   gasPrice: string;
+   isError: string;
+   txreceipt_status: string;
+   input: string;
+   contractAddress: string;
+   cumulativeGasUsed: string;
+   gasUsed: string;
+   confirmations: string;
+   methodId: string;
+   functionName: string;
+}
 
-const useHistory = (address?: `0x${string}`, period?: Value, filterCondition?: (data: any) => boolean) => {
-   const [history, setHistory] = useState<any[]>([]);
+
+const useHistory = (address?: `0x${string}`, period?: Value, filterCondition?: (data: TxHistory) => boolean) => {
+   const [history, setHistory] = useState<TxHistory[]>([]);
 
    const diffBlock = useMemo(() => {
       if (period === "daily") {
