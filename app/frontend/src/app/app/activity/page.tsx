@@ -4,10 +4,11 @@ import DashHead from '../components/DashHead';
 import { useComposeContext } from '../contexts/ComposeProvider';
 import React, { useMemo } from 'react';
 import { FiSend } from 'react-icons/fi';
-import { AiOutlineInteraction } from 'react-icons/ai';
+import { GrTransaction } from "react-icons/gr";
 import { Value } from '../components/Select';
 import moment from 'moment';
 import { formatEther } from 'viem';
+import { InfinitySpin } from 'react-loader-spinner';
 
 const periods: { value: Value }[] = [
   {
@@ -27,7 +28,7 @@ const Activity = () => {
   return (
     <div className="justify-center items-center bg-gray-950 flex grow flex-col w-full mx-auto max-md:max-w-full max-md:pb-24 max-md:px-5">
       <DashHead />
-      <div className="justify-between flex w-full flex-col mt-14 max-md:max-w-full max-md:mt-10 max-md:mb-2.5">
+      <div className="justify-between flex w-full flex-col mt-10 max-md:max-w-full max-md:mt-10 max-md:mb-2.5">
         <div className="text-2xl font-bold">Activity</div>
         {isConnected ? <History /> : <p className="mt-20 self-center">Connect to Start</p>}
       </div>
@@ -68,18 +69,18 @@ const History = () => {
                 {hist.functionName === '' ? (
                   hist.to === address ? (
                     <>
-                      <div>
+                      <div className='flex items-center gap-10'>
                         <FiSend className="text-violet-700 rotate-90" />
-                        <div className='flex '>
-                          <p>Transfer from {hist.from}</p>
-                          <small className="text-gray-500">
+                        <div className='flex flex-col'>
+                          <p className='text-lg font-semibold'>Transfer from {hist.from}</p>
+                          <p className="text-gray-400">
                             {moment(Number(hist.timeStamp) * 1000).format(
                               'MMMM Do YYYY, h:mm:ss a'
                             )}
-                          </small>
+                          </p>
                         </div>
                       </div>
-                      <div>{hist.value} ETH</div>
+                      <div className='font-medium'>{hist.value} ETH</div>
                       {/* <div className="text-white text-lg font-bold self-center grow shrink basis-auto my-auto max-md:max-w-full">
                         You received {hist.value} ETH from {hist.from}
                       </div>
@@ -89,24 +90,49 @@ const History = () => {
                     </>
                   ) : (
                     <>
-                      <FiSend className="text-violet-700" />
-                      <div className="text-white text-lg font-bold self-center grow shrink basis-auto my-auto max-md:max-w-full">
+                      <div className='flex items-center gap-10'>
+                        <FiSend className="text-violet-700" />
+                        <div className='flex flex-col'>
+                          <p className='text-lg font-semibold'>Transfer to {hist.to}</p>
+                          <p className="text-gray-400">
+                            {moment(Number(hist.timeStamp) * 1000).format(
+                              'MMMM Do YYYY, h:mm:ss a'
+                            )}
+                          </p>
+                        </div>
+                      </div>
+                      <div className='font-medium'>{hist.value} ETH</div>
+                      {/* <FiSend className="text-violet-700" />
+                      <div className="text-white text-lg font-semibold self-center grow shrink basis-auto my-auto max-md:max-w-full">
                         You sent {hist.value} ETH to {hist.to}
                       </div>
                       <div className="text-white text-lg font-bold self-center whitespace-nowrap my-auto">
                         {moment(Number(hist.timeStamp) * 1000).format('MMMM Do YYYY, h:mm:ss a')}
-                      </div>
+                      </div> */}
                     </>
                   )
                 ) : (
                   <>
-                    <AiOutlineInteraction className="text-violet-700" />
+                    <div className='flex items-center gap-10'>
+                      <FiSend className="text-violet-700 rotate-45" />
+                      <div className='flex flex-col'>
+                        <p className='text-lg font-semibold'>Contract interaction with {hist.functionName}</p>
+                        <p className='text-base text-violet-200'>At {hist.to}</p>
+                        <p className="text-gray-400">
+                          {moment(Number(hist.timeStamp) * 1000).format(
+                            'MMMM Do YYYY, h:mm:ss a'
+                          )}
+                        </p>
+                      </div>
+                    </div>
+                    <div className='font-medium'>{hist.value} ETH</div>
+                    {/* <FiSend className="text-violet-700 rotate-45" />
                     <div className="text-white text-lg font-bold self-center grow shrink basis-auto my-auto max-md:max-w-full">
                       You interacted with the function {hist.functionName} in the contract {hist.to}
                     </div>
                     <div className="text-white text-lg font-bold self-center whitespace-nowrap my-auto">
                       {moment(Number(hist.timeStamp) * 1000).format('MMMM Do YYYY, h:mm:ss a')}
-                    </div>
+                    </div> */}
                   </>
                 )}
               </div>
@@ -114,7 +140,14 @@ const History = () => {
           );
         })
       ) : (
-        <h1 className="mt-20 self-center">Loading History...</h1>
+        <div className='absolute w-full h-screen grid place-content-center top-0 left-0 bg-black/60'>
+            <div className=''>
+               <InfinitySpin
+                  width='200'
+                  color="#6d28d9"
+               />
+            </div>
+         </div>
       )}
     </div>
   );
