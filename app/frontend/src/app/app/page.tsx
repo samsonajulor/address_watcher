@@ -17,17 +17,17 @@ const App = () => {
 
 
   return (
-    <div className="flex flex-col items-stretch ml-[250px] w-full max-md:w-full max-md:ml-0">
-      <div className="justify-center items-center bg-gray-950 flex grow flex-col w-full mx-auto p-8 max-md:max-w-full max-md:pb-24 max-md:px-5">
-        <DashHead />
 
-        {
-          (isConnected && session?.did) ? <Overview session={session} /> : <p className='mt-20 font-bold text-3xl'>
-            Connect to Start
-          </p>
-        }
-      </div>
+    <div className="justify-center items-center bg-gray-950 flex grow flex-col w-full mx-auto max-md:max-w-full max-md:pb-24 max-md:px-5">
+      <DashHead />
+
+      {
+        (isConnected && session?.did) ? <Overview session={session} /> : <p className='mt-20 font-bold text-3xl'>
+          Connect to Start
+        </p>
+      }
     </div>
+
   );
 
 };
@@ -112,17 +112,6 @@ const Overview = ({session}: {session: DIDSession;}) => {
           Total Users: {totalCount}
         </div>
         <p></p>
-        {/* <div className="flex gap-2">
-          <PlusIcon
-            className=" w-4 max-w-full text-orange-400"
-          />
-          <div
-            className="text-orange-400 text-lg self-center whitespace-nowrap my-auto cursor-pointer"
-            onClick={() => setIsOpen(true)}
-          >
-            Add an address
-          </div>
-        </div> */}
       </div>
 
       <div className='grid gap-2 place-content-center text-center h-40'>
