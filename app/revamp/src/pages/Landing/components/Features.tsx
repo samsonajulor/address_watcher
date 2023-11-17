@@ -32,14 +32,14 @@ function Features() {
   ];
 
   return (
-    <div className="justify-center items-center bg-gray-950 self-stretch flex w-full flex-col px-20 pt-24 max-md:max-w-full max-md:px-5">
+    <div className="justify-center items-center bg-gray-950 self-stretch flex w-full flex-col px-20 pt-24 max-md:max-w-full max-md:px-5 max-sm:py-8">
       <div className="items-center self-center flex w-full flex-col max-md:max-w-full">
-        <div className="text-orange-400 md:w-full text-center text-4xl max-md:text-3xl font-bold self-center whitespace-nowrap">
+        <div className="text-orange-400 md:w-full text-center text-4xl max-md:text-3xl max-sm:text-xl font-bold self-center whitespace-nowrap">
           <span className="text-white">Why </span>
           <span className="text-orange-400">Watcher</span>
           <span className="text-white"> is for you</span>
         </div>
-        <div className="flex flex-wrap justify-center gap-8 mt-12 max-md:mt-10">
+        <div className="flex flex-wrap justify-center gap-8 mt-12 max-md:mt-10 max-sm:mt-0 max-sm:gap-0">
           {featureData.map((feature, index) => (
             <Feature key={index} {...feature} />
           ))}

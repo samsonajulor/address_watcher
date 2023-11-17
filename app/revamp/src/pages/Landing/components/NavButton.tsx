@@ -30,7 +30,7 @@ const NavButton = () => {
         <div className="fixed inset-0 z-50" />
         <Dialog.Panel className="text-[#070B12] fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <Link to="/" className="text-3xl bg-clip-text max-md:text-4xl">
+            <Link to="/" className="text-3xl bg-clip-text max-md:text-2xl max-sm:text-xl">
               Watcher
             </Link>
             <button

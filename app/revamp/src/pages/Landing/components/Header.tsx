@@ -9,7 +9,7 @@ const Header = () => {
         aria-label="Global"
       >
         <div className="justify-between items-center self-center flex w-full gap-5 max-md:max-w-full max-md:flex-wrap">
-          <Link to="/" className="text-3xl bg-clip-text max-md:text-4xl">
+          <Link to="/" className="text-3xl bg-clip-text max-md:text-2xl max-sm:text-xl">
             Watcher
           </Link>
           <div className="flex lg:hidden">
