@@ -1,30 +1,7 @@
-import {useEffect, useMemo, useState} from 'react';
-import {Value} from 'src/app/app/components/Select';
-import {ethersProvider, publicClient} from 'src/config/walletconnect';
-import useEffectOnce from 'src/hooks/useEffectOnce';
-
-export interface TxHistory {
-  blockNumber: string;
-  timeStamp: string;
-  hash: string;
-  nonce: string;
-  blockHash: string;
-  transactionIndex: string;
-  from: string;
-  to: string;
-  value: string;
-  gas: string;
-  gasPrice: string;
-  isError: string;
-  txreceipt_status: string;
-  input: string;
-  contractAddress: string;
-  cumulativeGasUsed: string;
-  gasUsed: string;
-  confirmations: string;
-  methodId: string;
-  functionName: string;
-}
+import { useEffect, useMemo, useState } from 'react';
+import { TxHistory, Value } from '../constants/types';
+import { ethersProvider } from '../config/walletconfig';
+import useEffectOnce from './useEffectOnce';
 
 const useHistory = (
   address?: `0x${string}`,
@@ -38,15 +15,19 @@ const useHistory = (
       return Math.floor((14 * 24 * 60 * 60) / 13.2);
     } else if (period === 'weekly') {
       return Math.floor((12 * 7 * 24 * 60 * 60) / 13.2);
+    } else if (period === 'monthly') {
+      return Math.floor((365 * 24 * 60 * 60) / 13.2);
+    } else {
+      return null;
     }
-    return Math.floor((365 * 24 * 60 * 60) / 13.2);
   }, [period, address]);
 
   const getHistory = async () => {
     const currentBlock = await ethersProvider.getBlockNumber();
+
     const _history = await ethersProvider.getHistory(
       address!,
-      currentBlock - diffBlock,
+      diffBlock ? currentBlock - diffBlock : 0,
       currentBlock
     );
 
@@ -60,7 +41,7 @@ const useHistory = (
     getHistory().then((result) => {
       setHistory(result);
     });
-  }, [diffBlock]);
+  }, [diffBlock, address]);
 
   return history;
 };

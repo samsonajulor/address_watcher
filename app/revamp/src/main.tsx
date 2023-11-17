@@ -13,6 +13,7 @@ import Landing from './pages/Landing';
 import { ApolloProvider } from '@apollo/client';
 import { apolloClient } from './config/apollo-client';
 
+
 function NoMatch() {
   return (
     <div className=" flex flex-col items-center justify-center min-h-screen text-4xl">
@@ -21,6 +22,8 @@ function NoMatch() {
     </div>
   );
 }
+import { MainContextProvider } from './contexts/MainContext';
+import Home from './pages/App/Home';
 
 const router = createBrowserRouter([
   {
@@ -31,23 +34,26 @@ const router = createBrowserRouter([
     path: '*',
     element: <NoMatch />,
   },
-  {
+  { 
     path: '/app',
     element: (
       <ComposeProvider>
-        <App />
+        <MainContextProvider>
+          <App />
+        </MainContextProvider>
+
       </ComposeProvider>
     ),
     children: [
       {
         path: '/app',
-        element: <>Home</>,
+        element: <Home />,
       },
       {
-        path: '/app/explore',
+        path: '/app/activity',
         element: <>Explore</>,
       },
-      {
+        {
         path: '*',
         element: <NoMatch />,
       },
