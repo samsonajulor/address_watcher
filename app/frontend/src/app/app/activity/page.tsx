@@ -1,16 +1,16 @@
 'use client';
 import useHistory from 'src/hooks/useHistory';
 import DashHead from '../components/DashHead';
-import {useComposeContext} from '../contexts/ComposeProvider';
-import React, {useMemo} from 'react';
-import {FiSend} from 'react-icons/fi';
-import {GrTransaction} from "react-icons/gr";
-import {Value} from '../components/Select';
+import { useComposeContext } from '../contexts/ComposeProvider';
+import React, { useMemo } from 'react';
+import { FiSend } from 'react-icons/fi';
+import { GrTransaction } from 'react-icons/gr';
+import { Value } from '../components/Select';
 import moment from 'moment';
-import {formatEther} from 'viem';
-import {InfinitySpin} from 'react-loader-spinner';
+import { formatEther } from 'viem';
+import { InfinitySpin } from 'react-loader-spinner';
 
-const periods: {value: Value;}[] = [
+const periods: { value: Value }[] = [
   {
     value: 'daily',
   },
@@ -22,8 +22,30 @@ const periods: {value: Value;}[] = [
   },
 ];
 
+// function shortenEthAddress(address) {
+//   // Check if the address is a valid Ethereum address
+//   if (!/^(0x)?[0-9a-fA-F]{40}$/.test(address)) {
+//     throw new Error("Invalid Ethereum address");
+//   }
+
+//   // Extract the first and last 8 characters of the address
+//   const start = address.substring(0, 8);
+//   const end = address.substring(address.length - 8);
+
+//   // Create the shortened address with ellipsis in the middle
+//   const shortenedAddress = `${start}...${end}`;
+
+//   return shortenedAddress;
+// }
+
+// // Example usage:
+// const longEthAddress = "0x742d35Cc6634C0532925a3b844Bc454e4438f44e";
+// const shortEthAddress = shortenEthAddress(longEthAddress);
+
+// console.log(shortEthAddress);
+
 const Activity = () => {
-  const {isConnected} = useComposeContext();
+  const { isConnected } = useComposeContext();
 
   return (
     <div className="justify-center items-center bg-gray-950 flex grow flex-col w-full mx-auto max-md:max-w-full max-md:pb-24 max-md:px-5">
@@ -37,7 +59,7 @@ const Activity = () => {
 };
 
 const History = () => {
-  const {address} = useComposeContext();
+  const { address } = useComposeContext();
   const [period, setPeriod] = React.useState<Value>('weekly');
   const history = useHistory(address, period, (data) => Number(data.value) > 0);
 
@@ -64,15 +86,18 @@ const History = () => {
             confFrom: hist.from === address,
           });
           return (
-            <div key={hist.hash} className="self-stretch flex grow flex-col mt-14 max-md:max-w-full max-md:mt-10">
+            <div
+              key={hist.hash}
+              className="self-stretch flex grow flex-col mt-14 max-md:max-w-full max-md:mt-10"
+            >
               <div className="justify-between items-start self-center flex w-full gap-5 max-md:max-w-full max-md:flex-wrap max-md:justify-start">
                 {hist.functionName === '' ? (
                   hist.to === address ? (
                     <>
-                      <div className='flex items-center gap-10'>
+                      <div className="flex items-center gap-10">
                         <FiSend className="text-violet-700 rotate-90" />
-                        <div className='flex flex-col'>
-                          <p className='text-lg font-semibold'>Transfer from {hist.from}</p>
+                        <div className="flex flex-col">
+                          <p className="text-lg font-semibold">Transfer from {hist.from}</p>
                           <p className="text-gray-400">
                             {moment(Number(hist.timeStamp) * 1000).format(
                               'MMMM Do YYYY, h:mm:ss a'
@@ -80,20 +105,14 @@ const History = () => {
                           </p>
                         </div>
                       </div>
-                      <div className='font-medium ml-14'>{hist.value} ETH</div>
-                      {/* <div className="text-white text-lg font-bold self-center grow shrink basis-auto my-auto max-md:max-w-full">
-                        You received {hist.value} ETH from {hist.from}
-                      </div>
-                      <div className="text-white text-lg font-bold self-center whitespace-nowrap my-auto">
-                        {moment(Number(hist.timeStamp) * 1000).format('MMMM Do YYYY, h:mm:ss a')}
-                      </div> */}
+                      <div className="font-medium ml-14">{hist.value} ETH</div>
                     </>
                   ) : (
                     <>
-                      <div className='flex items-center gap-10'>
+                      <div className="flex items-center gap-10">
                         <FiSend className="text-violet-700" />
-                        <div className='flex flex-col'>
-                          <p className='text-lg font-semibold'>Transfer to {hist.to}</p>
+                        <div className="flex flex-col">
+                          <p className="text-lg font-semibold">Transfer to {hist.to}</p>
                           <p className="text-gray-400">
                             {moment(Number(hist.timeStamp) * 1000).format(
                               'MMMM Do YYYY, h:mm:ss a'
@@ -101,31 +120,24 @@ const History = () => {
                           </p>
                         </div>
                       </div>
-                      <div className='font-medium ml-14'>{hist.value} ETH</div>
-                      {/* <FiSend className="text-violet-700" />
-                      <div className="text-white text-lg font-semibold self-center grow shrink basis-auto my-auto max-md:max-w-full">
-                        You sent {hist.value} ETH to {hist.to}
-                      </div>
-                      <div className="text-white text-lg font-bold self-center whitespace-nowrap my-auto">
-                        {moment(Number(hist.timeStamp) * 1000).format('MMMM Do YYYY, h:mm:ss a')}
-                      </div> */}
+                      <div className="font-medium ml-14">{hist.value} ETH</div>
                     </>
                   )
                 ) : (
                   <>
-                    <div className='flex items-center gap-10'>
+                    <div className="flex items-center gap-10">
                       <FiSend className="text-violet-700 rotate-45" />
-                      <div className='flex flex-col'>
-                        <p className='text-lg font-semibold'>Contract interaction with {hist.functionName}</p>
-                        <p className='text-base text-violet-200'>{hist.to}</p>
+                      <div className="flex flex-col">
+                        <p className="text-lg font-semibold">
+                          Contract interaction with {hist.functionName}
+                        </p>
+                        <p className="text-base text-violet-200">{hist.to}</p>
                         <p className="text-gray-400">
-                          {moment(Number(hist.timeStamp) * 1000).format(
-                            'MMMM Do YYYY, h:mm:ss a'
-                          )}
+                          {moment(Number(hist.timeStamp) * 1000).format('MMMM Do YYYY, h:mm:ss a')}
                         </p>
                       </div>
                     </div>
-                    <div className='font-medium ml-14'>{hist.value} ETH</div>
+                    <div className="font-medium ml-14">{hist.value} ETH</div>
                   </>
                 )}
               </div>
@@ -133,12 +145,9 @@ const History = () => {
           );
         })
       ) : (
-        <div className='absolute w-full h-screen grid place-content-center top-0 left-0 bg-black/60'>
-          <div className=''>
-            <InfinitySpin
-              width='200'
-              color="#6d28d9"
-            />
+        <div className="absolute w-full h-screen grid place-content-center top-0 left-0 bg-black/60">
+          <div className="">
+            <InfinitySpin width="200" color="#6d28d9" />
           </div>
         </div>
       )}
