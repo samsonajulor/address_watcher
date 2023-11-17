@@ -12,6 +12,16 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Landing from './pages/Landing';
 import { ApolloProvider } from '@apollo/client';
 import { apolloClient } from './config/apollo-client';
+
+
+function NoMatch() {
+  return (
+    <div className=" flex flex-col items-center justify-center min-h-screen text-4xl">
+      <h2>404: Page Not Found</h2>
+      <p>Uh oh! Wrong page 😞</p>
+    </div>
+  );
+}
 import { MainContextProvider } from './contexts/MainContext';
 import Home from './pages/App/Home';
 
@@ -21,12 +31,17 @@ const router = createBrowserRouter([
     element: <Landing />,
   },
   {
+    path: '*',
+    element: <NoMatch />,
+  },
+  { 
     path: '/app',
     element: (
       <ComposeProvider>
         <MainContextProvider>
           <App />
         </MainContextProvider>
+
       </ComposeProvider>
     ),
     children: [
@@ -37,6 +52,10 @@ const router = createBrowserRouter([
       {
         path: '/app/activity',
         element: <>Explore</>,
+      },
+        {
+        path: '*',
+        element: <NoMatch />,
       },
     ],
   },

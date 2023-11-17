@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom";
+import { Link } from 'react-router-dom';
 import phone from '../../../assets/phone.png';
 
 const Cta = () => {
@@ -17,25 +17,25 @@ const Cta = () => {
             </div>
             <div className="flex flex-col items-stretch w-[55%] ml-5 max-md:w-full max-md:ml-0">
               <div className="items-start flex flex-col my-auto max-md:max-w-full max-md:mt-10">
-                <div className="items-start flex w-[745px] max-w-full flex-col self-start">
-                  <div className="text-white text-2xl font-bold self-stretch whitespace-nowrap max-md:max-w-full">
+                <div className="items-start flex w-[745px] max-w-full flex-col self-start max-sm:text-center max-sm:px-2">
+                  <div className="text-white text-2xl font-bold self-stretch max-md:max-w-full max-sm:text-base">
                     Start tracking your address today
                   </div>
-                  <div className="text-zinc-500 text-xl leading-relaxed self-stretch mt-6 max-md:max-w-full">
+                  <div className="text-zinc-500 text-xl leading-relaxed self-stretch mt-6 max-md:max-w-full max-sm:text-sm max-sm:mt-3">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                     incididunt
                   </div>
                 </div>
-                <div className="items-start flex max-w-full justify-between gap-5 mt-14 self-start max-md:flex-wrap max-md:mt-10">
+                <div className="self-center flex max-w-full justify-center gap-5 mt-14 max-md:flex-wrap max-md:mt-10 max-sm:gap-2 max-sm:my-8">
                   <Link
-                    to="/register"
-                    className="text-white text-xl font-bold self-center whitespace-nowrap justify-center items-center bg-violet-800 flex-1 px-7 py-3 rounded-2xl max-md:px-5"
+                    to="/app"
+                    className="text-white text-xl font-bold self-center whitespace-nowrap justify-center items-center bg-violet-800 flex-1 px-7 py-3 rounded-2xl max-md:px-5 max-sm:text-sm max-sm:px-4 max-sm:py-2 max-sm:rounded-xl"
                   >
-                    Register
+                    Dashboard
                   </Link>
                   <Link
                     to="/about"
-                    className="text-orange-400 text-xl font-bold self-stretch whitespace-nowrap justify-center items-center bg-orange-400 bg-opacity-20 flex-1 px-7 py-3 rounded-2xl max-md:px-5"
+                    className="text-orange-400 text-xl font-bold whitespace-nowrap justify-center items-center bg-orange-400 bg-opacity-20 flex-1 px-7 py-3 rounded-2xl max-md:px-5 max-sm:text-sm max-sm:px-4 max-sm:py-2 max-sm:rounded-xl"
                   >
                     Learn more
                   </Link>

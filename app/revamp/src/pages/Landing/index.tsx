@@ -9,9 +9,9 @@ import Footer from './components/Footer';
 
 const Landing = () => {
   return (
-    <div>
+    <div className="bg-gray-950">
       <Header />
-      <div className="justify-center items-start bg-gray-950 flex flex-col">
+      <div className="justify-center items-start flex flex-col">
         <Hero />
         <Features />
         <Steps />
