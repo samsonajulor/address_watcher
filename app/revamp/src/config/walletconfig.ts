@@ -1,7 +1,7 @@
 import '@rainbow-me/rainbowkit/styles.css';
 import { getDefaultWallets } from '@rainbow-me/rainbowkit';
 import { configureChains, createConfig } from 'wagmi';
-import { baseGoerli } from 'wagmi/chains';
+import { sepolia } from 'wagmi/chains';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
 import { createPublicClient, http } from 'viem';
@@ -10,8 +10,8 @@ import { Networkish } from 'ethers';
 import { BlockTag } from 'ethers';
 
 const { chains, publicClient: _client } = configureChains(
-  [baseGoerli],
-  [alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_ALCHEMY_ID! }), publicProvider()]
+  [sepolia],
+  [alchemyProvider({ apiKey: import.meta.env.VITE_ALCHEMY_ID! }), publicProvider()]
 );
 const { connectors } = getDefaultWallets({
   appName: 'Address Watcher',
@@ -24,12 +24,14 @@ const wagmiConfig = createConfig({
   publicClient: _client,
 });
 
-const rpc = `https://eth-sepolia.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_ID}`;
+const rpc = `https://eth-sepolia.g.alchemy.com/v2/${import.meta.env.VITE_ALCHEMY_ID}`;
+
+// const rpc = `https://goerli.basescan.org/${process.env.NEXT_PUBLIC_ALCHEMY_ID}`;
 
 const transport = http(rpc);
 
 const publicClient = createPublicClient({
-  chain: baseGoerli,
+  chain: sepolia,
   transport,
 });
 

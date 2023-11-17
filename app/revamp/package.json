@@ -16,7 +16,6 @@
     "@heroicons/react": "^2.0.18",
     "@rainbow-me/rainbowkit": "^1.2.0",
     "buffer": "^6.0.3",
-    "daisyui": "^4.3.1",
     "did-session": "^2.1.1",
     "ethers": "^6.8.1",
     "react": "^18.2.0",

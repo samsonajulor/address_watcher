@@ -1,13 +1,13 @@
-
-import {createContext, useContext, useEffect, useState} from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import definitionJson from '../utils/runtime-composite.json';
-import {DIDSession} from 'did-session';
-import {EthereumWebAuth, getAccountId} from '@didtools/pkh-ethereum';
+import { DIDSession } from 'did-session';
+import { EthereumWebAuth, getAccountId } from '@didtools/pkh-ethereum';
 
-import {RuntimeCompositeDefinition} from '@composedb/types';
-import {useAccount} from 'wagmi';
-import {apolloClient} from '../config/apollo-client';
-import {compose} from '../config/compose';
+import { RuntimeCompositeDefinition } from '@composedb/types';
+import { useAccount } from 'wagmi';
+import { apolloClient } from '../config/apollo-client';
+import { compose } from '../config/compose';
+import useEffectOnce from '../hooks/useEffectOnce';
 
 interface Window {
   ethereum?: {
@@ -29,8 +29,8 @@ const ComposeContext = createContext<{
   session: undefined,
 });
 
-const ComposeProvider = ({children}: {children: React.ReactNode;}) => {
-  const {address, isConnected} = useAccount({
+const ComposeProvider = ({ children }: { children: React.ReactNode }) => {
+  const { address, isConnected } = useAccount({
     onDisconnect() {
       setSession(undefined);
     },
@@ -47,7 +47,7 @@ const ComposeProvider = ({children}: {children: React.ReactNode;}) => {
   const runCompose = async (address: `0x${string}`) => {
     const wind = window as Window;
     const accountId = await getAccountId(wind.ethereum, address);
-    console.log({accountId});
+    console.log({ accountId });
 
     const authMethod = await EthereumWebAuth.getAuthMethod(wind.ethereum, accountId);
 
@@ -59,7 +59,7 @@ const ComposeProvider = ({children}: {children: React.ReactNode;}) => {
       resources: compose.resources,
     });
 
-    console.log({session});
+    console.log({ session });
 
     compose.setDID(session.did);
 
@@ -68,18 +68,15 @@ const ComposeProvider = ({children}: {children: React.ReactNode;}) => {
     return session;
   };
 
-  useEffect(() => {
-    if (!isConnected) {
-      setSession(undefined);
-    }
-    if (isConnected && address) {
+  useEffectOnce(() => {
+    if (address) {
       runCompose(address).then((session) => {
         setSession(session);
       });
     } else {
       setSession(undefined);
     }
-  }, [isConnected, address]);
+  }, [address]);
 
   return (
     <ComposeContext.Provider
@@ -96,4 +93,4 @@ const ComposeProvider = ({children}: {children: React.ReactNode;}) => {
 
 const useComposeContext = () => useContext(ComposeContext);
 
-export {ComposeProvider, useComposeContext};
+export { ComposeProvider, useComposeContext };
