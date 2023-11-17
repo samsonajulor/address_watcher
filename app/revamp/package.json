@@ -12,6 +12,7 @@
     "@composedb/client": "^0.5.2",
     "@composedb/types": "^0.5.1",
     "@didtools/pkh-ethereum": "^0.4.1",
+    "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
     "@rainbow-me/rainbowkit": "^1.2.0",
     "buffer": "^6.0.3",
