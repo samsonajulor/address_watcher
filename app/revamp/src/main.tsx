@@ -13,6 +13,8 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Landing from './pages/Landing';
+import {ApolloProvider} from "@apollo/client";
+import {apolloClient} from './config/apollo-client';
 
 const router = createBrowserRouter([
   {
@@ -21,17 +23,28 @@ const router = createBrowserRouter([
   },
   {
     path: "/app",
-
     element: <ComposeProvider><App /></ComposeProvider>,
+    children: [
+      {
+        path: "/app",
+        element: <>Home</>
+      },
+      {
+        path: "/app/explore",
+        element: <>Explore</>
+      }
+    ]
   }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <WagmiConfig config={wagmiConfig}>
-      <RainbowKitProvider chains={chains}>
-        <RouterProvider router={router} />
-      </RainbowKitProvider>
-    </WagmiConfig>
+    <ApolloProvider client={apolloClient}>
+      <WagmiConfig config={wagmiConfig}>
+        <RainbowKitProvider chains={chains}>
+          <RouterProvider router={router} />
+        </RainbowKitProvider>
+      </WagmiConfig>
+    </ApolloProvider>
   </React.StrictMode>
 );
