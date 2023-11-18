@@ -23,6 +23,7 @@ function NoMatch() {
 }
 import { MainContextProvider } from './contexts/MainContext';
 import Home from './pages/App/Home';
+import Activity from './pages/App/Activity';
 
 const router = createBrowserRouter([
   {
@@ -49,7 +50,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/app/activity',
-        element: <>Explore</>,
+        element: <Activity />,
       },
       {
         path: '*',
