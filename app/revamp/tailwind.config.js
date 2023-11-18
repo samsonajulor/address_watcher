@@ -19,6 +19,7 @@ module.exports = {
         'cs-2lg': '0 0 1px 0 rgba(0,0,0,0.31), 0 20px 32px -8px rgba(0,0,0,0.25)',
         'cs-3lg': '0 0 1px 0 rgba(0,0,0,0.31), 0 24px 36px -8px rgba(0,0,0,0.25)',
         'cs-ll': '1px 2px 10px rgba(0,0,0,0.08)',
+        'cs-up': '0 -2px 3px rgba(0,0,0,0.08)',
       },
       colors: ({ theme }) => ({
         'cs-bg': '#FAFBFB',
