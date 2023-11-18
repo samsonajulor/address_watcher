@@ -24,7 +24,7 @@ const wagmiConfig = createConfig({
   publicClient: _client,
 });
 
-const rpc = `https://eth-sepolia.g.alchemy.com/v2/${import.meta.env.VITE_ALCHEMY_ID}`;
+export const rpc = `https://eth-sepolia.g.alchemy.com/v2/${import.meta.env.VITE_ALCHEMY_ID}`;
 
 // const rpc = `https://goerli.basescan.org/${process.env.NEXT_PUBLIC_ALCHEMY_ID}`;
 

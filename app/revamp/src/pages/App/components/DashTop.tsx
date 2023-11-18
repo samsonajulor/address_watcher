@@ -8,14 +8,14 @@ const DashTop = () => {
     <>
       <Download />
 
-      <div className="card h-48 text-2xl font-black flex flex-col justify-between">
+      <div className="card h-48 text-2xl font-black flex flex-col justify-around items-center">
         <p>Total Income</p>
         <p className="text-4xl">
           {totalFlowData.income.toFixed(3)}
           <b className="text-xl"> ETH</b>
         </p>
       </div>
-      <div className="card h-48 text-2xl font-black flex flex-col justify-between">
+      <div className="card h-48 text-2xl font-black flex flex-col justify-around items-center">
         <p>Total Expense</p>
         <p className="text-4xl">
           {totalFlowData.expense.toFixed(3)}
@@ -30,7 +30,7 @@ const Download = () => {
   return (
     <div className="card p-0 h-48 col-span-2 relative overflow-hidden font-black bg-cs-purple text-cs-bg">
       <div className="p-6 ">
-        <div className="lg:grid h-full relative z-10">
+        <div className="lg:grid gap-5 h-full relative z-10">
           <p className="text-4xl">Hey Fren </p>
           <p className="sm:text-xl w-2/3">Generate Insights on your Wallet </p>
         </div>

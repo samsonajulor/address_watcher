@@ -1,58 +1,19 @@
-import React from 'react';
+import React, { useEffect, useMemo } from 'react';
 import moment from 'moment';
 import { FiSend } from 'react-icons/fi';
 import { InfinitySpin } from 'react-loader-spinner';
 import { useMainContext } from '../../contexts/MainContext';
 import { useComposeContext } from '../../contexts/ComposeProvider';
+import useEffectOnce from '../../hooks/useEffectOnce';
+import { decodeContract } from '../../utils/decodeContract';
 
 const Activity = () => {
   const { isConnected } = useComposeContext();
 
   return (
-    <div className="mx-5">
-      <div className="text-lg text-center mb-10 mt-5">Activity</div>
-      {isConnected ? <History /> : <p className="mt-20 self-center">Connect to Start</p>}
-      {/* <div>
-        <div className="flex justify-between mt-10">
-          <div className="flex gap-10 items-center">
-            <FiSend className="text-red-400" />
-            <div className="flex flex-col gap-2">
-              <div className="flex gap-3 items-center">
-                <p className="">0x94ce…3d17</p>
-                <p className="text-gray-500 text-xs">21 days ago</p>
-              </div>
-              <p className="">Sent 30 USDT to 0x94ce…3d17</p>
-            </div>
-          </div>
-          <div>-30 USDT</div>
-        </div>
-        <div className="flex justify-between mt-10">
-          <div className="flex gap-10 items-center">
-            <FiSend className="text-yellow-400 rotate-45" />
-            <div className="flex flex-col gap-2">
-              <div className="flex gap-3 items-center">
-                <p className="">0x94ce…3d17</p>
-                <p className="text-gray-500 text-xs">21 days ago</p>
-              </div>
-              <p className="">Interacted with contract 0x94ce…3d17</p>
-            </div>
-          </div>
-          <div>-30 USDT</div>
-        </div>
-        <div className="flex justify-between mt-10">
-          <div className="flex gap-10 items-center">
-            <FiSend className="text-green-400 rotate-90" />
-            <div className="flex flex-col gap-2">
-              <div className="flex gap-3 items-center">
-                <p className="">0x94ce…3d17</p>
-                <p className="text-gray-500 text-xs">21 days ago</p>
-              </div>
-              <p className="">Received 30 USDT from 0x94ce…3d17</p>
-            </div>
-          </div>
-          <div>-30 USDT</div>
-        </div>
-      </div> */}
+    <div className="m-5">
+      <div className="text-2xl font-bold mt-">Activity</div>
+      {isConnected ? <History /> : <p className="mt-20 text-center">Connect to Start</p>}
     </div>
   );
 };
@@ -60,72 +21,78 @@ const Activity = () => {
 const History = () => {
   const { address } = useComposeContext();
   const { allHistory } = useMainContext();
-  console.log('Sam, history:', allHistory);
+
+  const history = useMemo(() => [...allHistory!].reverse(), [allHistory]);
+
+  useEffectOnce(() => {
+    if (history.length > 0) {
+      const test = history[0].to;
+      console.log({ test });
+
+      decodeContract(test).then((r) => console.log({ r }));
+    }
+  }, [history]);
 
   return (
     <div className="flex flex-col items-stretch w-full max-md:w-full max-md:ml-0">
-      {allHistory!.length > 0 ? (
-        allHistory!.map((hist) => {
-          console.log({
-            to: hist.to,
-            from: hist.from,
-            address,
-            confTo: hist.to === address,
-            confFrom: hist.from === address,
-          });
+      {history.length > 0 ? (
+        history.map((hist) => {
           return (
-            <div
-              key={hist.hash}
-              className="self-stretch flex grow flex-col mt-14 max-md:max-w-full max-md:mt-10"
-            >
-              <div className="justify-between items-start self-center flex w-full gap-5 max-md:max-w-full max-md:flex-wrap max-md:justify-center">
+            <div key={hist.hash} className="self-stretch flex grow flex-col mt-5 max-md:max-w-full">
+              <div className="bar p-5 justify-between items-start self-center flex w-full gap-5 max-md:max-w-full max-md:flex-wrap max-md:justify-center">
                 {hist.functionName === '' ? (
                   hist.to === address ? (
                     <>
-                      <div className="flex items-center gap-10">
-                        <FiSend className="text-violet-700 rotate-90" />
-                        <div className="flex flex-col">
-                          <p className="text-lg font-semibold">Transfer from {hist.from}</p>
-                          <p className="text-gray-400">
-                            {moment(Number(hist.timeStamp) * 1000).format(
-                              'MMMM Do YYYY, h:mm:ss a'
-                            )}
-                          </p>
+                      <div className="justify-between items-center self-center flex w-full gap-5 max-md:max-w-full max-md:flex-wrap max-md:justify-center">
+                        <div className="flex items-center gap-10">
+                          <FiSend className="text-green-500 rotate-90" />
+                          <div className="flex flex-col">
+                            <p className="">Transfer from {hist.from}</p>
+                            <p className="text-gray-500 text-sm">
+                              {moment(Number(hist.timeStamp) * 1000).format(
+                                'MMMM Do YYYY, h:mm:ss a'
+                              )}
+                            </p>
+                          </div>
                         </div>
+                        <div className="">- {hist.value} ETH</div>
                       </div>
-                      <div className="font-medium">{hist.value} ETH</div>
                     </>
                   ) : (
                     <>
-                      <div className="flex items-center gap-10">
-                        <FiSend className="text-violet-700" />
-                        <div className="flex flex-col">
-                          <p className="text-lg font-semibold">Transfer to {hist.to}</p>
-                          <p className="text-gray-400">
-                            {moment(Number(hist.timeStamp) * 1000).format(
-                              'MMMM Do YYYY, h:mm:ss a'
-                            )}
-                          </p>
+                      <div className="justify-between items-center self-center flex w-full gap-5 max-md:max-w-full max-md:flex-wrap max-md:justify-center">
+                        <div className="flex items-center gap-10">
+                          <FiSend className="text-red-500" />
+                          <div className="flex flex-col gap-1.5">
+                            <p className="">Transfer to {hist.to}</p>
+                            <p className="text-gray-500 text-sm">
+                              {moment(Number(hist.timeStamp) * 1000).format(
+                                'MMMM Do YYYY, h:mm:ss a'
+                              )}
+                            </p>
+                          </div>
                         </div>
+                        <div className="">- {hist.value} ETH</div>
                       </div>
-                      <div className="font-medium">{hist.value} ETH</div>
                     </>
                   )
                 ) : (
                   <>
-                    <div className="flex items-center gap-10">
-                      <FiSend className="text-violet-700 rotate-45" />
-                      <div className="flex flex-col">
-                        <p className="text-lg font-semibold">
-                          Contract interaction with {hist.functionName}
-                        </p>
-                        <p className="text-base text-violet-200">At {hist.to}</p>
-                        <p className="text-gray-400">
-                          {moment(Number(hist.timeStamp) * 1000).format('MMMM Do YYYY, h:mm:ss a')}
-                        </p>
+                    <div className="justify-between items-center self-center flex w-full gap-5 max-md:max-w-full max-md:flex-wrap max-md:justify-center">
+                      <div className="flex items-center gap-10">
+                        <FiSend className="text-blue-300 rotate-45" />
+                        <div className="flex flex-col gap-1.5">
+                          <p className="">Contract interaction with {hist.functionName}</p>
+                          <p className="text-sm text-blue-400">At {hist.to}</p>
+                          <p className="text-gray-500 text-sm">
+                            {moment(Number(hist.timeStamp) * 1000).format(
+                              'MMMM Do YYYY, h:mm:ss a'
+                            )}
+                          </p>
+                        </div>
                       </div>
+                      <div className="font-medium">{hist.value} ETH</div>
                     </div>
-                    <div className="font-medium">{hist.value} ETH</div>
                   </>
                 )}
               </div>
@@ -135,7 +102,7 @@ const History = () => {
       ) : (
         <div className="bg-transparent w-full max-h-screen grid place-content-center">
           <div className="">
-            <InfinitySpin width="200" color="#6d28d9" />
+            <InfinitySpin width="200" color="#7352FF" />
           </div>
         </div>
       )}
