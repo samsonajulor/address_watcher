@@ -6,6 +6,12 @@ import { useMainContext } from '../../contexts/MainContext';
 import { useComposeContext } from '../../contexts/ComposeProvider';
 import useEffectOnce from '../../hooks/useEffectOnce';
 import { decodeContract } from '../../utils/decodeContract';
+import { useMediaQuery } from 'usehooks-ts';
+
+const truncateAddress = (address: string) => {
+  const truncatedAddress = address.substring(0, 6) + '...' + address.substring(address.length - 4);
+  return truncatedAddress;
+};
 
 const Activity = () => {
   const { isConnected } = useComposeContext();
@@ -21,6 +27,7 @@ const Activity = () => {
 const History = () => {
   const { address } = useComposeContext();
   const { allHistory } = useMainContext();
+  const isSmallScreen = useMediaQuery('(max-width: 768px)');
 
   const history = useMemo(() => [...allHistory!].reverse(), [allHistory]);
 
@@ -41,11 +48,13 @@ const History = () => {
                 {hist.functionName === '' ? (
                   hist.to === address ? (
                     <>
-                      <div className="justify-between items-center self-center flex w-full gap-5 max-md:max-w-full max-md:flex-wrap max-md:justify-center">
+                      <div className="justify-between items-center self-center flex w-full gap-5 max-md:max-w-full max-md:flex-wrap">
                         <div className="flex items-center gap-10">
                           <FiSend className="text-green-500 rotate-90" />
                           <div className="flex flex-col">
-                            <p className="">Transfer from {hist.from}</p>
+                            <p className="">
+                              Transfer from {isSmallScreen ? truncateAddress(hist.to) : hist.from}
+                            </p>
                             <p className="text-gray-500 text-sm">
                               {moment(Number(hist.timeStamp) * 1000).format(
                                 'MMMM Do YYYY, h:mm:ss a'
@@ -58,11 +67,13 @@ const History = () => {
                     </>
                   ) : (
                     <>
-                      <div className="justify-between items-center self-center flex w-full gap-5 max-md:max-w-full max-md:flex-wrap max-md:justify-center">
+                      <div className="justify-between items-center self-center flex w-full gap-5 max-md:max-w-full max-md:flex-wrap">
                         <div className="flex items-center gap-10">
                           <FiSend className="text-red-500" />
                           <div className="flex flex-col gap-1.5">
-                            <p className="">Transfer to {hist.to}</p>
+                            <p className="">
+                              Transfer to {isSmallScreen ? truncateAddress(hist.to) : hist.to}
+                            </p>
                             <p className="text-gray-500 text-sm">
                               {moment(Number(hist.timeStamp) * 1000).format(
                                 'MMMM Do YYYY, h:mm:ss a'
@@ -76,20 +87,25 @@ const History = () => {
                   )
                 ) : (
                   <>
-                    <div className="justify-between items-center self-center flex w-full gap-5 max-md:max-w-full max-md:flex-wrap max-md:justify-center">
-                      <div className="flex items-center gap-10">
-                        <FiSend className="text-blue-300 rotate-45" />
-                        <div className="flex flex-col gap-1.5">
-                          <p className="">Contract interaction with {hist.functionName}</p>
-                          <p className="text-sm text-blue-400">At {hist.to}</p>
-                          <p className="text-gray-500 text-sm">
-                            {moment(Number(hist.timeStamp) * 1000).format(
-                              'MMMM Do YYYY, h:mm:ss a'
-                            )}
-                          </p>
+                    <div className="w-full max-md:flex max-md:items-center max-md:gap-10">
+                      <FiSend className="text-blue-300 rotate-45 hidden max-md:flex" />
+                      <div className="justify-between items-center self-center flex w-full gap-5 max-md:max-w-full max-md:flex-wrap max-md:gap-3">
+                        <div className="flex items-center gap-10">
+                          <FiSend className="text-blue-300 rotate-45 max-md:hidden" />
+                          <div className="flex flex-col gap-1.5">
+                            <p className="">Contract interaction with {hist.functionName}</p>
+                            <p className="text-blue-400">
+                              At {isSmallScreen ? truncateAddress(hist.to) : hist.to}
+                            </p>
+                            <p className="text-gray-500 text-sm">
+                              {moment(Number(hist.timeStamp) * 1000).format(
+                                'MMMM Do YYYY, h:mm:ss a'
+                              )}
+                            </p>
+                          </div>
                         </div>
+                        <div className="font-medium">{hist.value} ETH</div>
                       </div>
-                      <div className="font-medium">{hist.value} ETH</div>
                     </div>
                   </>
                 )}

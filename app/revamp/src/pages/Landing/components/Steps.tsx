@@ -47,7 +47,7 @@ const Steps = () => {
             <span className="text-white">How it </span>
             <span className="text-orange-400">works</span>
           </div>
-          <div className="text-white text-center text-xl self-stretch mt-4 max-md:max-w-full max-sm:text-base">
+          <div className="text-white text-center text-xl self-stretch mt-4 max-md:max-w-full max-sm:text-sm">
             Step-by-step guide on how to set up and use your address watcher
           </div>
         </div>

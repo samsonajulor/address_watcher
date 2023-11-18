@@ -44,14 +44,14 @@ export default function DropdownInput({
                 <div className="overflow-hidden rounded-lg bar p-1 shadow-lg ring-1 ring-black/5">
                   <div className="relative flex gap-2 mx-2">
                     <input
-                      className="rounded-md w-20 bg-cs-purple/60 px-2 py-0.5 text-sm outline-none"
+                      className="rounded-md w-20 bg-cs-light-purple px-2 py-0.5 text-sm text-white/70 outline-none"
                       type="number"
                       value={input}
                       onChange={(e) => setInput(Number(e.target.value))}
                       step={0.1}
                     />
                     <button
-                      className="rounded-md px-2 bg-cs-purple/60 text-xs text-white/70 hover:text-white"
+                      className="rounded-md px-2 bg-cs-light-purple text-xs text-white/70 hover:text-white"
                       onClick={() => handleUpdate(close)}
                     >
                       Update

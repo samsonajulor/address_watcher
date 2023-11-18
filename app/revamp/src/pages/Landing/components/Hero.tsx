@@ -10,7 +10,7 @@ const Hero = () => {
             <div className="flex flex-col items-stretch max-md:w-full max-md:ml-0">
               <div className="items-start flex mr-0 flex-col my-auto max-md:max-w-full max-md:mt-10 max-sm:mt-0">
                 <div className="justify-center items-center flex max-w-full flex-col self-start">
-                  <div className="text-orange-400 text-7xl font-bold leading-tight self-stretch max-md:max-w-full max-md:text-4xl max-md:leading-[52px] max-sm:text-3xl max-sm:leading-relaxed">
+                  <div className="text-orange-400 text-6xl font-bold leading-tight self-stretch max-md:max-w-full max-md:text-4xl max-md:leading-[52px] max-sm:text-3xl max-sm:leading-relaxed">
                     <span className="text-white">Welcome to the </span>
                     <span className="text-violet-700">address</span>
                     <span className="text-white"> </span>
