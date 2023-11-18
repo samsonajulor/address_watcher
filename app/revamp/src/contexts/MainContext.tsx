@@ -2,7 +2,7 @@ import { createContext, useContext, useMemo, useState } from 'react';
 import { useComposeContext } from './ComposeProvider';
 import useHistory from '../hooks/useHistory';
 import { formatEther } from 'ethers';
-import { Value } from '../constants/types';
+import { TxHistory, Value } from '../constants/types';
 
 interface FlowData {
   income: number;
@@ -13,7 +13,11 @@ interface FlowData {
   cumulativeOutflow: { x: Date; y: number }[];
 }
 
-const MainContext = createContext<{ [key: string]: any; totalFlowData: FlowData }>({
+const MainContext = createContext<{
+  [key: string]: any;
+  totalFlowData: FlowData;
+  allHistory?: TxHistory[];
+}>({
   totalFlowData: {
     income: 0,
     expense: 0,

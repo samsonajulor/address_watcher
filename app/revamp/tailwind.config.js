@@ -22,9 +22,9 @@ module.exports = {
       },
       colors: {
         'cs-bg': '#FAFBFB',
-        'cs-dark-bg': '#32363D',
+        'cs-dark-bg': '#20232A',
         'cs-primary': '#FFFFFF',
-        'cs-dark-primary': '#1a1d1d',
+        'cs-dark-primary': '#33373E',
         'cs-purple': '#402E8D',
         'cs-light-purple': '#7352FF',
         'cs-bg-purple': '#E2DBFF',
