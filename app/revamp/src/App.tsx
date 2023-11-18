@@ -13,7 +13,7 @@ function App() {
       <Header />
       <div className={`grid ${navbarOpen ? 'lg:grid-cols-6' : ''} gap-6`}>
         <Sidebar />
-        <div className="lg:col-span-5">
+        <div className="lg:col-span-5 h-[calc(100vh-150px)] overflow-auto no-scrollbar">
           <Outlet />
         </div>
       </div>
