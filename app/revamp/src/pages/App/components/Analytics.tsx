@@ -41,17 +41,12 @@ const Explore = () => {
   const { period, setPeriod, totalFlowData } = useMainContext();
 
   const data = useMemo(() => {
-    if (!balData) {
-      return [];
-    }
-
     if (dataType === 'balance') {
+      if (!balData) return [];
       return balData;
     }
 
-    if (dataType === 'inflow') {
-      return totalFlowData.inflows;
-    }
+    if (dataType === 'inflow') return totalFlowData.inflows;
 
     return totalFlowData.outflows;
   }, [totalFlowData, balData, dataType]);

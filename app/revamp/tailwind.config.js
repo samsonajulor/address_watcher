@@ -31,9 +31,10 @@ module.exports = {
       },
       backgroundImage: {
         'purple-grad': 'linear-gradient(180deg, #402E8D3C , #402E8D14)',
+        'black-grad': 'linear-gradient(180deg, #32363D22, #32363D00',
       },
     },
   },
   plugins: [],
-  darkMode: 'class',
+  // darkMode: 'class',
 };
