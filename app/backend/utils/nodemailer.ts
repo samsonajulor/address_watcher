@@ -1,16 +1,14 @@
-import { configDotenv } from 'dotenv';
 import nodemailer from 'nodemailer';
-
-configDotenv();
+import CONSTANTS from './constants.ts';
 
 const config = {
-  service: process.env.NODEMAILER_SERVICE,
-  host: process.env.NODEMAILER_HOST,
-  port: Number(process.env.NODEMAILER_PORT),
-  secure: !!Number(process.env.NODEMAILER_SECURE),
+  service: CONSTANTS.NODEMAILER_SERVICE,
+  host: CONSTANTS.NODEMAILER_HOST,
+  port: Number(CONSTANTS.NODEMAILER_PORT),
+  secure: !!Number(CONSTANTS.NODEMAILER_SECURE),
   auth: {
-    user: process.env.NODEMAILER_EMAIL,
-    pass: process.env.NODEMAILER_PASSWORD,
+    user: CONSTANTS.NODEMAILER_EMAIL,
+    pass: CONSTANTS.NODEMAILER_PASSWORD,
   },
 };
 
@@ -18,7 +16,7 @@ const sendEmail = async (to: string, subject: string, html: string) => {
   const transporter = nodemailer.createTransport(config);
   try {
     const info = await transporter.sendMail({
-      from: `"${process.env.NODEMAILER_NAME}" <${process.env.NODEMAILER_EMAIL}>`,
+      from: `"${CONSTANTS.NODEMAILER_NAME}" <${CONSTANTS.NODEMAILER_EMAIL}>`,
       to,
       subject,
       html,

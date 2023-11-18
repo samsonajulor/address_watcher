@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { config } from 'dotenv';
-import { print } from 'graphql';
 
 config();
 
