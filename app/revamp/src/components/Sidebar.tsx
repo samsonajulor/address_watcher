@@ -27,7 +27,7 @@ const Sidebar = () => {
       ref={ref}
       className={` ${
         navbarOpen ? 'fixed w-52 h-max lg:static lg:w-auto z-50 lg:mt-8' : 'hidden'
-      } bar flex flex-col justify-center gap-8 py-10 min-h-[calc(100vh-200px)]`}
+      } bar flex flex-col justify-center gap-8 py-10 min-h-[calc(100vh-200px)] text-lg`}
     >
       {[
         ['/app', 'Dashboard'],
