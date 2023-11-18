@@ -25,7 +25,7 @@ const MainContext = createContext<{ [key: string]: any; totalFlowData: FlowData 
 });
 
 const MainContextProvider = ({ children }: { children: React.ReactNode }) => {
-  const [navbarOpen, setNavbarOpen] = useState(true);
+  const [navbarOpen, setNavbarOpen] = useState(false);
   const [period, setPeriod] = useState<Value>('daily');
   const { address } = useComposeContext();
 
@@ -44,16 +44,24 @@ const MainContextProvider = ({ children }: { children: React.ReactNode }) => {
       cumulativeOutflow: [],
     };
 
-    newHistory.forEach((hist) => {
-      if (hist.from.toLowerCase() === address) {
-        data.expense += Number(formatEther(BigInt(hist.value)));
-        data.outflows.push({ x: new Date(Number(hist.timeStamp) * 1000), y: hist.value });
-      }
-      if (hist.to.toLowerCase() === address) {
-        data.income += Number(formatEther(BigInt(hist.value)));
-        data.inflows.push({ x: new Date(Number(hist.timeStamp) * 1000), y: hist.value });
-      }
-    });
+    newHistory
+      .map((hist) => ({
+        ...hist,
+        value: formatEther(BigInt(hist.value)),
+        from: hist.from.toLowerCase(),
+        to: hist.to.toLowerCase(),
+        timeStamp: Number(hist.timeStamp),
+      }))
+      .forEach((hist) => {
+        if (hist.from === address) {
+          data.expense += Number(hist.value);
+          data.outflows.push({ x: new Date(Number(hist.timeStamp) * 1000), y: hist.value });
+        }
+        if (hist.to === address) {
+          data.income += Number(hist.value);
+          data.inflows.push({ x: new Date(Number(hist.timeStamp) * 1000), y: hist.value });
+        }
+      });
 
     const cumulate = (data: { x: Date; y: string }[]) => {
       let cum = 0;

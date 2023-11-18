@@ -7,8 +7,8 @@ const Sidebar = () => {
   return (
     <div
       className={` ${
-        navbarOpen ? 'fixed w-52 h-max lg:static lg:w-auto z-50' : 'hidden'
-      } bar grid gap-4 py-10`}
+        navbarOpen ? 'fixed w-52 h-max lg:static lg:w-auto z-50 lg:mt-8' : 'hidden'
+      } bar flex flex-col justify-center gap-4 py-10 min-h-[calc(100vh-200px)]`}
     >
       {[
         ['/app', 'Dashboard'],
