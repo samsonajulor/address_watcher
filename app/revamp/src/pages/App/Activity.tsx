@@ -1,12 +1,18 @@
+import React from 'react';
 import moment from 'moment';
 import { FiSend } from 'react-icons/fi';
-import React from 'react';
+import { InfinitySpin } from 'react-loader-spinner';
+import { useMainContext } from '../../contexts/MainContext';
+import { useComposeContext } from '../../contexts/ComposeProvider';
 
 const Activity = () => {
+  const { isConnected } = useComposeContext();
+
   return (
     <div className="mx-5">
       <div className="text-lg text-center mb-10 mt-5">Activity</div>
-      <div>
+      {isConnected ? <History /> : <p className="mt-20 self-center">Connect to Start</p>}
+      {/* <div>
         <div className="flex justify-between mt-10">
           <div className="flex gap-10 items-center">
             <FiSend className="text-red-400" />
@@ -46,7 +52,93 @@ const Activity = () => {
           </div>
           <div>-30 USDT</div>
         </div>
-      </div>
+      </div> */}
+    </div>
+  );
+};
+
+const History = () => {
+  const { address } = useComposeContext();
+  const { allHistory } = useMainContext();
+  console.log('Sam, history:', allHistory);
+
+  return (
+    <div className="flex flex-col items-stretch w-full max-md:w-full max-md:ml-0">
+      {allHistory!.length > 0 ? (
+        allHistory!.map((hist) => {
+          console.log({
+            to: hist.to,
+            from: hist.from,
+            address,
+            confTo: hist.to === address,
+            confFrom: hist.from === address,
+          });
+          return (
+            <div
+              key={hist.hash}
+              className="self-stretch flex grow flex-col mt-14 max-md:max-w-full max-md:mt-10"
+            >
+              <div className="justify-between items-start self-center flex w-full gap-5 max-md:max-w-full max-md:flex-wrap max-md:justify-center">
+                {hist.functionName === '' ? (
+                  hist.to === address ? (
+                    <>
+                      <div className="flex items-center gap-10">
+                        <FiSend className="text-violet-700 rotate-90" />
+                        <div className="flex flex-col">
+                          <p className="text-lg font-semibold">Transfer from {hist.from}</p>
+                          <p className="text-gray-400">
+                            {moment(Number(hist.timeStamp) * 1000).format(
+                              'MMMM Do YYYY, h:mm:ss a'
+                            )}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="font-medium">{hist.value} ETH</div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="flex items-center gap-10">
+                        <FiSend className="text-violet-700" />
+                        <div className="flex flex-col">
+                          <p className="text-lg font-semibold">Transfer to {hist.to}</p>
+                          <p className="text-gray-400">
+                            {moment(Number(hist.timeStamp) * 1000).format(
+                              'MMMM Do YYYY, h:mm:ss a'
+                            )}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="font-medium">{hist.value} ETH</div>
+                    </>
+                  )
+                ) : (
+                  <>
+                    <div className="flex items-center gap-10">
+                      <FiSend className="text-violet-700 rotate-45" />
+                      <div className="flex flex-col">
+                        <p className="text-lg font-semibold">
+                          Contract interaction with {hist.functionName}
+                        </p>
+                        <p className="text-base text-violet-200">At {hist.to}</p>
+                        <p className="text-gray-400">
+                          {moment(Number(hist.timeStamp) * 1000).format('MMMM Do YYYY, h:mm:ss a')}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="font-medium">{hist.value} ETH</div>
+                  </>
+                )}
+              </div>
+            </div>
+          );
+        })
+      ) : (
+        <div className="bg-transparent w-full max-h-screen grid place-content-center">
+          <div className="">
+            <InfinitySpin width="200" color="#6d28d9" />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
