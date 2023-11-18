@@ -2,38 +2,72 @@ import { createContext, useContext, useMemo, useState } from 'react';
 import { useComposeContext } from './ComposeProvider';
 import useHistory from '../hooks/useHistory';
 import { formatEther } from 'ethers';
+import { Value } from '../constants/types';
 
-const MainContext = createContext<{ [key: string]: any }>({});
+interface FlowData {
+  income: number;
+  expense: number;
+  inflows: { x: Date; y: string }[];
+  outflows: { x: Date; y: string }[];
+  cumulativeInflow: { x: Date; y: number }[];
+  cumulativeOutflow: { x: Date; y: number }[];
+}
+
+const MainContext = createContext<{ [key: string]: any; totalFlowData: FlowData }>({
+  totalFlowData: {
+    income: 0,
+    expense: 0,
+    inflows: [],
+    outflows: [],
+    cumulativeInflow: [],
+    cumulativeOutflow: [],
+  },
+});
 
 const MainContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [navbarOpen, setNavbarOpen] = useState(true);
+  const [period, setPeriod] = useState<Value>('daily');
   const { address } = useComposeContext();
 
-  const history = useHistory(address, undefined, (data) => Number(data.value) > 0);
-  const totalFlowData = useMemo(() => {
-    history.map((hist) => ({
-      ...hist,
-      value: formatEther(BigInt(hist.value)),
-      from: hist.from.toLowerCase(),
-      to: hist.to.toLowerCase(),
-    }));
-
-    const data = {
+  const { allHistory, newHistory } = useHistory(
+    address,
+    undefined,
+    (data) => Number(data.value) > 0
+  );
+  const totalFlowData = useMemo<FlowData>(() => {
+    const data: FlowData = {
       income: 0,
       expense: 0,
+      inflows: [],
+      outflows: [],
+      cumulativeInflow: [],
+      cumulativeOutflow: [],
     };
 
-    history.forEach((hist) => {
+    newHistory.forEach((hist) => {
       if (hist.from.toLowerCase() === address) {
         data.expense += Number(formatEther(BigInt(hist.value)));
+        data.outflows.push({ x: new Date(Number(hist.timeStamp) * 1000), y: hist.value });
       }
       if (hist.to.toLowerCase() === address) {
         data.income += Number(formatEther(BigInt(hist.value)));
+        data.inflows.push({ x: new Date(Number(hist.timeStamp) * 1000), y: hist.value });
       }
     });
 
+    const cumulate = (data: { x: Date; y: string }[]) => {
+      let cum = 0;
+      return data.map((d) => ({
+        x: d.x,
+        y: (cum += Number(d.y)),
+      }));
+    };
+
+    data.cumulativeInflow = cumulate(data.inflows);
+    data.cumulativeOutflow = cumulate(data.outflows);
+
     return data;
-  }, [history, address]);
+  }, [newHistory]);
 
   return (
     <MainContext.Provider
@@ -41,6 +75,14 @@ const MainContextProvider = ({ children }: { children: React.ReactNode }) => {
         navbarOpen,
         setNavbarOpen,
         totalFlowData,
+        allHistory: allHistory.map((hist) => ({
+          ...hist,
+          value: formatEther(BigInt(hist.value)),
+          from: hist.from.toLowerCase(),
+          to: hist.to.toLowerCase(),
+        })),
+        period,
+        setPeriod,
       }}
     >
       {children}

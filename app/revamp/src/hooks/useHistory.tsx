@@ -20,16 +20,12 @@ const useHistory = (
     } else {
       return null;
     }
-  }, [period, address]);
+  }, [period]);
 
   const getHistory = async () => {
     const currentBlock = await ethersProvider.getBlockNumber();
 
-    const _history = await ethersProvider.getHistory(
-      address!,
-      diffBlock ? currentBlock - diffBlock : 0,
-      currentBlock
-    );
+    const _history = await ethersProvider.getHistory(address!, 0, currentBlock);
 
     return _history.filter((data) => (filterCondition ? filterCondition(data) : true));
   };
@@ -41,9 +37,28 @@ const useHistory = (
     getHistory().then((result) => {
       setHistory(result);
     });
-  }, [diffBlock, address]);
+  }, [address]);
 
-  return history;
+  const newHistory = useMemo(() => {
+    if (!diffBlock) {
+      return history;
+    }
+    const lastData = history[history.length - 1];
+
+    if (!lastData) {
+      return history;
+    }
+
+    const sliceStart = Number(lastData.blockNumber) - diffBlock;
+    const diff = history.filter((data) => Number(data.blockNumber) > sliceStart);
+
+    return diff;
+  }, [history, diffBlock]);
+
+  return {
+    newHistory,
+    allHistory: history,
+  };
 };
 
 export default useHistory;
