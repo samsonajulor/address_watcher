@@ -22,3 +22,12 @@ export interface TxHistory {
   methodId: string;
   functionName: string;
 }
+
+export interface ChartOneState {
+  series: {
+    name: string;
+    data: number[];
+  }[];
+}
+
+export type DtType = 'balance' | 'inflow' | 'outflow';
