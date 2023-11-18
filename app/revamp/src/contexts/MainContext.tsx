@@ -29,7 +29,7 @@ const MainContext = createContext<{
 });
 
 const MainContextProvider = ({ children }: { children: React.ReactNode }) => {
-  const [navbarOpen, setNavbarOpen] = useState(false);
+  const [navbarOpen, setNavbarOpen] = useState(true);
   const [period, setPeriod] = useState<Value>('daily');
   const { address } = useComposeContext();
 

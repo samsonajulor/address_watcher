@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom";
+import { Link } from 'react-router-dom';
 import NavButton from './NavButton';
 
 const Header = () => {
@@ -9,7 +9,7 @@ const Header = () => {
         aria-label="Global"
       >
         <div className="justify-between items-center self-center flex w-full gap-5 max-md:max-w-full max-md:flex-wrap">
-          <Link to="/" className="text-3xl bg-clip-text max-md:text-2xl max-sm:text-xl">
+          <Link to="/" className="text-white text-3xl bg-clip-text max-md:text-2xl max-sm:text-xl">
             Watcher
           </Link>
           <div className="flex lg:hidden">
@@ -19,7 +19,6 @@ const Header = () => {
             <div className="text-orange-400 text-xl font-bold self-stretch">Home</div>
             <div className="text-white text-xl font-bold self-stretch">About</div>
             <div className="text-white text-xl font-bold self-stretch">Pricing</div>
-
           </div>
           <Link
             to="/app"
