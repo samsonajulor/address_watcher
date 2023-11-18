@@ -1,15 +1,15 @@
 'use client';
-import {Link} from "react-router-dom";
-import {Dialog} from '@headlessui/react';
-import {Bars3Icon, XMarkIcon} from '@heroicons/react/24/outline';
+import { Link } from 'react-router-dom';
+import { Dialog } from '@headlessui/react';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
-import {useState} from 'react';
+import { useState } from 'react';
 
 const navigation = [
-  {name: 'Home', to: '/'},
-  {name: 'About', to: '#'},
-  {name: 'Pricing', to: '#'},
-  {name: 'Dashboard', to: '/app'},
+  { name: 'Home', to: '/' },
+  { name: 'About', to: '#' },
+  { name: 'Pricing', to: '#' },
+  { name: 'Dashboard', to: '/app' },
 ];
 
 const NavButton = () => {
@@ -23,7 +23,7 @@ const NavButton = () => {
         onClick={() => setMobileMenuOpen(true)}
       >
         <span className="sr-only">Open main menu</span>
-        <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+        <Bars3Icon className="h-6 w-6 text-white" aria-hidden="true" />
       </button>
 
       <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>

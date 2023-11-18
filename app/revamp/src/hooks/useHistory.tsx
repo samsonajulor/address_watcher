@@ -9,6 +9,7 @@ const useHistory = (
   filterCondition?: (data: TxHistory) => boolean
 ) => {
   const [history, setHistory] = useState<TxHistory[]>([]);
+  const [allHistory, setAll] = useState<TxHistory[]>([]);
 
   const diffBlock = useMemo(() => {
     if (period === 'daily') {
@@ -27,15 +28,19 @@ const useHistory = (
 
     const _history = await ethersProvider.getHistory(address!, 0, currentBlock);
 
-    return _history.filter((data) => (filterCondition ? filterCondition(data) : true));
+    return {
+      _allHistory: _history,
+      _filteredHistory: _history.filter((data) => (filterCondition ? filterCondition(data) : true)),
+    };
   };
 
   useEffectOnce(() => {
     if (!address) {
       return;
     }
-    getHistory().then((result) => {
-      setHistory(result);
+    getHistory().then(({ _allHistory, _filteredHistory }) => {
+      setHistory(_filteredHistory);
+      setAll(_allHistory);
     });
   }, [address]);
 
@@ -53,11 +58,11 @@ const useHistory = (
     const diff = history.filter((data) => Number(data.blockNumber) > sliceStart);
 
     return diff;
-  }, [history, diffBlock]);
+  }, [history, diffBlock, address]);
 
   return {
     newHistory,
-    allHistory: history,
+    allHistory,
   };
 };
 

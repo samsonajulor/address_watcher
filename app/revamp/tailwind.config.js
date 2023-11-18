@@ -19,21 +19,23 @@ module.exports = {
         'cs-2lg': '0 0 1px 0 rgba(0,0,0,0.31), 0 20px 32px -8px rgba(0,0,0,0.25)',
         'cs-3lg': '0 0 1px 0 rgba(0,0,0,0.31), 0 24px 36px -8px rgba(0,0,0,0.25)',
         'cs-ll': '1px 2px 10px rgba(0,0,0,0.08)',
+        'cs-up': '0 -2px 3px rgba(0,0,0,0.08)',
       },
-      colors: {
+      colors: ({ theme }) => ({
         'cs-bg': '#FAFBFB',
-        'cs-dark-bg': '#32363D',
+        'cs-dark-bg': '#20232A',
         'cs-primary': '#FFFFFF',
-        'cs-dark-primary': '#1a1d1d',
+        'cs-dark-primary': '#33373E',
         'cs-purple': '#402E8D',
         'cs-light-purple': '#7352FF',
         'cs-bg-purple': '#E2DBFF',
-      },
+      }),
       backgroundImage: {
         'purple-grad': 'linear-gradient(180deg, #402E8D3C , #402E8D14)',
+        'black-grad': 'linear-gradient(180deg, #32363D22, #32363D00',
       },
     },
   },
   plugins: [],
-  darkMode: 'class',
+  // darkMode: 'class',
 };

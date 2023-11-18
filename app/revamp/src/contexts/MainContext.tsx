@@ -2,7 +2,10 @@ import { createContext, useContext, useMemo, useState } from 'react';
 import { useComposeContext } from './ComposeProvider';
 import useHistory from '../hooks/useHistory';
 import { formatEther } from 'ethers';
-import { Value } from '../constants/types';
+import { TxHistory, Value } from '../constants/types';
+import { useMutation, useQuery } from '@apollo/client';
+import { ADD_EMAIL, USER_DATA } from '../utils/gql';
+import useEffectOnce from '../hooks/useEffectOnce';
 
 interface FlowData {
   income: number;
@@ -13,7 +16,11 @@ interface FlowData {
   cumulativeOutflow: { x: Date; y: number }[];
 }
 
-const MainContext = createContext<{ [key: string]: any; totalFlowData: FlowData }>({
+const MainContext = createContext<{
+  [key: string]: any;
+  totalFlowData: FlowData;
+  allHistory?: TxHistory[];
+}>({
   totalFlowData: {
     income: 0,
     expense: 0,
@@ -27,7 +34,11 @@ const MainContext = createContext<{ [key: string]: any; totalFlowData: FlowData 
 const MainContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [navbarOpen, setNavbarOpen] = useState(true);
   const [period, setPeriod] = useState<Value>('daily');
-  const { address } = useComposeContext();
+  const { address, session } = useComposeContext();
+  const [userData, setUserData] = useState<{
+    email: string;
+    address: string;
+  }>();
 
   const { allHistory, newHistory } = useHistory(
     address,
@@ -44,16 +55,24 @@ const MainContextProvider = ({ children }: { children: React.ReactNode }) => {
       cumulativeOutflow: [],
     };
 
-    newHistory.forEach((hist) => {
-      if (hist.from.toLowerCase() === address) {
-        data.expense += Number(formatEther(BigInt(hist.value)));
-        data.outflows.push({ x: new Date(Number(hist.timeStamp) * 1000), y: hist.value });
-      }
-      if (hist.to.toLowerCase() === address) {
-        data.income += Number(formatEther(BigInt(hist.value)));
-        data.inflows.push({ x: new Date(Number(hist.timeStamp) * 1000), y: hist.value });
-      }
-    });
+    newHistory
+      .map((hist) => ({
+        ...hist,
+        value: formatEther(BigInt(hist.value)),
+        from: hist.from.toLowerCase(),
+        to: hist.to.toLowerCase(),
+        timeStamp: Number(hist.timeStamp),
+      }))
+      .forEach((hist) => {
+        if (hist.from === address) {
+          data.expense += Number(hist.value);
+          data.outflows.push({ x: new Date(Number(hist.timeStamp) * 1000), y: hist.value });
+        }
+        if (hist.to === address) {
+          data.income += Number(hist.value);
+          data.inflows.push({ x: new Date(Number(hist.timeStamp) * 1000), y: hist.value });
+        }
+      });
 
     const cumulate = (data: { x: Date; y: string }[]) => {
       let cum = 0;
@@ -67,7 +86,28 @@ const MainContextProvider = ({ children }: { children: React.ReactNode }) => {
     data.cumulativeOutflow = cumulate(data.outflows);
 
     return data;
-  }, [newHistory]);
+  }, [newHistory, address]);
+
+  const [mutateFunction] = useMutation(ADD_EMAIL);
+
+  const queryData = useQuery(USER_DATA, {
+    variables: {
+      nodeId: session?.id,
+    },
+  });
+
+  useEffectOnce(() => {
+    const { loading, error, data } = queryData;
+    if (!loading && !error && data) {
+      const {
+        node: { userData: dt },
+      } = data;
+
+      if (dt) {
+        setUserData(dt);
+      }
+    }
+  }, [queryData]);
 
   return (
     <MainContext.Provider
@@ -77,12 +117,15 @@ const MainContextProvider = ({ children }: { children: React.ReactNode }) => {
         totalFlowData,
         allHistory: allHistory.map((hist) => ({
           ...hist,
-          value: formatEther(BigInt(hist.value)),
+          value: Number(formatEther(BigInt(hist.value))).toFixed(2),
           from: hist.from.toLowerCase(),
           to: hist.to.toLowerCase(),
         })),
         period,
         setPeriod,
+        updateEmail: mutateFunction,
+        address,
+        userData,
       }}
     >
       {children}

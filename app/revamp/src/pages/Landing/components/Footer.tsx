@@ -31,7 +31,7 @@ const Footer = () => {
               <div className="grow mt-8 max-md:max-w-full max-md:mt-10">
                 <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
                   <div className="flex flex-col items-stretch w-[42%] max-md:w-full max-md:ml-0">
-                    <div className="items-start flex w-full grow justify-between gap-5 max-md:mt-10 max-sm:mt-0">
+                    <div className="items-start flex w-full grow justify-start gap-20 max-md:mt-10 max-sm:mt-0">
                       <div className="items-start self-stretch flex flex-col">
                         <div className="text-white text-xl font-bold self-stretch whitespace-nowrap max-sm:text-base">
                           Menu
@@ -61,7 +61,9 @@ const Footer = () => {
                           <div className="text-white self-stretch whitespace-nowrap mt-8 max-sm:mt-5">
                             Dolor
                           </div>
-                          <div className="text-white self-stretch whitespace-nowrap mt-8 max-sm:mt-5">Sit</div>
+                          <div className="text-white self-stretch whitespace-nowrap mt-8 max-sm:mt-5">
+                            Sit
+                          </div>
                         </div>
                       </div>
                     </div>
