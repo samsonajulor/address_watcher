@@ -79,7 +79,7 @@ const MainContextProvider = ({ children }: { children: React.ReactNode }) => {
     data.cumulativeOutflow = cumulate(data.outflows);
 
     return data;
-  }, [newHistory]);
+  }, [newHistory, address]);
 
   return (
     <MainContext.Provider
@@ -89,7 +89,7 @@ const MainContextProvider = ({ children }: { children: React.ReactNode }) => {
         totalFlowData,
         allHistory: allHistory.map((hist) => ({
           ...hist,
-          value: formatEther(BigInt(hist.value)),
+          value: Number(formatEther(BigInt(hist.value))).toFixed(2),
           from: hist.from.toLowerCase(),
           to: hist.to.toLowerCase(),
         })),

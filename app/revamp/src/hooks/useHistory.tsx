@@ -58,7 +58,7 @@ const useHistory = (
     const diff = history.filter((data) => Number(data.blockNumber) > sliceStart);
 
     return diff;
-  }, [history, diffBlock]);
+  }, [history, diffBlock, address]);
 
   return {
     newHistory,
