@@ -1,5 +1,5 @@
 import { ApolloClient, ApolloLink, InMemoryCache, Observable } from '@apollo/client';
-import { compose } from 'src/app/app/contexts/ComposeProvider';
+import { compose } from '../contexts/ComposeProvider';
 
 const link = new ApolloLink((operation) => {
   return new Observable((observer) => {
@@ -15,8 +15,10 @@ const link = new ApolloLink((operation) => {
   });
 });
 
-export const apolloClient = new ApolloClient({
+const apolloClient = new ApolloClient({
   cache: new InMemoryCache(),
   link,
   connectToDevTools: true,
 });
+
+export { apolloClient };
