@@ -69,7 +69,6 @@ const Steps = () => {
                   as="div"
                   key={i}
                   defaultOpen={i === 0}
-                  open={openPanel === i}
                   onChange={() => setOpenPanel(i)}
                   className="flex flex-col gap-5"
                 >

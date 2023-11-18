@@ -8,7 +8,7 @@ export const decodeContract = async (addresses: string[]) => {
   const abis = await Promise.all(addresses.map((address) => ethersProvider.getContract(address)));
   console.log(abi);
 
-  const contract = abi?.connect(new JsonRpcProvider(rpc));
+  const contract = abi?.connect(new JsonRpcProvider(rpc)) as ethers.Contract;
   const provider = new JsonRpcProvider(rpc);
   const contracts = abis?.map((abi) => abi?.connect(provider));
 

@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from '@apollo/client/core';
 
 export const USER_DATA = gql(`
   query UserData($nodeId: ID!) {
