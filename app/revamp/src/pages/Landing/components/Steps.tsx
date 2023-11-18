@@ -76,7 +76,7 @@ const Steps = () => {
                   {({ open }) => (
                     <>
                       <Disclosure.Button className="flex w-full justify-between text-left text-white text-2xl font-bold self-center whitespace-nowrap grow shrink basis-auto my-auto max-md:max-w-full">
-                        <div className="justify-between items-center flex w-full gap-5 max-md:flex-wrap max-sm:w-fit max-sm:gap-2">
+                        <div className="items-center flex w-full gap-5 max-md:flex-wrap max-sm:w-fit max-sm:gap-2">
                           <img
                             alt=""
                             loading="lazy"
