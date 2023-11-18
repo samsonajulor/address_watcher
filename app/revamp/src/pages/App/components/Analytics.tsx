@@ -38,7 +38,7 @@ const Explore = () => {
   const [dataType, setDataType] = useState<DtType>('balance');
   const [threshold, setThreshold] = useState(2);
 
-  const { period, setPeriod, totalFlowData } = useMainContext();
+  const { period, setPeriod, totalFlowData, allHistory } = useMainContext();
 
   const data = useMemo(() => {
     if (dataType === 'balance') {
@@ -51,55 +51,71 @@ const Explore = () => {
     return totalFlowData.outflows;
   }, [totalFlowData, balData, dataType]);
 
-  const getBalances = async () => {
-    const _data = [];
-
-    const currentTime = Date.now();
-    const historicDate =
-      period === 'daily'
-        ? {
-            duration: 24 * 60 * 60 * 1000,
-            range: 14,
-          }
-        : period === 'weekly'
-        ? {
-            duration: 7 * 24 * 60 * 60 * 1000,
-            range: 12,
-          }
-        : {
-            duration: 30 * 24 * 60 * 60 * 1000,
-            range: 12,
-          };
-
-    let blockNum = await publicClient.getBlockNumber({
-      cacheTime: 100000,
-    });
-    let currentBlockNum = Number(blockNum);
-
-    const blockDuration = Math.floor(historicDate.duration / 13200);
-
-    for (let i = 0; i < historicDate.range; i++) {
-      const balance = await publicClient.getBalance({
-        address: address!,
-        blockNumber: BigInt(currentBlockNum),
-      });
-
-      _data.push({
-        x: new Date(currentTime - historicDate.duration * i),
-        y: formatEther(balance),
-      });
-
-      currentBlockNum -= blockDuration;
-    }
-
-    return _data.reverse();
-  };
-
   useEffectOnce(() => {
+    if (!allHistory) return;
+    if (!address) return;
+    const getBalances = async () => {
+      // const allBLock = allHistory.map((data) => BigInt(data.blockNumber));
+      // const allBalances = Promise.all(
+      //   allBLock.map((data) => publicClient.getBalance({ address, blockNumber: data }))
+      // );
+
+      // console.log(await allBalances);
+
+      const currentTime = Date.now();
+      const historicDate =
+        period === 'daily'
+          ? {
+              duration: 24 * 60 * 60 * 1000,
+              range: 14,
+            }
+          : period === 'weekly'
+          ? {
+              duration: 7 * 24 * 60 * 60 * 1000,
+              range: 12,
+            }
+          : {
+              duration: 30 * 24 * 60 * 60 * 1000,
+              range: 12,
+            };
+
+      let blockNum = await publicClient.getBlockNumber({
+        cacheTime: 1000000,
+      });
+      let currentBlockNum = Number(blockNum);
+
+      const blockDuration = Math.floor(historicDate.duration / 13200);
+
+      const blockNums = [];
+
+      for (let i = 0; i < historicDate.range; i++) {
+        blockNums.push({
+          x: new Date(currentTime - historicDate.duration * i),
+          y: currentBlockNum,
+        });
+        currentBlockNum -= blockDuration;
+      }
+
+      console.log(blockNums.length);
+
+      const balances = await Promise.all(
+        blockNums.map((blockNum) =>
+          publicClient.getBalance({ address, blockNumber: BigInt(blockNum.y) })
+        )
+      );
+
+      const _data = blockNums.map((d, i) => ({
+        x: d.x,
+        y: formatEther(balances[i]),
+      }));
+
+      return _data.reverse();
+    };
+
     getBalances()
       .then((data) => setBalData(data))
       .catch((error) => console.error({ a: 456, error }));
-  }, [period, address]);
+  }, [address, allHistory]);
 
   const chartData = useMemo<ChartData<'line'>>(
     () => ({
@@ -137,7 +153,7 @@ const Explore = () => {
   );
 
   return (
-    <div className="col-span-4">
+    <div className="col-span-full">
       <div className="mt-5">
         <div className="flex justify-between">
           <p className="text-2xl font-bold">Explore</p>

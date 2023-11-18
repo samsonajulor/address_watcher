@@ -20,7 +20,7 @@ module.exports = {
         'cs-3lg': '0 0 1px 0 rgba(0,0,0,0.31), 0 24px 36px -8px rgba(0,0,0,0.25)',
         'cs-ll': '1px 2px 10px rgba(0,0,0,0.08)',
       },
-      colors: {
+      colors: ({ theme }) => ({
         'cs-bg': '#FAFBFB',
         'cs-dark-bg': '#20232A',
         'cs-primary': '#FFFFFF',
@@ -28,7 +28,7 @@ module.exports = {
         'cs-purple': '#402E8D',
         'cs-light-purple': '#7352FF',
         'cs-bg-purple': '#E2DBFF',
-      },
+      }),
       backgroundImage: {
         'purple-grad': 'linear-gradient(180deg, #402E8D3C , #402E8D14)',
         'black-grad': 'linear-gradient(180deg, #32363D22, #32363D00',
@@ -36,5 +36,5 @@ module.exports = {
     },
   },
   plugins: [],
-  // darkMode: 'class',
+  darkMode: 'class',
 };
