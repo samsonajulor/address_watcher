@@ -1,12 +1,12 @@
-import {Alchemy, AlchemySubscription, Network} from 'alchemy-sdk';
-import {Txns} from '../types.ts';
-import {utils} from 'web3';
+import { Alchemy, AlchemySubscription, Network } from 'alchemy-sdk';
+import { Txns } from '../types.ts';
+import { utils } from 'web3';
 
-import {decodeCalldata, fallbackDecoder} from '../utils/decodeKnownAbi.ts';
-import {ERC20ABI} from '../abis/erc20.ts';
-import {ERC721ABI} from '../abis/erc721.ts';
-import {getUsers} from '../app';
-import {sendEmail} from '../utils/nodemailer';
+import { decodeCalldata, fallbackDecoder } from '../utils/decodeKnownAbi.ts';
+import { ERC20ABI } from '../abis/erc20.ts';
+import { ERC721ABI } from '../abis/erc721.ts';
+import { getUsers } from '../app';
+import { sendEmail } from '../utils/nodemailer';
 
 const alchemy = new Alchemy({
   apiKey: '3RXLLPbaLaKav4sgsrTv2r5YK2Hpblay',
@@ -14,26 +14,25 @@ const alchemy = new Alchemy({
 });
 
 const renderHTML = (value, others) => {
-  return (`<div>
+  return `<div>
     <h1>${value}</h1>
     <p>${others}</p>
-  </div>`);
+  </div>`;
 };
 
 let current: any;
 
 setInterval(async () => {
-
-  const data = (await getUsers());
-  const addresses = data.map((user: {address: any;}) => user.address);
-  const addressToEmail = data.reduce((acc: any, user: {address: string, email: string;}) => {
+  const data = await getUsers();
+  const addresses = data.map((user: { address: any }) => user.address);
+  const addressToEmail = data.reduce((acc: any, user: { address: string; email: string }) => {
     acc[user.address.toLowerCase()] = user.email;
     return acc;
   }, {});
 
   if (JSON.stringify(current) !== JSON.stringify(addressToEmail)) {
     current = addressToEmail;
-    console.log({addressToEmail});
+    console.log({ addressToEmail });
   }
 
   const inspectTransaction = async (tx: Txns, origin: 'from' | 'to') => {
@@ -46,10 +45,7 @@ setInterval(async () => {
 
     const msg = renderHTML(readValue(tx, origin), ctx);
 
-    await sendEmail(
-      addressToEmail[recipient],
-      "Address Notification", msg
-    );
+    await sendEmail(addressToEmail[recipient], 'Address Notification', msg);
   };
 
   alchemy.ws.on(
@@ -86,7 +82,7 @@ const inspectContractInteraction = async (tx: Txns) => {
     decodeCalldata(ERC721ABI, calldata) ??
     fallbackDecoder(calldata);
 
-  return (decoded);
+  return decoded;
 };
 
 const isContract = async (address: string) => {
@@ -108,9 +104,6 @@ const readValue = (tx: Txns, origin: 'from' | 'to') => {
     return `You're about to receive ${etherValue} ETH from ${tx.from}`;
   }
 };
-
-
-
 
 // Subscription for new blocks on Eth Mainnet.
 // alchemy.ws.on("block", (blockNumber) =>
