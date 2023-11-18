@@ -29,14 +29,17 @@ const History = () => {
   const { allHistory } = useMainContext();
   const isSmallScreen = useMediaQuery('(max-width: 768px)');
 
-  const history = useMemo(() => [...allHistory!].reverse(), [allHistory]);
+  const history = useMemo(() => [...allHistory!].reverse(), [allHistory, address]);
 
   useEffectOnce(() => {
     if (history.length > 0) {
-      const test = history[0].to;
-      decodeContract(test).then((r) => console.log({ r }));
+      const contracts = history
+        .filter(({ functionName }) => functionName !== '')
+        .map(({ to }) => to)
+        .slice(0, 10);
+      decodeContract(contracts).then((r) => console.log({ r }));
     }
-  }, [history]);
+  }, [history, address]);
 
   return (
     <div className="flex flex-col items-stretch w-full max-md:w-full max-md:ml-0">
@@ -94,7 +97,7 @@ const History = () => {
                           <FiSend className="text-blue-300 rotate-45 max-md:hidden" />
                           <div className="flex flex-col gap-1.5">
                             <p className="">Contract interaction with {hist.functionName}</p>
-                            <p className="text-blue-400">
+                            <p className="text-blue-300">
                               At {isSmallScreen ? truncateAddress(hist.to) : hist.to}
                             </p>
                             <p className="text-gray-500 text-sm">

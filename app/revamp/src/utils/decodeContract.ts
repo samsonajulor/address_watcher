@@ -3,11 +3,14 @@ import { ethersProvider, rpc } from '../config/walletconfig';
 import { getContract } from 'viem';
 import { publicProvider } from 'wagmi/dist/providers/public';
 
-export const decodeContract = async (address: string) => {
-  const abi = await ethersProvider.getContract(address);
+export const decodeContract = async (addresses: string[]) => {
+  const abi = await ethersProvider.getContract(addresses[0]);
+  const abis = await Promise.all(addresses.map((address) => ethersProvider.getContract(address)));
   console.log(abi);
 
   const contract = abi?.connect(new JsonRpcProvider(rpc));
+  const provider = new JsonRpcProvider(rpc);
+  const contracts = abis?.map((abi) => abi?.connect(provider));
 
   try {
     const [name, symbol, decimals] = await Promise.all([

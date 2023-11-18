@@ -19,7 +19,9 @@ const DashboardHeader = () => {
       <div className="bar col-span-5 major-flex px-4">
         <div className="flex items-center">
           <div className="text-2xl flex items-center gap-8 lg:hidden cursor-pointer font-bold">
-            <Link to="/">Watcher</Link>
+            <Link to="/" className="max-sm:hidden">
+              Watcher
+            </Link>
             <i onClick={() => setNavbarOpen(!navbarOpen)}>
               <IoIosMenu size={36} />
             </i>
