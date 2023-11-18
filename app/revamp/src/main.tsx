@@ -10,6 +10,7 @@ import { chains, wagmiConfig } from './config/walletconfig';
 import { ComposeProvider } from './contexts/ComposeProvider';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Landing from './pages/Landing';
+import Settings from './pages/App/Settings';
 import { ApolloProvider } from '@apollo/client';
 import { apolloClient } from './config/apollo-client';
 
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
       {
         path: '/app/activity',
         element: <Activity />,
+      },
+      {
+        path: '/app/settings',
+        element: <Settings />,
       },
       {
         path: '*',
