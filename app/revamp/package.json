@@ -1,0 +1,41 @@
+{
+  "name": "with-vite",
+  "private": true,
+  "version": "0.0.58",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.8.7",
+    "@composedb/client": "^0.5.2",
+    "@composedb/types": "^0.5.1",
+    "@didtools/pkh-ethereum": "^0.4.1",
+    "@headlessui/react": "^1.7.17",
+    "@heroicons/react": "^2.0.18",
+    "@rainbow-me/rainbowkit": "^1.2.0",
+    "buffer": "^6.0.3",
+    "chart.js": "^4.4.0",
+    "did-session": "^2.1.1",
+    "ethers": "^6.8.1",
+    "moment": "^2.29.4",
+    "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.12.0",
+    "react-router-dom": "^6.19.0",
+    "viem": "~1.16.3",
+    "wagmi": "~1.4.3"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.21",
+    "@types/react-dom": "^18.2.7",
+    "@vitejs/plugin-react": "^4.0.3",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.3.5",
+    "typescript": "^5.0.4",
+    "vite": "^4.4.7"
+  }
+}

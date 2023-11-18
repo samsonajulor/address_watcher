@@ -1,5 +1,5 @@
-/dist
+dist
 node_modules/
-/initial contributions
+initial contributions
 .next
-/app/frontend
+app/frontend

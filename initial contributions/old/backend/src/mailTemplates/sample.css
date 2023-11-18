@@ -1,0 +1,54 @@
+body,
+h1,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #f4f4f4; /* Light gray background */
+  font-family: 'Rubik', sans-serif;
+}
+
+.container {
+  max-width: 650px;
+  margin: 20px auto;
+  background-color: #fff; /* White container background */
+  border: 1px solid #e0e0e0; /* Light gray border */
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+header > h1 {
+  font-size: 2rem; /* Slightly smaller heading size */
+  color: #333; /* Dark text color */
+  font-weight: normal; /* Remove bold style */
+}
+
+main > p {
+  font-size: 1.5rem;
+  color: #555; /* Slightly darker text color */
+  margin: 20px 0;
+}
+
+.main-cta {
+  background-color: #007bff; /* Blue button background */
+  border: none;
+  border-radius: 5px;
+  color: #fff; /* White text color */
+  font-size: 1.25rem;
+  padding: 10px 20px;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.main-cta:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+small {
+  font-size: 0.8rem; /* Smaller text for the copyright notice */
+  color: #888; /* Lighter text color */
+}

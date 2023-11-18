@@ -23,10 +23,10 @@ const Hero = () => {
                 </div>
                 <div className="items-start flex max-w-full justify-between gap-5 mt-14 self-start max-md:flex-wrap max-md:mt-10">
                   <Link
-                    href="/register"
+                    href="/app"
                     className="text-white text-xl font-bold self-center whitespace-nowrap justify-center items-center bg-violet-800 flex-1 px-7 py-3 rounded-2xl max-md:px-5"
                   >
-                    Register
+                    Dashboard
                   </Link>
                   <Link
                     href="/about"
