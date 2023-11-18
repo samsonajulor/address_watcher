@@ -1,5 +1,5 @@
 import { transaction, valueTx, interaction } from './htmls.ts';
-import { DecodeData, Txns } from './types.ts';
+import { DecodeData, Txns } from './types';
 
 const renderHTML = (value: string, others: DecodeData, tx: Txns) => {
   if (!others || others == null) {

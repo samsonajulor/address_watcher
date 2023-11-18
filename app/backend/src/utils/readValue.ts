@@ -1,5 +1,5 @@
 import { utils } from 'web3';
-import { Txns } from './types.ts';
+import { Txns } from './types';
 
 const readValue = (tx: Txns, origin: 'from' | 'to') => {
   const weiValue = utils.toDecimal(tx.value);

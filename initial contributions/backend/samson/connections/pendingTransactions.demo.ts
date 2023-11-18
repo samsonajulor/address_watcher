@@ -2,7 +2,7 @@ import Web3 from 'web3';
 import express from 'express';
 import http from 'http';
 import WebSocket from 'ws';
-import decodeTxHash from '../utils/txDecoder.ts';
+import decodeTxHash from '../utils/txDecoder';
 
 const sockets: string = 'wss://eth-sepolia.g.alchemy.com/v2/3RXLLPbaLaKav4sgsrTv2r5YK2Hpblay';
 

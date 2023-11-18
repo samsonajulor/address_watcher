@@ -1,5 +1,5 @@
 import { ethers } from 'ethers';
-import { eth, utils } from 'web3';
+import { utils } from 'web3';
 
 export const decodeCalldata = (abi: any[], calldata: string, header: 'ERC20' | 'ERC721') => {
   const match = abi.find((item: { type: string; name: any; inputs: any }) => {

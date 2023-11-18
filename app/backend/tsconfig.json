@@ -1,17 +1,17 @@
 {
   "compilerOptions": {
-    "module": "ESNext",
+    "target": "es2020",
+    "module": "esnext",
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "typeRoots": ["./node_modules/@types"],
     "moduleResolution": "Node",
-    "target": "ESNext",
-    "allowImportingTsExtensions": true,
-    "allowSyntheticDefaultImports": true,
-    "noEmit": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true
+    "allowImportingTsExtensions": true
   },
-  "exclude": ["node_modules", "**/node_modules/*"],
-  "ts-node": {
-    "esm": true,
-    "experimentalSpecifierResolution": "node"
-  }
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "build"]
 }

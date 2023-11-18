@@ -2,7 +2,7 @@ import { subscribe, unsubscribeAll } from './alchemy/sub.controller.ts';
 import cron from 'node-cron';
 
 import { logger } from './utils/index.ts';
-import { getUsers } from './app.ts';
+import { getUsers } from './graphql.ts';
 
 let current: any;
 let tracker = 0;

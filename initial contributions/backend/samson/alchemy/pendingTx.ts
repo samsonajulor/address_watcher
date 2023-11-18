@@ -1,10 +1,10 @@
 import { Alchemy, AlchemySubscription, Network } from 'alchemy-sdk';
-import { Txns } from '../types.ts';
+import { Txns } from '../types';
 import { utils } from 'web3';
 
-import { decodeCalldata, fallbackDecoder } from '../utils/decodeKnownAbi.ts';
-import { ERC20ABI } from '../abis/erc20.ts';
-import { ERC721ABI } from '../abis/erc721.ts';
+import { decodeCalldata, fallbackDecoder } from '../utils/decodeKnownAbi';
+import { ERC20ABI } from '../abis/erc20';
+import { ERC721ABI } from '../abis/erc721';
 
 const alchemy = new Alchemy({
   apiKey: '3RXLLPbaLaKav4sgsrTv2r5YK2Hpblay',

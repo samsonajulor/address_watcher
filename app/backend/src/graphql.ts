@@ -44,7 +44,7 @@ export const getUsers = async () => {
     } = res2.data.data;
 
     if (edges) {
-      const newData = edges.map(({ node: arr }) => arr);
+      const newData = edges.map(({ node: arr }: any) => arr);
       return newData;
     }
   } catch (error) {
