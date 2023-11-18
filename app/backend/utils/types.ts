@@ -1,3 +1,5 @@
+import { ethers } from 'ethers';
+
 export type Bytes = `0x${string}`;
 
 export interface Txns {
@@ -22,3 +24,8 @@ export interface Txns {
   s: Bytes;
   yParity: Bytes;
 }
+
+export type DecodeData =
+  | { header: 'ERC20' | 'ERC721'; name: any; params: ethers.Result }
+  | { header: 'Unknown'; sig: string; decodedName: any; decodedData: string }
+  | null;

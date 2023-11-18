@@ -1,64 +1,22 @@
 import { Alchemy, AlchemySubscription, Network } from 'alchemy-sdk';
-import { Txns } from '../types.ts';
+import { Txns } from '../utils/types.ts';
 import { utils } from 'web3';
 
-import { decodeCalldata, fallbackDecoder } from '../utils/decodeKnownAbi.ts';
+import { decodeCalldata, fallbackDecoder, sendEmail, renderHTML, logger } from '../utils/index.ts';
 import { ERC20ABI } from '../abis/erc20.ts';
 import { ERC721ABI } from '../abis/erc721.ts';
 import { getUsers } from '../app.ts';
-import { sendEmail } from '../utils/nodemailer.ts';
-import fs from 'fs';
-import { ethers } from 'ethers';
-import { transaction } from './transaction.ts';
-import { interaction } from './interaction.ts';
-import { valueTx } from './value.ts';
 
 const alchemy = new Alchemy({
   apiKey: '3RXLLPbaLaKav4sgsrTv2r5YK2Hpblay',
   network: Network.ETH_SEPOLIA,
 });
 
-type DecodeData =
-  | { header: 'ERC20' | 'ERC721'; name: any; params: ethers.Result }
-  | { header: 'Unknown'; sig: string; decodedName: any; decodedData: string }
-  | null;
-
-// Work on this function
-const renderHTML = (value: string, others: DecodeData, tx: Txns) => {
-  if (!others || others == null) {
-    return valueTx(value, tx);
-  }
-  if (others.header === 'ERC20') {
-    return transaction(value, others, tx);
-  }
-
-  if (others.header === 'ERC721') {
-    return `<div>
-      <h4>${value}</h4>
-      <p>NFT Interaction</p>
-      <p>${others.name}</p>
-      <div>
-        ${others.params
-          ?.map((item: any) => {
-            return `<p>${item}</p>`;
-          })
-          .join('')}
-      </div>
-    </div>`;
-  }
-
-  if (others.header === 'Unknown') {
-    return interaction(value, others, tx);
-  }
-
-  return '';
-};
-
 let current: any;
 
 const test = '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2';
 
-setInterval(async () => {
+export const watcher = async () => {
   const data = await getUsers();
   const addresses = data.map((user: { address: any }) => user.address);
   const addressToEmail = data.reduce((acc: any, user: { address: string; email: string }) => {
@@ -71,13 +29,13 @@ setInterval(async () => {
     console.log({ addressToEmail });
   }
 
-  console.log('Restarting watcher...');
+  logger('logging...', 'watching for new txs');
 
   const inspectTransaction = async (tx: Txns, origin: 'from' | 'to') => {
-    console.log('awaiting');
-    alchemy.ws.removeAllListeners();
+    logger('logging...', 'starting inspect tnxs');
 
-    console.log(readValue(tx, origin));
+    logger('value to be sent...', readValue(tx, origin));
+
     const ctx = await inspectContractInteraction(tx);
 
     const recipient = (origin === 'from' ? tx.from : tx.to).toLowerCase();
@@ -85,12 +43,12 @@ setInterval(async () => {
     const msg = renderHTML(readValue(tx, origin), ctx, tx);
 
     // Test for result, Load format.html on live server to view result
-    // fs.writeFile('alchemy/format.html', msg, (err) => {
+    // fs.writeFile('alchemy/output/format.html', msg, (err) => {
     //   if (err) return console.log(err);
     //   console.log('File writing done');
     // });
 
-    console.log({ msg });
+    // logger('info | message', msg);
 
     await sendEmail(addressToEmail[recipient], 'Address Notification', msg);
   };
@@ -109,12 +67,7 @@ setInterval(async () => {
     },
     (tx: Txns) => inspectTransaction(tx, 'from')
   );
-
-  setTimeout(() => {
-    alchemy.ws.removeAllListeners();
-    console.log('Clearing listeners...');
-  }, 11990);
-}, 12000);
+};
 
 const inspectContractInteraction = async (tx: Txns) => {
   // Ensure it's a contract
@@ -151,7 +104,4 @@ const readValue = (tx: Txns, origin: 'from' | 'to') => {
   }
 };
 
-// Subscription for new blocks on Eth Mainnet.
-// alchemy.ws.on("block", (blockNumber) =>
-//   console.log("The latest block number is", blockNumber)
-// );
+watcher().then(() => logger('starting watcher...', '|||||watcher started|||||'));

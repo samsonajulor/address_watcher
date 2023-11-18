@@ -14,7 +14,7 @@ const config = {
   },
 };
 
-export const sendEmail = async (to: string, subject: string, html: string) => {
+const sendEmail = async (to: string, subject: string, html: string) => {
   const transporter = nodemailer.createTransport(config);
   try {
     const info = await transporter.sendMail({
@@ -30,3 +30,5 @@ export const sendEmail = async (to: string, subject: string, html: string) => {
     return error;
   }
 };
+
+export default sendEmail;
