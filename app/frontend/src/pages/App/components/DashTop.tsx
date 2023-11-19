@@ -8,18 +8,18 @@ const DashTop = () => {
     <>
       <Download />
 
-      <div className="card h-48 text-2xl font-black flex flex-col justify-around items-center col-span-1">
+      <div className="card h-48 text-2xl font-black flex flex-col justify-around items-center col-span-1 max-md:text-center max-md:text-xl max-sm:text-lg max-sm:col-span-full max-sm:h-36">
         <p>Total Income</p>
-        <p className="text-4xl">
+        <p className="text-4xl max-md:text-3xl max-sm:text-2xl">
           {totalFlowData.income.toFixed(2)}
-          <b className="text-xl"> ETH</b>
+          <b className="text-xl max-md:text-lg"> ETH</b>
         </p>
       </div>
-      <div className="card h-48 text-2xl font-black flex flex-col justify-around items-center col-span-1">
+      <div className="card h-48 text-2xl font-black flex flex-col justify-around items-center col-span-1 max-md:text-center max-md:text-xl max-sm:text-lg max-sm:col-span-full max-sm:h-36">
         <p>Total Expense</p>
-        <p className="text-4xl">
+        <p className="text-4xl max-md:text-3xl max-sm:text-2xl">
           {totalFlowData.expense.toFixed(2)}
-          <b className="text-xl"> ETH</b>
+          <b className="text-xl max-md:text-lg"> ETH</b>
         </p>
       </div>
     </>

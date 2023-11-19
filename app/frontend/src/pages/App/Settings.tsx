@@ -15,8 +15,8 @@ const Settings = () => {
     Accounts: <AccountCard />,
   });
   return (
-    <div>
-      <div className="text-2xl font-bold ">Settings</div>
+    <div className="max-sm:px-3">
+      <div className="text-2xl font-bold max-sm:text-xl">Settings</div>
       <div className="mt-8">
         <Tab.Group>
           <Tab.List className="flex mx-6">
