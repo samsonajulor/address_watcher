@@ -39,6 +39,7 @@
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-typescript": "^7.12.17",
     "@babel/register": "^7.5.5",
+    "@types/nanoid-dictionary": "^4.2.3",
     "@typescript-eslint/eslint-plugin": "^2.34.0",
     "@typescript-eslint/parser": "^4.0.1",
     "babel-eslint": "^10.1.0",

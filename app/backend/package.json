@@ -8,8 +8,8 @@
   "type": "module",
   "scripts": {
     "start": "node dist/server.js",
-    "dev": "ts-node src/server.ts",
-    "alc": "ts-node --esm src/index",
+    "dev": "cross-env nodemon --watch 'src/**/*.ts' --exec ts-node --esm src/server.ts",
+    "alc": "npx ts-node --esm src/index.ts",
     "build": "cross-env rimraf ./dist && tsc && yarn copy-files"
   },
   "repository": {

@@ -1,7 +1,8 @@
 import nodeCache from 'node-cache';
 import { env } from '../utils/index.ts';
 
-const cache = new nodeCache({ stdTTL: Number(env.CACHE_TTL) || 600 });
+// five minutes
+const cache = new nodeCache({ stdTTL: Number(env.CACHE_TTL) || 300 });
 
 export const saveCache = (key: string, value: any) => {
   cache.set(key, value);
