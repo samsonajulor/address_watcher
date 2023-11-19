@@ -19,7 +19,7 @@ const NewModal = ({ setIsOpen }: { setIsOpen: (value: boolean) => void }) => {
     setIsOpen(false);
   };
   return (
-    <div className="overscroll-y-auto no-scrollbar max-h-[90vh] w-[40vw]">
+    <div className="overscroll-y-auto no-scrollbar max-h-[90vh] w-[40vw] max-md:w-[75vw]">
       <div className="rounded-2xl bg-gray-900 px-10 py-5">
         <div className="text-cs-light-purple text-lg mb-4">Add account</div>
         <div className="grid gap-1">
