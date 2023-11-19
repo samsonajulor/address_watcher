@@ -29,7 +29,7 @@ export default function DropdownInput({
                 ${open ? 'text-white' : 'text-white/80'}
                 group rounded-md bar mx-auto px-4 py-1 bg-cs-light-purple text-sm font-bold hover:text-white `}
             >
-              <span>Update Budget</span>
+              <span>update budget</span>
             </Popover.Button>
             <Transition
               as={Fragment}
