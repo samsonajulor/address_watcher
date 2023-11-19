@@ -38,7 +38,6 @@ const Explore = () => {
   const options = useMemo(
     () => ({
       responsive: true,
-      maintainAspectRatio: false,
       plugins: {
         legend: {
           position: 'bottom' as const,
