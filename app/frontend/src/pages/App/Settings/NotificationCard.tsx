@@ -98,9 +98,11 @@ const NotificationCard = () => {
             </>
           ) : (
             <>
-              <p className="font-bold">{email ? email : 'You do not have a registered email'}</p>
+              <p className="font-bold max-sm:text-sm">
+                {email ? email : 'You do not have a registered email'}
+              </p>
               <button
-                className="ml-2 rounded bg-cs-light-purple hover:bg-cs-purple  text-cs-bg font-bold px-4 py-2 leading-none text-sm"
+                className="ml-2 rounded bg-cs-light-purple hover:bg-cs-purple text-cs-bg font-bold px-4 py-2 leading-none text-sm max-sm:ml-0 mt-3.5"
                 onClick={() =>
                   setIsEditing({
                     ...isEditing,
