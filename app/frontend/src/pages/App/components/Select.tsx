@@ -39,7 +39,7 @@ export default function Select({
                   key={personIdx}
                   className={({ active }) =>
                     `relative cursor-default select-none py-1 pl-6 pr-4 ${
-                      active ? 'bg-cs-light-purple text-white' : 'text-cs-purple/80'
+                      active ? 'bg-cs-light-purple text-white' : 'text-current'
                     }`
                   }
                   value={input}
