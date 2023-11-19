@@ -11,6 +11,7 @@ const Sidebar = () => {
   const { navbarOpen, setNavbarOpen } = useMainContext();
   const ref = useRef(null);
   const isLargeScreen = useMediaQuery('(min-width: 1260px)');
+  const isSmallScreen = useMediaQuery('(max-width: 1024px)');
 
   const { width: windowWidth, height: windowHeight } = useWindowSize();
 
@@ -49,7 +50,7 @@ const Sidebar = () => {
           }
           end
         >
-          {isLargeScreen && path[1]}
+          {(isSmallScreen || isLargeScreen) && path[1]}
           {path[2]}
         </NavLink>
       ))}

@@ -17,10 +17,10 @@ const Activity = () => {
   const { isConnected } = useComposeContext();
 
   return (
-    <>
-      <div className="text-2xl font-bold mt-">Activity</div>
+    <div className="max-md:px-2 max-sm:px-3">
+      <div className="text-2xl font-bold max-sm:text-xl">Activity</div>
       {isConnected ? <History /> : <p className="mt-20 text-center">Connect to Start</p>}
-    </>
+    </div>
   );
 };
 

@@ -55,7 +55,7 @@ const NotificationCard = () => {
     <div className="grid gap-8">
       <div className="">
         <p>Email</p>
-        <div className="flex gap-2 mt-3 items-center">
+        <div className="flex gap-2 mt-3 items-center max-sm:block">
           {isEditing.email ? (
             <>
               <input
@@ -66,13 +66,25 @@ const NotificationCard = () => {
                   setError('');
                 }}
               />
-              <button
-                className="ml-2 rounded bg-cs-light-purple hover:bg-cs-purple  text-cs-bg font-bold px-4 py-3 leading-none text-sm"
-                onClick={handleAdd}
-              >
-                update
-              </button>
-              <div className="cursor-pointer text-red-700 hover:text-red-800">
+              <div className="flex items-center gap-3">
+                <button
+                  className="ml-2 rounded bg-cs-light-purple hover:bg-cs-purple  text-cs-bg font-bold px-4 py-3 leading-none text-sm max-sm:mt-3 max-sm:ml-0"
+                  onClick={handleAdd}
+                >
+                  update
+                </button>
+                <FaTimes
+                  size={26}
+                  className="hidden max-sm:block mt-3 cursor-pointer text-red-700 hover:text-red-800"
+                  onClick={() =>
+                    setIsEditing({
+                      ...isEditing,
+                      email: false,
+                    })
+                  }
+                />
+              </div>
+              <div className="cursor-pointer text-red-700 hover:text-red-800 max-sm:hidden">
                 <FaTimes
                   size={30}
                   onClick={() =>

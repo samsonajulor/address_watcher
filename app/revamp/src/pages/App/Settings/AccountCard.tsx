@@ -37,7 +37,7 @@ const NewModal = ({ setIsOpen }: { setIsOpen: (value: boolean) => void }) => {
           />
         </div>
         <button
-          className="text-white text-xl mt-4 flex justify-center w-full  bg-violet-800 px-3 py-1 rounded-lg max-md:px-3"
+          className="text-white mt-4 flex justify-center w-full  bg-violet-800 px-3 py-1 rounded-lg max-md:px-3"
           onClick={handleAdd}
         >
           Add
