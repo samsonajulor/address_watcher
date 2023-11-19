@@ -79,7 +79,7 @@ const myTheme = merge(darkTheme(), {
     connectButtonInnerBackground: '#7352FF',
   },
   fonts: {
-    body: 'Happy Monkey',
+    body: 'Happy Monkey, monospace',
   },
 } as Theme);
 

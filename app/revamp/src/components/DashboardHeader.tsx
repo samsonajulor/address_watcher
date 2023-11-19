@@ -32,7 +32,16 @@ const DashboardHeader = () => {
           {/* <RxDividerVertical size={36} color="#a3a3a3" /> */}
         </div>
 
-        <ConnectButton />
+        <ConnectButton
+          accountStatus={{
+            smallScreen: 'avatar',
+            largeScreen: 'full',
+          }}
+          showBalance={{
+            smallScreen: true,
+            largeScreen: true,
+          }}
+        />
       </div>
     </div>
   );
