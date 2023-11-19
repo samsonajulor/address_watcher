@@ -41,8 +41,8 @@ const Sidebar = () => {
         ['/app/settings', <IoMdSettings />, 'Settings'],
       ].map((path) => (
         <NavLink
-          to={path[0]}
-          key={path[0]}
+          to={path[0] as string}
+          key={path[0] as string}
           className={({ isActive }) =>
             `flex gap-2 items-center btn ${
               isActive ? 'bg-cs-light-purple text-cs-primary' : 'hover:bg-cs-dark-bg/10'
