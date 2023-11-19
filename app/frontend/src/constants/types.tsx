@@ -21,6 +21,7 @@ export interface TxHistory {
   confirmations: string;
   methodId: string;
   functionName: string;
+  rawValue: number;
 }
 
 export interface ChartOneState {

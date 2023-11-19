@@ -1,9 +1,28 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import Avatar from '../../../assets/avatar.png';
 import { useMainContext } from '../../../contexts/MainContext';
+import { formatEther } from 'ethers';
 
 const DashTop = () => {
-  const { totalFlowData } = useMainContext();
+  const { allHistory, address } = useMainContext();
+
+  const { income, expense } = useMemo(() => {
+    let income = 0;
+    let expense = 0;
+
+    allHistory?.forEach((hist) => {
+      if (hist.to === address.toLocaleLowerCase()) {
+        income += hist.rawValue;
+      } else if (hist.from === address.toLocaleLowerCase()) {
+        expense += hist.rawValue;
+      }
+    });
+
+    return {
+      income: income.toFixed(2),
+      expense: expense.toFixed(2),
+    };
+  }, [allHistory]);
   return (
     <>
       <Download />
@@ -11,14 +30,14 @@ const DashTop = () => {
       <div className="card h-48 text-2xl font-black flex flex-col justify-around items-center col-span-1">
         <p>Total Income</p>
         <p className="text-4xl">
-          {totalFlowData.income.toFixed(2)}
+          {income}
           <b className="text-xl"> ETH</b>
         </p>
       </div>
       <div className="card h-48 text-2xl font-black flex flex-col justify-around items-center col-span-1">
         <p>Total Expense</p>
         <p className="text-4xl">
-          {totalFlowData.expense.toFixed(2)}
+          {expense}
           <b className="text-xl"> ETH</b>
         </p>
       </div>
@@ -31,7 +50,7 @@ const Download = () => {
     <div className="card p-0 h-48 col-span-2 relative overflow-hidden font-black bg-cs-purple text-cs-bg">
       <div className="p-6">
         <div className="lg:grid lg:gap-5 h-full relative z-10">
-          <p className="text-4xl italic">hey fren </p>
+          <p className="text-4xl italic">Hey fren </p>
           <p className="sm:text-xl w-2/3">Generate Insights on your Wallet </p>
         </div>
         <img src={Avatar} alt="Image by Freepik" className="w-2/3 absolute right-0 top-0" />

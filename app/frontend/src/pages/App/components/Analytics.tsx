@@ -9,59 +9,68 @@ import { ChartData } from 'chart.js/auto';
 import DropdownInput from './DropdownInput';
 import moment from 'moment';
 import { ethers, formatEther } from 'ethers';
-import useHistory from '../../../hooks/useHistory';
 import useEffectOnce from '../../../hooks/useEffectOnce';
 import { DtType } from '../../../constants/types';
 import { dtTypes, periods } from '../../../constants/variables';
 import { useMainContext } from '../../../contexts/MainContext';
 
-const options = {
-  responsive: true,
-
-  plugins: {
-    legend: {
-      position: 'bottom' as const,
-    },
-    title: {
-      display: true,
-      text: 'Balance History',
-    },
-  },
-};
-
 const Explore = () => {
   const tran = useRef();
   const { address } = useComposeContext();
 
-  const [balData, setBalData] = useState<{ x: Date; y: string }[]>();
+  const [balData, setBalData] = useState<{ x: Date; y: string }[]>([]);
 
   const [dataType, setDataType] = useState<DtType>('balance');
   const [threshold, setThreshold] = useState(2);
 
-  const { period, setPeriod, totalFlowData, allHistory } = useMainContext();
+  const { period, setPeriod, totalFlowData } = useMainContext();
 
   const data = useMemo(() => {
     if (dataType === 'balance') {
-      if (!balData) return [];
       return balData;
     }
 
-    if (dataType === 'inflow') return totalFlowData.inflows;
+    if (dataType === 'inflow') return totalFlowData.cumulativeInflow;
 
-    return totalFlowData.outflows;
-  }, [totalFlowData, balData, dataType]);
+    return totalFlowData.cumulativeOutflow;
+  }, [dataType]);
+
+  const options = useMemo(
+    () => ({
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: 'bottom' as const,
+        },
+        title: {
+          display: true,
+          text: `${dataType} History`.toUpperCase(),
+        },
+        chartAreaBorder: {
+          borderColor: '#33373E',
+          borderWidth: 2,
+        },
+      },
+      scales: {
+        x: {
+          grid: {
+            display: false,
+          },
+        },
+        y: {
+          grid: {
+            display: false,
+          },
+        },
+      },
+    }),
+    [dataType]
+  );
 
   useEffectOnce(() => {
-    if (!allHistory) return;
     if (!address) return;
     const getBalances = async () => {
-      // const allBLock = allHistory.map((data) => BigInt(data.blockNumber));
-      // const allBalances = Promise.all(
-      //   allBLock.map((data) => publicClient.getBalance({ address, blockNumber: data }))
-      // );
-
-      // console.log(await allBalances);
-
       const currentTime = Date.now();
       const historicDate =
         period === 'daily'
@@ -115,7 +124,7 @@ const Explore = () => {
     getBalances()
       .then((data) => setBalData(data))
       .catch((error) => console.error({ a: 456, error }));
-  }, [address, allHistory]);
+  }, [address, period]);
 
   const chartData = useMemo<ChartData<'line'>>(
     () => ({
@@ -132,31 +141,30 @@ const Explore = () => {
         {
           label: 'Balance',
           data: data?.map((d) => Number(d.y)) ?? [0, 0, 0, 0, 0, 0],
-          borderWidth: 1,
+          borderWidth: 2,
           fill: true,
-          borderColor: 'rgba(167, 184, 159, 1)',
+          borderColor: '#402E8D',
           pointStyle: false,
           tension: 0.4,
-          backgroundColor: 'rgb(167, 184, 159, 0.04)',
+          backgroundColor: '#402E8D34',
         },
         {
           label: 'Budget Threshold',
           data: data?.map((d) => threshold) ?? [0, 0, 0, 0, 0, 0],
           pointStyle: false,
-          borderWidth: 0.5,
+          borderWidth: 2,
           borderDash: [5, 5],
-          borderColor: 'red',
+          borderColor: dataType === 'outflow' ? 'red' : '#0000',
         },
       ],
     }),
-    [data, period, threshold]
+    [data, period, threshold, dataType, balData]
   );
 
   return (
     <div className="col-span-full">
       <div className="mt-5">
-        <div className="flex justify-between">
-          <p className="text-2xl font-bold">Explore</p>
+        <div className="flex justify-end">
           <div className="flex gap-4 items-center">
             <Select inputs={dtTypes} onSelect={(str) => setDataType(str as DtType)} />
             <DropdownInput value={threshold} onUpdate={setThreshold} />
@@ -164,7 +172,7 @@ const Explore = () => {
           </div>
         </div>
 
-        <Line options={options} data={chartData} className="w-full" />
+        <Line options={options} data={chartData} className="w-full mt-6" />
       </div>
     </div>
   );
