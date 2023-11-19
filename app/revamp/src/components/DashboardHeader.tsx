@@ -12,10 +12,10 @@ const DashboardHeader = () => {
     <div className="grid lg:grid-cols-6 gap-6">
       <div className="bar text-xl p-4 hidden lg:major-flex cursor-pointer font-bold">
         <Link to="/" className="flex items-center gap-2">
-          <SiHiveBlockchain /> Watcher
+          <SiHiveBlockchain className="text-cs-light-purple" /> Watcher
         </Link>
         <i onClick={() => setNavbarOpen(!navbarOpen)}>
-          <IoIosMenu size={28} />
+          <IoIosMenu className="text-cs-light-purple" size={28} />
         </i>
       </div>
 
@@ -26,7 +26,7 @@ const DashboardHeader = () => {
               Watcher
             </Link>
             <i onClick={() => setNavbarOpen(!navbarOpen)}>
-              <IoIosMenu size={28} />
+              <IoIosMenu className="text-cs-light-purple" size={28} />
             </i>
           </div>
           {/* <RxDividerVertical size={36} color="#a3a3a3" /> */}
