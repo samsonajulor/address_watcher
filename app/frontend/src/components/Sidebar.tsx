@@ -6,10 +6,11 @@ import { MdSpaceDashboard } from 'react-icons/md';
 import { GrTransaction } from 'react-icons/gr';
 import { IoMdSettings } from 'react-icons/io';
 import { useMediaQuery } from 'usehooks-ts';
+import Switchy from './Switch';
 
 const Sidebar = () => {
   const { navbarOpen, setNavbarOpen } = useMainContext();
-  const { isDarkMode, toggle, enable, disable } = useDarkMode();
+
   const ref = useRef(null);
   const isLargeScreen = useMediaQuery('(min-width: 1260px)');
   const isSmallScreen = useMediaQuery('(max-width: 1024px)');
@@ -56,6 +57,11 @@ const Sidebar = () => {
             {path[2]}
           </NavLink>
         ))}
+        <div className="major-flex">
+          <p>Light</p>
+          <Switchy />
+          <p>Dark</p>
+        </div>
       </div>
     </div>
   );
