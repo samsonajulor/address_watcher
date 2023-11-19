@@ -59,7 +59,7 @@ const NotificationCard = () => {
           {isEditing.email ? (
             <>
               <input
-                className="rounded py-1.5 px-4  border-2 border-cs-light-purple/50 focus-within:outline-cs-purple/25 focus-within:outline"
+                className="rounded py-1.5 px-4 text-cs-dark-primary border-2 border-cs-light-purple/50 focus-within:outline-cs-purple/25 focus-within:outline"
                 value={email}
                 onChange={(e) => {
                   setEmail(e.target.value);

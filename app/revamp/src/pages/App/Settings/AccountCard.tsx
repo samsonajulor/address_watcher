@@ -5,6 +5,9 @@ import { InfinitySpin } from 'react-loader-spinner';
 import { signMessage } from '@wagmi/core';
 import { useComposeContext } from '../../../contexts/ComposeProvider';
 import { HiDotsVertical } from 'react-icons/hi';
+import { useBalance } from 'wagmi';
+import { ethers } from 'ethers';
+import { ethersProvider } from '../../../config/walletconfig';
 
 const truncateAddress = (address: `0x${string}`) => {
   const truncatedAddress = address.substring(0, 6) + '...' + address.substring(address.length - 4);
@@ -20,7 +23,7 @@ const NewModal = ({ setIsOpen }: { setIsOpen: (value: boolean) => void }) => {
   };
   return (
     <div className="overscroll-y-auto no-scrollbar max-h-[90vh] w-[40vw] max-md:w-[75vw]">
-      <div className="rounded-2xl bg-gray-900 px-10 py-5">
+      <div className="rounded-2xl bg-[#20232A] px-10 py-5">
         <div className="text-cs-light-purple text-lg mb-4">Add account</div>
         <div className="grid gap-1">
           <label htmlFor="" className="text-white">
@@ -55,6 +58,9 @@ const NewModal = ({ setIsOpen }: { setIsOpen: (value: boolean) => void }) => {
 const AccountCard = () => {
   let [isOpen, setIsOpen] = useState(false);
   const { address, isConnected } = useComposeContext();
+  const { data, isError, isLoading } = useBalance({
+    address: address,
+  });
 
   return (
     <>
@@ -99,7 +105,7 @@ const AccountCard = () => {
               <p className="text-center text-green-500">Connected</p>
             </div>
             <div className="w-full">
-              <p className="text-center">Balance</p>
+              <p className="text-center">{Number(data?.formatted).toFixed(2)} SEP</p>
             </div>
             <div className="w-full">
               <HiDotsVertical className="mx-auto cursor-pointer" />

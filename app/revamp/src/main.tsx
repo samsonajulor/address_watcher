@@ -1,7 +1,13 @@
 import './polyfills';
 import './global.css';
 import '@rainbow-me/rainbowkit/styles.css';
-import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
+import {
+  RainbowKitProvider,
+  Theme,
+  darkTheme,
+  cssStringFromTheme,
+  lightTheme,
+} from '@rainbow-me/rainbowkit';
 import { WagmiConfig } from 'wagmi';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
@@ -13,6 +19,7 @@ import Landing from './pages/Landing';
 import Settings from './pages/App/Settings';
 import { ApolloProvider } from '@apollo/client';
 import { apolloClient } from './config/apollo-client';
+import merge from 'lodash.merge';
 
 function NoMatch() {
   return (
@@ -65,11 +72,22 @@ const router = createBrowserRouter([
   },
 ]);
 
+const myTheme = merge(darkTheme(), {
+  colors: {
+    accentColor: '#7352FF',
+    connectButtonBackground: '#33373E',
+    connectButtonInnerBackground: '#7352FF',
+  },
+  fonts: {
+    body: 'Happy Monkey',
+  },
+} as Theme);
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ApolloProvider client={apolloClient}>
       <WagmiConfig config={wagmiConfig}>
-        <RainbowKitProvider chains={chains}>
+        <RainbowKitProvider chains={chains} theme={myTheme}>
           <RouterProvider router={router} />
         </RainbowKitProvider>
       </WagmiConfig>
