@@ -7,6 +7,8 @@ const DashTop = () => {
   const { allHistory, address } = useMainContext();
 
   const { income, expense } = useMemo(() => {
+    if (!allHistory) return { income: 0, expense: 0 };
+    if (!address) return { income: 0, expense: 0 };
     let income = 0;
     let expense = 0;
 
@@ -22,7 +24,7 @@ const DashTop = () => {
       income: income.toFixed(2),
       expense: expense.toFixed(2),
     };
-  }, [allHistory]);
+  }, [allHistory, address]);
   return (
     <>
       <Download />

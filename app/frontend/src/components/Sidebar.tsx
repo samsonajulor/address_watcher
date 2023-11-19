@@ -6,10 +6,11 @@ import { MdSpaceDashboard } from 'react-icons/md';
 import { GrTransaction } from 'react-icons/gr';
 import { IoMdSettings } from 'react-icons/io';
 import { useMediaQuery } from 'usehooks-ts';
+import Switchy from './Switch';
 
 const Sidebar = () => {
   const { navbarOpen, setNavbarOpen } = useMainContext();
-  const { isDarkMode, toggle, enable, disable } = useDarkMode();
+
   const ref = useRef(null);
   const isLargeScreen = useMediaQuery('(min-width: 1260px)');
   const isSmallScreen = useMediaQuery('(max-width: 1024px)');
@@ -33,10 +34,10 @@ const Sidebar = () => {
     <div
       ref={ref}
       className={` ${
-        navbarOpen ? 'fixed w-52 h-max lg:static lg:w-auto z-50 lg:mt-8' : 'hidden'
-      } bar `}
+        navbarOpen ? 'fixed w-52 h-max lg:static lg:w-auto z-50 lg:mt-8 ' : 'hidden'
+      } bar  min-h-[calc(100vh-200px)] grid place-content-center`}
     >
-      <div className="flex flex-col justify-center gap-8 py-10 min-h-[calc(100vh-200px)] w-full relative">
+      <div className="flex flex-col gap-8 py-10 w-full h-full relative">
         {[
           ['/app', <MdSpaceDashboard />, 'Dashboard'],
           ['/app/activity', <GrTransaction />, 'Activity'],
@@ -56,6 +57,11 @@ const Sidebar = () => {
             {path[2]}
           </NavLink>
         ))}
+        {/* <div className="major-flex">
+          <p>Light</p>
+          <Switchy />
+          <p>Dark</p>
+        </div> */}
       </div>
     </div>
   );
