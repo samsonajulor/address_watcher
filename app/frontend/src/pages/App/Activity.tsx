@@ -17,10 +17,10 @@ const Activity = () => {
   const { isConnected } = useComposeContext();
 
   return (
-    <>
-      <div className="text-2xl font-bold mt-">Activity</div>
+    <div className="max-md:px-2 max-sm:px-3">
+      <div className="text-2xl font-bold max-sm:text-xl">Activity</div>
       {isConnected ? <History /> : <p className="mt-20 text-center">Connect to Start</p>}
-    </>
+    </div>
   );
 };
 
@@ -52,7 +52,7 @@ const History = () => {
                   hist.to === address ? (
                     <>
                       <div className="justify-between items-center self-center flex w-full gap-5 max-md:max-w-full max-md:flex-wrap">
-                        <div className="flex items-center gap-10">
+                        <div className="flex items-center gap-10 max-md:gap-5">
                           <FiSend className="text-green-500 rotate-90" />
                           <div className="flex flex-col">
                             <p className="">
@@ -71,7 +71,7 @@ const History = () => {
                   ) : (
                     <>
                       <div className="justify-between items-center self-center flex w-full gap-5 max-md:max-w-full max-md:flex-wrap">
-                        <div className="flex items-center gap-10">
+                        <div className="flex items-center gap-10 max-md:gap-5">
                           <FiSend className="text-red-500" />
                           <div className="flex flex-col gap-1.5">
                             <p className="">
@@ -90,7 +90,7 @@ const History = () => {
                   )
                 ) : (
                   <>
-                    <div className="w-full max-md:flex max-md:items-center max-md:gap-10">
+                    <div className="w-full max-md:flex max-md:items-center max-md:gap-5">
                       <FiSend className="text-blue-300 rotate-45 hidden max-md:flex" />
                       <div className="justify-between items-center self-center flex w-full gap-5 max-md:max-w-full max-md:flex-wrap max-md:gap-3">
                         <div className="flex items-center gap-10">

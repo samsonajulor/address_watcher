@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 import Header from './components/DashboardHeader';
 import Sidebar from './components/Sidebar';
 import { useMainContext } from './contexts/MainContext';
-import { useWindowSize } from 'usehooks-ts';
+import { useDarkMode, useWindowSize } from 'usehooks-ts';
 import useEffectOnce from './hooks/useEffectOnce';
 
 function App() {
