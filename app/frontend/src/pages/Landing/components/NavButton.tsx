@@ -22,7 +22,7 @@ const NavButton = () => {
         onClick={() => setMobileMenuOpen(true)}
       >
         <span className="sr-only">Open main menu</span>
-        <Bars3Icon className="h-6 w-6 text-white" aria-hidden="true" />
+        <Bars3Icon className="h-6 w-" aria-hidden="true" />
       </button>
 
       <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
@@ -38,7 +38,7 @@ const NavButton = () => {
               onClick={() => setMobileMenuOpen(false)}
             >
               <span className="sr-only">Close menu</span>
-              <XMarkIcon className="cursor-pointer h-6 w-6" aria-hidden="true" />
+              <XMarkIcon className="text-red-400 cursor-pointer h-6 w-6" aria-hidden="true" />
             </button>
           </div>
           <div className="mt-6 flow-root">
