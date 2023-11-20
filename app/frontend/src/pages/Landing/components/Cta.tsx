@@ -3,8 +3,8 @@ import phone from '../../../assets/phone.png';
 
 const Cta = () => {
   return (
-    <div className="justify-center items-center self-stretch flex w-full flex-col px-20 py-20 max-md:max-w-full max-md:px-5">
-      <div className="justify-center items-center border self-center flex w-full flex-col pr-px rounded-3xl border-solid border-gray-500 max-md:max-w-full max-md:rounded-2xl max-sm:rounded-xl">
+    <div className="justify-center items-cente self-stretch flex w-full flex-col px-20 py-20 max-md:max-w-full max-md:px-5">
+      <div className="justify-center items-center border self-center flex w-full flex-col pr-px rounded-3xl border-solid border-gray-500 max-md:max-w-full max-md:rounded-3xl max-sm:rounded-2xl">
         <div className="self-stretch pr-6 max-md:max-w-full max-md:pr-5">
           <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
             <div className="flex flex-col items-stretch w-[45%] max-md:w-full max-md:ml-0">
@@ -12,7 +12,7 @@ const Cta = () => {
                 alt=""
                 loading="lazy"
                 src={phone}
-                className="aspect-[1.5] object-contain object-center w-full overflow-hidden grow max-md:max-w-full max-md:mt-10 max-sm:w-1/2 max-sm:self-center"
+                className="aspect-[1.5] object-contain object-center w-full overflow-hidden grow max-md:max-w-full max-md:mt-10"
               />
             </div>
             <div className="flex flex-col items-stretch w-[55%] ml-5 max-md:w-full max-md:ml-0">
