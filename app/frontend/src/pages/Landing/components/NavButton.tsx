@@ -8,7 +8,6 @@ const navigation = [
   { name: 'Home', to: '/' },
   { name: 'About', to: '#' },
   { name: 'Pricing', to: '#' },
-  { name: 'Dashboard', to: '/app' },
 ];
 
 const NavButton = () => {
@@ -56,10 +55,10 @@ const NavButton = () => {
               </div>
               <div className="py-6">
                 <Link
-                  to="/register"
-                  className="bg-pry -mx-3 block rounded-lg px-3 py-2.5 text-base  text-white font-bold leading-7"
+                  to="/app"
+                  className="shadow-cs-4sm py-3 px-2 text-white rounded-lg bg-cs-light-purple flex items-center gap-2"
                 >
-                  Register
+                  Dashboard
                 </Link>
               </div>
             </div>

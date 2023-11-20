@@ -1,12 +1,13 @@
 import { useRef, useEffect } from 'react';
 import { useMainContext } from '../contexts/MainContext';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useDarkMode, useOnClickOutside, useWindowSize } from 'usehooks-ts';
 import { MdOutlineDarkMode, MdOutlineLightMode, MdSpaceDashboard } from 'react-icons/md';
 import { GrTransaction } from 'react-icons/gr';
 import { IoMdSettings } from 'react-icons/io';
 import { useMediaQuery } from 'usehooks-ts';
 import Mode from './Mode';
+import { SiHiveBlockchain } from 'react-icons/si';
 
 const Sidebar = () => {
   const { navbarOpen, setNavbarOpen } = useMainContext();
@@ -38,6 +39,10 @@ const Sidebar = () => {
       } bar  min-h-[calc(100vh-200px)] grid place-content-center`}
     >
       <div className=" flex flex-col gap-16 w-full h-full relative">
+        <Link to="/" className="hidden max-sm:flex text-lg items-center gap-2 self-center">
+          <SiHiveBlockchain className="text-cs-light-purple" />
+          Watcher
+        </Link>
         <div className="flex flex-col gap-8">
           {[
             ['/app', <MdSpaceDashboard />, 'Dashboard'],
