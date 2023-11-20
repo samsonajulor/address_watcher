@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
+import session from 'express-session';
 import { customAlphabet } from 'nanoid';
 import dictionary from 'nanoid-dictionary';
 import { env, sendEmail, logger } from './utils/index.ts';
@@ -14,10 +15,20 @@ const { numbers } = dictionary;
 
 const nanoid = customAlphabet(numbers, 6);
 
+const twentyFourHours = 1000 * 60 * 60 * 24;
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(morgan('dev'));
+app.use(
+  session({
+    secret: env.SESSION_SECRET as string,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: twentyFourHours },
+  })
+);
 
 app.post('/register', (req, res) => {
   try {
