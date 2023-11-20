@@ -6,7 +6,7 @@ import { MdOutlineDarkMode, MdOutlineLightMode, MdSpaceDashboard } from 'react-i
 import { GrTransaction } from 'react-icons/gr';
 import { IoMdSettings } from 'react-icons/io';
 import { useMediaQuery } from 'usehooks-ts';
-import Switchy from './Switch';
+import Mode from './Mode';
 
 const Sidebar = () => {
   const { navbarOpen, setNavbarOpen } = useMainContext();
@@ -60,11 +60,9 @@ const Sidebar = () => {
           ))}
         </div>
         <div className="flex justify-evenly">
-          {/* <p>Light</p> */}
-          <MdOutlineLightMode size={20} />
-          <Switchy />
-          <MdOutlineDarkMode size={20} />
-          {/* <p>Dark</p> */}
+          <MdOutlineLightMode size={22} />
+          <Mode />
+          <MdOutlineDarkMode size={22} />
         </div>
       </div>
     </div>

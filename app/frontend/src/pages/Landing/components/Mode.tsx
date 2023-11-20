@@ -1,38 +1,12 @@
 import { useState } from 'react';
 import { Switch } from '@headlessui/react';
+import useSwitch from '../../../hooks/useSwitch';
 
-const Switchy = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  if (
-    localStorage.theme === 'dark' ||
-    (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
-  ) {
-    document.documentElement.classList.add('dark');
-  } else {
-    document.documentElement.classList.remove('dark');
-  }
-
-  const enable = () => {
-    localStorage.theme = 'dark';
-  };
-
-  const disable = () => {
-    localStorage.theme = 'light';
-  };
-
-  const handleToggle = () => {
-    if (isDarkMode) {
-      disable();
-      setIsDarkMode(false);
-    } else {
-      enable();
-      setIsDarkMode(true);
-    }
-  };
+const Mode = () => {
+  const { isDarkMode, handleToggle } = useSwitch();
 
   return (
-    <div>
+    <div className="fixed right-10 bottom-10">
       <Switch
         checked={isDarkMode}
         onChange={handleToggle}
@@ -50,4 +24,4 @@ const Switchy = () => {
   );
 };
 
-export default Switchy;
+export default Mode;
