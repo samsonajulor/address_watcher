@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import session from 'express-session';
@@ -30,7 +30,7 @@ app.use(
   })
 );
 
-app.post('/register', (req, res) => {
+app.post('/register', (req: Request, res: Response) => {
   try {
     const otp = nanoid();
     const { email } = req.body;
@@ -51,7 +51,7 @@ app.post('/register', (req, res) => {
   }
 });
 
-app.post('/validate-otp', (req, res) => {
+app.post('/validate-otp', (req: Request, res: Response) => {
   try {
     const { otp, email } = req.body;
     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
@@ -73,11 +73,31 @@ app.post('/validate-otp', (req, res) => {
       return res.status(400).json({ error: 'Invalid otp. You will need to generate one.' });
     }
 
+    res.locals.session = { ...req.session, email, otp, time: Date.now() };
+
     return res.status(200).json({ message: 'Access Granted.' });
   } catch (error: any) {
     logger('error', error.message || error.toString());
     return res.status(500).json({ error: error.message || 'something really bad happened.' });
   }
+});
+
+app.get('/session', (req: Request, res: Response) => {
+  const currentTime = Date.now();
+  const session = res.locals.session;
+  if (currentTime - session.time > twentyFourHours || !session) {
+    return res.status(400).json({ error: 'Session expired. You will need to generate one.' });
+  }
+  return res.status(200).json({ message: 'Access Granted.' });
+});
+
+app.get('/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      logger('error', err.message || err.toString());
+    }
+  });
+  return res.status(200).json({ message: 'Session destroyed.' });
 });
 
 app.listen(PORT, () => {
