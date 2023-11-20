@@ -9,7 +9,7 @@ import Footer from './components/Footer';
 
 const Landing = () => {
   return (
-    <div className="bg-gray-950">
+    <div className="bg-cs-bg dark:bg-cs-dark-bg text-cs-dark-primary dark:text-cs-primary">
       <Header />
       <div className="justify-center items-start flex flex-col">
         <Hero />

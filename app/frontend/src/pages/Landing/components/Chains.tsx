@@ -45,9 +45,9 @@ const Chains = () => {
   ];
 
   return (
-    <div className="justify-center items-center bg-gray-950 self-stretch flex w-full flex-col pt-20 max-md:max-w-full max-md:px-5 max-sm:pt-10 max-sm:px-6">
+    <div className="justify-center items-center self-stretch flex w-full flex-col pt-20 px-12 max-md:max-w-full max-md:px-5 max-sm:pt-10 max-sm:px-6">
       <div className="justify-center items-center self-center flex w-full max-w-[1101px] flex-col max-md:max-w-full">
-        <div className="text-white text-4xl font-bold self-center whitespace-nowrap max-md:text-3xl max-sm:text-xl">
+        <div className="text-4xl font-bold self-center whitespace-nowrap max-md:text-3xl max-sm:text-xl">
           SUPPORTED CHAINS
         </div>
         <div className="items-center self-stretch flex grow flex-col mt-10 max-md:max-w-full max-md:mt-10">
