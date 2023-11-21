@@ -64,7 +64,7 @@ const Sidebar = () => {
             </NavLink>
           ))}
         </div>
-        <div className="flex justify-evenly">
+        <div className="flex justify-center gap-2">
           <MdOutlineLightMode size={22} />
           <Mode />
           <MdOutlineDarkMode size={22} />

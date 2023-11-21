@@ -146,7 +146,7 @@ const NotificationCard = () => {
       </div>
       <div>
         <button
-          className="ml-2 rounded bg-cs-light-purple hover:bg-cs-purple text-cs-bg font-bold px-4 py-2 leading-none text-sm max-sm:ml-0 max-sm:mt-3.5"
+          className="rounded bg-cs-light-purple hover:bg-cs-purple text-cs-bg font-bold px-4 py-2 leading-none text-sm"
           onClick={handleRegisterPushNotification}
         >
           {pushEnabled ? 'Disable Push Notifications' : ' Enable Push Notifications'}
