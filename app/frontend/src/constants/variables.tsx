@@ -1,4 +1,4 @@
-import { DtType, Value } from './types';
+import { DtType, Value, Filter } from './types';
 
 export const periods: { value: Value }[] = [
   {
@@ -21,5 +21,17 @@ export const dtTypes: { value: DtType }[] = [
   },
   {
     value: 'outflow',
+  },
+];
+
+export const filter: { value: Filter }[] = [
+  {
+    value: 'value',
+  },
+  {
+    value: 'token',
+  },
+  {
+    value: 'contract',
   },
 ];

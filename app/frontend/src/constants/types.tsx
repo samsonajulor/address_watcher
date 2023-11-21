@@ -32,3 +32,5 @@ export interface ChartOneState {
 }
 
 export type DtType = 'balance' | 'inflow' | 'outflow';
+
+export type Filter = 'value' | 'token' | 'contract';

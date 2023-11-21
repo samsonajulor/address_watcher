@@ -8,6 +8,8 @@ import useEffectOnce from '../../hooks/useEffectOnce';
 import { decodeContract } from '../../utils/decodeContract';
 import { useMediaQuery } from 'usehooks-ts';
 import Pagination from './components/Pagination';
+import Select from './components/Select';
+import { filter } from '../../constants/variables';
 
 const truncateAddress = (address: string) => {
   const truncatedAddress = address.substring(0, 6) + '...' + address.substring(address.length - 4);
@@ -19,7 +21,10 @@ const Activity = () => {
 
   return (
     <div className="max-md:px-2 max-sm:px-3">
-      <div className="text-2xl font-bold max-sm:text-xl">Activity</div>
+      <div className="flex justify-between">
+        <div className="text-2xl font-bold max-sm:text-xl">Activity</div>
+        <Select inputs={filter} onSelect={() => {}} />
+      </div>
       {isConnected ? <History /> : <p className="mt-20 text-center">Connect to Start</p>}
     </div>
   );
@@ -30,7 +35,7 @@ const History = () => {
   const { allHistory } = useMainContext();
   const isSmallScreen = useMediaQuery('(max-width: 768px)');
 
-  const [currentPage, setCurrentPage] = useState(2);
+  const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
   const history = useMemo(() => [...allHistory!].reverse(), [allHistory, address]);
