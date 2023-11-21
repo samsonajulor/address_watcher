@@ -100,26 +100,21 @@ const Explore = () => {
           x: new Date(currentTime - historicDate.daily.duration * i),
           y: currentBlockNum,
         });
-        if (weekBlock === currentBlockNum) {
-          blockNums.weekly.push({
-            x: new Date(currentTime - historicDate.weekly.duration * i),
-            y: currentBlockNum,
-          });
-          weekBlock -= blockDuration * 7;
-        }
 
-        if (monthBlock === currentBlockNum) {
-          blockNums.monthly.push({
-            x: new Date(currentTime - historicDate.monthly.duration * i),
-            y: currentBlockNum,
-          });
-          monthBlock -= blockDuration * 30;
-        }
+        blockNums.weekly.push({
+          x: new Date(currentTime - historicDate.weekly.duration * i),
+          y: weekBlock,
+        });
 
+        blockNums.monthly.push({
+          x: new Date(currentTime - historicDate.monthly.duration * i),
+          y: monthBlock,
+        });
+
+        monthBlock -= blockDuration * 30;
+        weekBlock -= blockDuration * 7;
         currentBlockNum -= blockDuration;
       }
-
-      console.log(blockNums.length);
 
       const balances = await Promise.all(
         Object.keys(blockNums).map((key) =>
@@ -210,10 +205,6 @@ const Explore = () => {
     }),
     [data, period, threshold, dataType]
   );
-
-  useEffect(() => {
-    console.log(totalFlowData);
-  }, [totalFlowData, period]);
 
   return (
     <div className="col-span-full">
