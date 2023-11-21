@@ -9,8 +9,11 @@
   "scripts": {
     "start": "node dist/server.js",
     "dev": "cross-env nodemon --watch 'src/**/*.ts' --exec ts-node --esm src/server.ts",
+    "pm2-dev": "pm2 start npm --no-automation --name dev -- run dev",
     "alc": "npx ts-node --esm src/index.ts",
+    "pm2-alc": "pm2 start npm --no-automation --name alc -- run alc",
     "graph": "npx composedb graphql:server --ceramic-url=http://3.10.194.39:7007 --graphiql src/runtime-composite.json --port=5005",
+    "pm2-graph": "pm2 start npm --no-automation --name graph -- run graph",
     "build": "cross-env rimraf ./dist && tsc && yarn copy-files"
   },
   "repository": {
