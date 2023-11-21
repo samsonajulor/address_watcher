@@ -18,22 +18,16 @@ const Explore = () => {
   const tran = useRef();
   const { address } = useComposeContext();
 
-  const [balData, setBalData] = useState<{ x: Date; y: string }[]>([]);
+  const [balData, setBalData] = useState<{ [key: string]: { x: Date; y: string }[] }>({
+    daily: [],
+    weekly: [],
+    monthly: [],
+  });
 
   const [dataType, setDataType] = useState<DtType>('balance');
   const [threshold, setThreshold] = useState(2);
 
   const { period, setPeriod, totalFlowData } = useMainContext();
-
-  const data = useMemo(() => {
-    if (dataType === 'balance') {
-      return balData;
-    }
-
-    if (dataType === 'inflow') return totalFlowData.cumulativeInflow;
-
-    return totalFlowData.cumulativeOutflow;
-  }, [dataType]);
 
   const options = useMemo(
     () => ({
@@ -71,59 +65,116 @@ const Explore = () => {
     if (!address) return;
     const getBalances = async () => {
       const currentTime = Date.now();
-      const historicDate =
-        period === 'daily'
-          ? {
-              duration: 24 * 60 * 60 * 1000,
-              range: 14,
-            }
-          : period === 'weekly'
-          ? {
-              duration: 7 * 24 * 60 * 60 * 1000,
-              range: 12,
-            }
-          : {
-              duration: 30 * 24 * 60 * 60 * 1000,
-              range: 12,
-            };
+      const historicDate = {
+        daily: {
+          duration: 24 * 60 * 60 * 1000,
+          range: 14,
+        },
+        weekly: {
+          duration: 7 * 24 * 60 * 60 * 1000,
+          range: 12,
+        },
+        monthly: {
+          duration: 30 * 24 * 60 * 60 * 1000,
+          range: 12,
+        },
+      };
 
       let blockNum = await publicClient.getBlockNumber({
         cacheTime: 1000000,
       });
       let currentBlockNum = Number(blockNum);
+      let weekBlock = currentBlockNum;
+      let monthBlock = currentBlockNum;
 
-      const blockDuration = Math.floor(historicDate.duration / 13200);
+      const blockDuration = Math.floor(historicDate.daily.duration / 13200);
 
-      const blockNums = [];
+      const blockNums: { [key: string]: { x: Date; y: number }[] } = {
+        daily: [],
+        weekly: [],
+        monthly: [],
+      };
 
-      for (let i = 0; i < historicDate.range; i++) {
-        blockNums.push({
-          x: new Date(currentTime - historicDate.duration * i),
+      for (let i = 0; i < historicDate.daily.range; i++) {
+        blockNums.daily.push({
+          x: new Date(currentTime - historicDate.daily.duration * i),
           y: currentBlockNum,
         });
+        if (weekBlock === currentBlockNum) {
+          blockNums.weekly.push({
+            x: new Date(currentTime - historicDate.weekly.duration * i),
+            y: currentBlockNum,
+          });
+          weekBlock -= blockDuration * 7;
+        }
+
+        if (monthBlock === currentBlockNum) {
+          blockNums.monthly.push({
+            x: new Date(currentTime - historicDate.monthly.duration * i),
+            y: currentBlockNum,
+          });
+          monthBlock -= blockDuration * 30;
+        }
+
         currentBlockNum -= blockDuration;
       }
 
       console.log(blockNums.length);
 
       const balances = await Promise.all(
-        blockNums.map((blockNum) =>
-          publicClient.getBalance({ address, blockNumber: BigInt(blockNum.y) })
+        Object.keys(blockNums).map((key) =>
+          Promise.all(
+            blockNums[key].map((blockNum) =>
+              publicClient.getBalance({ address, blockNumber: BigInt(blockNum.y) })
+            )
+          )
         )
       );
 
-      const _data = blockNums.map((d, i) => ({
-        x: d.x,
-        y: formatEther(balances[i]),
-      }));
+      const _data = {
+        daily: blockNums.daily
+          .map((d, i) => ({
+            x: d.x,
+            y: formatEther(balances[0][i]),
+          }))
+          .reverse(),
+        weekly: blockNums.weekly
+          .map((d, i) => ({
+            x: d.x,
+            y: formatEther(balances[1][i]),
+          }))
+          .reverse(),
+        monthly: blockNums.monthly
+          .map((d, i) => ({
+            x: d.x,
+            y: formatEther(balances[2][i]),
+          }))
+          .reverse(),
+      };
 
-      return _data.reverse();
+      return _data;
     };
 
     getBalances()
       .then((data) => setBalData(data))
       .catch((error) => console.error({ a: 456, error }));
-  }, [address, period]);
+  }, [address]);
+
+  const periodicBalData = useMemo(
+    () =>
+      period === 'daily' ? balData.daily : period === 'weekly' ? balData.weekly : balData.monthly,
+    [balData, period]
+  );
+
+  const data = useMemo(() => {
+    if (dataType === 'balance') {
+      return periodicBalData;
+    }
+
+    if (dataType === 'inflow') return totalFlowData.cumulativeInflow;
+
+    return totalFlowData.cumulativeOutflow;
+  }, [dataType, totalFlowData, periodicBalData]);
 
   const chartData = useMemo<ChartData<'line'>>(
     () => ({
@@ -157,8 +208,12 @@ const Explore = () => {
         },
       ],
     }),
-    [data, period, threshold, dataType, balData]
+    [data, period, threshold, dataType]
   );
+
+  useEffect(() => {
+    console.log(totalFlowData);
+  }, [totalFlowData, period]);
 
   return (
     <div className="col-span-full">

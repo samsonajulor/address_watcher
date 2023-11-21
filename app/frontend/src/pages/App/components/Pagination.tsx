@@ -3,9 +3,16 @@ import React from 'react';
 interface PaginationProps {
   previousPage: () => void;
   nextPage: () => void;
+  disableFirst: boolean;
+  disableLast: boolean;
 }
 
-const Pagination: React.FC<PaginationProps> = ({ previousPage, nextPage }) => {
+const Pagination: React.FC<PaginationProps> = ({
+  previousPage,
+  nextPage,
+  disableFirst,
+  disableLast,
+}) => {
   return (
     <nav aria-label="Page navigation example" className="align-right my-5">
       <ul className="flex items-center justify-between text-base">

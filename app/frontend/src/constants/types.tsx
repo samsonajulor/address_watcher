@@ -1,27 +1,32 @@
 export type Value = 'daily' | 'weekly' | 'monthly';
 
+export interface OurTx {
+  in: TxHistory[];
+  out: TxHistory[];
+}
+
 export interface TxHistory {
   blockNumber: string;
   timeStamp: string;
-  hash: string;
+  hash?: string;
   nonce: string;
-  blockHash: string;
-  transactionIndex: string;
+  blockHash?: string;
+  transactionIndex?: string;
   from: string;
   to: string;
   value: string;
   gas: string;
   gasPrice: string;
-  isError: string;
-  txreceipt_status: string;
-  input: string;
-  contractAddress: string;
+  isError?: string;
+  txreceipt_status?: string;
+  input?: string;
+  contractAddress?: string;
   cumulativeGasUsed: string;
   gasUsed: string;
   confirmations: string;
-  methodId: string;
-  functionName: string;
-  rawValue: number;
+  methodId?: string;
+  functionName?: string;
+  rawValue?: number;
 }
 
 export interface ChartOneState {

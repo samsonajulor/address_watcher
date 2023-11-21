@@ -10,6 +10,9 @@ import useEffectOnce from '../../hooks/useEffectOnce';
 import { decodeContract } from '../../utils/decodeContract';
 import { useMediaQuery } from 'usehooks-ts';
 import Pagination from './components/Pagination';
+import { IERC20 } from '../../constants/Contract_Interfaces';
+import { ERC20ABI } from '../../constants/abis/erc20';
+import { ethers, formatUnits } from 'ethers';
 import Select from './components/Select';
 import { filter } from '../../constants/variables';
 
@@ -45,7 +48,60 @@ const History = () => {
   const paginatedHistory = useMemo(() => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    return history.slice(startIndex, endIndex);
+
+    const currentData = history.slice(startIndex, endIndex);
+
+    const filter = currentData.map((tx) => {
+      const { functionName, to, ...hist } = tx;
+      if (functionName === '') {
+        return {
+          ...hist,
+          functionName: to === address ? 'Received' : 'Sent',
+        };
+      }
+
+      // console.log({ functionName, hist });
+
+      decodeContract(to).then((r) => {
+        if (r.type === 'ERC20') {
+          const iface = new ethers.Interface(ERC20ABI);
+          const match = IERC20.find((i) => functionName?.startsWith(i));
+          const params = iface.decodeFunctionData(match!, hist.input!);
+
+          console.log({ params });
+          const Msg = () =>
+            match === 'transfer' ? (
+              <p>
+                Sent {formatUnits(params[1], r.decimals)}{' '}
+                <b className="font-bold uppercase">{r.name}</b> to {truncateAddress(params[0])}
+              </p>
+            ) : match === 'approve' ? (
+              <p>
+                Approved {formatUnits(params[1], r.decimals)}{' '}
+                <b className="font-bold uppercase">{r.name}</b>
+                for {truncateAddress(params[0])}
+              </p>
+            ) : match === 'transferFrom' ? (
+              <p>
+                Transfer {formatUnits(params[2], r.decimals)}{' '}
+                <b className="font-bold uppercase">{r.name}</b>
+                from {truncateAddress(params[0])} to {truncateAddress(params[1])}
+              </p>
+            ) : (
+              <p>Pending...</p>
+            );
+
+          return {
+            ...hist,
+            functionName,
+            ...r,
+            Msg,
+          };
+        }
+      });
+    });
+
+    return currentData;
   }, [history, currentPage]);
 
   const handlePreviousClick = () => {
@@ -60,15 +116,15 @@ const History = () => {
     }
   };
 
-  useEffectOnce(() => {
-    if (history.length > 0) {
-      const contracts = history
-        .filter(({ functionName }) => functionName !== '')
-        .map(({ to }) => to)
-        .slice(0, 10);
-      decodeContract(contracts).then((r) => console.log({ r }));
-    }
-  }, [history, address]);
+  // useEffectOnce(() => {
+  //   if (history.length > 0) {
+  //     const contracts = history
+  //       .filter(({ functionName }) => functionName !== '')
+  //       .map(({ to }) => to)
+  //       .slice(0, 10);
+  //     decodeContract(contracts).then((r) => console.log({ r }));
+  //   }
+  // }, [history, address]);
 
   return (
     <div className="flex flex-col items-stretch w-full max-md:w-full max-md:ml-0">
@@ -156,7 +212,12 @@ const History = () => {
               </div>
             );
           })}
-          <Pagination previousPage={handlePreviousClick} nextPage={handleNextClick} />
+          <Pagination
+            previousPage={handlePreviousClick}
+            nextPage={handleNextClick}
+            disableFirst={currentPage <= 1}
+            disableLast={currentPage >= Math.ceil(history.length / itemsPerPage)}
+          />
         </div>
       ) : (
         <div className="bg-transparent w-full max-h-screen grid place-content-center">
