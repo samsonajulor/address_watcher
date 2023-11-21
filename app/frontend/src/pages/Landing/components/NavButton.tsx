@@ -8,7 +8,6 @@ const navigation = [
   { name: 'Home', to: '/' },
   { name: 'About', to: '#' },
   { name: 'Pricing', to: '#' },
-  { name: 'Dashboard', to: '/app' },
 ];
 
 const NavButton = () => {
@@ -22,7 +21,7 @@ const NavButton = () => {
         onClick={() => setMobileMenuOpen(true)}
       >
         <span className="sr-only">Open main menu</span>
-        <Bars3Icon className="h-6 w-6 text-white" aria-hidden="true" />
+        <Bars3Icon className="h-6 w-" aria-hidden="true" />
       </button>
 
       <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
@@ -38,7 +37,7 @@ const NavButton = () => {
               onClick={() => setMobileMenuOpen(false)}
             >
               <span className="sr-only">Close menu</span>
-              <XMarkIcon className="cursor-pointer h-6 w-6" aria-hidden="true" />
+              <XMarkIcon className="text-red-400 cursor-pointer h-6 w-6" aria-hidden="true" />
             </button>
           </div>
           <div className="mt-6 flow-root">
@@ -56,10 +55,10 @@ const NavButton = () => {
               </div>
               <div className="py-6">
                 <Link
-                  to="/register"
-                  className="bg-pry -mx-3 block rounded-lg px-3 py-2.5 text-base  text-white font-bold leading-7"
+                  to="/app"
+                  className="shadow-cs-4sm py-3 px-2 text-white rounded-lg bg-cs-light-purple flex items-center gap-2"
                 >
-                  Register
+                  Dashboard
                 </Link>
               </div>
             </div>

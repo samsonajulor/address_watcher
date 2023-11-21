@@ -1,5 +1,6 @@
 import { alchemy, AlchemySubscription } from './config.ts';
 
+import { logger } from '../utils/index.ts';
 import { Txns } from '../utils/index.ts';
 import inspectTransaction from './inspectTransaction.ts';
 
@@ -22,6 +23,7 @@ const subscribe = async (addresses: string[], addressToEmail: { [key: string]: s
 
 const unsubscribeAll = async () => {
   alchemy.ws.removeAllListeners();
+  logger('removing listeners...', 'unsubscribed all address successfully');
 };
 
 export { subscribe, unsubscribeAll };

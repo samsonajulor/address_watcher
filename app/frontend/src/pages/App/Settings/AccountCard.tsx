@@ -23,10 +23,10 @@ const NewModal = ({ setIsOpen }: { setIsOpen: (value: boolean) => void }) => {
   };
   return (
     <div className="overscroll-y-auto no-scrollbar max-h-[90vh] w-[40vw] max-md:w-[75vw]">
-      <div className="rounded-2xl bg-[#20232A] px-10 py-5">
+      <div className="card px-10 py-5">
         <div className="text-cs-light-purple text-lg mb-4">Add account</div>
         <div className="grid gap-1">
-          <label htmlFor="" className="text-white">
+          <label htmlFor="" className="">
             Address
           </label>
           <input
@@ -37,7 +37,7 @@ const NewModal = ({ setIsOpen }: { setIsOpen: (value: boolean) => void }) => {
           />
         </div>
         <button
-          className="text-white mt-4 flex justify-center w-full  bg-violet-800 px-3 py-1 rounded-lg max-md:px-3"
+          className="mt-4 text-white flex justify-center w-full bg-cs-light-purple px-3 py-1 rounded-lg max-md:px-3"
           onClick={handleAdd}
         >
           Add

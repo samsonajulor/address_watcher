@@ -4,30 +4,34 @@ import cron from 'node-cron';
 import { logger } from './utils/index.ts';
 import { getUsers } from './graphql.ts';
 
-let current: any;
+let current: string | string[];
 let tracker = 0;
 
 // const test = '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2';
+const addressCache: string[] = [];
 
 export const watcher = async () => {
-  unsubscribeAll();
   const data = await getUsers();
-  const addresses = data.map((user: { address: any }) => user.address);
+
+  const addresses = !!data.length ? data.map((user: { address: any }) => user.address) : [];
+
   const addressToEmail: {
     [key: string]: string;
-  } = data.reduce((acc: any, user: { address: string; email: string }) => {
-    acc[user.address.toLowerCase()] = user.email;
-    return acc;
-  }, {});
+  } = !!data.length
+    ? data.reduce((acc: any, user: { address: string; email: string }) => {
+        acc[user.address.toLowerCase()] = user.email;
+        return acc;
+      }, {})
+    : {};
 
-  if (JSON.stringify(current) !== JSON.stringify(addressToEmail)) {
-    current = addressToEmail;
-    console.log({ addressToEmail });
-  }
+  const addressToAdd = addresses.filter((address: string) => !addressCache.includes(address));
 
-  logger('logging...', 'watching for new txs');
+  addressCache.push(...addressToAdd);
 
-  await subscribe(addresses, addressToEmail);
+  logger('logging additional address...', JSON.stringify(addressToAdd));
+  logger('logging address to email...', JSON.stringify(addressToEmail));
+
+  await subscribe(addressToAdd, addressToEmail);
 
   tracker += 0.1;
 };

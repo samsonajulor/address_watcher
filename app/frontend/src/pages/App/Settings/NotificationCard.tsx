@@ -5,11 +5,14 @@ import { signMessage } from '@wagmi/core';
 import { InfinitySpin } from 'react-loader-spinner';
 import { FaTimes } from 'react-icons/fa';
 import useEffectOnce from '../../../hooks/useEffectOnce';
+import registerPushNotification from '../../../utils/registerPushNotification';
 
 const NotificationCard = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [notifError, setNotifError] = useState('');
   const [email, setEmail] = useState('');
+  const [pushEnabled, setPushEnabled] = useState(false);
 
   const [isEditing, setIsEditing] = useState({
     email: false,
@@ -20,6 +23,30 @@ const NotificationCard = () => {
   useEffectOnce(() => {
     if (userData) setEmail(userData.email);
   }, [userData]);
+
+  const handleRegisterPushNotification = async () => {
+    try {
+      console.log('starting registration...');
+      setLoading(true);
+      if ('serviceWorker' in navigator && !pushEnabled) {
+        console.log('worker found....');
+        await registerPushNotification(address);
+        setLoading(false);
+        setPushEnabled(true);
+        console.log('registration worked');
+        return;
+      } else {
+        setLoading(false);
+        setNotifError('Push notifications disabled');
+        setPushEnabled(false);
+        return;
+      }
+    } catch (error: any) {
+      console.log(error);
+      setNotifError(error.message || 'Something went wrong');
+      setLoading(false);
+    }
+  };
 
   const handleAdd = async () => {
     try {
@@ -117,6 +144,14 @@ const NotificationCard = () => {
           {error && <p className="text-red-500 text-[12px]">{error}</p>}
         </div>
       </div>
+      <div>
+        <button
+          className="ml-2 rounded bg-cs-light-purple hover:bg-cs-purple text-cs-bg font-bold px-4 py-2 leading-none text-sm max-sm:ml-0 max-sm:mt-3.5"
+          onClick={handleRegisterPushNotification}
+        >
+          {pushEnabled ? 'Disable Push Notifications' : ' Enable Push Notifications'}
+        </button>
+      </div>
 
       {loading && (
         <div className="absolute w-screen h-screen grid place-content-center top-0 left-0 bg-black/60">
@@ -125,6 +160,7 @@ const NotificationCard = () => {
           </div>
         </div>
       )}
+      {notifError && <p className="text-red-500 text-[12px]">{notifError}</p>}
     </div>
   );
 };
