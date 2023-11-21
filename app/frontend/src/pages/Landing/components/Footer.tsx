@@ -1,7 +1,4 @@
-import facebook from '../../../assets/facebook.png';
-import twitter from '../../../assets/twitter.png';
-import linkedin from '../../../assets/linkedin.png';
-import youtube from '../../../assets/youtube.png';
+import { FaFacebookF, FaLinkedin, FaLinkedinIn, FaXTwitter, FaYoutube } from 'react-icons/fa6';
 
 const Footer = () => {
   return (
@@ -20,10 +17,10 @@ const Footer = () => {
                   </div>
                 </div>
                 <div className="items-start self-stretch flex w-full gap-6 mt-8 max-sm:mt-4">
-                  <img alt="" loading="lazy" src={facebook} className="w-6 max-sm:w-4" />
-                  <img alt="" loading="lazy" src={twitter} className="w-6 max-sm:w-4" />
-                  <img alt="" loading="lazy" src={linkedin} className="w-6 max-sm:w-4" />
-                  <img alt="" loading="lazy" src={youtube} className="w-6 max-sm:w-4" />
+                  <FaFacebookF />
+                  <FaXTwitter />
+                  <FaLinkedinIn />
+                  <FaYoutube />
                 </div>
               </div>
             </div>

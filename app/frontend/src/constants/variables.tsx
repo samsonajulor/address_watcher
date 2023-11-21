@@ -26,12 +26,15 @@ export const dtTypes: { value: DtType }[] = [
 
 export const filter: { value: Filter }[] = [
   {
-    value: 'value',
+    value: 'all txns',
   },
   {
-    value: 'token',
+    value: 'ether transfer',
   },
   {
-    value: 'contract',
+    value: 'token transfer',
+  },
+  {
+    value: 'contract interaction',
   },
 ];
