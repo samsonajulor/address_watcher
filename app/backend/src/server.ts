@@ -6,6 +6,7 @@ import { customAlphabet } from 'nanoid';
 import dictionary from 'nanoid-dictionary';
 import { env, sendEmail, logger } from './utils/index.ts';
 import { saveCache, cacheExists, getCache } from './db/cache.ts';
+import { webPushInstance } from './webpush/index.ts';
 
 const app = express();
 
@@ -83,21 +84,58 @@ app.post('/validate-otp', (req: Request, res: Response) => {
 });
 
 app.get('/session', (req: Request, res: Response) => {
-  const currentTime = Date.now();
-  const session = res.locals.session;
-  if (currentTime - session.time > twentyFourHours || !session) {
-    return res.status(400).json({ error: 'Session expired. You will need to generate one.' });
+  try {
+    const currentTime = Date.now();
+    const session = res.locals.session;
+    if (currentTime - session.time > twentyFourHours || !session) {
+      return res.status(400).json({ error: 'Session expired. You will need to generate one.' });
+    }
+    return res.status(200).json({ message: 'Access Granted.' });
+  } catch (error: any) {
+    logger('error', error.message || error.toString());
+    return res.status(500).json({ error: error.message || 'something really bad happened.' });
   }
-  return res.status(200).json({ message: 'Access Granted.' });
 });
 
 app.get('/logout', (req, res) => {
-  req.session.destroy((err) => {
-    if (err) {
-      logger('error', err.message || err.toString());
+  try {
+    req.session.destroy((err) => {
+      if (err) {
+        logger('error', err.message || err.toString());
+      }
+    });
+    return res.status(200).json({ message: 'Session destroyed.' });
+  } catch (error: any) {
+    logger('error', error.message || error.toString());
+    return res.status(500).json({ error: error.message || 'something really bad happened.' });
+  }
+});
+
+app.post('/enable_push', async (req: Request, res: Response) => {
+  try {
+    const payload = req.body;
+
+    if (!payload) {
+      return res.status(400).json({ error: 'Invalid payload' });
     }
-  });
-  return res.status(200).json({ message: 'Session destroyed.' });
+
+    const { subscription, address } = JSON.parse(payload);
+
+    if (!subscription) {
+      return res.status(400).json({ error: 'Invalid subscription' });
+    }
+
+    if (!address) {
+      return res.status(400).json({ error: 'Invalid address' });
+    }
+
+    saveCache(address as string, subscription);
+
+    return res.status(200).json({ message: `Notification enabled for ${address}` });
+  } catch (error: any) {
+    logger('error', error.message || error.toString());
+    return res.status(500).json({ error: error.message || 'something really bad happened.' });
+  }
 });
 
 app.listen(PORT, () => {
