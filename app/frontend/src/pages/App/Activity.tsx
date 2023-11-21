@@ -129,11 +129,11 @@ const History = () => {
                     <>
                       <div className="w-full max-md:flex max-md:items-center max-md:gap-5">
                         {/* <FiSend className="text-blue-300 rotate-45 hidden max-md:flex" /> */}
-                        <IoContract className="text-blue-300 hidden max-md:flex" />
+                        <IoContract className="text-blue-300 hidden max-md:flex" size={20} />
                         <div className="justify-between items-center self-center flex w-full gap-5 max-md:max-w-full max-md:flex-wrap max-md:gap-3">
                           <div className="flex items-center gap-10">
                             {/* <FiSend className="text-blue-300 rotate-45 max-md:hidden" /> */}
-                            <IoContract className="text-blue-300 max-md:hidden" />
+                            <IoContract className="text-blue-300 max-md:hidden" size={20} />
                             <div className="flex flex-col gap-1.5">
                               <p className="">Contract interaction</p>
                               {/* with {hist.functionName} */}
