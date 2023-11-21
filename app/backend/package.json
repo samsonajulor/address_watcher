@@ -17,7 +17,7 @@
     "ceramic": "ceramic daemon",
     "pm2-ceramic": "pm2 start npm --no-automation --name ceramic -- run ceramic",
     "build": "cross-env rimraf ./dist && tsc && yarn copy-files",
-    "start-pm2": "yarn pm2-ceramic && yarn pm2-graph && yarn pm2-alc && yarn pm2-dev"
+    "start-pm2": "yarn pm2-graph && yarn pm2-alc && yarn pm2-dev"
   },
   "repository": {
     "type": "git",
