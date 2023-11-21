@@ -56,10 +56,13 @@ Address Watcher Dapp aims to address these challenges by providing a unified, cu
 
 This project will capture the following features:
 
-1. Users will connect their wallets and register their address to be watched.Then the address watcher can alert the type of transaction running on their wallet i.e inflow and outflow transactions.
+1. Users will connect their wallets and register their address to be watched. Then the address watcher can alert the type of transaction running on their wallet i.e inflow and outflow transactions.
 
-2. NFT : NFTthe name, Id and other attributes of the NFT will be alerted in the email that will be transferred in and out of the wallet.
-   Contract interaction: The functions in the contract will be decoded, transaction hash and other information will be sent along in the mail.
+2. Token transfer: The token name, symbol and other details of the token transferred will be alerted to users via email.
+
+3. NFT mint: The name, Id and other attributes of the NFT will be alerted in the email that will be transferred in and out of the wallet.
+
+4. Contract interaction: The functions in the contract will be decoded, transaction hash and other information will be sent along in the mail.
 
 ## Benefit to the Base network
 
@@ -102,6 +105,8 @@ Users will need to pay for these features to be able to enjoy it. These features
 2. Statement of account can be printed but users will be charged for this service.
 
 3. Checker for infringement into an account before activities are carried out on the wallet.
+
+4. Filter through transactions history for ease of access.
 
 ## Conclusion:
 
