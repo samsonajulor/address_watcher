@@ -15,8 +15,9 @@
     "graph": "npx composedb graphql:server --ceramic-url=http://3.10.194.39:7007 --graphiql src/runtime-composite.json --port=5005",
     "pm2-graph": "pm2 start npm --no-automation --name graph -- run graph",
     "ceramic": "ceramic daemon",
-    "ceramic-graph": "pm2 start npm --no-automation --name ceramic -- run ceramic",
-    "build": "cross-env rimraf ./dist && tsc && yarn copy-files"
+    "pm2-ceramic": "pm2 start npm --no-automation --name ceramic -- run ceramic",
+    "build": "cross-env rimraf ./dist && tsc && yarn copy-files",
+    "start-pm2": "yarn pm2-ceramic && yarn pm2-graph && yarn pm2-alc && yarn pm2-dev"
   },
   "repository": {
     "type": "git",
