@@ -14,9 +14,9 @@ const DashTop = () => {
 
     allHistory?.forEach((hist) => {
       if (hist.to === address.toLocaleLowerCase()) {
-        income += hist.rawValue;
+        income += hist.rawValue!;
       } else if (hist.from === address.toLocaleLowerCase()) {
-        expense += hist.rawValue;
+        expense += hist.rawValue!;
       }
     });
 

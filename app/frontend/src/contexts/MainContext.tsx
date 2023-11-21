@@ -1,11 +1,11 @@
 import { createContext, useContext, useMemo, useState } from 'react';
 import { useComposeContext } from './ComposeProvider';
-import { formatEther } from 'ethers';
-import { TxHistory, Value } from '../constants/types';
+import { Network, formatEther } from 'ethers';
+import { OurTx, TxHistory, Value } from '../constants/types';
 import { useMutation, useQuery } from '@apollo/client';
 import { ADD_EMAIL, USER_DATA } from '../utils/gql';
 import useEffectOnce from '../hooks/useEffectOnce';
-import { ethersProvider } from '../config/walletconfig';
+import { getHistory } from '../utils/getHistory';
 
 interface FlowData {
   inflows: { x: Date; y: string }[];
@@ -36,59 +36,24 @@ const MainContextProvider = ({ children }: { children: React.ReactNode }) => {
     address: string;
   }>();
 
-  const [history, setHistory] = useState<TxHistory[]>([]);
-  const [allHistory, setAll] = useState<TxHistory[]>([]);
-
-  const getHistory = async () => {
-    const currentBlock = await ethersProvider.getBlockNumber();
-
-    const _history = await ethersProvider.getHistory(address!, 0, currentBlock);
-
-    return {
-      _allHistory: _history,
-      _filteredHistory: _history.filter((data: TxHistory) => Number(data.value) > 0),
-    };
-  };
+  const [histories, setHistories] = useState<{
+    _allHistory: TxHistory[];
+    inflows: TxHistory[];
+    outflows: TxHistory[];
+  }>({
+    _allHistory: [],
+    inflows: [],
+    outflows: [],
+  });
 
   useEffectOnce(() => {
     if (!address) {
       return;
     }
-    getHistory().then(({ _allHistory, _filteredHistory }) => {
-      setHistory(_filteredHistory);
-      setAll(_allHistory);
+    getHistory(address).then((hist) => {
+      setHistories(hist);
     });
   }, [address]);
-
-  const newHistory = useMemo(() => {
-    const diffBlock =
-      period === 'daily'
-        ? Math.floor((24 * 60 * 60) / 13.2)
-        : period === 'weekly'
-        ? Math.floor((7 * 24 * 60 * 60) / 13.2)
-        : period === 'monthly'
-        ? Math.floor((365 * 24 * 60 * 60) / 13.2)
-        : null;
-
-    if (!diffBlock) {
-      return history;
-    }
-    const lastData = history[history.length - 1];
-
-    if (!lastData) {
-      return history;
-    }
-
-    const sliceStart = Number(lastData.blockNumber) - diffBlock;
-    const diff = history.filter((data) => Number(data.blockNumber) > sliceStart);
-
-    console.log({
-      diff: diff.length,
-      history: history.length,
-    });
-
-    return diff;
-  }, [history, period]);
 
   const totalFlowData = useMemo<FlowData>(() => {
     const data: FlowData = {
@@ -98,22 +63,21 @@ const MainContextProvider = ({ children }: { children: React.ReactNode }) => {
       cumulativeOutflow: [],
     };
 
-    newHistory
-      .map((hist) => ({
-        ...hist,
-        value: formatEther(BigInt(hist.value)),
-        from: hist.from.toLowerCase(),
-        to: hist.to.toLowerCase(),
-        timeStamp: Number(hist.timeStamp),
-      }))
-      .forEach((hist) => {
-        if (hist.from === address) {
-          data.outflows.push({ x: new Date(Number(hist.timeStamp) * 1000), y: hist.value });
-        }
-        if (hist.to === address) {
-          data.inflows.push({ x: new Date(Number(hist.timeStamp) * 1000), y: hist.value });
-        }
-      });
+    const formatInflow = (hist: TxHistory[], output: { x: Date; y: string }[]) =>
+      hist
+        .map((hist) => ({
+          ...hist,
+          value: formatEther(BigInt(hist.value)),
+          from: hist.from.toLowerCase(),
+          to: hist.to.toLowerCase(),
+          timeStamp: Number(hist.timeStamp),
+        }))
+        .forEach((hist) => {
+          output.push({ x: new Date(Number(hist.timeStamp) * 1000), y: hist.value });
+        });
+
+    formatInflow(histories.inflows, data.inflows);
+    formatInflow(histories.outflows, data.outflows);
 
     const cumulate = (data: { x: Date; y: string }[]) => {
       let cum = 0;
@@ -127,7 +91,7 @@ const MainContextProvider = ({ children }: { children: React.ReactNode }) => {
     data.cumulativeOutflow = cumulate(data.outflows);
 
     return data;
-  }, [newHistory, address]);
+  }, [histories]);
 
   const [mutateFunction] = useMutation(ADD_EMAIL);
 
@@ -156,7 +120,7 @@ const MainContextProvider = ({ children }: { children: React.ReactNode }) => {
         navbarOpen,
         setNavbarOpen,
         totalFlowData,
-        allHistory: allHistory.map((hist) => ({
+        allHistory: histories?._allHistory.map((hist) => ({
           ...hist,
           value: Number(formatEther(BigInt(hist.value))).toFixed(2),
           from: hist.from.toLowerCase(),
