@@ -164,7 +164,7 @@ const Explore = () => {
     <div className="col-span-full">
       <div className="mt-5">
         <div className="flex justify-between max-sm:flex-col">
-          <div className="flex gap-4 items-center max-sm:justify-center max-sm:my-4">
+          <div className="flex gap-4 items-center max-sm:justify-center">
             <Select inputs={dtTypes} onSelect={(str) => setDataType(str as DtType)} />
             <DropdownInput value={threshold} onUpdate={setThreshold} />
             <Select inputs={periods} onSelect={(str) => setPeriod(str as Value)} />

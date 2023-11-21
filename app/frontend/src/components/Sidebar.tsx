@@ -1,12 +1,13 @@
 import { useRef, useEffect } from 'react';
 import { useMainContext } from '../contexts/MainContext';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useDarkMode, useOnClickOutside, useWindowSize } from 'usehooks-ts';
-import { MdSpaceDashboard } from 'react-icons/md';
+import { MdOutlineDarkMode, MdOutlineLightMode, MdSpaceDashboard } from 'react-icons/md';
 import { GrTransaction } from 'react-icons/gr';
 import { IoMdSettings } from 'react-icons/io';
 import { useMediaQuery } from 'usehooks-ts';
-import Switchy from './Switch';
+import Mode from './Mode';
+import { SiHiveBlockchain } from 'react-icons/si';
 
 const Sidebar = () => {
   const { navbarOpen, setNavbarOpen } = useMainContext();
@@ -37,31 +38,37 @@ const Sidebar = () => {
         navbarOpen ? 'fixed w-52 h-max lg:static lg:w-auto z-50 lg:mt-8 ' : 'hidden'
       } bar  min-h-[calc(100vh-200px)] grid place-content-center`}
     >
-      <div className="flex flex-col gap-8 py-10 w-full h-full relative">
-        {[
-          ['/app', <MdSpaceDashboard />, 'Dashboard'],
-          ['/app/activity', <GrTransaction />, 'Activity'],
-          ['/app/settings', <IoMdSettings />, 'Settings'],
-        ].map((path) => (
-          <NavLink
-            to={path[0] as string}
-            key={path[0] as string}
-            className={({ isActive }) =>
-              `flex gap-2 items-center btn ${
-                isActive ? 'bg-cs-light-purple text-cs-primary' : 'hover:bg-cs-dark-bg/10'
-              }`
-            }
-            end
-          >
-            {(isSmallScreen || isLargeScreen) && path[1]}
-            {path[2]}
-          </NavLink>
-        ))}
-        {/* <div className="major-flex">
-          <p>Light</p>
-          <Switchy />
-          <p>Dark</p>
-        </div> */}
+      <div className=" flex flex-col gap-16 w-full h-full relative">
+        <Link to="/" className="hidden max-sm:flex text-lg items-center gap-2 self-center">
+          <SiHiveBlockchain className="text-cs-light-purple" />
+          Watcher
+        </Link>
+        <div className="flex flex-col gap-8">
+          {[
+            ['/app', <MdSpaceDashboard />, 'Dashboard'],
+            ['/app/activity', <GrTransaction />, 'Activity'],
+            ['/app/settings', <IoMdSettings />, 'Settings'],
+          ].map((path) => (
+            <NavLink
+              to={path[0] as string}
+              key={path[0] as string}
+              className={({ isActive }) =>
+                `flex gap-2 items-center btn ${
+                  isActive ? 'bg-cs-light-purple text-cs-primary' : 'hover:bg-cs-dark-bg/10'
+                }`
+              }
+              end
+            >
+              {(isSmallScreen || isLargeScreen) && path[1]}
+              {path[2]}
+            </NavLink>
+          ))}
+        </div>
+        <div className="flex justify-evenly">
+          <MdOutlineLightMode size={22} />
+          <Mode />
+          <MdOutlineDarkMode size={22} />
+        </div>
       </div>
     </div>
   );

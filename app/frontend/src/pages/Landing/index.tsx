@@ -6,11 +6,13 @@ import Chains from './components/Chains';
 import Infos from './components/Infos';
 import Cta from './components/Cta';
 import Footer from './components/Footer';
+import Mode from './components/Mode';
 
 const Landing = () => {
   return (
     <div className="bg-cs-bg dark:bg-cs-dark-bg text-cs-dark-primary dark:text-cs-primary">
       <Header />
+      <Mode />
       <div className="justify-center items-start flex flex-col">
         <Hero />
         <Features />

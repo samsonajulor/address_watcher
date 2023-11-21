@@ -3,7 +3,7 @@ import Info from './Info';
 const Infos = () => {
   const alertTypes = {
     title: 'Alert Types:',
-    items: ['Nft mints', 'Balance changes', 'Contract deployment', 'High gas transactions'],
+    items: ['Nft mints', 'Balance changes', 'Token transfers', 'Contract deployment'],
   };
 
   const notifications = {
