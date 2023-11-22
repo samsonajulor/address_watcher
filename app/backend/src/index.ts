@@ -37,11 +37,15 @@ export const watcher = async () => {
 };
 
 // call watcher every 6 seconds
-cron.schedule('*/6 * * * * *', () =>
+cron.schedule('*/15 * * * * *', () =>
   watcher().then(() =>
     logger(
       'starting watcher...',
       `|||||watcher started continuously now at ${tracker} minutes|||||`
-    )
+    ).catch((error) => {
+      console.log(error, 'error');
+      logger('error', error.message || error.toString());
+      throw new Error(error.message || 'something really bad happened.');
+    })
   )
 );
