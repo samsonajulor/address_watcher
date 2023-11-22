@@ -144,14 +144,14 @@ const NotificationCard = () => {
           {error && <p className="text-red-500 text-[12px]">{error}</p>}
         </div>
       </div>
-      {/* <div>
+      <div>
         <button
           className="rounded bg-cs-light-purple hover:bg-cs-purple text-cs-bg font-bold px-4 py-2 leading-none text-sm"
           onClick={handleRegisterPushNotification}
         >
           {pushEnabled ? 'Disable Push Notifications' : ' Enable Push Notifications'}
         </button>
-      </div> */}
+      </div>
 
       {loading && (
         <div className="absolute w-screen h-screen grid place-content-center top-0 left-0 bg-black/60 z-50s">
