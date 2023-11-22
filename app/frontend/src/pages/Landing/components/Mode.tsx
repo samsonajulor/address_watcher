@@ -6,7 +6,7 @@ const Mode = () => {
   const { isDarkMode, handleToggle } = useSwitch();
 
   return (
-    <div className="fixed right-10 bottom-10" onClick={handleToggle}>
+    <div className="fixed cursor-pointer right-10 bottom-10" onClick={handleToggle}>
       {isDarkMode ? <MdOutlineDarkMode size={26} /> : <MdOutlineLightMode size={26} />}
     </div>
   );
