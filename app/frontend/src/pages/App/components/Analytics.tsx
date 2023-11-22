@@ -100,26 +100,21 @@ const Explore = () => {
           x: new Date(currentTime - historicDate.daily.duration * i),
           y: currentBlockNum,
         });
-        if (weekBlock === currentBlockNum) {
-          blockNums.weekly.push({
-            x: new Date(currentTime - historicDate.weekly.duration * i),
-            y: currentBlockNum,
-          });
-          weekBlock -= blockDuration * 7;
-        }
 
-        if (monthBlock === currentBlockNum) {
-          blockNums.monthly.push({
-            x: new Date(currentTime - historicDate.monthly.duration * i),
-            y: currentBlockNum,
-          });
-          monthBlock -= blockDuration * 30;
-        }
+        blockNums.weekly.push({
+          x: new Date(currentTime - historicDate.weekly.duration * i),
+          y: weekBlock,
+        });
 
+        blockNums.monthly.push({
+          x: new Date(currentTime - historicDate.monthly.duration * i),
+          y: monthBlock,
+        });
+
+        monthBlock -= blockDuration * 30;
+        weekBlock -= blockDuration * 7;
         currentBlockNum -= blockDuration;
       }
-
-      console.log(blockNums.length);
 
       const balances = await Promise.all(
         Object.keys(blockNums).map((key) =>
@@ -166,15 +161,147 @@ const Explore = () => {
     [balData, period]
   );
 
+  const formattedFlowData = useMemo(() => {
+    const _data: {
+      [key: string]: {
+        [key: string]: { x: Date; y: number }[];
+      };
+    } = {
+      daily: {
+        inflows: [],
+        outflows: [],
+      },
+      weekly: {
+        inflows: [],
+        outflows: [],
+      },
+      monthly: {
+        inflows: [],
+        outflows: [],
+      },
+    };
+
+    const latestInflow = totalFlowData.cumulativeInflow[totalFlowData.cumulativeInflow.length - 1];
+    const latestOutflow =
+      totalFlowData.cumulativeOutflow[totalFlowData.cumulativeOutflow.length - 1];
+
+    const removeData2 = (arr: { x: Date; y: number }[], latest: Date) => {
+      const daily: { x: Date; y: number }[] = [];
+      const weekly: { x: Date; y: number }[] = [];
+      const monthly: { x: Date; y: number }[] = [];
+      const arrLength = arr.length;
+      let latestDate = latest.getTime();
+      let weekDate = latest.getTime();
+      let monthDate = latest.getTime();
+
+      for (let i = arrLength - 1; i >= 0; i -= 1) {
+        let t = arr[i].x.getTime();
+
+        if (t <= latestDate - 86400000) {
+          latestDate -= 86400000;
+        }
+        if (t <= weekDate - 604800000) {
+          weekDate -= 86400000;
+        }
+        if (t <= monthDate - 86400000) {
+          monthDate -= 86400000;
+        }
+        if (t <= latestDate && t > latestDate - 86400000) {
+          daily.unshift(arr[i]);
+          latestDate -= 86400000;
+        }
+
+        if (t < weekDate && t > weekDate - 604800000) {
+          weekly.unshift(arr[i]);
+          weekDate -= 604800000;
+        }
+
+        if (t < monthDate && t > monthDate - 2592000000) {
+          monthly.unshift(arr[i]);
+          monthDate -= 2592000000;
+        }
+      }
+
+      daily.unshift({
+        x: new Date(arr[0].x.getTime() - 86400000),
+        y: 0,
+      });
+
+      weekly.unshift({
+        x: new Date(arr[0].x.getTime() - 604800000),
+        y: 0,
+      });
+
+      monthly.unshift({
+        x: new Date(arr[0].x.getTime() - 2592000000),
+        y: 0,
+      });
+
+      return {
+        daily,
+        weekly,
+        monthly,
+      };
+    };
+
+    if (!latestInflow || !latestOutflow) {
+      return _data;
+    }
+
+    const { daily, weekly, monthly } = removeData2(totalFlowData.cumulativeInflow, latestInflow?.x);
+    _data.daily.inflows = daily;
+    _data.weekly.inflows = weekly;
+    _data.monthly.inflows = monthly;
+
+    const {
+      daily: dailyOut,
+      weekly: weeklyOut,
+      monthly: monthlyOut,
+    } = removeData2(totalFlowData.cumulativeOutflow, latestOutflow?.x);
+    _data.daily.outflows = dailyOut;
+    _data.weekly.outflows = weeklyOut;
+    _data.monthly.outflows = monthlyOut;
+
+    // const removeData = (arr: { x: Date; y: number }[], input: number): { x: Date; y: number }[] => {
+    //   const result = [];
+    //   const arrLength = arr.length;
+
+    //   for (let i = arrLength - 1; i >= 0; i -= input + 1) {
+    //     result.push(arr[i]);
+    //   }
+
+    //   return result.reverse();
+    // };
+
+    // _data.weekly.inflows = removeData(totalFlowData.cumulativeInflow, 7);
+    // _data.weekly.outflows = removeData(totalFlowData.cumulativeOutflow, 7);
+    // _data.monthly.inflows = removeData(totalFlowData.cumulativeInflow, 30);
+    // _data.monthly.outflows = removeData(totalFlowData.cumulativeOutflow, 30);
+
+    console.log({ _data });
+
+    return _data;
+  }, [totalFlowData]);
+
+  const periodicFlowData = useMemo(
+    () =>
+      period === 'daily'
+        ? formattedFlowData.daily
+        : period === 'weekly'
+        ? formattedFlowData.weekly
+        : formattedFlowData.monthly,
+    [formattedFlowData, period]
+  );
+
   const data = useMemo(() => {
     if (dataType === 'balance') {
       return periodicBalData;
     }
 
-    if (dataType === 'inflow') return totalFlowData.cumulativeInflow;
+    if (dataType === 'inflow') return periodicFlowData.inflows;
 
-    return totalFlowData.cumulativeOutflow;
-  }, [dataType, totalFlowData, periodicBalData]);
+    return periodicFlowData.outflows;
+  }, [dataType, periodicFlowData, periodicBalData]);
 
   const chartData = useMemo<ChartData<'line'>>(
     () => ({
@@ -210,10 +337,6 @@ const Explore = () => {
     }),
     [data, period, threshold, dataType]
   );
-
-  useEffect(() => {
-    console.log(totalFlowData);
-  }, [totalFlowData, period]);
 
   return (
     <div className="col-span-full">
