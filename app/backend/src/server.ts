@@ -119,7 +119,9 @@ app.post('/enable_push', async (req: Request, res: Response) => {
       return res.status(400).json({ error: 'Invalid payload' });
     }
 
-    const { subscription, address } = JSON.parse(payload);
+    console.log(typeof payload);
+
+    const { subscription, address } = payload;
 
     if (!subscription) {
       return res.status(400).json({ error: 'Invalid subscription' });
@@ -129,10 +131,16 @@ app.post('/enable_push', async (req: Request, res: Response) => {
       return res.status(400).json({ error: 'Invalid address' });
     }
 
-    saveCache(address as string, subscription);
+    saveCache(address as string, JSON.stringify(subscription));
+
+    await webPushInstance.sendNotification(
+      subscription,
+      JSON.stringify({ title: 'your address is now enabled.' })
+    );
 
     return res.status(200).json({ message: `Notification enabled for ${address}` });
   } catch (error: any) {
+    console.log(error, 'error');
     logger('error', error.message || error.toString());
     return res.status(500).json({ error: error.message || 'something really bad happened.' });
   }
