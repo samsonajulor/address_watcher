@@ -154,7 +154,7 @@ const NotificationCard = () => {
       </div>
 
       {loading && (
-        <div className="absolute w-screen h-screen grid place-content-center top-0 left-0 bg-black/60">
+        <div className="absolute w-screen h-screen grid place-content-center top-0 left-0 bg-black/60 z-50s">
           <div className="">
             <InfinitySpin width="200" color="#6d28d9" />
           </div>
