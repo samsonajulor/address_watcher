@@ -1,13 +1,9 @@
 import { Dialog } from '@headlessui/react';
 import React, { useState } from 'react';
-import { ApolloClient, useMutation } from '@apollo/client';
 import { InfinitySpin } from 'react-loader-spinner';
-import { signMessage } from '@wagmi/core';
 import { useComposeContext } from '../../../contexts/ComposeProvider';
 import { HiDotsVertical } from 'react-icons/hi';
 import { useBalance } from 'wagmi';
-import { ethers } from 'ethers';
-import { ethersProvider } from '../../../config/walletconfig';
 
 const truncateAddress = (address: `0x${string}`) => {
   const truncatedAddress = address.substring(0, 6) + '...' + address.substring(address.length - 4);
@@ -69,7 +65,6 @@ const AccountCard = () => {
           <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-50">
             <div className="fixed inset-0 flex w-screen h-screen bg-black/20 items-center justify-center p-4">
               <Dialog.Panel>
-                {/* <Modal /> */}
                 <NewModal setIsOpen={setIsOpen} />
               </Dialog.Panel>
             </div>
