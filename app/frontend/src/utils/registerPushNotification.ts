@@ -1,7 +1,7 @@
 import base64ToUint8Array from './base64ToUint8Array';
 
 async function registerPushNotification(address: string) {
-  const register = await navigator.serviceWorker.register('../../worker.js', {
+  const register = await navigator.serviceWorker.register('/worker.js', {
     scope: '/',
   });
 
