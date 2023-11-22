@@ -28,14 +28,15 @@ const DashTop = () => {
   return (
     <>
       <Download />
-      <div className="card h-48 text-2xl font-black flex flex-col justify-around items-center col-span-1 max-md:text-center max-md:text-xl max-sm:text-lg max-sm:col-span-full max-sm:h-36">
+
+      <div className="card text-2xl font-black flex flex-col justify-around items-center col-span-1 max-md:text-center max-md:text-xl max-sm:text-lg max-sm:col-span-full max-sm:h-36">
         <p>Total Income</p>
         <p className="text-4xl max-md:text-3xl max-sm:text-2xl">
           {income}
           <b className="text-xl max-md:text-lg"> ETH</b>
         </p>
       </div>
-      <div className="card h-48 text-2xl font-black flex flex-col justify-around items-center col-span-1 max-md:text-center max-md:text-xl max-sm:text-lg max-sm:col-span-full max-sm:h-36">
+      <div className="card text-2xl font-black flex flex-col justify-around items-center col-span-1 max-md:text-center max-md:text-xl max-sm:text-lg max-sm:col-span-full max-sm:h-36">
         <p>Total Expense</p>
         <p className="text-4xl max-md:text-3xl max-sm:text-2xl">
           {expense}
@@ -50,9 +51,9 @@ const Download = ({}) => {
   let [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="card p-0 h-48 col-span-2 relative overflow-hidden font-black bg-cs-purple text-cs-bg">
+    <div className="card p-0 col-span-2 relative overflow-hidden font-black bg-cs-purple text-cs-bg">
       <div className="p-6">
-        <div className="lg:grid lg:gap-5 h-full relative z-10 flex flex-col gap-4">
+        <div className="grid gap-5 h-full relative z-10">
           <p className="text-4xl italic">Hey fren </p>
           <p className="sm:text-xl w-2/3">Generate Insights on your Wallet </p>
           <button
