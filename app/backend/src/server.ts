@@ -87,7 +87,7 @@ app.get('/session', (req: Request, res: Response) => {
   try {
     const currentTime = Date.now();
     const session = res.locals.session;
-    if (currentTime - session.time > twentyFourHours || !session) {
+    if (currentTime - session?.time > twentyFourHours || !session) {
       return res.status(400).json({ error: 'Session expired. You will need to generate one.' });
     }
     return res.status(200).json({ message: 'Access Granted.' });

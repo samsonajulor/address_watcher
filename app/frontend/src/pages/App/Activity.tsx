@@ -15,6 +15,8 @@ import { ERC20ABI } from '../../constants/abis/erc20';
 import { ethers, formatUnits } from 'ethers';
 import Select from './components/Select';
 import { filter } from '../../constants/variables';
+import Modal from './components/Modal';
+import { Dialog } from '@headlessui/react';
 
 const truncateAddress = (address: string) => {
   const truncatedAddress = address.substring(0, 6) + '...' + address.substring(address.length - 4);
@@ -36,9 +38,11 @@ const Activity = () => {
 };
 
 const History = () => {
+  let [isOpen, setIsOpen] = useState(false);
   const { address } = useComposeContext();
   const { allHistory } = useMainContext();
   const isSmallScreen = useMediaQuery('(max-width: 768px)');
+  const [modalData, setModalData] = useState<any>();
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
@@ -116,6 +120,11 @@ const History = () => {
     }
   };
 
+  const handleDetails = (data: any) => {
+    setIsOpen(true);
+    setModalData(data);
+  };
+
   // useEffectOnce(() => {
   //   if (history.length > 0) {
   //     const contracts = history
@@ -128,6 +137,13 @@ const History = () => {
 
   return (
     <div className="flex flex-col items-stretch w-full max-md:w-full max-md:ml-0">
+      <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-50">
+        <div className="fixed inset-0 flex w-screen h-screen bg-black/20 items-center justify-center p-4">
+          <Dialog.Panel>
+            <Modal setIsOpen={setIsOpen} data={modalData} />
+          </Dialog.Panel>
+        </div>
+      </Dialog>
       {history.length > 0 ? (
         <div>
           {paginatedHistory.map((hist) => {
@@ -140,7 +156,12 @@ const History = () => {
                   {hist.functionName === '' ? (
                     hist.to === address ? (
                       <>
-                        <div className="justify-between items-center self-center flex w-full gap-5 max-md:max-w-full max-md:flex-wrap">
+                        <div
+                          className="justify-between items-center self-center flex w-full gap-5 max-md:max-w-full max-md:flex-wrap"
+                          // onClick={() => {
+                          //   handleDetails(hist);
+                          // }}
+                        >
                           <div className="flex items-center gap-10 max-md:gap-5">
                             {/* <FiSend className="text-green-500 rotate-90" /> */}
                             <FaArrowRightToBracket className="text-green-500 rotate-90" />
@@ -149,9 +170,9 @@ const History = () => {
                                 Received from {isSmallScreen ? truncateAddress(hist.to) : hist.from}
                               </p>
                               <p className="text-gray-500 text-sm">
-                                {moment(Number(hist.timeStamp) * 1000).format(
-                                  'MMMM Do YYYY, h:mm:ss a'
-                                )}
+                                {moment(Number(hist.timeStamp) * 1000)
+                                  .startOf('minutes')
+                                  .fromNow()}
                               </p>
                               <div className="hidden mt-2 max-sm:flex">- {hist.value} ETH</div>
                             </div>
@@ -161,7 +182,12 @@ const History = () => {
                       </>
                     ) : (
                       <>
-                        <div className="justify-between items-center self-center flex w-full gap-5 max-md:max-w-full max-md:flex-wrap">
+                        <div
+                          className="justify-between items-center self-center flex w-full gap-5 max-md:max-w-full max-md:flex-wrap"
+                          // onClick={() => {
+                          //   handleDetails(hist);
+                          // }}
+                        >
                           <div className="flex items-center gap-10 max-md:gap-5">
                             {/* <FiSend className="text-red-500" /> */}
                             <FaArrowRightFromBracket className="text-red-500 -rotate-90" />
@@ -170,9 +196,9 @@ const History = () => {
                                 Sent to {isSmallScreen ? truncateAddress(hist.to) : hist.to}
                               </p>
                               <p className="text-gray-500 text-sm">
-                                {moment(Number(hist.timeStamp) * 1000).format(
-                                  'MMMM Do YYYY, h:mm:ss a'
-                                )}
+                                {moment(Number(hist.timeStamp) * 1000)
+                                  .startOf('minutes')
+                                  .fromNow()}
                               </p>
                               <div className="hidden mt-2 max-sm:flex">- {hist.value} ETH</div>
                             </div>
@@ -183,7 +209,12 @@ const History = () => {
                     )
                   ) : (
                     <>
-                      <div className="w-full max-md:flex max-md:items-center max-md:gap-5">
+                      <div
+                        className="w-full max-md:flex max-md:items-center max-md:gap-5 cursor-pointer"
+                        onClick={() => {
+                          handleDetails(hist);
+                        }}
+                      >
                         {/* <FiSend className="text-blue-300 rotate-45 hidden max-md:flex" /> */}
                         <IoContract className="text-blue-300 hidden max-md:flex" size={20} />
                         <div className="justify-between items-center self-center flex w-full gap-5 max-md:max-w-full max-md:flex-wrap max-md:gap-3">
@@ -197,9 +228,9 @@ const History = () => {
                                 At {isSmallScreen ? truncateAddress(hist.to) : hist.to}
                               </p>
                               <p className="text-gray-500 text-sm">
-                                {moment(Number(hist.timeStamp) * 1000).format(
-                                  'MMMM Do YYYY, h:mm:ss a'
-                                )}
+                                {moment(Number(hist.timeStamp) * 1000)
+                                  .startOf('minutes')
+                                  .fromNow()}
                               </p>
                             </div>
                           </div>
