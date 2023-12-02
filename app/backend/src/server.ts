@@ -135,7 +135,7 @@ app.post('/enable_push', async (req: Request, res: Response) => {
 
     await webPushInstance.sendNotification(
       subscription,
-      JSON.stringify({ title: 'your address is now enabled.' })
+      JSON.stringify({ title: 'This is a premium service.' })
     );
 
     return res.status(200).json({ message: `Notification enabled for ${address}` });
